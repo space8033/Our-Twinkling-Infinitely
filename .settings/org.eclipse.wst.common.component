@@ -27,7 +27,7 @@
         
         
         <property name="java-output-path" value="/our-twinkling-infinitely/target/classes"/>
-        <property name="context-root" value="springwebapp"/>
+        <property name="context-root" value="our-twinkling-infinitely"/>
                                             
     
     
