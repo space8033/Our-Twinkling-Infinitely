@@ -5,7 +5,6 @@ function init() {
 	loadFooter();
 	var box = $(".boxes");
 	box.click(onClickBox);
-	
 	var classifyMine = $(".classifyMine");
 	classifyMine.click(onClickMine);
 	
@@ -46,7 +45,7 @@ function onClickMine() {
 
 function makeOrderCard() {
 	$.ajax({
-		url:"mycoupang_content.jsp",
+		url:"${pageContext.request.contextPath}/views/mypage/orderlist/mycoupang_content.jsp",
 		method: "get",
 		success: function(data) {
 			let html="";

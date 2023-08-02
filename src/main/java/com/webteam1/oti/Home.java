@@ -8,6 +8,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 public class Home {
 	@RequestMapping("/content")
 	public String content() {
-		return "orderPay/orderPay";
+		return "mypage/orderlist/mycoupang";
 	}
 }
