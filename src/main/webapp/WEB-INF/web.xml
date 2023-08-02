@@ -69,15 +69,6 @@
   	<!-- 모든 요청을 DispatcherServlet이 처리 -->
   	<url-pattern>/</url-pattern>
   </servlet-mapping>
-  <!-- ========================================================================================= -->
-  <filter>
-  	<filter-name>Ch02FilterA</filter-name>
-  	<filter-class>com.mycompany.springwebapp.filter.Ch02FilterA</filter-class>
-  </filter>
-  <!-- 모든 요청시  필터에서 DispatcherServlet 실행 -->
-  <filter-mapping>
-  	<filter-name>Ch02FilterA</filter-name>
-  	<url-pattern>/ch02/*</url-pattern>
-  </filter-mapping>
+
 </web-app>
   <!-- ========================================================================================= -->
