@@ -9,7 +9,7 @@ function init(){
 //주문 json
 function order() {
 	$.ajax({
-		url: "orderPay_content.jsp",
+		url: "../WEB-INF/views/orderPay/orderPay_content.jsp",
 		method: "get",
 		success: function(data) {
 			console.log(data);
@@ -82,10 +82,10 @@ function priceCalculate() {
 }
 
 function openAdress() {
-   		window.open("addressSelect.jsp", "winLogin", "left=350, top=300, width=500, height=650");
+   		window.open("${pageContext.request.contextPath}/views/orderPay/addressSelect.jsp", "winLogin", "left=350, top=300, width=500, height=650");
 }
 function openRequest() {
-		window.open("addressRequest.jsp", "winLogin", "left=350, top=300, width=530, height=650");
+		window.open("${pageContext.request.contextPath}/views/orderPay/addressRequest.jsp", "winLogin", "left=350, top=300, wi${pageContext.request.contextPath}/views/orderPay/dth=530, height=650");
 }
 
 
