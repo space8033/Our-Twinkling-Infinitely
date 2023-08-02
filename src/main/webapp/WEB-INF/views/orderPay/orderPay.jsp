@@ -23,7 +23,9 @@
 
 <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/orderPay_css.css">
 
-
+<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/cart.css"/>
+      <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/footer.css"/>
+      <script src="${pageContext.request.contextPath}/resources/javascript/cart.js"></script>
 
 </head>
 

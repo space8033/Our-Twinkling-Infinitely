@@ -329,7 +329,7 @@ function jsonProduct() {
 	let day = weekday[days];
 	
   $.ajax({
-	 url: "../html/basket_content.jsp",
+	 url: "basket_content.jsp",
 	 method: "get",
 	 success: function(data){
 		 let html = "";
