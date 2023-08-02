@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- ?xml version="1.0" encoding="UTF-8"의 경우 xml문서의 첫줄에 항상 작성되어야함. 띄어쓰기, 주석 전부 첫번째줄이면 안됨. -->
+
+<!-- root element는 하나만 작성되어야함(<beans>를 더 선언할 수 없음.) -->
+<!-- xmlns(xml name space): :뒤에 나오는 것은 사용할 접두사. 없는 경우 접두사 필요없음. -->
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:mvc="http://www.springframework.org/schema/mvc"
+	xmlns:aop="http://www.springframework.org/schema/aop"
+	xsi:schemaLocation="http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc.xsd
+		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd
+		http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop.xsd">
+
+	<!-- 
+		[객체 생성 관련 어노테이션]
+		@Controller, @Component  
+		위 어노테이션이 등록된 클래스를 찾고, IoC Container(WebApplicationContext)에서 객체를 생성시킴.
+		
+		[생성자 호출 후, 소멸자 호출 전 실행할 메소드와 관련된 어노테이션 인식]
+		@PostConstructor: 생성자 호출 후에 실행할 메소드, @PreDestroy: 객체가 소멸되기 전에 실행할 메소드
+
+		[의존 객체 주입(Dependency Injection: DI)와 관련된 어노테이션 인식]
+		@Resource, @Autowired, @Inject, @Value
+		
+		[요청 경로 매핑과 관련된 어노테이션]
+		@RequestMapping
+	-->
+	<context:component-scan base-package="com.webteam1.oti">
+		<context:exclude-filter type="annotation" expression="org.springframework.stereotype.Service"/>
+		<context:exclude-filter type="annotation" expression="org.springframework.stereotype.Repository"/>
+	</context:component-scan>
+	
+	<!--
+		[요청 정보를 얻거나, 처리를 하기 위한 어노테이션을 인식] (요청 처리와 관련된 어노테이션이므로 root쪽에 들어가면 안됨)
+		@RequestParam, @GetMapping, @PostMapping, @ModelAttribute
+	-->
+	<mvc:annotation-driven></mvc:annotation-driven>
+</beans>
