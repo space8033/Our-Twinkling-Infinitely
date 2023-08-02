@@ -1,0 +1,685 @@
+@charset "UTF-8";
+
+		*{			
+			font-size: 100%;
+  			font-family: "apple sd gothic neo", "맑은 고딕", "malgun gothic", 나눔고딕,
+    		  nanumgothic, 돋움, dotum, sans-serif;
+            margin:0px;
+            padding:0px;
+         }
+            
+            
+            
+         #wrapper {
+         	position : relative;
+         
+         } 
+  
+                /* 
+                overflow: hidden 쓰는 이유?
+                자식 요소에 float 속성이 있으면 부모 요소가 높이 값을 잃는다.
+                높이 값을 찾아주는 것이 overflow 속성의 hidden 값이다.
+                자식 요소 중 제일 높은 높이 값을 기준으로 부모 요소의 높이가 정해진다.
+                */
+         
+         #top{
+                overflow: hidden;  
+                background-color: white;
+                border-bottom: 1px solid #D8D8D8;
+          	  }
+            
+         
+		 #middle{
+						
+				overflow:hidden;    
+			    background-color: white;
+			    margin-bottom: 5px;
+			   
+			    }
+
+
+ 		 #footer {
+			 	background-color: #ECF0F3;
+			 	height: 305px;
+			 	border: 1px solid #D8D8D8;
+			 	float: left;
+			 	margin : 0px;
+			 	width: 1700px;
+			 	padding-left: 300px;
+			 	font-size: 12px;
+			 	color: #6E6E6E
+				 }  
+
+          
+          /* -- top-- */
+          
+          
+          
+ 			#navBox{
+                float: right;
+                margin-top : 30px;
+                margin-right : 20px;
+                background-color: white;
+                font-size: 13px;
+                color:#6E6E6E;
+              
+            }
+            
+            
+            #logoBox{
+            
+                float: left;  /* 한 줄로 왼쪽 정렬 */
+                height: 55px;
+                background-color: white;
+                margin-top: 20px;
+            	margin-left: 30px;
+            	   
+            }
+            
+            
+            
+            /* --여기까지 top-- */
+
+            /* --middle-- */
+            h1 {
+
+				padding-top: 20px;
+            	padding-left: 20px;
+            	font-size: 18px;
+    
+            } 
+            
+            h2 {
+
+				padding-top: 10px;
+            	padding-left: 10px;
+            	padding-bottom: 20px;
+    			font-size: 15px;
+            } 
+            
+            
+            
+
+            #localNav{
+                /* 부모 요소인 wrapper 너비의 15% */
+                width: 20%;
+                float: left;
+                background-color: white;
+                margin-top: 10px;
+                
+            }
+		            
+			  .accordion {
+			        display: flex;
+			        flex-direction: column;
+			    	overflow: hidden;
+            		padding-top: 10px;
+            		padding-left: 30px;
+            		margin-bottom: 30px;
+            		margin-top: 10px;
+			    }
+			
+		 	  .acontent {
+			     display: none;
+			    }
+		
+			  .accordion input[type="radio"]:checked+label+.acontent {
+			     display: block;
+			    }
+			  
+           	  .accordion input[type=radio]{
+   				 display: none;
+          	    }
+            
+            
+				#menu li{
+			
+				    height: 50px;
+	            	padding-top: 15px;
+	            	padding-left: 30px;
+				}
+			
+			
+			/* --여기까지 local nav-- */
+			
+			/* --middle content-- */
+			
+           	 #content{
+                /* 부모 요소인 wrapper 너비의 65% */
+                width: 79%;
+                float: right;
+  				border: 1px solid #D8D8D8;
+                background-color: white;
+                font-size: 14px;
+           		 }
+           
+         	 	.namecontent div{
+         	 		 padding-top: 15px;
+        			 padding-bottom: 5px;
+          		
+          		}
+          	
+        	  	.category div{
+         	 		padding-top: 15px;
+        			padding-bottom: 5px;
+          	
+         	 	}
+          	
+          		.image div{
+          	 	  	padding-top: 5px;
+        		    padding-bottom: 5px;
+          	
+          		}
+          		
+          		.detail div{
+          	   		padding-top: 15px;
+        			padding-bottom: 5px;
+          	
+            	}
+           
+           
+           
+           
+           
+           	/* --세로로 섹션 나누기-- */
+           
+           
+          		.section {
+          		 
+	           		display: flex;
+	           		justify-content: flex-start;
+          		}
+          			 
+	           .s_Name div{
+	        	 padding-top: 25px;
+	        	 padding-bottom: 5px;
+	        	 width: 200px;
+	        	 height: 40px; 
+	        	 border-bottom: 1px solid #D8D8D8;
+	           }
+	           
+	           
+	           .s_Content div{
+	        	 height: 40px; 
+	        	 padding-top: 25px;
+	        	 padding-right: 15px;
+	        	 padding-bottom: 5px;
+	 			 border-bottom: 1px solid #D8D8D8;
+	           }
+
+				input[type="radio"] {
+					margin-right: 6px;
+					border-right: 10px;
+				}
+			
+				input[type="number"] {
+					color: #D8D8D8;
+	            	border: 1px solid #D8D8D8;
+	            	width: 600px;
+	            	height: 30px;
+	            	font-size: 13px;
+	            	padding-left: 10px;
+				}
+		
+		
+			/* 번외  컨텐트의 박스 설정   */
+			
+            .box {
+            	border: 1px solid #D8D8D8;
+            	margin-top: 20px;
+            	margin-left: 30px;
+            	padding-top: 25px;
+            	padding-left: 25px;
+            	padding-bottom: 25px;
+            
+            }
+            
+		
+		
+		/* 	여기부터 상품 등록 */
+		
+		
+		
+			  #itemName {
+            	color: #D8D8D8;
+            	border: 1px solid #D8D8D8;
+            	width: 600px;
+            	height: 30px;
+            	font-size: 13px;
+            	padding-left: 10px;
+            }
+            
+	            #nameCaution {
+	            	font-size : 12px;
+	            	color: #5a82b9;
+	            
+	            }
+            
+	            #registerName {
+	            color: #6E6E6E;
+	            	border-bottom: 1px solid #D8D8D8;
+	            	margin-bottom: 20px;
+	            }
+	            
+	            
+	            
+	            /* 카테고리 */
+            
+            
+            
+            
+	            #categorySearch {
+	            	color: #D8D8D8;
+	            	border: 1px solid #D8D8D8;
+	            	width: 600px;
+	            	height: 30px;
+	            	font-size: 13px;
+	            	padding-left: 10px;
+	            }
+            
+            
+            
+		
+				 /* 여기부터 옵션 */
+		
+				#optionName {
+            	color: #D8D8D8;
+            	border: 1px solid #D8D8D8;
+            	width: 600px;
+            	height: 30px;
+            	font-size: 13px;
+            	padding-left: 10px;
+            }
+            
+            #optionValue {
+            	color: #D8D8D8;
+            	border: 1px solid #D8D8D8;
+            	width: 600px;
+            	height: 30px;
+            	font-size: 13px;
+            	padding-left: 10px;
+            }
+		
+				/* 상품이미지 */
+				
+		
+				.imageMain, .imagePlus {
+					border: 1px solid #D8D8D8;
+					display: flex;
+				}
+			
+				.plusSection {
+					display: flex;
+					flex-direction: column;
+				}
+				
+				.notice {
+					width: 500px;
+		            height: 80px;
+					font-size : 12px;
+		            color: #5a82b9;
+				}
+				
+				.notice p {
+					padding-top: 5px;
+				}
+			
+				.notice input[type="button"] {
+					width: 150px;
+					height: 25px;
+					background-color: white;
+					color: black;
+					border:1px solid #D8D8D8;
+					margin-top: 10px;
+				}
+				
+				.notice input[type="button"]:hover {
+					width: 150px;
+					height: 25px;
+					background-color: #D8D8D8;
+					color: black;
+					border:1px solid #D8D8D8;
+					margin-top: 10px;
+				}
+			
+			
+			
+					#mainImage {
+						margin-left: 20px;
+						padding-top: 10px;
+			        	padding-bottom: 5px;
+			        	width: 200px;
+			        	height: 200px; 
+					}
+					
+					
+					#plusImage{
+						margin-left: 20px;
+						padding-top: 10px;
+			        	padding-bottom: 5px;
+			        	width: 200px;
+			        	height: 200px; 
+					}
+					
+					
+					.button {
+						background-image: url(image/add1.png);
+						width: 100px;
+		            	height: 80px;
+						margin-top: 10px;
+					}
+			
+				/* 여기까지 상품이미지 */
+				
+				
+				
+				/* 상품디테일 */
+			
+				.detail {
+				
+					width: 500px;
+	            	height: 370px;
+				
+				}
+				
+				.detail p {
+					padding-top: 20px;
+					font-size : 12px;
+		            color: #5a82b9;
+		            width: 1000px;
+				}
+			
+				.detailPlus{
+					border:1px solid #D8D8D8;
+					width: 500px;
+					height: 200px;
+				}
+				
+				.detailPlus p{
+					font-size : 14px;
+		            color: #6E6E6E;
+		            margin-top: 6px;
+					margin-left: 175px;
+	            }
+			
+				.detail .button
+					{
+					margin-top: 20px;
+					margin-left: 200px;
+					}
+				
+	            .detail input[type="button"] {
+		            background-color: white;
+		            color: black;
+		            border:1px solid #D8D8D8;
+		            width: 110px;
+		            height: 26px;
+		            margin: 0px;
+		            padding: 0px;
+	           		 }
+	            
+	            .detail input[type="button"]:hover {
+		            background-color: #346aff;
+		            color: white;
+		            border:1px solid #D8D8D8;
+		            width: 110px;
+		            height: 26px;
+		            margin: 0px;
+		            padding: 0px;
+	            
+	            }
+	            
+ 
+            
+            /* 여기부터 상품 검수 정보 */
+            
+       
+            
+            #brand {
+          		color: #D8D8D8;
+            	border: 1px solid #D8D8D8;
+            	width: 600px;
+            	height: 30px;
+            	font-size: 13px;
+            	padding-left: 10px;
+            
+            }
+            
+            #manufacturer {
+              color: #D8D8D8;
+            	border: 1px solid #D8D8D8;
+            	width: 600px;
+            	height: 30px;
+            	font-size: 13px;
+            	padding-left: 10px;
+            
+            
+            }
+            #certificationNo {
+              color: #D8D8D8;
+            	border: 1px solid #D8D8D8;
+            	width: 600px;
+            	height: 30px;
+            	font-size: 13px;
+            	padding-left: 10px;
+            }
+            
+            
+            
+            
+  		    /*  여기부터 상품정보제공고시 */
+      
+      
+      
+      
+            .requiredInfo {
+        	    color: #D8D8D8;
+            	border: 1px solid #D8D8D8;
+            	width: 600px;
+            	height: 30px;
+            	font-size: 13px;
+            	padding-left: 10px;
+            	
+            
+            }
+            
+            
+            
+  			  /*   여기부터 배송 */
+            
+            
+            
+            #address{
+          		color: #D8D8D8;
+            	border: 1px solid #D8D8D8;
+            	width: 600px;
+            	height: 30px;
+            	font-size: 13px;
+            	padding-left: 10px;
+            
+            }
+            
+            
+            #deliveryCompany{
+               color: #D8D8D8;
+            	border: 1px solid #D8D8D8;
+            	width: 600px;
+            	height: 30px;
+            	font-size: 13px;
+            	padding-left: 10px;
+            }
+            
+            
+            #deliveryMethod{
+            
+            	color: #D8D8D8;
+            	border: 1px solid #D8D8D8;
+            	width: 600px;
+            	height: 30px;
+            	font-size: 13px;
+            	padding-left: 10px;
+            
+            }
+            
+            
+            #deliveryTypeFee{
+                color: #D8D8D8;
+            	border: 1px solid #D8D8D8;
+            	width: 600px;
+            	height: 30px;
+            	font-size: 13px;
+            	padding-left: 10px;
+            
+            }
+            
+            
+            
+            
+           /*  반품/교환 */
+           
+           
+            #readdress{
+               color: #D8D8D8;
+            	border: 1px solid #D8D8D8;
+            	width: 600px;
+            	height: 30px;
+            	font-size: 13px;
+            	padding-left: 10px;
+            
+            }
+            
+             
+			   .section input[type="number"] {
+			   
+			   width: 200px;
+			  
+			   }
+			   
+			   
+			   
+			   
+			  /*  플로팅 바 */
+			   
+			   
+			    #floatingBar{
+                width: 100%;
+                height: 80px;
+                /* 
+                position: fixed; => 스크롤을 내려도 그 자리에 계속 있다. 
+                웹 브라우저에서 지정한 수치에 박스가 고정되어 연출,
+                따라서 left, top, bottom, right 등 박스 위치를 나타내줘야한다.
+                 */ 
+                position: fixed;
+                top: 92%;
+                background-color: white;
+                border: 1px solid #D8D8D8;
+            }
+            
+            #floatingBar .cleft {
+            	text-align: center;
+            	float: left;
+            	height: 40px;
+            	padding-bottom: 15px;
+            	margin-top: 15px;
+            	margin-left: 30px;
+            
+            } 
+             #floatingBar .cleft button {
+             	float: left;
+             	margin-bottom: 15px;
+          		width: 200px;
+          		height: 50px;
+          		margin-right: 20px;
+          		border: 1px solid #e7e7e7;
+          		color: #848484;
+             }
+            
+             #floatingBar .cleft button:hover {
+             	float: left;
+             	margin-bottom: 15px;
+          		width: 200px;
+          		height: 50px;
+          		margin-right: 20px;
+          		background-color: white;
+          		border: 1px solid #e7e7e7;
+             }
+            
+            #floatingBar .cright {
+            	text-align: center;
+            	float: right;
+            	height: 40px;
+            	padding-bottom: 15px;
+            	margin-right: 20px;
+            	margin-top: 15px;
+            
+            }
+            #floatingBar .cright button {
+             	float: right;
+             	margin-bottom: 20px;
+             	width: 200px;
+             	height: 50px;
+            	margin-right: 20px;
+            	border: 1px solid #e7e7e7;
+             	color: #848484;
+             
+             }
+             
+            #floatingBar .cright button:hover {
+             	float: right;
+             	margin-bottom: 20px;
+             	width: 200px;
+             	height: 50px;
+          	    margin-right: 20px;
+            	background-color: white;
+            	border: 1px solid #e7e7e7;
+             }
+			   
+			   
+			/* 여기서부터 FOOTER */
+			
+            
+            
+            #wingFooter {
+			   display: flex;
+			   width: 60%;
+			   justify-content: space-around;
+			   margin: 70px 10px;
+			}
+			
+			#wingFooterLogo{
+			
+				padding-top: 20px;
+				
+			}
+			
+			
+			#snsList {
+			   display: flex;
+			   flex-direction: row;
+			   padding-top: 15px;
+			}
+			
+			
+			#snsList li {
+				list-style : none;
+				padding-right: 10px;
+			}
+			
+			
+			#footerInfo {
+			   display: flex;
+			   flex-direction: column;
+			}
+			
+			
+			#footerInfo p {
+				padding-top: 10px;
+			}
+			 
+			
+			
+            
+            
+
+			
+            
