@@ -1,0 +1,200 @@
+		* {
+		    margin: 0px;
+		    padding: 0px;
+		}
+		
+		.skip {
+		    display:none;
+		}
+		
+		body{
+		    margin: 0 auto;
+		    padding: 0;
+		    min-width: 290px;
+		    max-width: 460px;
+		}
+		
+		h1 {
+		    text-align: center;
+		    margin:40px auto 10px;
+		}
+		
+		h1 a img {
+		    width:195px;
+		    height: 45px;
+		}
+		
+		section {
+		    font-family: dotum,sans-serif;
+		    font-size: 12px;
+		    line-height: 1.0;
+		    color: #666;
+		  
+		}
+		section #loginform {
+		    margin-bottom: 20px;
+		   
+		    
+		}
+		section #loginform .form_title {
+		    
+		    font-size: 14px;
+		    font-weight: bold;
+		    line-height: 1.29;
+		    letter-spacing: normal;
+		    color: #111;
+		}
+		
+		.form-group {
+			
+			padding-top: 5px; 
+			margin-bottom: 8px;
+			
+		}
+		
+		.form-group img {
+			width: 44px;
+			height: 45px;
+			cursor: pointer;
+		}
+		
+		
+		
+		.line-gray{
+			border-bottom : 1px solid #ccc;
+		}
+		.line-red{
+			border-bottom : 2px solid red;
+		}
+		.line-blue{
+			border-bottom : 2px solid blue;
+		}
+		
+		
+		.pwd-form-group, .email-form-group, .id-form-group, .name-form-group, .tel-form-group {
+			display: flex;
+			border-top: 1px solid #ccc;
+			border-right : 1px solid #ccc;
+			border-left: 1px solid #ccc;
+			height: 48px;
+		    width: 449px;
+			margin-bottom: 10px;
+		}
+		
+		
+		.form-group > div > div:first-child {
+			border-right: 1px solid #ccc;
+		}
+		.form-group > div > div:nth-child(2) {
+			border-right: 1px solid #ccc;
+		}
+		
+		.pwd-form-group button {
+			text-align: center;
+			border: none;
+			margin-left: 4px;
+			margin-top: 13px;
+			padding: 0px;
+			cursor: pointer;
+		
+		}
+		
+		input[type="email"], input[type="password"], input[type="text"], input[type="tel"] {
+			outline:none;
+			color: #666;
+			font-size: 14px;
+			box-sizing: border-box;
+			height: 100%; 
+			width: 402px;
+			font-family: dotum,sans-serif;
+			font-weight: bold;
+			margin: 0;
+			padding: 10px;
+			border: none;
+			
+		}
+		
+		 ::placeholder {
+			color: #ccc !important;
+		}
+		
+		#idpwd {
+			float: right;
+			color: #346aff;
+			text-decoration: none;
+			padding-left: 205px;
+			
+		}
+		
+		hr {
+			margin-top : 13px;
+			margin-bottom : 15px;
+			margin-right : 10px;
+		}
+		
+		#continue_btn {
+			background-color: #346aff;
+			color: white;
+			border: 1px solid #346aff;
+			margin-bottom: 0px;
+			width: 450px;
+			height: 45px;
+			margin-top: 15px;
+			font-size: 16px;
+			font-family: apple sd gothic neo,malgun gothic,nanumbarungothic,nanumgothic,dotum,sans-serif;
+			font-weight: bold;
+			border-radius: 3px;
+			cursor: pointer;
+		}
+
+		
+			input[type="checkbox"]{
+
+			width: 20px; /*Desired width*/
+			height: 20px; /*Desired height*/
+			margin: 0px;
+			padding: 0px;
+		}
+			
+		.agreementbox {
+		
+		}
+		
+		
+		.biz_register {
+		  	margin-top: 30px;
+		    margin-bottom: 18px;
+		    text-align: center;
+		    line-height: 1.6;
+		    font-weight: 400;
+ 		    font-size: 13px;
+  		    line-height: 18px;
+  		    color: #637381;
+		    font-family: dotum,sans-serif;
+		}
+		.biz_register p {
+		  
+		    margin: 1px;
+		    
+		}
+		
+		.biz_register a {
+		    font-style: normal;
+		    font-weight: bold;
+		    font-size: 14px;
+		    line-height: 17px;
+		    color: #454f5b;
+		    text-decoration: none;
+		    
+		}
+		
+		footer {
+		  
+		    text-align: center;
+		    padding: 20px 0 40px;
+			font-family: dotum,sans-serif;
+		    font-size: 12px;
+		    line-height: 1.6;
+		    color: #555;
+		    
+		}
