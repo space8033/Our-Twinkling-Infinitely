@@ -10,4 +10,6 @@ public class Home {
 	public String content() {
 		return "mypage/orderlist/mycoupang";
 	}
+	
+	
 }
