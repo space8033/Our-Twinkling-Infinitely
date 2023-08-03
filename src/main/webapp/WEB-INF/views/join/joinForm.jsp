@@ -32,12 +32,14 @@
 						<label for="id"><img src = "${pageContext.request.contextPath}/resources/image/sion/semail.JPG"></label>
 					</div>
 					<div>
-						<input type="text" class="input" onblur="checkValidation()" placeholder="아이디" id="id" onfocus="this.placeholder=''"
+						<input type="text" class="input" placeholder="아이디" id="id" onfocus="this.placeholder=''"
 							  autocomplete="off">
 						
 					</div>
 				</div>	
-				<span id="uidErr2" class="errorMsg text-danger small" style="margin-left:10px; font-family: dotum,sans-serif; font-size: 12px;">아이디는 이메일 형식으로 입력해주세요.</span>
+				<span id="uidErr1" class="errorMsg text-danger d-none small" style="margin-left:10px; font-family: dotum,sans-serif; font-size: 12px;">아이디를 입력해주세요.</span>
+				<span id="uidErr2" class="errorMsg text-danger d-none small" style="margin-left:10px; font-family: dotum,sans-serif; font-size: 12px;">이미 가입된 아이디입니다.</span>
+				<span id="uidErr3" class="errorMsg text-danger d-none small" style="margin-left:10px; font-family: dotum,sans-serif; font-size: 12px;">아이디를 올바르게 입력해주세요.</span>
 				
 		   </div>
 				
@@ -48,12 +50,13 @@
 						<label for="pwd"><img src = "${pageContext.request.contextPath}/resources/image/sion/spwd.JPG"></label>
 				   </div>
 				   <div>	
-						<input type="password" onblur="checkValidation()"  onfocus="this.placeholder=''"  placeholder="비밀번호" id="pwd"
+						<input type="password"  onfocus="this.placeholder=''"  placeholder="비밀번호" id="pwd"
 							   autocomplete="off">
 				   </div>
 			   </div>
 		       <span id="pwdErr1" class="errorMsg text-danger d-none small" style="margin-left:10px; font-family: dotum,sans-serif; font-size: 12px;">비밀번호를 입력해주세요.</span>
 			   <span id="pwdErr2" class="errorMsg text-danger d-none small" style="margin-left:10px; font-family: dotum,sans-serif; font-size: 12px;">비밀번호 형식에 맞게 입력해주세요.</span>
+			   <span id="pwdErr3" class="errorMsg text-danger d-none small" style="margin-left:10px; font-family: dotum,sans-serif; font-size: 12px;">사용 가능한 비밀번호입니다.</span>
 		   </div>
 				
 		   <div class="form-group">
@@ -62,12 +65,13 @@
 						 <label for="pwd-check"><img src = "${pageContext.request.contextPath}/resources/image/sion/spwdcheck.JPG" ></label>
 					</div>
 					<div>	
-						 <input type="password" onblur="checkValidation()" onclick="line()" placeholder="비밀번호 확인" id="pwd-check"
+						 <input type="password"  placeholder="비밀번호 확인" id="pwd-check"
 							    onfocus="this.placeholder=''" autocomplete="off">
 					</div>
 				</div>
 				<span id="pwdCheckErr1" class="errorMsg text-danger d-none small" style="margin-left:10px; font-family: dotum,sans-serif; font-size: 12px;">확인을 위해 비밀번호를 다시 입력해주세요.</span>
-				<span id="pwdCheckErr2" class="errorMsg text-danger d-none small" style="margin-left:10px; font-family: dotum,sans-serif; font-size: 12px;">입력하신 비밀번호와 맞지 않습니다.</span>
+				<span id="pwdCheckErr2" class="errorMsg text-danger d-none small" style="margin-left:10px; font-family: dotum,sans-serif; font-size: 12px;">비밀번호가 일치하지 않습니다.</span>
+				<span id="pwdCheckErr3" class="errorMsg text-danger d-none small" style="margin-left:10px; font-family: dotum,sans-serif; font-size: 12px;">비밀번호가 일치합니다.</span>
 		   </div>
 				
 				
@@ -77,12 +81,13 @@
 					    <label for="email"><img src = "${pageContext.request.contextPath}/resources/image/sion/semail.JPG"></label>
 				 	 </div>
 		    		 <div>
-						<input type="email" onblur="checkValidation()" onclick="line()" onfocus="this.placeholder=''" placeholder="이메일" id="email"
+						<input type="email" onfocus="this.placeholder=''" placeholder="이메일" id="email"
 						        autocomplete="off">
 					 </div>
 			    </div>
 				<span id="emailErr1" class="errorMsg text-danger d-none small" style="margin-left:10px; font-family: dotum,sans-serif; font-size: 12px;">이메일을 입력해주세요.</span>
 				<span id="emailErr2" class="errorMsg text-danger d-none small" style="margin-left:10px; font-family: dotum,sans-serif; font-size: 12px;">이메일 형식으로 입력해주세요.</span>
+				<span id="emailErr3" class="errorMsg text-danger d-none small" style="margin-left:10px; font-family: dotum,sans-serif; font-size: 12px;">이미 가입된 이메일입니다.</span>
 		   </div>
 				
 				
@@ -92,7 +97,7 @@
 						 <label for="name"><img src = "${pageContext.request.contextPath}/resources/image/sion/sname.JPG"></label>
 					 </div>
 					<div>
-						<input type="text" onblur="checkValidation()" onclick="line()" onfocus="this.placeholder=''" placeholder="이름" id="name"
+						<input type="text" onfocus="this.placeholder=''" placeholder="이름" id="name"
 							    autocomplete="off">
 					</div>
 				</div>
@@ -106,11 +111,12 @@
 						 	<label for="tel"><img src = "${pageContext.request.contextPath}/resources/image/sion/stel.JPG"></label>
 					  </div>
 					  <div>
-							<input type="tel" onblur="checkValidation()" onclick="line()" onfocus="this.placeholder=''" pattern="010-[0-9]{3,4}-[0-9]{4}" placeholder="휴대폰 번호" id="tel"
+							<input type="tel" onfocus="this.placeholder=''" pattern="010-[0-9]{3,4}-[0-9]{4}" placeholder="휴대폰 번호" id="tel"
 							 autocomplete="off">
 					  </div>
 				 </div>
 				 <span id="telErr1" class="errorMsg text-danger d-none small" style="margin-left:10px; font-family: dotum,sans-serif; font-size: 12px;">휴대폰 번호를 정확하게 입력하세요.</span>
+				 <span id="telErr2" class="errorMsg text-danger d-none small" style="margin-left:10px; font-family: dotum,sans-serif; font-size: 12px;">ww*****@naver.com 아이디로 가입된 휴대폰 번호입니다.</span>
 		   </div>
 				
 			
