@@ -2,6 +2,7 @@ $(init)
 
 function init(){
 	showSlides();
+	$(".topnav").hide();
 }
 
 let slideIndex = 0;
@@ -23,3 +24,13 @@ function showSlides() {
   dots[slideIndex-1].className += " active";
   setTimeout(showSlides, 1500); // Change image every 2 seconds
 }
+
+//검색창 보이기
+function showSearchBar(){
+	$(".topnav").show();
+	$("#hideSearchBar").click(function(){
+		  $(".topnav").hide();
+	});
+}
+
+

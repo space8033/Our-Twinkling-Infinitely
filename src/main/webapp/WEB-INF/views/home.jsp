@@ -41,7 +41,7 @@
 		<!-- 스토리 -->
 		<div class="story container">
 		  <img src="${pageContext.request.contextPath}/resources/yuimg/메인스토리.jpg" alt="Avatar" class="image">
-		  <div class="overlay">
+		  <div class="overlay container">
 		    <div class="text">
 		    	<h2>"Our twinkling infinitely"</h2>
 		    	<p>영원히 간직되는 반짝임</p>
