@@ -12,4 +12,6 @@ public class Account {
 	private int users_id;
 	private Date account_createddate;
 	private Date account_deleteddate;
+	private int ocancel_ocanclel_no;
+	private int excref_excref_no;
 }
