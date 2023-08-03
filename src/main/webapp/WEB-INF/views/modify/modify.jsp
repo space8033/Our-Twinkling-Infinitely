@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 
+<%@ include file="/WEB-INF/views/common/header.jsp" %>
+
 <!DOCTYPE html>
 <html>
 	<head>
@@ -23,57 +25,62 @@
 	</head>
 	
 	<body>
+	<br>
 		<div class="container" style="font-size: 26px; text-align: center;">
 			회원 정보 수정
 		</div>
-		<hr>
+		<br>
 		<form action="">
 		
-			<div class="container d-flex">
-				<div class="d-flex pt-2" style="width: 10%">
-					<span style="font-size: 12px;">아이디</span>
+			<div class="container d-flex pt-4" style="border-top: 1px solid #e5e5e5">
+				<div class="d-flex pt-2" style="width: 15%">
+					<span style="font-size: 11px;">아이디</span>
 					<img src="https://img.echosting.cafe24.com/skin/base/common/ico_required.gif" width="7" height="7">
 				</div>
 				<div>
 					<input type="text" id="id" class="m-1">	
 				</div>
-				<div>
+				<div class="ml-2">
 					(영문자소문자/숫자, 4~16자)
 				</div>
 			</div>
-			<div class="container d-flex">
-				<div class="d-flex pt-2" style="width: 10%">
-					<span style="font-size: 12px;">비밀번호</span>
+			<br>
+			<div class="container d-flex pt-4" style="border-top: 1px solid #e5e5e5">
+				<div class="d-flex pt-2" style="width: 15%">
+					<span style="font-size: 11px;">비밀번호</span>
 					<img src="https://img.echosting.cafe24.com/skin/base/common/ico_required.gif" width="7" height="7">
 				</div>
 				<div>
 					<input type="text" id="password" class="m-1">	
 				</div>
-				<div>
+				<div class="ml-2">
 					(영문 대소문자/숫자/특수문자 중 2가지 이상 조합, 10자~16자)
 				</div>
 			</div>
-			<div class="container d-flex">
-				<div class="d-flex pt-2" style="width: 10%">
-					<span style="font-size: 12px;">비밀번호 확인</span>
+			<br>
+			<div class="container d-flex pt-4" style="border-top: 1px solid #e5e5e5">
+				<div class="d-flex pt-2" style="width: 15%">
+					<span style="font-size: 11px;">비밀번호 확인</span>
 					<img src="https://img.echosting.cafe24.com/skin/base/common/ico_required.gif" width="7" height="7">
 				</div>
 				<div>
 					<input type="text" id="passwordConfirm" class="m-1">	
 				</div>
 			</div>
-			<div class="container d-flex">
-				<div class="d-flex pt-2" style="width: 10%">
-					<span style="font-size: 12px;">이름</span>
+			<br>
+			<div class="container d-flex pt-4" style="border-top: 1px solid #e5e5e5">
+				<div class="d-flex pt-2" style="width: 15%">
+					<span style="font-size: 11px;">이름</span>
 					<img src="https://img.echosting.cafe24.com/skin/base/common/ico_required.gif" width="7" height="7">
 				</div>
 				<div>
 					<input type="text" id="name" class="m-1">	
 				</div>
 			</div>
-			<div class="container d-flex">
-				<div class="d-flex pt-2" style="width: 10%">
-					<span style="font-size: 12px;">주소</span>
+			<br>
+			<div class="container d-flex pt-4" style="border-top: 1px solid #e5e5e5">
+				<div class="d-flex pt-2" style="width: 15%">
+					<span style="font-size: 11px;">주소</span>
 				</div>
 				<div>
 					<div class="d-flex">
@@ -82,17 +89,18 @@
 					</div>
 					<div class="d-flex">
 						<div><input type="text" id="address" class="m-1">	</div>
-						<div class="mt-1">기본 주소</div>
+						<div class="mt-1 ml-2">기본 주소</div>
 					</div>
 					<div class="d-flex">
 						<div><input type="text" id="address" class="m-1">	</div>
-						<div class="mt-1">나머지 주소(선택 입력 가능)</div>
+						<div class="mt-1 ml-2">나머지 주소(선택 입력 가능)</div>
 					</div>
 				</div>
 			</div>
-			<div class="container d-flex">
-				<div class="d-flex pt-2" style="width: 10%">
-					<span style="font-size: 12px;">휴대전화</span>
+			<br>
+			<div class="container d-flex pt-4" style="border-top: 1px solid #e5e5e5">
+				<div class="d-flex pt-2" style="width: 15%">
+					<span style="font-size: 11px;">휴대전화</span>
 					<img src="https://img.echosting.cafe24.com/skin/base/common/ico_required.gif" width="7" height="7">
 				</div>
 				<div class="d-flex">
@@ -103,9 +111,10 @@
 					<input type="text" id="phone3" class="m-1" style="width:10%">	
 				</div>
 			</div>
-			<div class="container d-flex">
-				<div class="d-flex pt-2" style="width: 10%">
-					<span style="font-size: 12px;">SMS 수신여부</span>
+			<br>
+			<div class="container d-flex pt-4" style="border-top: 1px solid #e5e5e5">
+				<div class="d-flex pt-2" style="width: 15%">
+					<span style="font-size: 11px;">SMS 수신여부</span>
 					<img src="https://img.echosting.cafe24.com/skin/base/common/ico_required.gif" width="7" height="7">
 				</div>
 				<div>
@@ -113,21 +122,23 @@
 						<input class="mx-2 mt-1" type="radio" name="receiveSms"> 수신함 
 						<input class="mx-2 mt-1" type="radio" name="receiveSms"> 수신안함
 					</div>
-					<div style="font-size: 12px">쇼핑몰에서 제공하는 유익한 이벤트 소식을 SMS로 받으실 수 있습니다.</div> 				
+					<div style="font-size: 11px">쇼핑몰에서 제공하는 유익한 이벤트 소식을 SMS로 받으실 수 있습니다.</div> 				
 				</div>
 			</div>
-			<div class="container d-flex">
-				<div class="d-flex pt-2" style="width: 10%">
-					<span style="font-size: 12px;">이메일</span>
+			<br>
+			<div class="container d-flex pt-4" style="border-top: 1px solid #e5e5e5">
+				<div class="d-flex pt-2" style="width: 15%">
+					<span style="font-size: 11px;">이메일</span>
 					<img src="https://img.echosting.cafe24.com/skin/base/common/ico_required.gif" width="7" height="7">
 				</div>
 				<div class="d-flex">
 					<input type="text" id="email" class="m-1">
 				</div>
 			</div>
-			<div class="container d-flex">
-				<div class="d-flex pt-2" style="width: 10%">
-					<span style="font-size: 12px;">이메일 수신여부</span>
+			<br>
+			<div class="container d-flex pt-4" style="border-top: 1px solid #e5e5e5">
+				<div class="d-flex pt-2" style="width: 15%">
+					<span style="font-size: 11px;">이메일 수신여부</span>
 					<img src="https://img.echosting.cafe24.com/skin/base/common/ico_required.gif" width="7" height="7">
 				</div>
 				<div>
@@ -135,15 +146,16 @@
 						<input class="mx-2 mt-1" type="radio" name="receiveEmail"> 수신함 
 						<input class="mx-2 mt-1" type="radio" name="receiveEmail"> 수신안함
 					</div>
-					<div style="font-size: 12px">쇼핑몰에서 제공하는 유익한 이벤트 소식을 SMS로 받으실 수 있습니다.</div> 				
+					<div style="font-size: 11px">쇼핑몰에서 제공하는 유익한 이벤트 소식을 SMS로 받으실 수 있습니다.</div> 				
 				</div>
 			</div>			
 			
 			<br>
-			<div class="d-flex container">
+			<br>
+			<div class="d-flex container pt-4" style="border-top: 1px solid #e5e5e5">
 				<div style="width:30%"></div>
-				<button class="mx-2" style="width:15%">회원정보수정</button>
-				<button class="mx-2" style="width:15%">취소</button>
+				<button class="mx-2 p-2" style="width:15%">회원정보수정</button>
+				<button class="mx-2 p-2" style="width:15%">취소</button>
 				<div style="width:30%"></div>
 				<button style="width:10%; border: 1px solid #d0d0d0; background-color: white">회원탈퇴</button>
 			</div>
