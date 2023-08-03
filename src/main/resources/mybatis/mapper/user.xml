@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.webteam1.oti.dao.Userdao">
+<mapper namespace="com.webteam1.oti.dao.UserDao">
 	<insert id="insert" parameterType="User">
 		insert into users(users_id, users_email, users_password, users_name, users_phone, users_type, users_opoint, users_createddate)
 		values(#{users_id}, #{users_email}, #{users_password}, #{users_name}, #{users_phone}, #{users_type}, #{users_opoint}, sysdate)
