@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 public class Home {
 	@RequestMapping("/")
 	public String content() {
-		return "mypage/orderlist/mycoupang";
+		return "modify/modify";
 	}
 	
 }

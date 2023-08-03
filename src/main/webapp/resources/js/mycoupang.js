@@ -20,7 +20,7 @@ function onClickBox() {
 }
 
 function loadFooter() {
-	$("#footer").load("coupangFooter.jsp");
+	$("#footer").load("${pageContext.request.contextPath}/WEB-INF/views/common/coupangFooter.jsp");
 }
 
 function onClickMine() {
@@ -45,7 +45,7 @@ function onClickMine() {
 
 function makeOrderCard() {
 	$.ajax({
-		url:"${pageContext.request.contextPath}/views/mypage/orderlist/mycoupang_content.jsp",
+		url:"${pageContext.request.contextPath}/resources/json/mycoupangContent.json",
 		method: "get",
 		success: function(data) {
 			let html="";
