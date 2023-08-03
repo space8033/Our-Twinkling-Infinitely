@@ -21,7 +21,7 @@ public class UserController {
 	@Resource
 	private UserService userService;
 	
-	@RequestMapping("/joinForm")
+	@RequestMapping("joinForm")
 	public String joinForm() {
 		Users user = new Users();
 		user.setUsers_id("실험용");
@@ -41,6 +41,11 @@ public class UserController {
 	public String loginForm() {
 		log.info("실행");
 		return "login/loginForm";
+	}
+	@RequestMapping("modify")
+	public String modify() {
+		log.info("실행");
+		return "modify/modify";
 	}
 
 }

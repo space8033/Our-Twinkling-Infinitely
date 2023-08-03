@@ -20,7 +20,7 @@
 </head>
 <body>
     <header>
-        <h1><a href="https://www.coupang.com/"><img src="${pageContext.request.contextPath}/resources/image/coupanglogo.png" alt="쿠팡로고"></a></h1>
+        <h1><a href="${pageContext.request.contextPath}"><img src="${pageContext.request.contextPath}/resources/yuimg/메인로고.png" alt="OTi로고"></a></h1>
     </header>
     <section>
             

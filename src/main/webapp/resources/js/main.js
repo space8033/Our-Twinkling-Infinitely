@@ -28,6 +28,7 @@ function showSlides() {
 //검색창 보이기
 function showSearchBar(){
 	$(".topnav").show();
+	$("#search-icon").width();
 	$("#hideSearchBar").click(function(){
 		  $(".topnav").hide();
 	});
