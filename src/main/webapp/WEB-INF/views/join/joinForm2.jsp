@@ -217,7 +217,7 @@
    </style>
    
    <body>
-	      <a href="https://www.coupang.com/" target="_self"/>
+	      <a href="https://www.coupang.com/" target="_self">
 	        <img src="../common/image/coupang/쿠팡글자.png"/>
 	      </a>
 	      <div class="class1">회원정보를 입력해주세요</div>
@@ -250,7 +250,7 @@
 	      
 	      
 	      <div class="agreementbox">
-	         <ul>
+	       
 	           <div class="agreement">
 	              <input type="checkbox" id="agree1" name="agree" value="agree"/>
 	               <label for="agree1">[필수] 만 14세 이상입니다</label>
@@ -294,7 +294,7 @@
 		               <label for="agree10">     [선택] 앱 푸시 수신 동의</label>
 		           </div>     
 	           </div>
-	         </ul>  
+	     
 	     </div>
 	     
 	     <button type="submit" id="continue_btn">동의하고 계속하기</button>
