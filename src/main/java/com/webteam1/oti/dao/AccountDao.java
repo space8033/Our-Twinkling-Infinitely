@@ -1,8 +1,8 @@
 package com.webteam1.oti.dao;
 
-import org.springframework.stereotype.Repository;
+import org.apache.ibatis.annotations.Mapper;
 
-@Repository
+@Mapper
 public interface AccountDao {
 
 }
