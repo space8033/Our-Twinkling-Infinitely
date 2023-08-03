@@ -36,8 +36,12 @@
         
         <property name="java-output-path" value="/our-twinkling-infinitely/target/classes"/>
         <property name="context-root" value="our-twinkling-infinitely"/>
+<<<<<<< HEAD
                                                     
     
+=======
+                                            
+>>>>>>> branch 'master' of https://github.com/space8033/Our-Twinkling-Infinitely.git
     
     
     
