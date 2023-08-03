@@ -5,9 +5,6 @@
     <welcome-file>index.html</welcome-file>
     <welcome-file>index.htm</welcome-file>
     <welcome-file>index.jsp</welcome-file>
-    <welcome-file>default.html</welcome-file>
-    <welcome-file>default.htm</welcome-file>
-    <welcome-file>default.jsp</welcome-file>
   </welcome-file-list>
   <!-- ========================================================================================= -->
   <!-- ServletContext 설정 -->
@@ -44,11 +41,6 @@
   	<init-param>
       <param-name>contextConfigLocation</param-name>
       <param-value>classpath:spring/dispatcher/*.xml</param-value>
-    </init-param>
-    <!-- Ch10 404처리를 @ControllerAdvice에 처리하도록 설정 -->
-    <init-param>
-    	<param-name>throwExceptionIfNoHandlerFound</param-name>
-    	<param-value>true</param-value>
     </init-param>
   	<!-- 웹애플리케이션이 시작할 때 서블릿 객체 생성 -->
   	<load-on-startup>1</load-on-startup>
