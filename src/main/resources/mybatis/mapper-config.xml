@@ -4,7 +4,9 @@
   "https://mybatis.org/dtd/mybatis-3-config.dtd">
   
 <configuration>
-
+	<typeAliases>
+		<typeAlias alias="User" type="com.webteam1.oti.dto.User"/>
+	</typeAliases>
 </configuration>
 
 
