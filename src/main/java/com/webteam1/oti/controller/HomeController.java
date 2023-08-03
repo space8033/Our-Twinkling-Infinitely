@@ -14,4 +14,10 @@ public class HomeController {
 		log.info("실행");
 		return "home";
 	}
+
+	@RequestMapping("/aa")
+	public String bb() {
+		log.info("실행");
+		return "modify/modify";
+	}
 }
