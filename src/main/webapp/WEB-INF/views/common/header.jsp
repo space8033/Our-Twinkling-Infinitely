@@ -17,29 +17,42 @@
    </head>
    <script src="${pageContext.request.contextPath}/resources/js/main.js"></script>
    <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/main.css"/>
+   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
    <body>
 	   <div id="title" class="mt-3 ml-5"> 
 		  <h2>Oti</h2>
 	   </div>
 	   <div class="container">
-	   	<div  id="menubar">
-	   		 <ul class="nav justify-content-end">
-		    <li class="nav-item">
-		      <a class="nav-link" href="#">LOGIN</a>
-		    </li>
-		    <li class="nav-item">
-		      <a class="nav-link" href="#">MODIFY</a>
-		    </li>
-		    <li class="nav-item">
-		      <a class="nav-link" href="#">CART</a>
-		    </li>
-		    <li class="nav-item">
-		      <a class="nav-link" href="#">ORDER</a>
-		    </li>
-		    <li class="nav-item">
-		      <a class="nav-link" href="#">MYPAGE</a>
-		    </li>
-		  </ul>
+	   	<div id="menuBar">
+	   		<ul class="nav justify-content-end">
+			    <li class="nav-item">
+			      <a class="nav-link" href="#">LOGIN</a>
+			    </li>
+			    <li class="nav-item">
+			      <a class="nav-link" href="#">MODIFY</a>
+			    </li>
+			    <li class="nav-item">
+			      <a class="nav-link" href="#">CART</a>
+			    </li>
+			    <li class="nav-item">
+			      <a class="nav-link" href="#">ORDER</a>
+			    </li>
+			    <li class="nav-item">
+			      <a class="nav-link" href="#">MYPAGE</a>
+			    </li>
+			    <li class="nav-item">
+			       <a href="#"><i class="fa fa-search mt-2" onclick="showSearchBar()"></i></a>
+			    </li>
+		  	</ul>
+		  	<div class="topnav container">
+			  <div class="search-container">
+			    <form action="/action_page.php">
+			      <input type="text" placeholder="Search.." name="search">
+			      <button type="submit"><i class="fa fa-search"></i></button>
+			    </form>
+			  </div>
+			<button id="hideSearchBar" class="btn btn-outline-light text-dark">X</button>
+			</div>
 	   	</div>
 
    </body>
