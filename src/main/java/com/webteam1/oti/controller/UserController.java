@@ -11,7 +11,14 @@ import lombok.extern.slf4j.Slf4j;
 public class UserController {
 	@RequestMapping("joinForm")
 	public String joinForm() {
+		log.info("실행");
 		return "join/joinForm";
+	}
+	
+	@RequestMapping("loginForm")
+	public String loginForm() {
+		log.info("실행");
+		return "login/loginForm";
 	}
 
 	
