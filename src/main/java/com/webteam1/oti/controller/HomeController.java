@@ -53,7 +53,7 @@ public class HomeController {
 	@RequestMapping("/aa")
 	public String test() {
 		log.info("실행");
-		return "mypage/address/myAddressAdd";
+		return "mypage/address/myAddressModify";
 	}
 
 	@RequestMapping("/list")

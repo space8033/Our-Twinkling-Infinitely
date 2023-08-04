@@ -8,7 +8,7 @@
 	</Appenders>
 
 	<Loggers>
-		<Logger name="com.mycompany.springwebapp" level="info" additivity="false">
+		<Logger name="com.webteam1.oti" level="info" additivity="false">
 			<AppenderRef ref="Out" />
 		</Logger>
 		
