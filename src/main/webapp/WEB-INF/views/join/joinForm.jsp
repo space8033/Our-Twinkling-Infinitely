@@ -29,17 +29,18 @@
         	<div class="form-group">
             	<div id="id-form" class="id-form-group line-gray">
                  	<div>
-						<label for="id"><img src = "${pageContext.request.contextPath}/resources/image/sion/semail.JPG"></label>
+						<label for="uid"><img src = "${pageContext.request.contextPath}/resources/image/sion/semail.JPG"></label>
 					</div>
 					<div>
-						<input type="text" class="input" placeholder="아이디" id="id" onfocus="this.placeholder=''"
+						<input type="text" class="input" placeholder="아이디" id="uid" onfocus="this.placeholder=''"
 							  autocomplete="off">
 						
 					</div>
 				</div>	
 				<span id="uidErr1" class="errorMsg text-danger d-none small" style="margin-left:10px; font-family: dotum,sans-serif; font-size: 12px;">아이디를 입력해주세요.</span>
-				<span id="uidErr2" class="errorMsg text-danger d-none small" style="margin-left:10px; font-family: dotum,sans-serif; font-size: 12px;">이미 가입된 아이디입니다.</span>
-				<span id="uidErr3" class="errorMsg text-danger d-none small" style="margin-left:10px; font-family: dotum,sans-serif; font-size: 12px;">아이디를 올바르게 입력해주세요.</span>
+				<span id="uidErr2" class="errorMsg text-danger d-none small" style="margin-left:10px; font-family: dotum,sans-serif; font-size: 12px;">아이디를 올바르게 입력해주세요.</span>
+				<span id="uidErr3" class="errorMsg text-success d-none small" style="margin-left:10px; font-family: dotum,sans-serif; font-size: 12px;">사용 가능한 아이디입니다.</span>
+				<span id="uidErr4" class="errorMsg text-danger d-none small" style="margin-left:10px; font-family: dotum,sans-serif; font-size: 12px;">이미 가입된 아이디입니다.</span>
 				
 		   </div>
 				
@@ -55,8 +56,8 @@
 				   </div>
 			   </div>
 		       <span id="pwdErr1" class="errorMsg text-danger d-none small" style="margin-left:10px; font-family: dotum,sans-serif; font-size: 12px;">비밀번호를 입력해주세요.</span>
-			   <span id="pwdErr2" class="errorMsg text-danger d-none small" style="margin-left:10px; font-family: dotum,sans-serif; font-size: 12px;">비밀번호 형식에 맞게 입력해주세요.</span>
-			   <span id="pwdErr3" class="errorMsg text-danger d-none small" style="margin-left:10px; font-family: dotum,sans-serif; font-size: 12px;">사용 가능한 비밀번호입니다.</span>
+			   <span id="pwdErr2" class="errorMsg text-danger d-none small" style="margin-left:10px; font-family: dotum,sans-serif; font-size: 12px;">영문/숫자/특수문자 조합으로 8~20자 입력해주세요.</span>
+			   <span id="pwdErr3" class="errorMsg text-success d-none small" style="margin-left:10px; font-family: dotum,sans-serif; font-size: 12px;">사용 가능한 비밀번호입니다.</span>
 		   </div>
 				
 		   <div class="form-group">
@@ -71,7 +72,7 @@
 				</div>
 				<span id="pwdCheckErr1" class="errorMsg text-danger d-none small" style="margin-left:10px; font-family: dotum,sans-serif; font-size: 12px;">확인을 위해 비밀번호를 다시 입력해주세요.</span>
 				<span id="pwdCheckErr2" class="errorMsg text-danger d-none small" style="margin-left:10px; font-family: dotum,sans-serif; font-size: 12px;">비밀번호가 일치하지 않습니다.</span>
-				<span id="pwdCheckErr3" class="errorMsg text-danger d-none small" style="margin-left:10px; font-family: dotum,sans-serif; font-size: 12px;">비밀번호가 일치합니다.</span>
+				<span id="pwdCheckErr3" class="errorMsg text-success d-none small" style="margin-left:10px; font-family: dotum,sans-serif; font-size: 12px;">비밀번호가 일치합니다.</span>
 		   </div>
 				
 				
