@@ -1,9 +1,9 @@
 
 //유효성 검사
 function checkValidation() {
-   	var isValidation = true;
-   	
-   	
+	
+    var isValidation = true;
+    
    	//모든 에러 메세지를 보여주지 않도록 초기화
    	var errorMsgs = $(".errorMsg");
    	console.log(errorMsgs);
@@ -13,131 +13,253 @@ function checkValidation() {
    		
    	});
    	
-   	//모든 밑줄 초기화
-   	$(".form-group").children('div').removeClass("line-red");
+   	//모든 밑줄 회색처리
+	$(".form-group").children('div').removeClass("line-red");
 	$(".form-group").children('div').removeClass("line-blue");
 	$(".form-group").children('div').addClass("line-gray");
    	
     //uid 검사
-	var uid = $("#id").val();
-	console.log("id: " + uid);
-	if(uid === "") {
-		isValidation = false;
-		var uidErr1 = $("#uidErr1");
-		uidErr1.removeClass("d-none");
-		var borderbottom = $("#id-form");
-		
-	} else {
-		var pattern = /^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$/i;
-		var result = pattern.test(uid);
-		if(!result) {
+	var uid = $("#uid").val();
+	var uidErr1 = $("#uidErr1");
+	var uidErr2 = $("#uidErr2");
+	var uidErr3 = $("#uidErr3");
+	var uidErr4 = $("#uidErr4");
+	console.log("uid: " + uid);
+		if(uid ==="") {
 			isValidation = false;
-			var uidErr2 = $("#uidErr2");
-			uidErr2.removeClass("d-none");
-			var borderbottom = $("#id-form");
+			uidErr2.addClass("d-none");
+			uidErr3.addClass("d-none");
+			uidErr4.addClass("d-none");
+			uidErr1.removeClass("d-none");
+		} else {
+			var pattern = /^[a-z]+[a-z0-9]{4,19}$/g;
+    		var result = pattern.test(uid);
+    		if(!result) {
+    			isValidation = false;
+    			uidErr3.addClass("d-none");
+    			uidErr2.removeClass("d-none");
+    			uidErr1.addClass("d-none");
+    			uidErr4.addClass("d-none");
+    		} else {
+    			uidErr2.addClass("d-none");
+    			uidErr3.removeClass("d-none");
+    			uidErr1.addClass("d-none");
+    			uidErr4.addClass("d-none");
+    		}
 		}
+	
+	if(!isValidation) {
+		var borderbottom = $("#id-form");
+		borderbottom.removeClass("line-gray");
+		borderbottom.removeClass("line-blue");
+		borderbottom.addClass("line-red");
+	} else {
+		var borderbottom = $("#id-form");
+		borderbottom.removeClass("line-gray");
+		borderbottom.removeClass("line-red");
+		borderbottom.addClass("line-gray");
 	}
+    	
+		
 	
 	//pwd검사
 	var pwd = $("#pwd").val();
+	var pwdErr1 = $("#pwdErr1");
+	var pwdErr2 = $("#pwdErr2");
+	var pwdErr3 = $("#pwdErr3");
 	console.log("pwd: " + pwd);
 		if(pwd ==="") {
 			isValidation = false;
-			var pwdErr1 = $("#pwdErr1");
+			pwdErr2.addClass("d-none");
+			pwdErr3.addClass("d-none");
 			pwdErr1.removeClass("d-none");
-			var borderbottom = $("#pwd-form");
-		} else if(pwd !== "") {
-			var borderbottom = $("#pwd-form");
+		} else {
+			var pattern = /^(?=.*[a-zA-z])(?=.*[0-9])(?=.*[$`~!@$!%*#^?&\\(\\)\-_=+]).{8,20}$/;
+    		var result = pattern.test(pwd);
+    		if(!result) {
+    			isValidation = false;
+    			pwdErr3.addClass("d-none");
+    			pwdErr2.removeClass("d-none");
+    			pwdErr1.addClass("d-none");
+    		} else {
+    			pwdErr2.addClass("d-none");
+    			pwdErr3.removeClass("d-none");
+    			pwdErr1.addClass("d-none");
+    		}
+    	}
 		
+	if(!isValidation) {
+		var borderbottom = $("#pwd-form");
+		borderbottom.removeClass("line-gray");
+		borderbottom.removeClass("line-blue");
+		borderbottom.addClass("line-red");
+    } else {
+		var borderbottom = $("#pwd-form");
+		borderbottom.removeClass("line-gray");
+		borderbottom.removeClass("line-red");
+		borderbottom.addClass("line-gray");
 	}
+	
 
-		
+			
 	//pwd-check 검사
 	var pwdCheck = $("#pwd-check").val();
+	var pwdCheckErr1 = $("#pwdCheckErr1");
+	var pwdCheckErr2 = $("#pwdCheckErr2");
+	var pwdCheckErr3 = $("#pwdCheckErr3");
+	
 	console.log("pwdCheck: " + pwdCheck);
 	if(pwdCheck === "") {
 		isValidation = false;
-		var pwdCheckErr1 = $("#pwdCheckErr1");
+		pwdCheckErr2.addClass("d-none");
+		pwdCheckErr3.addClass("d-none");
 		pwdCheckErr1.removeClass("d-none");
-		var borderbottom = $("#pwd-form-check");
 			
 	} else {
-		var pattern = /^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$/i;
-		var result = pattern.test(pwdCheckErr2);
-		if(!result) {
+		var result = $("#pwd").val();
+		if(pwdCheck !== result) {
 			isValidation = false;
-			var pwdCheckErr2 = $("#pwdCheckErr2");
+			pwdCheckErr3.addClass("d-none");
 			pwdCheckErr2.removeClass("d-none");
-			var borderbottom = $("#pwd-form-check");
+			pwdCheckErr1.addClass("d-none");
+		} else {
+			pwdCheckErr2.addClass("d-none");
+			pwdCheckErr3.removeClass("d-none");
+			pwdCheckErr1.addClass("d-none");
 		}
+	}
+	
+	if(!isValidation) {
+		var borderbottom = $("#pwd-form-check");
+		borderbottom.removeClass("line-gray");
+		borderbottom.removeClass("line-blue");
+		borderbottom.addClass("line-red");
+    } else {
+		var borderbottom = $("#pwd-form-check");
+		borderbottom.removeClass("line-gray");
+		borderbottom.removeClass("line-red");
+		borderbottom.addClass("line-gray");
 	}	
+    	
+	
 	
 	//email 검사
 	var email = $("#email").val();
 	console.log("email: " + email);
+	var emailErr1 = $("#emailErr1");
+	var emailErr2 = $("#emailErr2");
+	var emailErr3 = $("#emailErr3");
 	if(email === "") {
 		isValidation = false;
-		var emailErr1 = $("#emailErr1");
+		emailErr2.addClass("d-none");
+		emailErr3.addClass("d-none");
 		emailErr1.removeClass("d-none");
-		var borderbottom = $("#email-form");
-		
+			
 	} else {
 		var pattern = /^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$/i;
 		var result = pattern.test(email);
 		if(!result) {
 			isValidation = false;
-			var emailErr2 = $("#emailErr2");
+			emailErr1.addClass("d-none");
 			emailErr2.removeClass("d-none");
-			var borderbottom = $("#email-form");
+			emailErr3.addClass("d-none");
+		} else {
+			emailErr2.addClass("d-none");
+			emailErr3.addClass("d-none");
+			emailErr1.addClass("d-none");
 		}
 	}
+	
+	if(!isValidation) {
+		var borderbottom = $("#email-form");
+		borderbottom.removeClass("line-gray");
+		borderbottom.removeClass("line-blue");
+		borderbottom.addClass("line-red");
+    } else {
+		var borderbottom = $("#email-form");
+		borderbottom.removeClass("line-gray");
+		borderbottom.removeClass("line-red");
+		borderbottom.addClass("line-gray");
+	}	
 	
 	
 	//name 검사
 	var name = $("#name").val();
 	console.log("name: " + name);
+	var nameErr = $("#nameErr");
 	if(name === "") {
 		isValidation = false;
-		var nameErr = $("#nameErr");
 		nameErr.removeClass("d-none");
-		var borderbottom = $("#name-form");
-		
 	} else {
-		var pattern = /^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$/i;
+		var pattern =/^[가-힣]{2,20}|[a-zA-Z]{2,20}\s[a-zA-Z]{2,20}$/;
 		var result = pattern.test(name);
 		if(!result) {
 			isValidation = false;
-			var nameErr = $("#nameErr");
 			nameErr.removeClass("d-none");
-			var borderbottom = $("#name-form");
+		} else {
+			nameErr.addClass("d-none");
 		}
-	}		
+	}
+	
+	if(!isValidation) {
+		var borderbottom = $("#name-form");
+		borderbottom.removeClass("line-gray");
+		borderbottom.removeClass("line-blue");
+		borderbottom.addClass("line-red");
+    } else {
+		var borderbottom = $("#name-form");
+		borderbottom.removeClass("line-gray");
+		borderbottom.removeClass("line-red");
+		borderbottom.addClass("line-gray");
+	}	
+	
 	
 	//tel 검사
 	var tel = $("#tel").val();
 	console.log("tel: " + tel);
+	var telErr1 = $("#telErr1");
+	var telErr2 = $("#telErr2");
 	if(tel === "") {
 		isValidation = false;
-		var telErr1 = $("#telErr1");
 		telErr1.removeClass("d-none");
-		var borderbottom = $("#tel-form");
-		
+		telErr2.addClass("d-none");
 	} else {
-		var pattern = /^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$/i;
+		var pattern = /^(01[016789]{1})-?[0-9]{3,4}-?[0-9]{4}$/;
 		var result = pattern.test(tel);
 		if(!result) {
 			isValidation = false;
-			var telErr2 = $("#telErr2");
-			telErr2.removeClass("d-none");
-			var borderbottom = $("#tel-form");
+			telErr1.removeClass("d-none");
+    		telErr2.addClass("d-none");
+		} else {
+			telErr1.addClass("d-none");
+			telErr2.addClass("d-none");
 		}
-	 }	
+	}
 	
-		
+	tel = $("#tel").val($("#tel").val().replace(/[^0-9]/g, "").replace(/(^02|^0505|^1[0-9]{3}|^0[0-9]{2})([0-9]+)?([0-9]{4})$/,"$1-$2-$3").replace("--", "-") );
+	
+	if(!isValidation) {
+		var borderbottom = $("#tel-form");
+		borderbottom.removeClass("line-gray");
+		borderbottom.removeClass("line-blue");
+		borderbottom.addClass("line-red");
+    } else {
+		var borderbottom = $("#id-form");
+		borderbottom.removeClass("line-gray");
+		borderbottom.removeClass("line-red");
+		borderbottom.addClass("line-gray");
+	}	
+	
+   
 	if(!isValidation) {
 		event.preventDefault();
+		window.alert('test');
 	}
+	
 }		
+
+
+
 
 $(document).ready(function(){
 	
@@ -154,37 +276,42 @@ $(document).ready(function(){
     $("input").blur(function(event) {
         //유효성 검사
         var isValidation = true;
-       	//모든 에러 메세지를 보여주지 않도록 초기화
-       	var errorMsgs = $(".errorMsg");
-       	console.log(errorMsgs);
-       	errorMsgs.each(function(index, item) {
-       		$(item).addClass("d-none");
-       		$(item).addClass("d-none");
-       		
-       	});
+
        	
        	//모든 밑줄 회색처리
     	$(".form-group").children('div').removeClass("line-blue");
     	$(".form-group").children('div').addClass("line-gray");
        	
         //uid 검사
-    	if($(event.target).attr('id') == "id") {
-	    	var uid = $("#id").val();
-	    	console.log("id: " + uid);
-	    	if(uid === "") {
-	    		isValidation = false;
-	    		var uidErr1 = $("#uidErr1");
-	    		uidErr1.removeClass("d-none");
-	    		
-	    	} else {
-	    		var pattern = /^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$/i;
-	    		var result = pattern.test(uid);
-	    		if(!result) {
+    	if($(event.target).attr('id') == "uid") {
+    		var uid = $("#uid").val();
+	    	var uidErr1 = $("#uidErr1");
+	    	var uidErr2 = $("#uidErr2");
+	    	var uidErr3 = $("#uidErr3");
+	    	var uidErr4 = $("#uidErr4");
+	    	console.log("uid: " + uid);
+	    		if(uid ==="") {
 	    			isValidation = false;
-	    			var uidErr2 = $("#uidErr2");
-	    			uidErr2.removeClass("d-none");
+	    			uidErr2.addClass("d-none");
+	    			uidErr3.addClass("d-none");
+	    			uidErr4.addClass("d-none");
+	    			uidErr1.removeClass("d-none");
+	    		} else {
+	    			var pattern = /^[a-z]+[a-z0-9]{4,19}$/g;
+		    		var result = pattern.test(uid);
+		    		if(!result) {
+		    			isValidation = false;
+		    			uidErr3.addClass("d-none");
+		    			uidErr2.removeClass("d-none");
+		    			uidErr1.addClass("d-none");
+		    			uidErr4.addClass("d-none");
+		    		} else {
+		    			uidErr2.addClass("d-none");
+		    			uidErr3.removeClass("d-none");
+		    			uidErr1.addClass("d-none");
+		    			uidErr4.addClass("d-none");
+		    		}
 	    		}
-	    	}
 	    	
 	    	if(!isValidation) {
 	    		var borderbottom = $("#id-form");
@@ -203,14 +330,29 @@ $(document).ready(function(){
     	//pwd검사
     	if($(event.target).attr('id') == "pwd") {
 	    	var pwd = $("#pwd").val();
+	    	var pwdErr1 = $("#pwdErr1");
+	    	var pwdErr2 = $("#pwdErr2");
+	    	var pwdErr3 = $("#pwdErr3");
 	    	console.log("pwd: " + pwd);
 	    		if(pwd ==="") {
 	    			isValidation = false;
-	    			var pwdErr1 = $("#pwdErr1");
+	    			pwdErr2.addClass("d-none");
+	    			pwdErr3.addClass("d-none");
 	    			pwdErr1.removeClass("d-none");
-	    		} else if(pwd !== "") {
-	    			isValidation = false;
-	    		}
+	    		} else {
+	    			var pattern = /^(?=.*[a-zA-z])(?=.*[0-9])(?=.*[$`~!@$!%*#^?&\\(\\)\-_=+]).{8,20}$/;
+		    		var result = pattern.test(pwd);
+		    		if(!result) {
+		    			isValidation = false;
+		    			pwdErr3.addClass("d-none");
+		    			pwdErr2.removeClass("d-none");
+		    			pwdErr1.addClass("d-none");
+		    		} else {
+		    			pwdErr2.addClass("d-none");
+		    			pwdErr3.removeClass("d-none");
+		    			pwdErr1.addClass("d-none");
+		    		}
+		    	}
 	    		
 	    	if(!isValidation) {
 	    		var borderbottom = $("#pwd-form");
@@ -218,7 +360,7 @@ $(document).ready(function(){
 	    		borderbottom.removeClass("line-blue");
 	    		borderbottom.addClass("line-red");
 		    } else {
-	    		var borderbottom = $("#id-form");
+	    		var borderbottom = $("#pwd-form");
 	    		borderbottom.removeClass("line-gray");
 	    		borderbottom.removeClass("line-red");
 	    		borderbottom.addClass("line-gray");
@@ -229,30 +371,38 @@ $(document).ready(function(){
     	//pwd-check 검사
     	if($(event.target).attr('id') == "pwd-check") {
 	    	var pwdCheck = $("#pwd-check").val();
+	    	var pwdCheckErr1 = $("#pwdCheckErr1");
+	    	var pwdCheckErr2 = $("#pwdCheckErr2");
+	    	var pwdCheckErr3 = $("#pwdCheckErr3");
+	    	
 	    	console.log("pwdCheck: " + pwdCheck);
 	    	if(pwdCheck === "") {
 	    		isValidation = false;
-	    		var pwdCheckErr1 = $("#pwdCheckErr1");
+	    		pwdCheckErr2.addClass("d-none");
+	    		pwdCheckErr3.addClass("d-none");
 	    		pwdCheckErr1.removeClass("d-none");
 	    			
 	    	} else {
-	    		var pattern = /^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$/i;
-	    		var result = pattern.test(pwdCheckErr2);
-	    		if(!result) {
+    			var result = $("#pwd").val();
+	    		if(pwdCheck !== result) {
 	    			isValidation = false;
-	    			var pwdCheckErr2 = $("#pwdCheckErr2");
+	    			pwdCheckErr3.addClass("d-none");
 	    			pwdCheckErr2.removeClass("d-none");
-	    			
+	    			pwdCheckErr1.addClass("d-none");
+	    		} else {
+	    			pwdCheckErr2.addClass("d-none");
+	    			pwdCheckErr3.removeClass("d-none");
+	    			pwdCheckErr1.addClass("d-none");
 	    		}
 	    	}
-	    	
+    		
 	    	if(!isValidation) {
 	    		var borderbottom = $("#pwd-form-check");
 	    		borderbottom.removeClass("line-gray");
 	    		borderbottom.removeClass("line-blue");
 	    		borderbottom.addClass("line-red");
 		    } else {
-	    		var borderbottom = $("#id-form");
+	    		var borderbottom = $("#pwd-form-check");
 	    		borderbottom.removeClass("line-gray");
 	    		borderbottom.removeClass("line-red");
 	    		borderbottom.addClass("line-gray");
@@ -264,19 +414,27 @@ $(document).ready(function(){
     	if($(event.target).attr('id') == "email") {
 	    	var email = $("#email").val();
 	    	console.log("email: " + email);
+	    	var emailErr1 = $("#emailErr1");
+	    	var emailErr2 = $("#emailErr2");
+	    	var emailErr3 = $("#emailErr3");
 	    	if(email === "") {
 	    		isValidation = false;
-	    		var emailErr1 = $("#emailErr1");
+	    		emailErr2.addClass("d-none");
+	    		emailErr3.addClass("d-none");
 	    		emailErr1.removeClass("d-none");
-	    		
+	    			
 	    	} else {
 	    		var pattern = /^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$/i;
 	    		var result = pattern.test(email);
 	    		if(!result) {
 	    			isValidation = false;
-	    			var emailErr2 = $("#emailErr2");
+	    			emailErr1.addClass("d-none");
 	    			emailErr2.removeClass("d-none");
-	    			
+	    			emailErr3.addClass("d-none");
+	    		} else {
+	    			emailErr2.addClass("d-none");
+	    			emailErr3.addClass("d-none");
+	    			emailErr1.addClass("d-none");
 	    		}
 	    	}
 	    	
@@ -286,7 +444,7 @@ $(document).ready(function(){
 	    		borderbottom.removeClass("line-blue");
 	    		borderbottom.addClass("line-red");
 		    } else {
-	    		var borderbottom = $("#id-form");
+	    		var borderbottom = $("#email-form");
 	    		borderbottom.removeClass("line-gray");
 	    		borderbottom.removeClass("line-red");
 	    		borderbottom.addClass("line-gray");
@@ -298,28 +456,28 @@ $(document).ready(function(){
     	if($(event.target).attr('id') == "name") {
 	    	var name = $("#name").val();
 	    	console.log("name: " + name);
+	    	var nameErr = $("#nameErr");
 	    	if(name === "") {
 	    		isValidation = false;
-	    		var nameErr = $("#nameErr");
 	    		nameErr.removeClass("d-none");
-	    		
 	    	} else {
-	    		var pattern = /^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$/i;
+	    		var pattern =/^[가-힣]{2,20}|[a-zA-Z]{2,20}\s[a-zA-Z]{2,20}$/;
 	    		var result = pattern.test(name);
 	    		if(!result) {
 	    			isValidation = false;
-	    			var nameErr = $("#nameErr");
 	    			nameErr.removeClass("d-none");
-	    			
+	    		} else {
+	    			nameErr.addClass("d-none");
 	    		}
 	    	}
+	    	
 	    	if(!isValidation) {
 	    		var borderbottom = $("#name-form");
 	    		borderbottom.removeClass("line-gray");
 	    		borderbottom.removeClass("line-blue");
 	    		borderbottom.addClass("line-red");
 		    } else {
-	    		var borderbottom = $("#id-form");
+	    		var borderbottom = $("#name-form");
 	    		borderbottom.removeClass("line-gray");
 	    		borderbottom.removeClass("line-red");
 	    		borderbottom.addClass("line-gray");
@@ -330,19 +488,27 @@ $(document).ready(function(){
     	if($(event.target).attr('id') == "tel") { 
 	    	var tel = $("#tel").val();
 	    	console.log("tel: " + tel);
+	    	var telErr1 = $("#telErr1");
+	    	var telErr2 = $("#telErr2");
 	    	if(tel === "") {
 	    		isValidation = false;
-	    		var telErr1 = $("#telErr1");
 	    		telErr1.removeClass("d-none");
+	    		telErr2.addClass("d-none");
 	    	} else {
-	    		var pattern = /^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$/i;
+	    		var pattern = /^(01[016789]{1})-?[0-9]{3,4}-?[0-9]{4}$/;
 	    		var result = pattern.test(tel);
 	    		if(!result) {
 	    			isValidation = false;
-	    			var telErr2 = $("#telErr2");
-	    			telErr2.removeClass("d-none");
+	    			telErr1.removeClass("d-none");
+		    		telErr2.addClass("d-none");
+	    		} else {
+	    			telErr1.addClass("d-none");
+	    			telErr2.addClass("d-none");
 	    		}
 	    	}
+	    	
+	    	tel = $("#tel").val($("#tel").val().replace(/[^0-9]/g, "").replace(/(^02|^0505|^1[0-9]{3}|^0[0-9]{2})([0-9]+)?([0-9]{4})$/,"$1-$2-$3").replace("--", "-") );
+	    	
 	    	if(!isValidation) {
 	    		var borderbottom = $("#tel-form");
 	    		borderbottom.removeClass("line-gray");
@@ -353,8 +519,11 @@ $(document).ready(function(){
 	    		borderbottom.removeClass("line-gray");
 	    		borderbottom.removeClass("line-red");
 	    		borderbottom.addClass("line-gray");
-	    	}	
-    	}	
+	    	}
+	    	
+    	}
+    	
+    	console.log(isValidation);
         
         
     });
