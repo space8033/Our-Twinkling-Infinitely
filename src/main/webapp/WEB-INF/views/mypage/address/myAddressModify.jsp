@@ -13,7 +13,7 @@
 		<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
 		<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>
 		
-		<script src="myAddressModify.js"></script>
+		<script src="${pageContext.request.contextPath}/resources/js/myAddressModify.js"></script>
 		
 		<style>
 			#myCoupang {
@@ -456,7 +456,7 @@
 					<div class="my-3">
 						<div class="my-3 d-flex">
 							<div style="border: 1px solid #d0d0d0;">
-								<img src="../common/image/coupang/w회원.png" width="50" height="50">
+								<img src="${pageContext.request.contextPath}/resources/oimg/w회원.png" width="50" height="50">
 							</div>
 							<div>
 								<input type="text" id="uname" class="inputHolder" value="구구팡" style="height: 51.5px; width: 750px; border: 1px solid #d0d0d0;">
@@ -469,7 +469,7 @@
 					<div>
 						<div class="d-flex">
 							<div style="border: 1px solid #d0d0d0;">
-								<img src="../common/image/coupang/w주소.png" width="50" height="101">						
+								<img src="${pageContext.request.contextPath}/resources/oimg/w주소.png" width="50" height="101">						
 							</div>
 							<div>
 								<div class="d-flex">
@@ -477,7 +477,7 @@
 										<input id="findNum" type="text" disabled="disabled" value="서울특별시 여기구 저기동 안아파트" style="height: 51.5px; width: 700px; border: 1px solid #d0d0d0; border-right:none; background-color: white;">
 									</div>
 									<div class="cursorPointer" style="border: 1px solid #d0d0d0; border-left: none;">
-										<img src="../common/image/coupang/w돋보기.png" width="50" height="50">
+										<img src="${pageContext.request.contextPath}/resources/oimg/w돋보기.png" width="50" height="50">
 									</div>
 								</div>
 								<div>
@@ -489,13 +489,13 @@
 					<div>
 						<div class="my-3 d-flex">
 							<div style="border: 1px solid #d0d0d0;">
-								<img src="../common/image/coupang/w핸드폰.png" width="50" height="50">
+								<img src="${pageContext.request.contextPath}/resources/oimg/w핸드폰.png" width="50" height="50">
 							</div>
 							<div>
 								<input type="text" id="utel" placeholder="휴대폰 번호" value="010-1234-5678" class="inputHolder" style="height: 51.5px; width: 700px; border: 1px solid #d0d0d0;">
 							</div>
 							<div class="cursorPointer" id="addButton" style="border: 1px solid #d0d0d0; border-left: none;">
-								<img src="../common/image/coupang/w더하기.png" width="50" height="50">
+								<img src="${pageContext.request.contextPath}/resources/oimg/w더하기.png" width="50" height="50">
 							</div>
 						</div>
 						<span id=utelErr1 class="errorMsg text-danger d-none small ml-2" style="border: none;">휴대폰 번호를 입력해주세요.</span>
@@ -504,26 +504,26 @@
 					<div class="d-none" id="contactBox">
 						<div class="my-3 d-flex">
 							<div style="border: 1px solid #d0d0d0;">
-								<img src="../common/image/coupang/w전화.png" width="50" height="50">
+								<img src="${pageContext.request.contextPath}/resources/oimg/w전화.png" width="50" height="50">
 							</div>
 							<div>
 								<input type="text" value="010-1111-2222" id="contact" class="inputHolder" style="height: 51.5px; width: 700px; border: 1px solid #d0d0d0;">
 							</div>
 							<div class="cursorPointer" id="removeButton" style="border: 1px solid #d0d0d0; border-left: none;">
-								<img src="../common/image/coupang/w빼기.png" width="50" height="50">
+								<img src="${pageContext.request.contextPath}/resources/oimg/w빼기.png" width="50" height="50">
 							</div>
 						</div>
 						<span id=contactErr class="errorMsg text-danger d-none small ml-2" style="border: none;">연락처 번호를 정확히 입력해주세요.</span>
 					</div>
 					<div class="my-3 d-flex">
 						<div style="border: 1px solid #d0d0d0;">
-							<img src="../common/image/coupang/w요청사항.png" width="50" height="50">
+							<img src="${pageContext.request.contextPath}/resources/oimg/w요청사항.png" width="50" height="50">
 						</div>
 						<div>
 							<input id="deliveryNotify" type="text" value="문 앞에 두고 도망가세여" disabled="disabled" style="height: 51.5px; width: 700px; border: 1px solid #d0d0d0; border-right:none; background-color: white;">
 						</div>
 						<div class="cursorPointer" style="border: 1px solid #d0d0d0; border-left: none;">
-							<img src="../common/image/coupang/w우꺽쇠.png" width="50" height="50">
+							<img src="${pageContext.request.contextPath}/resources/oimg/w우꺽쇠.png" width="50" height="50">
 						</div>
 					</div>
 					
