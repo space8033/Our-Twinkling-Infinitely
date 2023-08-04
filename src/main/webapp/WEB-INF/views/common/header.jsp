@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 
 <!DOCTYPE html>
 <html>
@@ -21,10 +22,14 @@
    <body>
 	   <div class="container">
 		   <div id="title"> 
+		   	<div class="logo">		   	
 			   <a href="${pageContext.request.contextPath}">	   
-				  <img src="${pageContext.request.contextPath}/resources/yuimg/메인로고.png" width="200"/>
+				  <img src="${pageContext.request.contextPath}/resources/yuimg/메인로고.png" width="180"/>
 			   </a>	
+		   	</div>
+		   	<div class="logo">		   	
 			   <p style="width: 200px;">Our-Twinkling-Infinitely</p>	   
+		   	</div>
 		   </div>
 		   	<div class="menuBar" class="d-flex">
 		   		<div id="search-icon" style="width: 40%">		   		

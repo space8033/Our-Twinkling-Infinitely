@@ -6,6 +6,8 @@
 <configuration>
 	<typeAliases>
 		<typeAlias alias="User" type="com.webteam1.oti.dto.Users"/>
+		<typeAlias alias="Pager" type="com.webteam1.oti.dto.Pager"/>
+		<typeAlias alias="Product" type="com.webteam1.oti.dto.Product"/>
 	</typeAliases>
 </configuration>
 

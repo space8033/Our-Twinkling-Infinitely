@@ -2,7 +2,6 @@
 $(init);
 
 function init() {
-	loadFooter();
 	var joinForm = $("#joinForm");
 	$("#submit").click(checkValidation);
 	$("#uname").blur(onBlurName);
@@ -10,10 +9,6 @@ function init() {
 	$("#contact").blur(onBlurContact);
 	$("#addButton").click(addContact);
 	$("#removeButton").click(removeContact);
-}
-
-function loadFooter() {
-	$("#footer").load("coupangFooter.jsp");
 }
 
 function onBlurName() {
@@ -137,11 +132,29 @@ function checkValidation() {
 function addContact() {
 	$("#contactBox").removeClass("d-none");
 	$("#addButton").addClass("d-none");
-	$("#utel").css("width", 750);
+	
+	if (matchMedia("screen and (min-width: 1250px)").matches) {
+		$("#utel").css("width", 750);
+	}else if(matchMedia("screen and (max-width: 768px)").matches) {
+		$("#utel").css("width", 440);		
+	}
+	
+	window.onresize = function(){
+		  document.location.reload();
+	};
 }
 
 function removeContact() {
 	$("#contactBox").addClass("d-none");
 	$("#addButton").removeClass("d-none");
-	$("#utel").css("width", 700);
+	
+	if (matchMedia("screen and (min-width: 1250px)").matches) {
+		$("#utel").css("width", 700);
+	}else if(matchMedia("screen and (max-width: 768px)").matches) {
+		$("#utel").css("width", 400);		
+	}
+	
+	window.onresize = function(){
+		  document.location.reload();
+	};
 }
