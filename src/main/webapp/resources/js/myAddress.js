@@ -7,10 +7,6 @@ function init() {
 	setTimeout(() => $(".modifyButton").click(goModifyPage), 500);
 }
 
-function loadFooter() {
-	$("#footer").load("coupangFooter.jsp");
-}
-
 function addAddress() {
 	$.ajax({
 		url:"myAddress_content.jsp",

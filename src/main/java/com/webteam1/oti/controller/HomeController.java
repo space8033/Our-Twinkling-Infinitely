@@ -14,4 +14,16 @@ public class HomeController {
 		log.info("실행");
 		return "home";
 	}
+
+	@RequestMapping("/aa")
+	public String test() {
+		log.info("실행");
+		return "mypage/address/myAddressAdd";
+	}
+
+	@RequestMapping("/list")
+	public String test3() {
+		log.info("실행");
+		return "list/list";
+	}
 }
