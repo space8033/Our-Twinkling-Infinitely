@@ -32,5 +32,15 @@ public class UserController {
 		log.info("실행");
 		return "modify/modify";
 	}
+	@RequestMapping("cart")
+	public String basket() {
+		log.info("실행");
+		return "cart/basket";
+	}
+	@RequestMapping("mypage")
+	public String mypage() {
+		log.info("실행");
+		return "mypage/orderlist/myOti";
+	}
 
 }
