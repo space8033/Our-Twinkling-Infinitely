@@ -53,13 +53,10 @@
 					      <a class="nav-link" href="${pageContext.request.contextPath}/modify">MODIFY</a>
 					    </li>
 					    <li class="nav-item">
-					      <a class="nav-link" href="#">CART</a>
+					      <a class="nav-link" href="${pageContext.request.contextPath}/cart">CART</a>
 					    </li>
 					    <li class="nav-item">
-					      <a class="nav-link" href="#">ORDER</a>
-					    </li>
-					    <li class="nav-item">
-					      <a class="nav-link" href="#">MYPAGE</a>
+					      <a class="nav-link" href="${pageContext.request.contextPath}/mypage">MYPAGE</a>
 					    </li>
 				  	</ul>
 		   		</div>
