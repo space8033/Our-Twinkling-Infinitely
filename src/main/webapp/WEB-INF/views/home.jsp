@@ -42,7 +42,7 @@
 			<c:forEach var="product" items="${products}">
 				<div class="card">
 				    <div class="card-body">
-				    	Content
+				    	<a href="writeProductFile">파일 업로듀!!!</a>
 				    </div> 
 				    <div class="card-footer">
 				    	<div>${product.product_name}</div>

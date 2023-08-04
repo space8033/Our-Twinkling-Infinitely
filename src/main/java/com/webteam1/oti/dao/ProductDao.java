@@ -13,5 +13,6 @@ public interface ProductDao {
 	public List<Product> selectByPage(Pager pager);
 	public Product selectBypno(int product_no);
 	public int updateByBno(Product product);
+	public int getProductNo(Product product);
 	public int count();
 }

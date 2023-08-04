@@ -28,6 +28,10 @@
 		 where rnum >= #{startRowNo}
 		 ]]>
   	</select>
+  	
+  	<select id="getProductNo" parameterType="Product" resultType="int">
+  		select product_no from product where product_no="#{product_no}";
+  	</select>
   	 
   	<select id="count" resultType="int">
    		select count(*) from product
