@@ -1,5 +1,5 @@
 
-//유효성 검사
+//폼 제출 시 유효성 검사
 function checkValidation() {
 	
     var isValidation = true;
@@ -244,17 +244,23 @@ function checkValidation() {
 		borderbottom.removeClass("line-blue");
 		borderbottom.addClass("line-red");
     } else {
-		var borderbottom = $("#id-form");
+		var borderbottom = $("#tel-form");
 		borderbottom.removeClass("line-gray");
 		borderbottom.removeClass("line-red");
 		borderbottom.addClass("line-gray");
 	}	
 	
+	//이용약관 동의 유효성 검사
+	if(!$("#agree1").prop("checked")){ 
+		isValidation = false;
+	}
    
 	if(!isValidation) {
 		event.preventDefault();
 		window.alert('test');
 	}
+	
+	
 	
 }		
 
@@ -262,6 +268,27 @@ function checkValidation() {
 
 
 $(document).ready(function(){
+	
+	//체크박스 모두 선택 시 전체 선택
+	$("#agree").click(function(){
+		//전체 선택 선택시 모두 체크, 해제
+		if($("#agree").prop("checked")){ 
+			$("input[name=agree]").prop("checked", true);
+		} else {
+			$("input[name=agree]").prop("checked", false);
+		}
+	});	
+		
+		//선택 갯수가 전체 선택 갯수와 같을 경우 전체 선택 체크
+	$(".agreement").click(function(){	
+		if($('input[class=agreement]:checked').length==$('.agreement').length){
+	        $('#agree').prop('checked',true);
+	    }else{
+	       $('#agree').prop('checked',false);
+	    }
+		
+			
+	});
 	
 	//input 포커스 시 회색 border-bottom => 파란색 border-bottom
     $("input").focus(function(event){
@@ -515,16 +542,13 @@ $(document).ready(function(){
 	    		borderbottom.removeClass("line-blue");
 	    		borderbottom.addClass("line-red");
 		    } else {
-	    		var borderbottom = $("#id-form");
+	    		var borderbottom = $("#tel-form");
 	    		borderbottom.removeClass("line-gray");
 	    		borderbottom.removeClass("line-red");
 	    		borderbottom.addClass("line-gray");
 	    	}
 	    	
     	}
-    	
-    	console.log(isValidation);
-        
         
     });
 

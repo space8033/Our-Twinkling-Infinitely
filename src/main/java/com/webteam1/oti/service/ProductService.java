@@ -10,6 +10,7 @@ public interface ProductService {
 	//product list Service
 	public List<Product> getList(Pager pager);
 	public Product getProduct(int product_no);
+	public int getProductNo(Product product);
 	public void addHitcount(int product_no);
 	public int getTotalProductNum();
 }
