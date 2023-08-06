@@ -31,4 +31,19 @@ public class AddressController {
 		
 		return "redirect:/home";
 	}
+	
+	//실험중
+	@GetMapping("/modifyAddress")
+	public String loadModifyForm() {
+		
+		return "mypage/address/myAddressModify";
+	}
+	
+	//실험중
+	@PostMapping("/modifyAddress")
+	public String update(Address address) {
+		addressService.registerAddress(address);
+		
+		return "redirect:/home";
+	}
 }

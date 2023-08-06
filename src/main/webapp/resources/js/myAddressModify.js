@@ -11,7 +11,6 @@ function init() {
 	$("#removeButton").click(removeContact);
 }
 
-
 function onBlurName() {
 	var uname = $("#uname").val();
 	var namePattern = /^[가-힣a-zA-Z]+$/;
@@ -87,6 +86,17 @@ function checkValidation() {
 		isValidation = false;
 	}else if(!result) {
 		unameErr2.removeClass("d-none");
+		isValidation = false;
+	}
+	
+	var roadAddress = $("#roadAddress").val();
+	var uaddressErr = $("#uaddressErr");
+	
+	uaddressErr.addClass("d-none");
+	
+	if(roadAddress == "도로명주소") {
+		uaddressErr.removeClass("d-none");
+		uaddressErr.addClass("redLine");
 		isValidation = false;
 	}
 	
