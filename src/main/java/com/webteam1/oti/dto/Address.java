@@ -10,10 +10,12 @@ public class Address {
 	private String address_receiver;
 	private String address_basic;
 	private String address_detail;
+	private DeliveryType deliveryRequest;
 	private boolean address_isdefault;
 	private String users_users_id;
-	private Date address_createddate;
-	private Date address_modifieddate;
-	private Date address_deleteddate;
+	private String usersPhone;
 	
+	public enum DeliveryType {
+		DOOR, SECURITY_OFFICE, COURIER_BOX
+	}
 }

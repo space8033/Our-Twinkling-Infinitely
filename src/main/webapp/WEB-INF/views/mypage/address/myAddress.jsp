@@ -50,7 +50,18 @@
 		<!------------------------------------- 내용 들어갈 div -------------------------------------->
 				<div style="width: 100%; margin-top: 20px;">
 					<div id="addressContainer" style="width: 100%;">
-						
+						<c:forEach var="address" items="${address}">
+							<div class="myAddress">
+								<div class="mt-4 mb-2 font-weight-bold">' + ${address.address_receiver} + '</div>
+								<c:if test="${address.address_isdefault == true}">
+									<div id="standardAddress">기본배송지</div>
+								</c:if>
+								<div class="mt-2">${address.address_basic} ${address.address_detail}</div>
+								<div> ${address.usersPhone}</div>
+								<div> ${address.deliveryRequest }</div>
+								<div><button class="modifyButton" value="' + index + '">수정</button></div>
+							</div>
+						</c:forEach>
 					</div>
 					<div id="addAddress">
 						+ 배송지 추가

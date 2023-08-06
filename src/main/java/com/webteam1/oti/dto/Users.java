@@ -1,7 +1,5 @@
 package com.webteam1.oti.dto;
 
-import java.util.Date;
-
 import lombok.Data;
 
 @Data

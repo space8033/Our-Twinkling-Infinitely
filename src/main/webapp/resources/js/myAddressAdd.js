@@ -89,6 +89,17 @@ function checkValidation() {
 		isValidation = false;
 	}
 	
+	var roadAddress = $("#roadAddress").val();
+	var uaddressErr = $("#uaddressErr");
+	
+	uaddressErr.addClass("d-none");
+	
+	if(roadAddress == "도로명주소") {
+		uaddressErr.removeClass("d-none");
+		uaddressErr.addClass("redLine");
+		isValidation = false;
+	}
+	
 	var utel = $("#utel").val();
 	var telPattern = /^\d{3}-\d{3,4}-\d{4}$/;
 	var result = telPattern.test(utel);
