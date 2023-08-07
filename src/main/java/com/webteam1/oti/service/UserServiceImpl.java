@@ -9,6 +9,8 @@ import org.springframework.stereotype.Service;
 import com.webteam1.oti.dao.UserDao;
 import com.webteam1.oti.dto.user.JoinDto;
 
+import lombok.extern.slf4j.Slf4j;
+@Slf4j
 @Service
 public class UserServiceImpl implements UserService{
 	@Resource
@@ -16,16 +18,22 @@ public class UserServiceImpl implements UserService{
 	
 	@Override
 	public JoinResult join(JoinDto user) {
-//		Users dbUserId = userDao.selectByusers_id(user.getUsers_id());
-//		if(dbUserId != null) {
-//			return JoinResult.FAIL_DUPLICATED_UID;
-//		}
-//		
-//		PasswordEncoder passwordEncoder = PasswordEncoderFactories.createDelegatingPasswordEncoder();
-//		user.setUsers_password(passwordEncoder.encode(user.getUsers_password()));
+		
+		log.info(userDao.selectByusersId("tldhs123")+"");
+		JoinDto dbUserId = userDao.selectByusersId(user.getUsersId());
+		log.info(user.getUsersId());
+		log.info(dbUserId + "문자열");
+		if(dbUserId != null) {
+			return JoinResult.FAIL_DUPLICATED_UID;
+		} else {
+		
+		PasswordEncoder passwordEncoder = PasswordEncoderFactories.createDelegatingPasswordEncoder();
+		user.setUsersPassword(passwordEncoder.encode(user.getUsersPassword()));
 		
 		userDao.insert(user);
 		
 		return JoinResult.SUCCESS;
+		
+		}
 	}
 }
