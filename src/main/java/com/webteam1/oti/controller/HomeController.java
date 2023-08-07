@@ -1,5 +1,6 @@
 package com.webteam1.oti.controller;
 
+import java.util.Base64;
 import java.util.List;
 
 import javax.annotation.Resource;
@@ -7,8 +8,10 @@ import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import com.webteam1.oti.dto.Image;
 import com.webteam1.oti.dto.Pager;
 import com.webteam1.oti.dto.Product;
 import com.webteam1.oti.service.ProductService;
@@ -40,13 +43,21 @@ public class HomeController {
 	   session.setAttribute("pageNo", String.valueOf(pageNo));
 	   
 	   int totalRows = productService.getTotalProductNum();
-	   Pager pager = new Pager(10, 5, totalRows, intPageNo);
-	  
+	   Pager pager = new Pager(12, 5, totalRows, intPageNo);
+	
 	   List<Product> list = productService.getList(pager);
-
+	   
 	   model.addAttribute("pager", pager);
+	   for(Product product: list) {   
+		   if(product.getProduct_imgFile() != null) {
+			   //0과 1로 구성된 바이너리 데이터를 base64 문자열로 변환 
+			   String base64Img = Base64.getEncoder().encodeToString(product.getProduct_imgFile());
+			   log.info(base64Img);
+			   log.info("변환완료");
+			   product.setProduct_img(base64Img);
+		   }
+	   }
 	   model.addAttribute("products", list);
-	  
 		return "home";
 	}
 
@@ -55,6 +66,7 @@ public class HomeController {
 		log.info("실행");
 		return "list/list";
 	}
+	
 /*	@RequestMapping("/insert")
 	public String insert() {
 		for(int i=0; i<20; i++) {

@@ -23,5 +23,5 @@ public interface UserService {
 	//public void modifyUser(Users user);
 	//public void unjoin(String users_id);
 	//public void logout(String users_id);
-	//public Users getUsers(String users_id);
+	//public JoinDto getUsers(String usersId);
 }

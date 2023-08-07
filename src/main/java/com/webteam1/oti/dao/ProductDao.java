@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.apache.ibatis.annotations.Mapper;
 
+import com.webteam1.oti.dto.Image;
 import com.webteam1.oti.dto.Pager;
 import com.webteam1.oti.dto.Product;
 
@@ -13,6 +14,6 @@ public interface ProductDao {
 	public List<Product> selectByPage(Pager pager);
 	public Product selectBypno(int product_no);
 	public int updateByBno(Product product);
-	public int getProductNo(Product product);
+	public Image selectByImg(Product product);
 	public int count();
 }

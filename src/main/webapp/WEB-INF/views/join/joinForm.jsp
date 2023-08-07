@@ -34,15 +34,17 @@
 					</div>
 					<div>
 						<input type="text" class="input" placeholder="아이디" id="uid" onfocus="this.placeholder=''"
-							  autocomplete="off" value="${users.users_id}" name="usersId">
+							  autocomplete="off" value="${joinDto.users_id}" name="users_id">
 						
 					</div>
 				</div>	
 				<span id="uidErr1" class="errorMsg text-danger d-none small" style="margin-left:10px; font-family: dotum,sans-serif; font-size: 12px;">아이디를 입력해주세요.</span>
 				<span id="uidErr2" class="errorMsg text-danger d-none small" style="margin-left:10px; font-family: dotum,sans-serif; font-size: 12px;">아이디를 올바르게 입력해주세요.</span>
 				<span id="uidErr3" class="errorMsg text-success d-none small" style="margin-left:10px; font-family: dotum,sans-serif; font-size: 12px;">사용 가능한 아이디입니다.</span>
-				<span id="uidErr4" class="errorMsg text-danger d-none small" style="margin-left:10px; font-family: dotum,sans-serif; font-size: 12px;">이미 가입된 아이디입니다.</span>
-			
+				
+				<c:if test="${error != null}">
+					<span id="uidErr4" class="errorMsg text-danger d-none small" style="margin-left:10px; font-family: dotum,sans-serif; font-size: 12px;">이미 가입된 아이디입니다.</span>
+				</c:if>
 		   </div>
 				
 				
@@ -53,7 +55,7 @@
 				   </div>
 				   <div>	
 						<input type="password"  onfocus="this.placeholder=''"  placeholder="비밀번호" id="pwd"
-							   autocomplete="off" value="${users.users_password}" name="usersPassword">
+							   autocomplete="off" value="${joinDto.users_password}" name="users_password">
 				   </div>
 			   </div>
 		       <span id="pwdErr1" class="errorMsg text-danger d-none small" style="margin-left:10px; font-family: dotum,sans-serif; font-size: 12px;">비밀번호를 입력해주세요.</span>
@@ -84,7 +86,7 @@
 				 	 </div>
 		    		 <div>
 						<input type="email" onfocus="this.placeholder=''" placeholder="이메일" id="email"
-						        autocomplete="off" value="${users.users_email}" name="usersEmail">
+						        autocomplete="off" value="${joinDto.users_email}" name="users_email">
 					 </div>
 			    </div>
 				<span id="emailErr1" class="errorMsg text-danger d-none small" style="margin-left:10px; font-family: dotum,sans-serif; font-size: 12px;">이메일을 입력해주세요.</span>
@@ -100,7 +102,7 @@
 					 </div>
 					<div>
 						<input type="text" onfocus="this.placeholder=''" placeholder="이름" id="name"
-							    autocomplete="off" value="${users.users_name}" name="usersName">
+							    autocomplete="off" value="${joinDto.users_name}" name="users_name">
 					</div>
 				</div>
 				<span id="nameErr" class="errorMsg text-danger d-none small" style="margin-left:10px; font-family: dotum,sans-serif; font-size: 12px;">이름을 정확히 입력하세요.</span>
@@ -114,7 +116,7 @@
 					  </div>
 					  <div>
 							<input type="tel" onfocus="this.placeholder=''" pattern="010-[0-9]{3,4}-[0-9]{4}" placeholder="휴대폰 번호" id="tel"
-							 autocomplete="off" value="${users.users_phone}" name="usersPhone">
+							 autocomplete="off" value="${joinDto.users_phone}" name="users_phone">
 					  </div>
 				 </div>
 				 <span id="telErr1" class="errorMsg text-danger d-none small" style="margin-left:10px; font-family: dotum,sans-serif; font-size: 12px;">휴대폰 번호를 정확하게 입력하세요.</span>

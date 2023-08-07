@@ -29,12 +29,11 @@ public class ProductController {
 	public String writeProductFile(Product product) throws Exception{
 
 	   Image image = new Image();
-	   image.setImage_no(productService.getProductNo(product));
-       image.setProduct_product_no(productService.getProductNo(product));
-	   File file = new File("${pageContext.request.contextPath}/resources/yuimg/메인상품리스트1.jpg");
+	   File file = new File("C:/Users/KOSA/git/Our-Twinkling-Infinitely/src/main/webapp/resources/yuimg/메인상품리스트1.jpg");
 	   byte[] byteFile = null;
 	   byteFile = Files.readAllBytes(file.toPath());
 	   image.setImage_file(byteFile);
+	   log.info("파일 업로드 실행");
 
 	   /*if(!mf.isEmpty()) {
 		  //브라우저에서 선택한 파일 이름 작성
@@ -47,7 +46,7 @@ public class ProductController {
 	
 	   }
 	  
-	   boardService.write(board);;
+	   boardService.write(board);
 	   //실제로 저장된 bno
 	   log.info("저장된bno: " + board.getBno());*/
 	

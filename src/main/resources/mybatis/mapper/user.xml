@@ -3,9 +3,21 @@
 <mapper namespace="com.webteam1.oti.dao.UserDao">
 	<insert id="insert" parameterType="Join">
 		insert into users(users_id, users_email, users_password, users_name, users_phone, users_type, users_opoint, users_createddate)
-		values(#{usersId}, #{usersEmail}, #{usersPassword}, #{usersName}, #{usersPhone}, 'enabled', 0, to_char(sysdate,'yyyy.mm.dd hh24:mi:ss'))
+		values(#{users_id}, #{users_email}, #{users_password}, #{users_name}, #{users_phone}, 'ENABLED', 0, to_char(sysdate,'yyyy.mm.dd hh24:mi:ss'))
 	</insert>
-   
+	<select id="selectByusersId" resultType="Join" parameterType="String">
 
+		select users_id, users_email, users_phone
+		from users 
+		where users_id=#{users_id}
+
+	</select>
+	
+	
+  <!--  <select id="selectByusersId" resultType="Join" parameterType="String">
+  	  select *
+      from users where users_id=#{usersId}
+   </select>
+    -->
    
 </mapper>
