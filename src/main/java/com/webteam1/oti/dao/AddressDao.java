@@ -7,4 +7,5 @@ import com.webteam1.oti.dto.Address;
 @Mapper
 public interface AddressDao {
 	public int insert(Address address); 
+	public int update(Address address);
 }

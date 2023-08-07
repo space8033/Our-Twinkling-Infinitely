@@ -4,4 +4,5 @@ import com.webteam1.oti.dto.Address;
 
 public interface AddressService {
 	public void registerAddress(Address address);
+	public void updateAddress(Address address);
 }

@@ -56,9 +56,12 @@
 								<c:if test="${address.address_isdefault == true}">
 									<div id="standardAddress">기본배송지</div>
 								</c:if>
-								<div class="mt-2">${address.address_basic} ${address.address_detail}</div>
-								<div> ${address.usersPhone}</div>
-								<div> ${address.deliveryRequest }</div>
+								<div class="mt-2">${address.address_roadAddress} </div>
+								<div class="mt-2">${address.address_jibunAddress} </div>
+								<div class="mt-2">${address.address_extraAddress} </div>
+								<div class="mt-2">${address.address_detail} </div>
+								<div> ${address.users_phone}</div>
+								<div> ${address.deliveryRequest}</div>
 								<div><button class="modifyButton" value="' + index + '">수정</button></div>
 							</div>
 						</c:forEach>

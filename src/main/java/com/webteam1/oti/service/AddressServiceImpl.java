@@ -17,5 +17,10 @@ public class AddressServiceImpl implements AddressService{
 		
 		addressDao.insert(address);
 	}
+
+	@Override
+	public void updateAddress(Address address) {
+		addressDao.update(address);
+	}
 	
 }

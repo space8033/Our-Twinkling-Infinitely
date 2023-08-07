@@ -5,7 +5,6 @@
 		<script src="${pageContext.request.contextPath}/resources/js/myAddressAdd.js"></script>
 		<script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 		<script>
-		    //본 예제에서는 도로명 주소 표기 방식에 대한 법령에 따라, 내려오는 데이터를 조합하여 올바른 주소를 구성하는 방법을 설명합니다.
 		    function findAddress() {
 		        new daum.Postcode({
 		            oncomplete: function(data) {
@@ -31,29 +30,8 @@
 		                // 우편번호와 주소 정보를 해당 필드에 넣는다.
 		                document.getElementById("roadAddress").value = roadAddr;
 		                document.getElementById("jibunAddress").value = data.jibunAddress;
-		                
-		                // 참고항목 문자열이 있을 경우 해당 필드에 넣는다.
-		                if(roadAddr !== ''){
-		                    document.getElementById("extraAddress").value = extraRoadAddr;
-		                } else {
-		                    document.getElementById("extraAddress").value = '';
-		                }
-		
-		                var guideTextBox = document.getElementById("guide");
-		                // 사용자가 '선택 안함'을 클릭한 경우, 예상 주소라는 표시를 해준다.
-		                if(data.autoRoadAddress) {
-		                    var expRoadAddr = data.autoRoadAddress + extraRoadAddr;
-		                    guideTextBox.innerHTML = '(예상 도로명 주소 : ' + expRoadAddr + ')';
-		                    guideTextBox.style.display = 'block';
-		
-		                } else if(data.autoJibunAddress) {
-		                    var expJibunAddr = data.autoJibunAddress;
-		                    guideTextBox.innerHTML = '(예상 지번 주소 : ' + expJibunAddr + ')';
-		                    guideTextBox.style.display = 'block';
-		                } else {
-		                    guideTextBox.innerHTML = '';
-		                    guideTextBox.style.display = 'none';
-		                }
+		                document.getElementById("extraAddress").value = extraRoadAddr;
+
 		            }
 		        }).open();
 		    }
@@ -118,6 +96,46 @@
 			.redLine {
 				border: 1px solid red;
 			}
+			
+			.modal {
+			  display: none; /* Hidden by default */
+			  position: fixed; /* Stay in place */
+			  z-index: 1; /* Sit on top */
+			  left: 0;
+			  top: 0;
+			  width: 100%; /* Full width */
+			  height: 100%; /* Full height */
+			  overflow: auto; /* Enable scroll if needed */
+			  background-color: rgb(0,0,0); /* Fallback color */
+			  background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+			}
+			
+			/* Modal Content/Box */
+			.modal-content {
+			  background-color: #fefefe;
+			  margin: 15% auto; /* 15% from the top and centered */
+			  padding: 20px;
+			  border: 1px solid #888;
+			  width: 50%; /* Could be more or less, depending on screen size */
+			}
+			#close {
+			  color: #aaa;
+			  font-size: 28px;
+			  font-weight: bold;
+			}
+			
+			#close:hover,
+			#close:focus {
+			  color: black;
+			  text-decoration: none;
+			  cursor: pointer;
+			}
+			
+			#selectRequest:hover {
+				cursor: pointer;
+			}
+
+
 			.addressIcon {
 				width: 50px;
 				height: 50px;
@@ -135,6 +153,7 @@
 				height: 51.5px;
 			}
 			
+			
 			@media (min-width:1250px)  {
 				.addressIcon {
 					width: 50px;
@@ -151,6 +170,9 @@
 				.inputHolder3 {
 					width: 800px;
 					height: 51.5px;
+				}
+				.modal-content {
+				  width: 50%; /* Could be more or less, depending on screen size */
 				}
 				
 			}
@@ -174,8 +196,10 @@
 				.inputHolder3 {
 					width: 480px;
 					height: 51.5px;
+				}	
+				.modal-content {
+				  width: 80%; /* Could be more or less, depending on screen size */
 				}
-				
 			}
 		</style>
 	</head>
@@ -183,7 +207,7 @@
 	<body class="container">
 		<div id="wrapper" class="d-flex justify-content-center">	
 		<!------------------------------------- 내용 들어갈 div -------------------------------------->
-			<form id="registerForm" name="registerForm" novalidate method="post" class="pt-5">
+			<form id="modifyForm" name="modifyForm" action="modifyForm" method="post" class="pt-5">
 				<div class="my-3">
 					<div class="my-3 d-flex">
 						<div style="border: 1px solid #d0d0d0;">
@@ -211,19 +235,20 @@
 				<div>
 					<div id="addressContainer" class="mb-3">	
 						<div>
-							<input class="inputHolder3" type="text" id="roadAddress" placeholder="도로명주소" value="도로명주소" disabled="disabled" style="border: 1px solid #d0d0d0;">
+							<input class="inputHolder3" type="text" id="roadAddress" value="도로명주소"  placeholder="도로명주소" readonly="readonly" style="border: 1px solid #d0d0d0;"
+										value="${address.address_roadAddress}" name="address_roadAddress">
 						</div>				
 						<div>
-							<input class="inputHolder3" type="text" id="jibunAddress" placeholder="지번주소" disabled="disabled" style="border: 1px solid #d0d0d0;">
+							<input class="inputHolder3" type="text" id="jibunAddress" placeholder="지번주소" readonly="readonly" style="border: 1px solid #d0d0d0;"
+										value="${address.address_jibunAddress}" name="address_jibunAddress">
 						</div>
 						<div>
-							<span id="guide" style="color:#999;display:none"></span>
+							<input class="inputHolder3" type="text" id="extraAddress" placeholder="참고항목" readonly="readonly"  style="border: 1px solid #d0d0d0;"
+										value="${address.address_extraAddress}" name="address_extraAddress">
 						</div>
 						<div>
-							<input class="inputHolder3" type="text" id="extraAddress" placeholder="참고항목"disabled="disabled"  style="border: 1px solid #d0d0d0;">
-						</div>
-						<div>
-							<input class="inputHolder3" type="text" id="detailAddress" placeholder="상세주소" style="border: 1px solid #d0d0d0;">							
+							<input class="inputHolder3" type="text" id="detail" placeholder="상세주소" style="border: 1px solid #d0d0d0;"
+										value="${address.address_detail}" name="address_detail">
 						</div>
 					</div>
 					<span id=uaddressErr class="errorMsg d-none text-danger small ml-2" style="border: none;">주소를 검색해주세요.</span>
@@ -234,50 +259,61 @@
 							<img class="addressIcon" src="${pageContext.request.contextPath}/resources/oimg/w핸드폰.png">
 						</div>
 						<div>
-							<input type="text" id="utel" placeholder="휴대폰 번호" class="inputHolder2" style="border: 1px solid #d0d0d0;"
-									value="${address.usersPhone}" name="usersPhone">
-						</div>
-						<div class="cursorPointer" id="addButton" style="border: 1px solid #d0d0d0; border-left: none;">
-							<img class="addressIcon" src="${pageContext.request.contextPath}/resources/oimg/w더하기.png">
+							<input type="text" id="utel" placeholder="휴대폰 번호" class="inputHolder" style="border: 1px solid #d0d0d0;"
+									value="${address.users_phone}" name="users_phone">
 						</div>
 					</div>
 					<span id=utelErr1 class="errorMsg text-danger d-none small ml-2" style="border: none;">휴대폰 번호를 입력해주세요.</span>
 					<span id=utelErr2 class="errorMsg text-danger d-none small ml-2" style="border: none;">국내 휴대폰 번호만 가능합니다.</span>
-				</div>
-				<div class="d-none" id="contactBox">
-					<div class="my-3 d-flex">
-						<div style="border: 1px solid #d0d0d0;">
-							<img class="addressIcon" src="${pageContext.request.contextPath}/resources/oimg/w전화.png">
-						</div>
-						<div>
-							<input type="text" placeholder="연락처" id="contact" class="inputHolder2" style="border: 1px solid #d0d0d0;">
-						</div>
-						<div class="cursorPointer" id="removeButton" style="border: 1px solid #d0d0d0; border-left: none;">
-							<img class="addressIcon" src="${pageContext.request.contextPath}/resources/oimg/w빼기.png">
-						</div>
-					</div>
-					<span id=contactErr class="errorMsg text-danger d-none small ml-2" style="border: none;">연락처 번호를 정확히 입력해주세요.</span>
 				</div>
 				<div class="my-3 d-flex">
 					<div style="border: 1px solid #d0d0d0;">
 						<img class="addressIcon" src="${pageContext.request.contextPath}/resources/oimg/w요청사항.png">
 					</div>
 					<div>
-						<input id="deliveryNotify" class="inputHolder2" type="text" placeholder="배송 요청사항" disabled="disabled" style="border: 1px solid #d0d0d0; border-right:none; background-color: white;">
+						<input id="deliveryNotify" class="inputHolder2" type="text" placeHolder="배송 요청사항" readonly="readonly" style="border: 1px solid #d0d0d0; border-right:none; background-color: white;" value="${address.deliveryRequest}" name="deliveryRequest">
 					</div>
-					<div class="cursorPointer" style="border: 1px solid #d0d0d0; border-left: none;">
+					<div id="modalButton" class="cursorPointer" style="border: 1px solid #d0d0d0; border-left: none;">
 						<img class="addressIcon" src="${pageContext.request.contextPath}/resources/oimg/w우꺽쇠.png" >
+					</div>
+				</div>
+				<div id="requestModal" class="modal">
+					<div class="modal-content">
+						<div class="d-flex">
+							<div style="width: 87%"></div>
+							<div style="width: 13%">
+								<span id="close">X</span>
+							</div>
+						</div>
+						<div>
+							<input type="radio" name="requestType" value="문 앞 보관">
+							<label for="door">문 앞 보관</label>							
+						</div>
+						<div>
+							<input type="radio" name="requestType" value="경비실 보관">
+							<label for="securityOffice">경비실 보관</label>
+						</div>
+						<div>
+							<input type="radio" name="requestType" value="택배함 보관">
+							<label for="courierBox">택배함 보관</label>
+						</div>
+						<br>
+						<div class="d-flex">
+							<div style="width: 85%"></div>
+							<div id="selectRequest" class="p-2" style="border: solid 1px black; background-color: #0073e8; color: white">선택</div>
+						</div>
 					</div>
 				</div>
 			
 				<div class="my-3">
-					<input type="checkbox" id="basicCheck" style="width: 20px; height: 20px; vertical-align: middle;"> <span style="vertical-align: middle;">기본 배송지로 선택</span>
+					<input type="checkbox" id="basicCheck" style="width: 20px; height: 20px; vertical-align: middle;" 
+						name="address_isdefault" value="true"> <span style="vertical-align: middle;">기본 배송지로 선택</span>
 				</div>
 				
-				<div class="d-flex justify-content-center mb-3">
+				<div class="d-flex justify-content-center">
 					<input id="submit" type="submit" style="border: none; background-color: #0073e8; color: white;" class="inputHolder" value="저장">
 				</div>
-				<div class="d-flex justify-content-center">
+				<div class="d-flex justify-content-center mt-3">
 					<input id="delete" type="submit" style="border: none; background-color: #d53328; color: white;" class="inputHolder" value="삭제">
 				</div>
 			</form>
