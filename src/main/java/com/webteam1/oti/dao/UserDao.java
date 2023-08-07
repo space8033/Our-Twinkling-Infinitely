@@ -6,6 +6,7 @@ import com.webteam1.oti.dto.user.JoinDto;
 
 @Mapper
 public interface UserDao {
-	public int insert(JoinDto user); 
-	//public Users selectByusers_id(String users_id);
+	public int insert(JoinDto user);
+	public JoinDto selectByusersId(String usersId);
+	
 }
