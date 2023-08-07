@@ -10,12 +10,9 @@ public class Address {
 	private String address_jibunAddress;
 	private String address_extraAddress;
 	private String address_detail;
-	private DeliveryType deliveryRequest;
+	private String deliveryRequest;
 	private boolean address_isdefault;
 	private String users_users_id;
-	private String usersPhone;
+	private String users_phone;
 	
-	public enum DeliveryType {
-		DOOR, SECURITY_OFFICE, COURIER_BOX
-	}
 }

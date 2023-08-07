@@ -7,10 +7,11 @@
       	</selectKey>
       	
 		insert into address(
-	      	address_no, address_receiver, address_basic, address_detail, address_isdefault, users_users_id, address_createddate, deliveryrequest
+	      	address_no, address_receiver, address_roadaddress, address_jibunaddress, address_extraaddress, address_detail, address_isdefault, users_users_id, address_createddate, deliveryrequest, users_phone
 		)
 		values(
-			#{address_no}, #{address_receiver}, #{address_basic}, #{address_detail}, #{address_isdefault}, #{users_users_id}, to_char(sysdate,'yyyy.mm.dd hh24:mi:ss'), #{deliveryrequest}
+			#{address_no}, #{address_receiver}, #{address_roadAddress}, #{address_jibunAddress}, #{address_extraAddress}, #{address_detail}, #{address_isdefault}, 
+			'space5', to_char(sysdate,'yyyy.mm.dd hh24:mi:ss'), #{deliveryRequest}, #{users_phone}
 		)
 	</insert>
 

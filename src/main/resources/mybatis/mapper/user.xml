@@ -13,6 +13,21 @@
 
 	</select>
 	
+	<select id="selectByusersEmail" resultType="Join" parameterType="String">
+
+		select users_email, users_id
+		from users 
+		where users_email=#{users_email}
+
+	</select>
+	<select id="selectByusersTel" resultType="Join" parameterType="String">
+
+		select users_phone, users_id
+		from users 
+		where users_phone=#{users_phone}
+
+	</select>
+	
 	
   <!--  <select id="selectByusersId" resultType="Join" parameterType="String">
   	  select *

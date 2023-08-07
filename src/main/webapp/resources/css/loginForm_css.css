@@ -52,23 +52,27 @@
 			
 		}
 		
+		.form-group > div > div:first-child {
+			border-right: 1px solid #ccc;
+		}
+/* 		.form-group > div > div:nth-child(2) {
+			border-right: 1px solid #ccc;
+		}
+		 */
 		.form-group img {
 			width: 44px;
 			height: 45px;
 			cursor: pointer;
 		}
 		
-		.email-form-group {
+		.id-form-group {
 			display: flex;
 			border-top: 1px solid #ccc;
-			
 			border-right : 1px solid #ccc;
-			margin: 0px;
-			padding: 0px;
+			border-left: 1px solid #ccc;
 			height: 48px;
-			width: 450px;
+		    width: 449px;
 			margin-bottom: 10px;
-		
 		}
 		
 		.line-gray{
@@ -82,10 +86,10 @@
 		}
 		
 		
-		.email-form-group > div {
+		/* .email-form-group > div {
 			border-left: 1px solid #ccc;
 			margin: 0px;
-		}
+		} */
 		
 		
 		.pwd-form-group {
@@ -119,20 +123,7 @@
 			cursor: pointer;
 		}
 		
-		input[type="email"]
-		{
-			
-			color: #666;
-			font-size: 14px;
-			font-family: dotum,sans-serif;
-			box-sizing: border-box;
-			height: 100%;
-			width: 400px;
-			margin: 0;
-			padding: 10px;
-			border: none;
-			font-weight: bold;
-		}
+		
 		
 		input[type="password"]
 		{
@@ -149,11 +140,11 @@
 		}
 		input[type="text"]
 		{
-			
+			height: 100%; 
+			width: 402px;
 			color: #666;
 			font-size: 14px;
 			box-sizing: border-box;
-			
 			font-family: dotum,sans-serif;
 			font-weight: bold;
 			margin: 0;
@@ -205,7 +196,7 @@
 			
 		}
 		
-			input[type="checkbox"]{
+		input[type="checkbox"]{
 
 			width: 20px; /*Desired width*/
 			height: 20px; /*Desired height*/

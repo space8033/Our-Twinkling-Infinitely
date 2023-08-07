@@ -21,6 +21,7 @@ public class UserController {
 	@Resource
 	private UserService userService;
 	
+	
 	@GetMapping("/joinForm")
 	public String joinForm() {
 		
@@ -32,15 +33,27 @@ public class UserController {
 		log.info(users.toString());
 		JoinResult result = userService.join(users);
 		
+		
 		if(result == JoinResult.FAIL_DUPLICATED_UID) {
-			String error = "중복된 ID가 존재합니다.";
-			log.error("중복된 ID가 존재합니다");
-			model.addAttribute("error", error);
-			return "redirect:/joinForm";
+			String error1 = "이미 가입된 아이디입니다.";
+			model.addAttribute("error1", error1);
+			return "join/joinForm";
+		} else if(result == JoinResult.FAIL_DUPLICATED_EMAIL){
+			String userId = userService.getUsersByUserEmail(users.getUsers_email()).getUsers_id();
+			String error2 = userId + "로 이미 가입된 이메일입니다.";
+			model.addAttribute("error2", error2);
+			return "join/joinForm";
+		} else if(result == JoinResult.FAIL_DUPLICATED_TEL) {
+			String userId = userService.getUsersByUserPhone(users.getUsers_phone()).getUsers_id();
+			String error3 = userId + "로 이미 가입된 전화번호입니다.";
+			model.addAttribute("error3", error3);
+			return "join/joinForm";
 		} else {
-			
+		
 			return "redirect:/loginForm";
 		   }
+		
+		
 	}
 	
 	@RequestMapping("loginForm")

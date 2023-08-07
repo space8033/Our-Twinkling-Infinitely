@@ -27,6 +27,7 @@ public class ProductController {
 	@Resource
 	private ImageService imageService;
 
+<<<<<<< HEAD
 	@GetMapping("/detailProduct")
 	public String detailView(String product_no, Model model, HttpSession session) {
 		   int productNum = Integer.parseInt(product_no);
@@ -49,6 +50,19 @@ public class ProductController {
 		   }
 		   model.addAttribute("images",  imageList);
 		   return "detail/detailView";
+=======
+	   Image image = new Image();
+	   File file = new File("C:/Users/KOSA/git/Our-Twinkling-Infinitely/src/main/webapp/resources/yuimg/메인상품리스트1.jpg");
+	   byte[] byteFile = null;
+	   byteFile = Files.readAllBytes(file.toPath());
+	   image.setImage_file(byteFile);
+
+	   /*if(!mf.isEmpty()) {
+		  //브라우저에서 선택한 파일 이름 작성
+		 p.setBattachoname(mf.getOriginalFilename());
+		 //파일의 형식(MIME 타입)을 설정(image.jpeg, image/png, ...)
+		 board.setBattachtype(mf.getContentType());
+>>>>>>> branch 'master' of https://github.com/space8033/Our-Twinkling-Infinitely.git
 		 
 	}
 }

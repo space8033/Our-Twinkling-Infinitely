@@ -40,10 +40,11 @@
 				</div>	
 				<span id="uidErr1" class="errorMsg text-danger d-none small" style="margin-left:10px; font-family: dotum,sans-serif; font-size: 12px;">아이디를 입력해주세요.</span>
 				<span id="uidErr2" class="errorMsg text-danger d-none small" style="margin-left:10px; font-family: dotum,sans-serif; font-size: 12px;">아이디를 올바르게 입력해주세요.</span>
-				<span id="uidErr3" class="errorMsg text-success d-none small" style="margin-left:10px; font-family: dotum,sans-serif; font-size: 12px;">사용 가능한 아이디입니다.</span>
 				
-				<c:if test="${error != null}">
-					<span id="uidErr4" class="errorMsg text-danger d-none small" style="margin-left:10px; font-family: dotum,sans-serif; font-size: 12px;">이미 가입된 아이디입니다.</span>
+				<c:if test="${error1 != null}">
+					<div id="uidErr3" role="alert" class="alert alert-danger" style="margin-left:10px; font-family: dotum,sans-serif; font-size: 12px;">
+						${error1}
+					</div>
 				</c:if>
 		   </div>
 				
@@ -91,7 +92,11 @@
 			    </div>
 				<span id="emailErr1" class="errorMsg text-danger d-none small" style="margin-left:10px; font-family: dotum,sans-serif; font-size: 12px;">이메일을 입력해주세요.</span>
 				<span id="emailErr2" class="errorMsg text-danger d-none small" style="margin-left:10px; font-family: dotum,sans-serif; font-size: 12px;">이메일 형식으로 입력해주세요.</span>
-				<span id="emailErr3" class="errorMsg text-danger d-none small" style="margin-left:10px; font-family: dotum,sans-serif; font-size: 12px;">이미 가입된 이메일입니다.</span>
+				<c:if test="${error2 != null}">
+					<div id="emailErr3" role="alert" class="alert alert-danger" style="margin-left:10px; font-family: dotum,sans-serif; font-size: 12px;">
+						${error2}
+					</div>
+				</c:if>
 		   </div>
 				
 				
@@ -120,7 +125,11 @@
 					  </div>
 				 </div>
 				 <span id="telErr1" class="errorMsg text-danger d-none small" style="margin-left:10px; font-family: dotum,sans-serif; font-size: 12px;">휴대폰 번호를 정확하게 입력하세요.</span>
-				 <span id="telErr2" class="errorMsg text-danger d-none small" style="margin-left:10px; font-family: dotum,sans-serif; font-size: 12px;">ww*****@naver.com 아이디로 가입된 휴대폰 번호입니다.</span>
+				 <c:if test="${error3 != null}">
+					<div id="telErr2" role="alert" class="alert alert-danger" style="margin-left:10px; font-family: dotum,sans-serif; font-size: 12px;">
+						${error3}
+					</div>
+				 </c:if>
 		   </div>
 				
 			
