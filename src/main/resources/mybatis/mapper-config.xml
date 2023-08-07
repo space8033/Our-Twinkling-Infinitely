@@ -5,11 +5,12 @@
   
 <configuration>
 	<typeAliases>
-		<typeAlias alias="User" type="com.webteam1.oti.dto.Users"/>
+		<typeAlias alias="Join" type="com.webteam1.oti.dto.user.JoinDto"/>
 		<typeAlias alias="Pager" type="com.webteam1.oti.dto.Pager"/>
 		<typeAlias alias="Product" type="com.webteam1.oti.dto.Product"/>
 		<typeAlias alias="Image" type="com.webteam1.oti.dto.Image"/>
 		<typeAlias alias="Address" type="com.webteam1.oti.dto.Address"/>
+		<typeAlias alias="Image" type="com.webteam1.oti.dto.Image"/>
 	</typeAliases>
 </configuration>
 

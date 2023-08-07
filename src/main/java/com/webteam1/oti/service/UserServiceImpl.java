@@ -7,7 +7,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import com.webteam1.oti.dao.UserDao;
-import com.webteam1.oti.dto.Users;
+import com.webteam1.oti.dto.user.JoinDto;
 
 @Service
 public class UserServiceImpl implements UserService{
@@ -15,7 +15,7 @@ public class UserServiceImpl implements UserService{
 	private UserDao userDao;
 	
 	@Override
-	public JoinResult join(Users user) {
+	public JoinResult join(JoinDto user) {
 //		Users dbUserId = userDao.selectByusers_id(user.getUsers_id());
 //		if(dbUserId != null) {
 //			return JoinResult.FAIL_DUPLICATED_UID;

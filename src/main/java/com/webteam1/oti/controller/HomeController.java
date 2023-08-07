@@ -61,12 +61,6 @@ public class HomeController {
 		return "home";
 	}
 
-	@RequestMapping("/aa")
-	public String test() {
-		log.info("실행");
-		return "mypage/address/myAddressModify";
-	}
-
 	@RequestMapping("/list")
 	public String test3() {
 		log.info("실행");
