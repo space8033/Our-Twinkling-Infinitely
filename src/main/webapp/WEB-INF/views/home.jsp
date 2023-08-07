@@ -38,28 +38,30 @@
 			</div>
 		</div>
 		<!-- 상품 리스트 불러오기-->
-		<div class="d-flex">	
+		<div class="container d-flex flex-wrap m-2">	
 			<c:forEach var="product" items="${products}">
-				<div class="card">
-				    <div class="card-body">
-				    	<c:if test="${product.product_img !=null}">
-								<img src="data:MIME;base64, ${product.product_img}" height="100"/> 
-						</c:if>
-				    </div> 
-				    <div class="card-footer">
-				    	<div>${product.product_name}</div>
-				    	<div class="product_price">
-				    		<fmt:formatNumber value="${product.product_price}" type="number"/>
-				    	</div>
-				    	<div><a href="detailProduct?product_no=${product.product_no}"></a></div>
-				    	<div>${product.product_name}</div>
-				        <div>${product.product_discountRate}</div>
-				     </div>
-				</div>
+				<a href="#">
+					<div>
+						<div class="m-2">
+						    <div class="product-image">
+						    	<c:if test="${product.product_img !=null}">
+											<img src="data:MIME;base64, ${product.product_img}" width="250"/> 
+								</c:if>
+						    </div> 
+						    <div class="product-content">
+						    	<div>${product.product_name}</div>
+						    	<div class="product_price">
+						    		<fmt:formatNumber value="${product.product_price}" type="number"/>
+						    	</div>
+						    	<div><a href="detailProduct?product_no=${product.product_no}"></a></div>
+						     </div>
+						</div>
+					</div>
+				</a>
 			</c:forEach>
 		</div>
 		<!-- 페이지 -->  	
-		<div>
+		<div >
 			<a class="btn btn-outline-primary btn-sm" href="?pageNo=1">처음</a>
 			<c:if test="${pager.groupNo>1}">
 				<a class="btn btn-outline-info btn-sm" href="?pageNo=${pager.startPageNo-1}">이전</a>

@@ -44,7 +44,7 @@ public class HomeController {
 	   
 	   int totalRows = productService.getTotalProductNum();
 	   Pager pager = new Pager(10, 5, totalRows, intPageNo);
-	  
+	
 	   List<Product> list = productService.getList(pager);
 	   
 	   model.addAttribute("pager", pager);
@@ -57,7 +57,7 @@ public class HomeController {
 			   product.setProduct_img(base64Img);
 		   }
 	   }
-	   	model.addAttribute("products", list);
+	   model.addAttribute("products", list);
 		return "home";
 	}
 
