@@ -298,4 +298,7 @@ footer .inner {
 	  font-size: 10px;
 	  text-align: center;
 	}
+	.product-image img{
+		width: 100px;
+	}
 }

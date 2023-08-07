@@ -45,7 +45,7 @@
 						<div class="m-2">
 						    <div class="product-image">
 						    	<c:if test="${product.product_img !=null}">
-											<img src="data:MIME;base64, ${product.product_img}" width="250"/> 
+											<img gsrc="data:MIME;base64, ${product.product_img}" width="250"/> 
 								</c:if>
 						    </div> 
 						    <div class="product-content">
