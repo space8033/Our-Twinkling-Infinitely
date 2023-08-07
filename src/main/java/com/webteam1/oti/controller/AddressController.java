@@ -19,17 +19,18 @@ public class AddressController {
 	@Resource
 	private AddressService addressService;
 	
-	@GetMapping("/registerAddress")
-	public String loadForm() {
+	@GetMapping("/registerForm")
+	public String registerForm() {
 		
 		return "mypage/address/myAddressAdd";
 	}
 	
-	@PostMapping("/registerAddress")
+	@PostMapping("/registerForm")
 	public String register(Address address) {
+		log.info(address.toString());
 		addressService.registerAddress(address);
 		
-		return "redirect:/home";
+		return "redirect:/";
 	}
 	
 	//실험중

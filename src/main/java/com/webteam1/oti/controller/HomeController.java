@@ -52,21 +52,14 @@ public class HomeController {
 		   if(product.getProduct_imgFile() != null) {
 			   //0과 1로 구성된 바이너리 데이터를 base64 문자열로 변환 
 			   String base64Img = Base64.getEncoder().encodeToString(product.getProduct_imgFile());
-			   log.info(base64Img);
-			   log.info("변환완료");
 			   product.setProduct_img(base64Img);
 		   }
 	   }
 	   model.addAttribute("products", list);
-		return "home";
+	   
+	   return "home";
 	}
 
-	@RequestMapping("/list")
-	public String test3() {
-		log.info("실행");
-		return "list/list";
-	}
-	
 /*	@RequestMapping("/insert")
 	public String insert() {
 		for(int i=0; i<20; i++) {

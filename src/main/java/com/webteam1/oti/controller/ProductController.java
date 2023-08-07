@@ -33,7 +33,6 @@ public class ProductController {
 	   byte[] byteFile = null;
 	   byteFile = Files.readAllBytes(file.toPath());
 	   image.setImage_file(byteFile);
-	   log.info("파일 업로드 실행");
 
 	   /*if(!mf.isEmpty()) {
 		  //브라우저에서 선택한 파일 이름 작성
