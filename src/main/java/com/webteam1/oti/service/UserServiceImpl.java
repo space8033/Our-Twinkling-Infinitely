@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 
 import com.webteam1.oti.dao.UserDao;
 import com.webteam1.oti.dto.user.JoinDto;
+import com.webteam1.oti.dto.user.LoginDto;
 
 import lombok.extern.slf4j.Slf4j;
 @Slf4j
@@ -18,7 +19,6 @@ public class UserServiceImpl implements UserService{
 	
 	@Override
 	public JoinResult join(JoinDto user) {
-
 		
 		JoinDto dbUserId = userDao.selectByusersId(user.getUsers_id());
 		JoinDto dbUserEmail = userDao.selectByusersEmail(user.getUsers_email());
@@ -57,6 +57,32 @@ public class UserServiceImpl implements UserService{
 	@Override
 	public JoinDto getUsersByUserPhone(String usersTel) {
 		JoinDto user = userDao.selectByusersTel(usersTel);
+		return user;
+	}
+	
+	@Override
+	public LoginResult login(LoginDto user) {
+		LoginDto dbUser = userDao.selectByUsersId(user.getUsers_id());
+		log.info(dbUser + "디비유저는 저예욤");
+		if(dbUser == null) {
+			return LoginResult.FAIL_UID;
+		}
+		PasswordEncoder passwordEncoder = PasswordEncoderFactories.createDelegatingPasswordEncoder();
+		if(passwordEncoder.matches(user.getUsers_password(), dbUser.getUsers_password())) {
+			if(dbUser.getUsers_type().equals("ENABLED")) {
+				return LoginResult.SUCCESS;
+			} else {
+				return LoginResult.FAIL_ENABLED;
+			}
+		} else {
+			return LoginResult.FAIL_PASSWORD;
+		}
+		
+	}
+	
+	@Override
+	public LoginDto getUser(String uid) {
+		LoginDto user = userDao.selectByUsersId(uid);
 		return user;
 	}
 }

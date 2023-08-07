@@ -1,6 +1,7 @@
 package com.webteam1.oti.controller;
 
 import javax.annotation.Resource;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -9,8 +10,10 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.webteam1.oti.dto.user.JoinDto;
+import com.webteam1.oti.dto.user.LoginDto;
 import com.webteam1.oti.service.UserService;
 import com.webteam1.oti.service.UserService.JoinResult;
+import com.webteam1.oti.service.UserService.LoginResult;
 
 import lombok.extern.slf4j.Slf4j;
 
@@ -56,10 +59,30 @@ public class UserController {
 		
 	}
 	
-	@RequestMapping("loginForm")
+	@GetMapping("/loginForm")
 	public String loginForm() {
-		log.info("실행");
 		return "login/loginForm";
+	}
+	
+	@PostMapping("/loginForm")
+	public String login(LoginDto users, Model model) {
+		LoginResult result = userService.login(users);
+		String error = "";
+		log.info(result+"로그인 상태");
+		if(result == LoginResult.FAIL_UID) {
+			error = "가입된 ID가 없습니다.";
+			
+		} else if(result == LoginResult.FAIL_ENABLED) {
+			error = "ID가 비활성화 되어 있습니다.";
+		} else if(result == LoginResult.FAIL_PASSWORD) {
+			error = "비밀번호가 틀립니다";
+		} else {
+			log.info("로그인에 성공하였습니다");
+		return "redirect:/";
+		}
+		model.addAttribute("error", error);
+		return "login/loginForm";
+		
 	}
 	
 	

@@ -31,7 +31,7 @@
 						 	<label for="uid"><img src = "${pageContext.request.contextPath}/resources/image/sion/semail.JPG"></label>
 						</div>
 						<div>
-							<input type="text" placeholder="아이디" onfocus="this.placeholder=''" id="uid"
+							<input type="text" placeholder="아이디" onfocus="this.placeholder=''" id="uid" value="${loginDto.users_id}" name="users_id"
 							style="outline:none;" autocomplete="off">
 						
 						</div>
@@ -50,7 +50,7 @@
 							 <label for="pwd"><img src = "${pageContext.request.contextPath}/resources/image/sion/spwd.JPG" ></label>
 						</div>
 						<div>	
-							 <input type="password"  placeholder="비밀번호" onfocus="this.placeholder=''" id="pwd"
+							 <input type="password"  placeholder="비밀번호" onfocus="this.placeholder=''" id="pwd" value="${loginDto.users_password}" name="users_password"
 							 style = "height: 100%; width: 370px; outline:none;" autocomplete="off">
 							 
 						</div>
