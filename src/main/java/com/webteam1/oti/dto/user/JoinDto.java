@@ -4,10 +4,10 @@ import lombok.Data;
 
 @Data
 public class JoinDto {
-	private String usersId;
-	private String usersPassword;
-	private String usersEmail;
-	private String usersName;
-	private String usersPhone;
+	private String users_id;
+	private String users_password;
+	private String users_email;
+	private String users_name;
+	private String users_phone;
 	private String[] agree;
 }
