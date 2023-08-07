@@ -56,15 +56,10 @@ public class HomeController {
 		   }
 	   }
 	   model.addAttribute("products", list);
-		return "home";
+	   
+	   return "home";
 	}
 
-	@RequestMapping("/list")
-	public String test3() {
-		log.info("실행");
-		return "list/list";
-	}
-	
 /*	@RequestMapping("/insert")
 	public String insert() {
 		for(int i=0; i<20; i++) {

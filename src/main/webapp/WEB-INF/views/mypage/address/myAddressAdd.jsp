@@ -30,13 +30,8 @@
 		                // 우편번호와 주소 정보를 해당 필드에 넣는다.
 		                document.getElementById("roadAddress").value = roadAddr;
 		                document.getElementById("jibunAddress").value = data.jibunAddress;
-		                
-		                // 참고항목 문자열이 있을 경우 해당 필드에 넣는다.
-		                if(roadAddr !== ''){
-		                    document.getElementById("extraAddress").value = extraRoadAddr;
-		                } else {
-		                    document.getElementById("extraAddress").value = '';
-		                }
+		                document.getElementById("extraAddress").value = extraRoadAddr;
+
 		            }
 		        }).open();
 		    }
@@ -212,7 +207,7 @@
 	<body class="container">
 		<div id="wrapper" class="d-flex justify-content-center">	
 		<!------------------------------------- 내용 들어갈 div -------------------------------------->
-			<form id="registerForm" name="registerForm" action="registerForm" novalidate method="post" class="pt-5">
+			<form id="registerForm" name="registerForm" action="registerForm" method="post" class="pt-5">
 				<div class="my-3">
 					<div class="my-3 d-flex">
 						<div style="border: 1px solid #d0d0d0;">
@@ -253,7 +248,7 @@
 						</div>
 						<div>
 							<input class="inputHolder3" type="text" id="detail" placeholder="상세주소" style="border: 1px solid #d0d0d0;"
-										value="${address.address_detail}" name="address_detail">							
+										value="${address.address_detail}" name="address_detail">
 						</div>
 					</div>
 					<span id=uaddressErr class="errorMsg d-none text-danger small ml-2" style="border: none;">주소를 검색해주세요.</span>
@@ -264,11 +259,8 @@
 							<img class="addressIcon" src="${pageContext.request.contextPath}/resources/oimg/w핸드폰.png">
 						</div>
 						<div>
-							<input type="text" id="utel" placeholder="휴대폰 번호" class="inputHolder2" style="border: 1px solid #d0d0d0;"
+							<input type="text" id="utel" placeholder="휴대폰 번호" class="inputHolder" style="border: 1px solid #d0d0d0;"
 									value="${address.users_phone}" name="users_phone">
-						</div>
-						<div class="cursorPointer" id="addButton" style="border: 1px solid #d0d0d0; border-left: none;">
-							<img class="addressIcon" src="${pageContext.request.contextPath}/resources/oimg/w더하기.png">
 						</div>
 					</div>
 					<span id=utelErr1 class="errorMsg text-danger d-none small ml-2" style="border: none;">휴대폰 번호를 입력해주세요.</span>
@@ -279,8 +271,7 @@
 						<img class="addressIcon" src="${pageContext.request.contextPath}/resources/oimg/w요청사항.png">
 					</div>
 					<div>
-						<input id="deliveryNotify" class="inputHolder2" type="text" placeHolder="배송 요청사항" readonly="readonly" style="border: 1px solid #d0d0d0; border-right:none; background-color: white;"
-									value="${address.deliveryRequest}" name="deliveryRequest">
+						<input id="deliveryNotify" class="inputHolder2" type="text" placeHolder="배송 요청사항" readonly="readonly" style="border: 1px solid #d0d0d0; border-right:none; background-color: white;" value="${address.deliveryRequest}" name="deliveryRequest">
 					</div>
 					<div id="modalButton" class="cursorPointer" style="border: 1px solid #d0d0d0; border-left: none;">
 						<img class="addressIcon" src="${pageContext.request.contextPath}/resources/oimg/w우꺽쇠.png" >
@@ -296,7 +287,7 @@
 						</div>
 						<div>
 							<input type="radio" name="requestType" value="문 앞 보관">
-							<label for="door"> 문 앞 보관</label>							
+							<label for="door">문 앞 보관</label>							
 						</div>
 						<div>
 							<input type="radio" name="requestType" value="경비실 보관">
@@ -315,7 +306,8 @@
 				</div>
 			
 				<div class="my-3">
-					<input type="checkbox" id="basicCheck" style="width: 20px; height: 20px; vertical-align: middle;" name="address_isdefault" value="true"> <span style="vertical-align: middle;">기본 배송지로 선택</span>
+					<input type="checkbox" id="basicCheck" style="width: 20px; height: 20px; vertical-align: middle;" 
+						name="address_isdefault" value="true"> <span style="vertical-align: middle;">기본 배송지로 선택</span>
 				</div>
 				
 				<div class="d-flex justify-content-center">

@@ -30,7 +30,7 @@ public class AddressController {
 		log.info(address.toString());
 		addressService.registerAddress(address);
 		
-		return "redirect:/home";
+		return "redirect:/";
 	}
 	
 	//실험중

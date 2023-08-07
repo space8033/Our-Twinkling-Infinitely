@@ -14,6 +14,7 @@ public class AddressServiceImpl implements AddressService{
 	
 	@Override
 	public void registerAddress(Address address) {
+		
 		addressDao.insert(address);
 	}
 	

@@ -7,12 +7,11 @@ function init() {
 	$("#uname").blur(onBlurName);
 	$("#utel").blur(onBlurTel);
 	$("#addButton").click(addContact);
-	$("#removeButton").click(removeContact);
 	$("#modalButton").click(showModal);
 	$("#close").click(closeModalByX);
 	$("#selectRequest").click(selectRequest);
 }
-
+	
 function onBlurName() {
 	var uname = $("#uname").val();
 	var namePattern = /^[가-힣a-zA-Z]+$/;
