@@ -7,8 +7,8 @@
 	</insert>
 	<select id="selectByusersId" resultType="Join" parameterType="String">
 		select users_id, users_email
-		from users where users_id=#{usersId}
-	
+		from users 
+		where users_id=#{usersId}
 	</select>
 	
 	

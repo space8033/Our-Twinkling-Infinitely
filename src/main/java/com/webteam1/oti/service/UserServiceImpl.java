@@ -18,22 +18,16 @@ public class UserServiceImpl implements UserService{
 	
 	@Override
 	public JoinResult join(JoinDto user) {
-		
-		log.info(userDao.selectByusersId("tldhs123")+"");
 		JoinDto dbUserId = userDao.selectByusersId(user.getUsersId());
-		log.info(user.getUsersId());
-		log.info(dbUserId + "문자열");
+		log.info("dbUserId: " + dbUserId);
 		if(dbUserId != null) {
 			return JoinResult.FAIL_DUPLICATED_UID;
 		} else {
-		
-		PasswordEncoder passwordEncoder = PasswordEncoderFactories.createDelegatingPasswordEncoder();
-		user.setUsersPassword(passwordEncoder.encode(user.getUsersPassword()));
-		
-		userDao.insert(user);
-		
-		return JoinResult.SUCCESS;
-		
+			PasswordEncoder passwordEncoder = PasswordEncoderFactories.createDelegatingPasswordEncoder();
+			user.setUsersPassword(passwordEncoder.encode(user.getUsersPassword()));
+			userDao.insert(user);		
+			return JoinResult.SUCCESS;
+	
 		}
 	}
 }
