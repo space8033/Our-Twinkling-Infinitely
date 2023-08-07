@@ -2,7 +2,6 @@ $(init);
 
 function init() {
 	addAddress();
-	loadFooter();
 	$("#addAddress").click(goAddPage);
 	setTimeout(() => $(".modifyButton").click(goModifyPage), 500);
 }

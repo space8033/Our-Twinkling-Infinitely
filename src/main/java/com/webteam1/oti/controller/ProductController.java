@@ -2,10 +2,12 @@ package com.webteam1.oti.controller;
 
 import java.io.File;
 import java.nio.file.Files;
+import java.util.Base64;
 
 import javax.annotation.Resource;
 
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -51,5 +53,12 @@ public class ProductController {
 	
 	   return "redirect:/home";
    }
+	
+	@GetMapping("/plz")
+	public String plz(Model model) {
+		
+		
+		return "";
+	}
 	
 }

@@ -38,22 +38,6 @@
 		                } else {
 		                    document.getElementById("extraAddress").value = '';
 		                }
-		
-		                var guideTextBox = document.getElementById("guide");
-		                // 사용자가 '선택 안함'을 클릭한 경우, 예상 주소라는 표시를 해준다.
-		                if(data.autoRoadAddress) {
-		                    var expRoadAddr = data.autoRoadAddress + extraRoadAddr;
-		                    guideTextBox.innerHTML = '(예상 도로명 주소 : ' + expRoadAddr + ')';
-		                    guideTextBox.style.display = 'block';
-		
-		                } else if(data.autoJibunAddress) {
-		                    var expJibunAddr = data.autoJibunAddress;
-		                    guideTextBox.innerHTML = '(예상 지번 주소 : ' + expJibunAddr + ')';
-		                    guideTextBox.style.display = 'block';
-		                } else {
-		                    guideTextBox.innerHTML = '';
-		                    guideTextBox.style.display = 'none';
-		                }
 		            }
 		        }).open();
 		    }
@@ -118,6 +102,43 @@
 			.redLine {
 				border: 1px solid red;
 			}
+			
+			.modal {
+			  display: none; /* Hidden by default */
+			  position: fixed; /* Stay in place */
+			  z-index: 1; /* Sit on top */
+			  left: 0;
+			  top: 0;
+			  width: 100%; /* Full width */
+			  height: 100%; /* Full height */
+			  overflow: auto; /* Enable scroll if needed */
+			  background-color: rgb(0,0,0); /* Fallback color */
+			  background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+			}
+			
+			/* Modal Content/Box */
+			.modal-content {
+			  background-color: #fefefe;
+			  margin: 15% auto; /* 15% from the top and centered */
+			  padding: 20px;
+			  border: 1px solid #888;
+			  width: 80%; /* Could be more or less, depending on screen size */
+			}
+			#close {
+			  color: #aaa;
+			  float: right;
+			  font-size: 28px;
+			  font-weight: bold;
+			}
+			
+			#close:hover,
+			#close:focus {
+			  color: black;
+			  text-decoration: none;
+			  cursor: pointer;
+			}
+
+
 			.addressIcon {
 				width: 50px;
 				height: 50px;
@@ -211,19 +232,16 @@
 				<div>
 					<div id="addressContainer" class="mb-3">	
 						<div>
-							<input class="inputHolder3" type="text" id="roadAddress" placeholder="도로명주소" value="도로명주소" disabled="disabled" style="border: 1px solid #d0d0d0;">
+							<input class="inputHolder3" type="text" id="roadAddress" value="도로명주소" disabled="disabled" style="border: 1px solid #d0d0d0;">
 						</div>				
 						<div>
-							<input class="inputHolder3" type="text" id="jibunAddress" placeholder="지번주소" disabled="disabled" style="border: 1px solid #d0d0d0;">
+							<input class="inputHolder3" type="text" id="jibunAddress" value="지번주소" disabled="disabled" style="border: 1px solid #d0d0d0;">
 						</div>
 						<div>
-							<span id="guide" style="color:#999;display:none"></span>
+							<input class="inputHolder3" type="text" id="extraAddress" value="참고항목"disabled="disabled"  style="border: 1px solid #d0d0d0;">
 						</div>
 						<div>
-							<input class="inputHolder3" type="text" id="extraAddress" placeholder="참고항목"disabled="disabled"  style="border: 1px solid #d0d0d0;">
-						</div>
-						<div>
-							<input class="inputHolder3" type="text" id="detailAddress" placeholder="상세주소" style="border: 1px solid #d0d0d0;">							
+							<input class="inputHolder3" type="text" id="detailAddress" value="상세주소" style="border: 1px solid #d0d0d0;">							
 						</div>
 					</div>
 					<span id=uaddressErr class="errorMsg d-none text-danger small ml-2" style="border: none;">주소를 검색해주세요.</span>
@@ -263,10 +281,29 @@
 						<img class="addressIcon" src="${pageContext.request.contextPath}/resources/oimg/w요청사항.png">
 					</div>
 					<div>
-						<input id="deliveryNotify" class="inputHolder2" type="text" placeholder="배송 요청사항" disabled="disabled" style="border: 1px solid #d0d0d0; border-right:none; background-color: white;">
+						<input id="deliveryNotify" class="inputHolder2" type="text" value="배송 요청사항" disabled="disabled" style="border: 1px solid #d0d0d0; border-right:none; background-color: white;">
 					</div>
-					<div class="cursorPointer" style="border: 1px solid #d0d0d0; border-left: none;">
+					<div id="modalButton" class="cursorPointer" style="border: 1px solid #d0d0d0; border-left: none;">
 						<img class="addressIcon" src="${pageContext.request.contextPath}/resources/oimg/w우꺽쇠.png" >
+					</div>
+				</div>
+				<div id="requestModal" class="modal">
+					<div class="modal-content">
+						<div class="d-flex">
+							<input type="radio" name="requestType" value="door">
+							<label for="door"> 문 앞 보관</label>
+							<span id="close">X</span>
+						</div>
+						<div>
+							<input type="radio" name="requestType" value="securityOffice">
+							<label for="securityOffice">경비실 보관</label>
+						</div>
+						<div>
+							<input type="radio" name="requestType" value="courierBox">
+							<label for="courierBox">택배함 보관</label>
+						</div>
+						<br>
+						<div id="selectRequest" onclick="selectRequest()">선택 완료</div>
 					</div>
 				</div>
 			

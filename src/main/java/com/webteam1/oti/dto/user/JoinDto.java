@@ -1,9 +1,9 @@
-package com.webteam1.oti.dto;
+package com.webteam1.oti.dto.user;
 
 import lombok.Data;
 
 @Data
-public class Users {
+public class JoinDto {
 	private String usersId;
 	private String usersPassword;
 	private String usersEmail;

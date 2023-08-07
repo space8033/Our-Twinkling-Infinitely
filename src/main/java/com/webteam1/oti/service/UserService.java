@@ -1,6 +1,6 @@
 package com.webteam1.oti.service;
 
-import com.webteam1.oti.dto.Users;
+import com.webteam1.oti.dto.user.JoinDto;
 
 public interface UserService {
 	public enum JoinResult {
@@ -18,7 +18,7 @@ public interface UserService {
 		
 	}
 	
-	public JoinResult join(Users user);
+	public JoinResult join(JoinDto user);
 	//public LoginResult login(Users user);
 	//public void modifyUser(Users user);
 	//public void unjoin(String users_id);

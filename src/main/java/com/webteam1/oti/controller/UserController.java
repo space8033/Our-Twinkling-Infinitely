@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import com.webteam1.oti.dto.Users;
+import com.webteam1.oti.dto.user.JoinDto;
 import com.webteam1.oti.service.UserService;
 import com.webteam1.oti.service.UserService.JoinResult;
 
@@ -29,7 +29,7 @@ public class UserController {
 	}
 	
 	@PostMapping("/joinForm")
-	public String join(Users users, Model model) {
+	public String join(JoinDto users, Model model) {
 		log.info(users.toString());
 		JoinResult result = userService.join(users);
 		if(result == JoinResult.FAIL_DUPLICATED_UID) {
