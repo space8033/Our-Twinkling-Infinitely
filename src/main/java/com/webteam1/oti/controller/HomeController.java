@@ -65,20 +65,4 @@ public class HomeController {
 		return "list/list";
 	}
 	
-/*	@RequestMapping("/insert")
-	public String insert() {
-		for(int i=0; i<20; i++) {
-			Product product = new Product();
-			product.setProduct_no(i);
-			product.setProduct_name("이름" + i);
-			product.setProduct_price(100 * i);
-			product.setProduct_status(ProductStatus.REMAIN);
-			product.setProduct_qty(i);
-			product.setProduct_hitcount(0);
-			product.setProduct_discountRate(10);
-			product.setProduct_detail("내용" + i);
-			productDao.insert(product);
-		}
-		return "home";
-	}*/
 }

@@ -254,6 +254,16 @@ footer .inner {
   background: #ccc;
 }
 
+.product-title{
+	width: 230px;
+	border-bottom: 1px solid #ececec;
+	font-size: 13px;
+}
+.product-price{
+	color: black;
+	font-weight: bold;
+}
+
 /* 반응형 */
 @media screen and (max-width: 768px) {
 	.logo{
@@ -298,7 +308,21 @@ footer .inner {
 	  font-size: 10px;
 	  text-align: center;
 	}
+	#product-list{
+		display: flex;
+		justify-content: center;
+	}
 	.product-image img{
-		width: 1
+		width: 100px;
+	}
+	.product-title{
+		width: 100px;
+		border-bottom: 1px solid #ececec;
+		font-size: 11px;
+	}
+	.product-price{
+		color: black;
+		font-weight: bold;
+		font-size: 12px;
 	}
 }
