@@ -13,7 +13,7 @@ public class Address {
 	private DeliveryType deliveryRequest;
 	private boolean address_isdefault;
 	private String users_users_id;
-	private String usersPhone;
+	private String users_phone;
 	
 	public enum DeliveryType {
 		DOOR, SECURITY_OFFICE, COURIER_BOX

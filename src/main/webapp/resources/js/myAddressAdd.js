@@ -6,9 +6,11 @@ function init() {
 	$("#submit").click(checkValidation);
 	$("#uname").blur(onBlurName);
 	$("#utel").blur(onBlurTel);
-	$("#contact").blur(onBlurContact);
 	$("#addButton").click(addContact);
 	$("#removeButton").click(removeContact);
+	$("#modalButton").click(showModal);
+	$("#close").click(closeModalByX);
+	$("#selectRequest").click(selectRequest);
 }
 
 function onBlurName() {
@@ -46,22 +48,6 @@ function onBlurTel() {
 		utelErr1.addClass("redLine");
 	}else if(!result) {
 		utelErr2.removeClass("d-none");
-	}
-}
-
-function onBlurContact() {
-	var contact = $("#contact").val();
-	var contactPattern = /^\d{2,3}-\d{3,4}-\d{4}$/;
-	var result = contactPattern.test(contact);
-	
-	var contactErr = $("#contactErr");
-	
-	contactErr.addClass("d-none");
-	
-	if(contact === "") {
-	}else if(!result) {
-		contactErr.removeClass("d-none");
-		contactErr.addClass("redLine");
 	}
 }
 
@@ -119,21 +105,6 @@ function checkValidation() {
 		isValidation = false;
 	}
 	
-	var contact = $("#contact").val();
-	var contactPattern = /^\d{2,3}-\d{3,4}-\d{4}$/;
-	var result = contactPattern.test(contact);
-	
-	var contactErr = $("#contactErr");
-	
-	contactErr.addClass("d-none");
-	
-	if(contact === "") {
-	}else if(!result) {
-		contactErr.removeClass("d-none");
-		contactErr.addClass("redLine");
-		isValidation = false;
-	}
-	
 	if(!isValidation) {
 		event.preventDefault();
 		console.log("제출 안됨");
@@ -168,4 +139,18 @@ function removeContact() {
 	window.onresize = function(){
 		  document.location.reload();
 	};
+}
+
+function showModal() {
+	$("#requestModal").css("display", "block");
+}
+
+function closeModalByX() {
+	$("#requestModal").css("display", "none");
+}
+
+function selectRequest() {
+	var listVar = $("input[name=requestType]:checked").val();
+	$("#deliveryNotify").val(listVar);
+	$("#requestModal").css("display", "none");
 }

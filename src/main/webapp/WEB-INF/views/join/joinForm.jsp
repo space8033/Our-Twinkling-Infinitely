@@ -23,7 +23,7 @@
         <h1><a href="https://www.coupang.com/"><img src="${pageContext.request.contextPath}/resources/image/coupanglogo.png" alt="쿠팡로고"></a></h1>
     </header>
     <section>
-    	<form id="joinForm" name="joinForm" action="joinForm" onsubmit="checkValidation()" method="post" modelAttribute="users">
+    	<form id="joinForm" name="joinForm" action="joinForm" onsubmit="checkValidation()" method="post">
         	
         	
         	회원정보를 입력해주세요.
