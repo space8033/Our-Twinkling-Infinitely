@@ -6,7 +6,7 @@
 			<div>
 				<c:forEach var="image" items="${images}">				
 					<c:if test="${image.image_fileName != null}">
-						<div>
+						<div class="m-2">
 							<img src="data:MIME;base64, ${image.image_fileName}" width="100"/>
 						</div>			
 					</c:if>
@@ -14,13 +14,17 @@
 			</div>
 			<c:if test="${product.product_img !=null}">
 					<div class="detail1-image">
-						<img src="data:MIME;base64, ${product.product_img}" width="100%"/> 
+						<img src="data:MIME;base64, ${product.product_img}" width="500px"/> 
 					</div>
 			</c:if>
 			<div class="detail1-content">
-				<h4><small>${product.product_name}</small></h4>
-				<h2><small>${product.product_price}</small></h2>
-				<div>
+				<h4 class="m-2"><small>${product.product_name}</small></h4>
+				<h2 class="m-2">
+					<small>
+						<fmt:formatNumber value="${product.product_price}" type="number"/>
+					</small>
+				</h2>
+				<div class="m-2">
 					 <span>
 					 	<a class="btn btn-outline-dark">구매하기</a>
 					 </span>
