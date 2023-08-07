@@ -1,5 +1,6 @@
 package com.webteam1.oti.dto;
 
+import java.sql.Blob;
 import java.util.Date;
 
 import lombok.Data;
@@ -15,8 +16,10 @@ public class Product {
 	private String product_detail;
 	private int product_hitcount;
 	private int product_discountRate;
-	
+	private byte[] product_imgFile;
+	private String product_img;
 	public enum ProductStatus {
 		SOLDOUT, REMAIN
 	}
+	
 }

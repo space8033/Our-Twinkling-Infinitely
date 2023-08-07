@@ -15,11 +15,11 @@
 	
 	<select id="selectByPage" parameterType="Pager" resultType="Product">
    		<![CDATA[
-       select rnum, product_no, product_name, product_price
+       select rnum, product_no, product_name, product_price, product_imgFile, product_img
 		 from (
-		    select rownum as rnum, product_no, product_name, product_price
+		    select rownum as rnum, product_no, product_name, product_price, product_imgFile, product_img
 		    from(
-		        select product_no, product_name, product_price
+		        select product_no, product_name, product_price, product_imgFile, product_img
 		        from product
 		        order by product_no desc
 		    )
@@ -28,13 +28,9 @@
 		 where rnum >= #{startRowNo}
 		 ]]>
   	</select>
-  	
-  	<select id="getProductNo" parameterType="Product" resultType="int">
-  		select product_no from product where product_no="#{product_no}";
-  	</select>
   	 
   	<select id="count" resultType="int">
-   		select count(*) from product
+   		select count(*) from product 
    	</select>
    	
    	<select id="selectByPno" parameterType="int" resultType="Product">

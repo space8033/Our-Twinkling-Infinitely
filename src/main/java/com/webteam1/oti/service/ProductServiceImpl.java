@@ -40,10 +40,5 @@ public class ProductServiceImpl implements ProductService{
 		int totalBoardNum = productDao.count();
 		return totalBoardNum;
 	}
-	@Override
-	public int getProductNo(Product product) {
-		int product_no = productDao.getProductNo(product);
-		return product_no;
-	}
 	
 }

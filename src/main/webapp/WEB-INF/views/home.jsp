@@ -42,7 +42,9 @@
 			<c:forEach var="product" items="${products}">
 				<div class="card">
 				    <div class="card-body">
-				    	<a href="writeProductFile">파일 업로듀!!!</a>
+				    	<c:if test="${product.product_img !=null}">
+								<img src="data:MIME;base64, ${product.product_img}" height="100"/> 
+						</c:if>
 				    </div> 
 				    <div class="card-footer">
 				    	<div>${product.product_name}</div>
