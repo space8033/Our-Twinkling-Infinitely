@@ -34,8 +34,9 @@ public class UserController {
 		
 		if(result == JoinResult.FAIL_DUPLICATED_UID) {
 			String error = "중복된 ID가 존재합니다.";
+			log.error("중복된 ID가 존재합니다");
 			model.addAttribute("error", error);
-			return "/joinForm";
+			return "redirect:/joinForm";
 		} else {
 			
 			return "redirect:/loginForm";
@@ -54,11 +55,13 @@ public class UserController {
 		log.info("실행");
 		return "modify/modify";
 	}
+	
 	@RequestMapping("cart")
 	public String basket() {
 		log.info("실행");
 		return "cart/basket";
 	}
+	
 	@RequestMapping("mypage")
 	public String mypage() {
 		log.info("실행");
