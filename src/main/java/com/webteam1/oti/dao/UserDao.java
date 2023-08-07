@@ -8,5 +8,7 @@ import com.webteam1.oti.dto.user.JoinDto;
 public interface UserDao {
 	public int insert(JoinDto user);
 	public JoinDto selectByusersId(String usersId);
+	public JoinDto selectByusersEmail(String usersEmail);
+	public JoinDto selectByusersTel(String usersTel);
 	
 }
