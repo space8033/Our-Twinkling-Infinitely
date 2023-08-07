@@ -24,22 +24,22 @@
     </header>
     <section>
             
-               <form id="loginForm" name="loginForm" action="#" onsubmit="checkValidation()" novalidate method="post">
+               <form id="loginForm" name="loginForm" action="loginForm" onsubmit="checkValidation()" method="post">
                  <div class="form-group">
-                 	<div id="email-form" class="email-form-group line-gray">
+                 	<div id="id-form" class="id-form-group line-gray">
                  		<div>
-						 	<label for="email"><img src = "${pageContext.request.contextPath}/resources/image/sion/semail.JPG"></label>
+						 	<label for="uid"><img src = "${pageContext.request.contextPath}/resources/image/sion/semail.JPG"></label>
 						</div>
 						<div>
-							<input type="email" onblur="checkValidation()" onclick="line1()" placeholder="아이디(이메일)" id="email"
+							<input type="text" placeholder="아이디" onfocus="this.placeholder=''" id="uid" value="${loginDto.users_id}" name="users_id"
 							style="outline:none;" autocomplete="off">
 						
 						</div>
 					</div>	
 					<span id="uidErr1" class="errorMsg text-danger d-none small" style="margin-left:10px; font-family: dotum,sans-serif;
-    font-size: 12px;">아이디(이메일)를 입력해주세요.</span>
+    font-size: 12px;">아이디를 입력해주세요.</span>
 					<span id="uidErr2" class="errorMsg text-danger d-none small" style="margin-left:10px; font-family: dotum,sans-serif;
-    font-size: 12px;">아이디(이메일)는 이메일 형식으로 입력해주세요.</span>
+    font-size: 12px;">아이디 형식으로 입력해주세요.</span>
 				
 				</div>
 				
@@ -47,22 +47,25 @@
 				 <div class="form-group">
 				 	<div id="pwd-form" class="pwd-form-group line-gray">
 				 		<div>
-							 <label for="pwd"><img src = "${pageContext.request.contextPath}/resources/image/sion/spwd.JPG" style="border-right: 1px solid #ccc"></label>
+							 <label for="pwd"><img src = "${pageContext.request.contextPath}/resources/image/sion/spwd.JPG" ></label>
 						</div>
 						<div>	
-							 <input type="password" onblur="checkValidation()" onclick="line2()" placeholder="비밀번호" id="pwd"
+							 <input type="password"  placeholder="비밀번호" onfocus="this.placeholder=''" id="pwd" value="${loginDto.users_password}" name="users_password"
 							 style = "height: 100%; width: 370px; outline:none;" autocomplete="off">
 							 
 						</div>
 						
 						<div>
-							<button type="button"><img id="eye" onclick="blink()" src = "${pageContext.request.contextPath}/resources/image/sion/seye.JPG"></button>
+							<button type="button"><img id="eye" onclick="blink()" src ="${pageContext.request.contextPath}/resources/image/sion/seye.JPG"></button>
+							<!-- ${pageContext.request.contextPath}/resources/image/sion/seye.JPG -->
 							
 						</div>
 					
 					</div>
-					<span id="pwdErr" class="errorMsg text-danger d-none small" style="margin-left:10px; font-family: dotum,sans-serif;
+					<span id="pwdErr1" class="errorMsg text-danger d-none small" style="margin-left:10px; font-family: dotum,sans-serif;
     font-size: 12px;">비밀번호를 입력해주세요.</span>
+					<span id="pwdErr2" class="errorMsg text-danger d-none small" style="margin-left:10px; font-family: dotum,sans-serif;
+    font-size: 12px;">비밀번호를 형식에 맞게 입력해주세요.</span>
 				</div>
 					
 			  <div class="form-check d-flex">
@@ -72,14 +75,11 @@
 						
 				</div>
                   
-       		  
-       		
-                
                 
                 <div class="login_form_btn">
                     <button type="submit" id="login_btn">로그인</button>
                     <hr/>
-                    <button type="submit" id="join_btn">회원가입</button>
+                    <button onclick="joinForm" id="join_btn">회원가입</button>
                 </div>
                 
                 

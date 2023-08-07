@@ -7,6 +7,7 @@ import javax.annotation.Resource;
 import org.springframework.stereotype.Service;
 
 import com.webteam1.oti.dao.ProductDao;
+import com.webteam1.oti.dto.Image;
 import com.webteam1.oti.dto.Pager;
 import com.webteam1.oti.dto.Product;
 
@@ -23,13 +24,13 @@ public class ProductServiceImpl implements ProductService{
 
 	@Override
 	public Product getProduct(int product_no) {
-		Product product = productDao.selectBypno(product_no);
+		Product product = productDao.selectByPno(product_no);
 		return product;
 	}
 
 	@Override
 	public void addHitcount(int product_no) {
-		Product product = productDao.selectBypno(product_no);
+		Product product = productDao.selectByPno(product_no);
 		int hitcount = product.getProduct_hitcount() + 1;
 		product.setProduct_hitcount(hitcount);
 		productDao.updateByBno(product);	

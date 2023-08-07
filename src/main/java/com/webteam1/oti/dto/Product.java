@@ -12,7 +12,7 @@ public class Product {
 	private ProductStatus product_status;
 	private int product_price;
 	private int product_qty;
-	private Date product_createdDate;
+	private String product_createdDate;
 	private String product_detail;
 	private int product_hitcount;
 	private int product_discountRate;

@@ -34,7 +34,7 @@
    	</select>
    	
    	<select id="selectByPno" parameterType="int" resultType="Product">
-         select product_name, product_price, product_detail
+         select *
          from product
          where product_no=#{product_no}
     </select>

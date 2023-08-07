@@ -3,6 +3,7 @@ package com.webteam1.oti.service;
 
 import java.util.List;
 
+import com.webteam1.oti.dto.Image;
 import com.webteam1.oti.dto.Pager;
 import com.webteam1.oti.dto.Product;
 

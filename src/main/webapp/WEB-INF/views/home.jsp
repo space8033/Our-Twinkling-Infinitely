@@ -38,22 +38,21 @@
 			</div>
 		</div>
 		<!-- 상품 리스트 불러오기-->
-		<div class="container d-flex flex-wrap m-2">	
+		<div id="product-list" class="container d-flex flex-wrap m-2">	
 			<c:forEach var="product" items="${products}">
-				<a href="#">
+				<a href="detailProduct?product_no=${product.product_no}">
 					<div>
 						<div class="m-2">
 						    <div class="product-image">
 						    	<c:if test="${product.product_img !=null}">
-											<img src="data:MIME;base64, ${product.product_img}" width="250"/> 
+									<img src="data:MIME;base64, ${product.product_img}" width="250"/> 
 								</c:if>
 						    </div> 
 						    <div class="product-content">
-						    	<div>${product.product_name}</div>
-						    	<div class="product_price">
+						    	<div class="product-title d-flex justify-content-center text-dark m-2">${product.product_name}</div>
+						    	<div class="d-flex justify-content-center product-price">
 						    		<fmt:formatNumber value="${product.product_price}" type="number"/>
 						    	</div>
-						    	<div><a href="detailProduct?product_no=${product.product_no}"></a></div>
 						     </div>
 						</div>
 					</div>

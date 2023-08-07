@@ -1,23 +1,44 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.webteam1.oti.dao.UserDao">
+	<!-- JoinDto -->
 	<insert id="insert" parameterType="Join">
 		insert into users(users_id, users_email, users_password, users_name, users_phone, users_type, users_opoint, users_createddate)
 		values(#{users_id}, #{users_email}, #{users_password}, #{users_name}, #{users_phone}, 'ENABLED', 0, to_char(sysdate,'yyyy.mm.dd hh24:mi:ss'))
 	</insert>
 	<select id="selectByusersId" resultType="Join" parameterType="String">
 
-		select users_id, users_email, users_phone
+		select users_id, users_email, users_password, users_phone
+		from users 
+		where users_id=#{users_id}
+
+	</select>
+	
+	<select id="selectByusersEmail" resultType="Join" parameterType="String">
+
+		select users_email, users_id
+		from users 
+		where users_email=#{users_email}
+
+	</select>
+	<select id="selectByusersTel" resultType="Join" parameterType="String">
+
+		select users_phone, users_id
+		from users 
+		where users_phone=#{users_phone}
+
+	</select>
+	
+	<!-- loginDto로부터 -->
+	<select id="selectByUsersId" resultType="Login" parameterType="String">
+
+		select users_id, users_password, users_type
 		from users 
 		where users_id=#{users_id}
 
 	</select>
 	
 	
-  <!--  <select id="selectByusersId" resultType="Join" parameterType="String">
-  	  select *
-      from users where users_id=#{usersId}
-   </select>
-    -->
+
    
 </mapper>
