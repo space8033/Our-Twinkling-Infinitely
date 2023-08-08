@@ -1,6 +1,7 @@
 package com.webteam1.oti.service;
 
 import com.webteam1.oti.dto.user.JoinDto;
+import com.webteam1.oti.dto.user.LoginDto;
 
 public interface UserService {
 	public enum JoinResult {
@@ -19,11 +20,17 @@ public interface UserService {
 	}
 	
 	public JoinResult join(JoinDto user);
-	//public LoginResult login(Users user);
+	public LoginResult login(LoginDto user);
 	//public void modifyUser(Users user);
 	//public void unjoin(String users_id);
 	//public void logout(String users_id);
+	
+	//JoinForm 수행 service
 	public JoinDto getUsersByUserId(String usersId);
 	public JoinDto getUsersByUserEmail(String usersEmail);
 	public JoinDto getUsersByUserPhone(String usersTel);
+	
+	//LoginForm 수행 service
+	public LoginDto getUser(String uid);
+	
 }
