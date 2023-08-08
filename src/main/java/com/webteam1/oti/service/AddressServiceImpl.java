@@ -45,5 +45,11 @@ public class AddressServiceImpl implements AddressService{
 		
 		return addressDao.selectByAno(address_no);
 	}
+
+	@Override
+	public Address getDefault(String user_id) {
+		
+		return addressDao.selectByDefault(user_id);
+	}
 	
 }
