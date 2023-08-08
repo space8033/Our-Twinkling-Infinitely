@@ -39,7 +39,7 @@
    							<div>
    								<span class="tab1">일반구매</span>
    							</div>
-								<table id="table" class="table">
+							<table id="table" class="table">
 									<colgroup>
 										<col width="50">
 										<col width="80">
@@ -151,7 +151,7 @@
    				    		<button class="btn1 btn btn-outline-primary m-1">계속 쇼핑하기</button>
    				    		<button class="btn2 btn btn-primary m-1">구매하기</button>
    				    	</div>
-   				    	
+   				    
    				    </section>
    				    
       			</div>
