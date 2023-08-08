@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 import com.webteam1.oti.dao.UserDao;
 import com.webteam1.oti.dto.user.JoinDto;
 import com.webteam1.oti.dto.user.LoginDto;
+import com.webteam1.oti.dto.user.ModifyDto;
 
 import lombok.extern.slf4j.Slf4j;
 @Slf4j
@@ -89,6 +90,11 @@ public class UserServiceImpl implements UserService{
 	@Override
 	public void logout(String uid) {
 
+	}
+	
+	@Override
+	public void modifyUser(ModifyDto user) {
+		userDao.update(user);
 	}
 	
 	

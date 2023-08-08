@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.webteam1.oti.dto.user.JoinDto;
 import com.webteam1.oti.dto.user.LoginDto;
+import com.webteam1.oti.dto.user.ModifyDto;
 import com.webteam1.oti.interceptor.Login;
 import com.webteam1.oti.service.UserService;
 import com.webteam1.oti.service.UserService.JoinResult;
@@ -35,7 +36,6 @@ public class UserController {
 	@PostMapping("/joinForm")
 	public String join(JoinDto users, Model model) {
 		log.info(users.toString());
-		JoinResult result = userService.join(users);
 		
 		
 		if(result == JoinResult.FAIL_DUPLICATED_UID) {
@@ -101,9 +101,20 @@ public class UserController {
 	}
 	
 	@Login
-	@RequestMapping("modify")
-	public String modify() {
-		log.info("실행");
+	@GetMapping("/modify")
+	public String modify(Model model, HttpSession session) {
+		session.
+		
+		
+		
+		return "modify/modify";
+	}
+	
+	@Login
+	@PostMapping("/modify")
+	public String modify(Model model, HttpSession session) {
+		
+		
 		return "modify/modify";
 	}
 	

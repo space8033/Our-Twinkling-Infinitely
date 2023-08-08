@@ -29,15 +29,22 @@
 
 	</select>
 	
-	<!-- loginDto로부터 -->
+	<!-- LoginDto로부터 -->
 	<select id="selectByUsersId" resultType="Login" parameterType="String">
-
 		select users_id, users_password, users_type
 		from users 
 		where users_id=#{users_id}
 
 	</select>
 	
+	<!-- ModifyDto로부터 -->
+	<update id="update" parameterType="String">
+	  
+	   update users set users_password=#{users_password}, users_email=#{users_email}, users_phone=#{users_phone}, users_name=#{users_name}
+	   where users_id=#{users_id}
+	  
+    </update>
+   
 	
 
    

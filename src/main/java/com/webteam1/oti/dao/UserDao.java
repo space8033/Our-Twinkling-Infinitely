@@ -4,6 +4,7 @@ import org.apache.ibatis.annotations.Mapper;
 
 import com.webteam1.oti.dto.user.JoinDto;
 import com.webteam1.oti.dto.user.LoginDto;
+import com.webteam1.oti.dto.user.ModifyDto;
 
 @Mapper
 public interface UserDao {
@@ -16,5 +17,8 @@ public interface UserDao {
 	//LoginDto
 	//Login은 Users가 대문자
 	public LoginDto selectByUsersId(String usersId);
+	
+	//ModifyDto
+	public int update(ModifyDto user); //users_password, users_name, users_phone, users_email 수정
 	
 }
