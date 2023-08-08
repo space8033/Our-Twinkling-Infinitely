@@ -10,4 +10,5 @@ public interface AddressService {
 	public void updateAddress(Address address);
 	public List<Address> getList(Map<String, Object> map);
 	public int countByUserId(String userId);
+	public Address getByAddressNo(int address_no);
 }

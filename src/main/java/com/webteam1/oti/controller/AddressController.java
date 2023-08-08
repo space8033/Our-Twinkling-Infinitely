@@ -52,7 +52,6 @@ public class AddressController {
 		
 		model.addAttribute("pager", pager);
 		model.addAttribute("list", list);
-		log.info("" + list);
 		
 		return "mypage/address/myAddress";
 	}
@@ -72,17 +71,21 @@ public class AddressController {
 	
 	//실험중
 	@GetMapping("/modifyForm")
-	public String loadModifyForm() {
+	public String loadModifyForm(String addressNo, Model model, HttpSession session) {
+		Address now = addressService.getByAddressNo(Integer.parseInt(addressNo));
+		model.addAttribute("address", now);
+		session.setAttribute("addressNo", now.getAddress_no());
 		
 		return "mypage/address/myAddressModify";
 	}
 	
 	//실험중
 	@PostMapping("/modifyForm")
-	public String update(Address address) {
+	public String update(Address address, HttpSession session) {
+		address.setAddress_no((int) session.getAttribute("addressNo"));
 		addressService.updateAddress(address);
 		
-		return "redirect:/";
+		return "redirect:/address";
 	}
 	
 	@PostMapping("/delete")
