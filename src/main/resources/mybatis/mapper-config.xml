@@ -7,6 +7,7 @@
 	<typeAliases>
 		<typeAlias alias="Join" type="com.webteam1.oti.dto.user.JoinDto"/>
 		<typeAlias alias="Login" type="com.webteam1.oti.dto.user.LoginDto"/>
+		<typeAlias alias="Modify" type="com.webteam1.oti.dto.user.ModifyDto"/>
 		<typeAlias alias="Pager" type="com.webteam1.oti.dto.Pager"/>
 		<typeAlias alias="Product" type="com.webteam1.oti.dto.Product"/>
 		<typeAlias alias="Image" type="com.webteam1.oti.dto.Image"/>
