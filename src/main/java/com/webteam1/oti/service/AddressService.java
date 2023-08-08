@@ -11,4 +11,5 @@ public interface AddressService {
 	public List<Address> getList(Map<String, Object> map);
 	public int countByUserId(String userId);
 	public Address getByAddressNo(int address_no);
+	public Address getDefault(String user_id);
 }
