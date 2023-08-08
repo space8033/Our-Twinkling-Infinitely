@@ -64,25 +64,29 @@
 			   			    <li class="nav-item">
 					     	 <a class="nav-link" href="${pageContext.request.contextPath}/loginForm">
 			  	 			 <span>LOGIN</span>
-				   			   </c:if>
-						      </a>
-						    </li>
-						    <li class="nav-item">
-						      <a class="nav-link" href="${pageContext.request.contextPath}/joinForm">JOIN</a>
-						    </li>
-						    <li class="nav-item">
-						      <a class="nav-link" href="${pageContext.request.contextPath}/modify">MODIFY</a>
-						    </li>
-						    <li class="nav-item">
-						      <a class="nav-link" href="${pageContext.request.contextPath}/cart">CART</a>
-						    </li>
-						    <li class="nav-item">
-						      <a class="nav-link" href="${pageContext.request.contextPath}/mypage">MYPAGE</a>
-						    </li>
+			   			   </c:if>
+					      </a>
+					    </li>
+					    <li class="nav-item">
+					      <a class="nav-link" href="${pageContext.request.contextPath}/joinForm">JOIN</a>
+					    </li>
+					    <li class="nav-item">
+					      <a class="nav-link" href="${pageContext.request.contextPath}/modify">MODIFY</a>
+					    </li>
+					    <li class="nav-item">
+					    	<c:if test="${loginIng != null}">
+						      <a class="nav-link" href="${pageContext.request.contextPath}/cart">CART</a>				    	
+					    	</c:if>
+					       <c:if test = "${loginIng == null}">
+					       	<a class="nav-link" href="${pageContext.request.contextPath}/loginForm">CART</a>
+					       </c:if>
+					    </li>
+					    <li class="nav-item">
+					      <a class="nav-link" href="${pageContext.request.contextPath}/mypage">MYPAGE</a>
+					    </li>
 				  	</ul>
 		   		</div>
 	   		</div>
-
    </body>
 </html>
    
