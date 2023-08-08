@@ -18,8 +18,8 @@
 					</div>
 			</c:if>
 			<div class="detail1-content">
-				<h4 class="m-2"><small>${product.product_name}</small></h4>
-				<h2 class="m-2">
+				<h4 class="m-2 d-flex justify-content-start"><small>${product.product_name}</small></h4>
+				<h2 class="m-2 d-flex justify-content-start">
 					<small>
 						<fmt:formatNumber value="${product.product_price}" type="number"/>
 					</small>
