@@ -21,19 +21,26 @@
 		where address_no = #{address_no}
 	</update>
 	
-	<select id="selectByPage" parameterType="Pager" resultType="Address">
+	<select id="selectByPage" parameterType="Map" resultType="Address">
    		<![CDATA[
-       select rnum, product_no, product_name, product_price, product_imgFile, product_img
-		 from (
-		    select rownum as rnum, product_no, product_name, product_price, product_imgFile, product_img
-		    from(
-		        select product_no, product_name, product_price, product_imgFile, product_img
-		        from product
-		        order by product_no desc
-		    )
-		    where rownum <= #{endRowNo}
-		 )
-		 where rnum >= #{startRowNo}
-		 ]]>
+	       select rnum, address_no, address_receiver, address_roadAddress, address_jibunAddress, address_extraAddress, address_detail, deliveryRequest, address_isdefault, users_users_id, users_phone
+			 from (
+			    select rownum as rnum, address_no, address_receiver, address_roadAddress, address_jibunAddress, address_extraAddress, address_detail, deliveryRequest, address_isdefault, users_users_id, users_phone
+			    from(
+			        select address_no, address_receiver, address_roadAddress, address_jibunAddress, address_extraAddress, address_detail, deliveryRequest, address_isdefault, users_users_id, users_phone
+			        from address
+			        where users_users_id=#{user_id}
+			        order by address_isdefault desc
+			    )
+			    where rownum <= #{endRowNo}
+			 )
+			 where rnum >= #{startRowNo}
+		]]>
+  	</select>
+  	
+  	<select id="countByUserId" parameterType="String" resultType="int">
+  		select count(*)
+  		from address
+  		where users_users_id=#{user_id}
   	</select>
 </mapper>

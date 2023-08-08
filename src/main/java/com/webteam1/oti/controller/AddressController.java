@@ -1,5 +1,9 @@
 package com.webteam1.oti.controller;
 
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
 import javax.annotation.Resource;
 import javax.servlet.http.HttpSession;
 
@@ -25,20 +29,30 @@ public class AddressController {
 	@GetMapping("/address")
 	public String addressList(String pageNo, Model model, HttpSession session) {
 		if(pageNo == null) {
-			   //세션에 저장되어 있는지 확인
-			   pageNo = (String) session.getAttribute("pageNo");
-			   //저장되어있지 않다면 "1"로 초기화
-			   if(pageNo == null) {
-				   pageNo = "1";
-			   }
+		   //세션에 저장되어 있는지 확인
+		   pageNo = (String) session.getAttribute("pageNo");
+		   //저장되어있지 않다면 "1"로 초기화
+		   if(pageNo == null) {
+			   pageNo = "1";
 		   }
-		   //문자열을 정수로 변환
-		   int intPageNo = Integer.parseInt(pageNo);
-		   //세션에 pageNo를 저장
-		   session.setAttribute("pageNo", String.valueOf(pageNo));
-		   
-		   int totalRows = addressService.getTotalProductNum();
-		   Pager pager = new Pager(12, 5, totalRows, intPageNo);
+		}
+		//문자열을 정수로 변환
+		int intPageNo = Integer.parseInt(pageNo);
+		//세션에 pageNo를 저장
+		session.setAttribute("pageNo", String.valueOf(pageNo));
+		int totalRows = addressService.countByUserId("space5");
+		Pager pager = new Pager(5, 5, totalRows, intPageNo);
+		
+		Map<String, Object> map = new HashMap<>();
+		map.put("startRowNo", pager.getStartRowNo());
+		map.put("endRowNo", pager.getEndRowNo());
+		map.put("user_id", "space5");
+		
+		List<Address> list = addressService.getList(map);
+		
+		model.addAttribute("pager", pager);
+		model.addAttribute("list", list);
+		log.info("" + list);
 		
 		return "mypage/address/myAddress";
 	}
@@ -53,7 +67,7 @@ public class AddressController {
 	public String register(Address address) {
 		addressService.registerAddress(address);
 		
-		return "redirect:/";
+		return "redirect:/address";
 	}
 	
 	//실험중
