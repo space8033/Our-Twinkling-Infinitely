@@ -20,5 +20,5 @@ public interface UserDao {
 	
 	//ModifyDto
 	public int update(ModifyDto user); //users_password, users_name, users_phone, users_email 수정
-	
+	public ModifyDto modifyByUsersId(String usersId);
 }

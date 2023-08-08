@@ -36,7 +36,7 @@ public class UserController {
 	@PostMapping("/joinForm")
 	public String join(JoinDto users, Model model) {
 		log.info(users.toString());
-		
+		JoinResult result = userService.join(users);
 		
 		if(result == JoinResult.FAIL_DUPLICATED_UID) {
 			String error1 = "이미 가입된 아이디입니다.";
@@ -103,19 +103,18 @@ public class UserController {
 	@Login
 	@GetMapping("/modify")
 	public String modify(Model model, HttpSession session) {
-		session.
-		
-		
+		LoginDto loginUser = (LoginDto) session.getAttribute("loginIng");
+		ModifyDto loginUserData = userService.getModifyByUsersId(loginUser.getUsers_id());
+		model.addAttribute("modifyDto", loginUserData);
 		
 		return "modify/modify";
 	}
 	
 	@Login
 	@PostMapping("/modify")
-	public String modify(Model model, HttpSession session) {
-		
-		
-		return "modify/modify";
+	public String modify(ModifyDto user, HttpSession session) {
+		userService.modifyUser(user);
+		return "redirect:/modify";
 	}
 	
 	@Login

@@ -97,5 +97,11 @@ public class UserServiceImpl implements UserService{
 		userDao.update(user);
 	}
 	
+	@Override
+	public ModifyDto getModifyByUsersId(String usersId) {
+		ModifyDto user = userDao.modifyByUsersId(usersId);
+		return user;
+	}
+	
 	
 }
