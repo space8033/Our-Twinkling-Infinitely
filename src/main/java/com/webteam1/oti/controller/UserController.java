@@ -105,15 +105,16 @@ public class UserController {
 	public String modify(Model model, HttpSession session) {
 		LoginDto loginUser = (LoginDto) session.getAttribute("loginIng");
 		ModifyDto loginUserData = userService.getModifyByUsersId(loginUser.getUsers_id());
-		model.addAttribute("modifyDto", loginUserData);
+		model.addAttribute("userInfo", loginUserData);
 		
 		return "modify/modify";
 	}
 	
 	@Login
 	@PostMapping("/modify")
-	public String modify(ModifyDto user, HttpSession session) {
+	public String modify(ModifyDto user) {
 		userService.modifyUser(user);
+		log.info(user.toString());
 		return "redirect:/modify";
 	}
 	

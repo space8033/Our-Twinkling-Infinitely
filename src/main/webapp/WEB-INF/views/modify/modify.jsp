@@ -30,7 +30,7 @@
 			회원 정보 수정
 		</div>
 		<br>
-		<form action="post" id="modify" name="modify" onsubmit="checkValidation()">
+		<form method="post" action="modify" id="modify" name="modify" onsubmit="checkValidation()">
 		
 			<div class="container d-flex pt-4" style="border-top: 1px solid #e5e5e5">
 				<div class="d-flex pt-2" style="width: 15%">
@@ -38,7 +38,7 @@
 					<img src="https://img.echosting.cafe24.com/skin/base/common/ico_required.gif" width="7" height="7">
 				</div>
 				<div>
-					<input disabled="disabled" type="text" id="id" class="m-1" value="${modifyDto.users_id}" name="users_id">	
+					<input readonly="readonly" type="text" id="id" class="m-1" value="${userInfo.users_id}" name="users_id">	
 				</div>
 				<div class="ml-2">
 					(영문자소문자/숫자, 4~16자)
@@ -51,7 +51,7 @@
 					<img src="https://img.echosting.cafe24.com/skin/base/common/ico_required.gif" width="7" height="7">
 				</div>
 				<div>
-					<input type="text" id="password" class="m-1" value="${modifyDto.users_password}" name="users_password">	
+					<input type="password" id="password" class="m-1" value="${userInfo.users_password}" name="users_password">	
 				</div>
 				<div class="ml-2">
 					(영문 대소문자/숫자/특수문자 중 2가지 이상 조합, 8자~16자)
@@ -64,7 +64,7 @@
 					<img src="https://img.echosting.cafe24.com/skin/base/common/ico_required.gif" width="7" height="7">
 				</div>
 				<div>
-					<input type="text" id="passwordConfirm" class="m-1">	
+					<input type="password" id="passwordConfirm" class="m-1">	
 				</div>
 			</div>
 			<br>
@@ -74,7 +74,7 @@
 					<img src="https://img.echosting.cafe24.com/skin/base/common/ico_required.gif" width="7" height="7">
 				</div>
 				<div>
-					<input type="text" id="name" class="m-1" value="${modifyDto.users_name}" name="users_name">	
+					<input type="text" id="name" class="m-1" value="${userInfo.users_name}" name="users_name">
 				</div>
 			</div>
 			<br>
@@ -84,7 +84,7 @@
 					<img src="https://img.echosting.cafe24.com/skin/base/common/ico_required.gif" width="7" height="7">
 				</div>
 				<div class="d-flex">
-					<input type="text" id="phone1" class="m-1" style="width:100%" value="${modifyDto.users_phone}" name="users_phone">
+					<input type="text" id="phone1" class="m-1" style="width:100%" value="${userInfo.users_phone}" name="users_phone">
 				</div>
 			</div>
 			<br>
@@ -108,7 +108,7 @@
 					<img src="https://img.echosting.cafe24.com/skin/base/common/ico_required.gif" width="7" height="7">
 				</div>
 				<div class="d-flex">
-					<input type="text" id="email" class="m-1" value="${modifyDto.users_email}" name="users_email">
+					<input type="text" id="email" class="m-1" value="${userInfo.users_email}" name="users_email">
 				</div>
 			</div>
 			<br>
