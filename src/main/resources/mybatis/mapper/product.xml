@@ -41,7 +41,13 @@
     
     <update id="updateByPno" parameterType="Product">
     	update product set product_hitcount=#{product_hitcount}
-   		where product_pno=#{product_pno}
+   		where product_no=#{product_no}
     </update>
+    
+    <select id="getProductOption" parameterType="int" resultType="String">
+    	select productOption_type
+    	from productOption
+    	where product_product_no=#{product_no}
+    </select>
 	
 </mapper>

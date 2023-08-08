@@ -7,9 +7,9 @@ import javax.annotation.Resource;
 import org.springframework.stereotype.Service;
 
 import com.webteam1.oti.dao.ProductDao;
-import com.webteam1.oti.dto.Image;
 import com.webteam1.oti.dto.Pager;
 import com.webteam1.oti.dto.Product;
+import com.webteam1.oti.dto.ProductOption;
 
 @Service
 public class ProductServiceImpl implements ProductService{
@@ -40,6 +40,12 @@ public class ProductServiceImpl implements ProductService{
 	public int getTotalProductNum() {
 		int totalBoardNum = productDao.count();
 		return totalBoardNum;
+	}
+
+	@Override
+	public List<String> getOptionList(int product_no) {
+		List<String> productOptionType = productDao.getProductOption(product_no);
+		return productOptionType;
 	}
 	
 }

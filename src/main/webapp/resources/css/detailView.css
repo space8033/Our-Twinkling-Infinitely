@@ -1,0 +1,25 @@
+/* detailView */
+.detail1-image{
+	padding-right: 3px;
+}
+.detail1-content{
+	width:50%;
+	border-top: 2px solid black;
+	padding-top: 5px; 
+}
+.custom-select-box{
+	border-top: 1px solid #ececec;
+	border-bottom: 1px solid #ececec;
+    padding: 12px 0 3px;
+    margin: 13px 0 0;
+}
+.detailButton{
+	width: 40%;
+}
+#detail{
+	background-color: white;
+	padding: 0px;
+}
+#detail img{
+	width: 100%;
+}
