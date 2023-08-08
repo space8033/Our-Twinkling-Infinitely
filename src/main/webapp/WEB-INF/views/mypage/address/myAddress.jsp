@@ -50,20 +50,45 @@
 		<!------------------------------------- 내용 들어갈 div -------------------------------------->
 				<div style="width: 100%; margin-top: 20px;">
 					<div id="addressContainer" style="width: 100%;">
-						<c:forEach var="address" items="${address}">
+						<c:forEach var="address" items="${list}">
 							<div class="myAddress">
-								<div class="mt-4 mb-2 font-weight-bold">' + ${address.address_receiver} + '</div>
+								<div class="mt-4 mb-2 font-weight-bold">${address.address_receiver}</div>
 								<c:if test="${address.address_isdefault == true}">
 									<div id="standardAddress">기본배송지</div>
 								</c:if>
-								<div class="mt-2">${address.address_basic} ${address.address_detail}</div>
-								<div> ${address.usersPhone}</div>
-								<div> ${address.deliveryRequest }</div>
-								<div><button class="modifyButton" value="' + index + '">수정</button></div>
+								<div class="mt-2">${address.address_roadAddress} </div>
+								<div class="mt-2">${address.address_jibunAddress} </div>
+								<div class="mt-2">${address.address_extraAddress} </div>
+								<div class="mt-2">${address.address_detail} </div>
+								<div> ${address.users_phone}</div>
+								<div> ${address.deliveryRequest}</div>
+								<div><button class="modifyButton" onclick="goModifyPage()">수정</button></div>
 							</div>
 						</c:forEach>
 					</div>
-					<div id="addAddress">
+					
+					<div class="d-flex justify-content-center m-4">
+						<a class="btn btn-sm" href="?pageNo=1">처음</a>
+						<c:if test="${pager.groupNo>1}">
+							<a class="btn btn-sm" href="?pageNo=${pager.startPageNo-1}">이전</a>
+						</c:if>
+						
+						<c:forEach var="i" begin="${pager.startPageNo}" end="${pager.endPageNo}">
+							<c:if test="${pager.pageNo != i}">
+								<a class="btn btn-sm" href="?pageNo=${i}">${i}</a>
+							</c:if>
+							<c:if test="${pager.pageNo == i}">
+								<a class="btn btn-sm" href="?pageNo=${i}">${i}</a>
+							</c:if>
+						</c:forEach>
+						
+						<c:if test="${pager.groupNo<pager.totalGroupNo}">
+							<a class="btn btn-sm" href="?pageNo=${pager.endPageNo+1}">다음</a>
+						</c:if>
+						<a class="btn btn-sm" href="?pageNo=${pager.totalPageNo}">맨끝</a>
+					</div>
+					
+					<div id="addAddress" onclick="goAddPage()">
 						+ 배송지 추가
 					</div>
 				</div>
