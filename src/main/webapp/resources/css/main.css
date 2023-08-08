@@ -3,6 +3,9 @@ body {font-family: Verdana, sans-serif;}
 .mySlides {display: none;}
 img {vertical-align: middle;}
 
+.menu{
+	border-bottom: 1px solid #ececec;
+}
 /* Slideshow container */
 .slideshow-container {
   max-width: 1000px;
@@ -263,6 +266,7 @@ footer .inner {
 	color: black;
 	font-weight: bold;
 }
+/* detailView */
 
 /* 반응형 */
 @media screen and (max-width: 768px) {

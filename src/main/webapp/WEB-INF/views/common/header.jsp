@@ -30,6 +30,12 @@
 		   	</div>
 		   	<div class="logo">		   	
 			   <p style="width: 200px;">Our-Twinkling-Infinitely</p>	   
+			   <c:if test = "${loginIng != null}">
+			  	 <span>현재 ${loginIng.users_id} 아이디로 로그인 중입니다.</span>
+			   </c:if>
+			   <c:if test = "${loginIng == null}">
+			  	 <span></span>
+			   </c:if>
 		   	</div>
 		   </div>
 		   	<div class="menuBar" class="d-flex">
@@ -47,10 +53,19 @@
 				  </div>
 				<button id="hideSearchBar" class="btn btn-outline-light text-dark">X</button>
 				</div>
-		   		<div>		   		
+		   		<div class="menu">		   		
 			   		<ul class="nav justify-content-end">
-					    <li class="nav-item">
-					      <a class="nav-link" href="${pageContext.request.contextPath}/loginForm">LOGIN</a>
+					       <c:if test = "${loginIng != null}">
+					   		 <li class="nav-item">
+					     	  <a class="nav-link" href="${pageContext.request.contextPath}/logout">
+			  				  <span>LOGOUT</span>
+			   			   </c:if>
+			   			   <c:if test = "${loginIng == null}">
+			   			    <li class="nav-item">
+					     	 <a class="nav-link" href="${pageContext.request.contextPath}/loginForm">
+			  	 			 <span>LOGIN</span>
+			   			   </c:if>
+					      </a>
 					    </li>
 					    <li class="nav-item">
 					      <a class="nav-link" href="${pageContext.request.contextPath}/joinForm">JOIN</a>
@@ -59,7 +74,12 @@
 					      <a class="nav-link" href="${pageContext.request.contextPath}/modify">MODIFY</a>
 					    </li>
 					    <li class="nav-item">
-					      <a class="nav-link" href="${pageContext.request.contextPath}/cart">CART</a>
+					    	<c:if test="${loginIng != null}">
+						      <a class="nav-link" href="${pageContext.request.contextPath}/cart">CART</a>				    	
+					    	</c:if>
+					       <c:if test = "${loginIng == null}">
+					       	<a class="nav-link" href="${pageContext.request.contextPath}/loginForm">CART</a>
+					       </c:if>
 					    </li>
 					    <li class="nav-item">
 					      <a class="nav-link" href="${pageContext.request.contextPath}/mypage">MYPAGE</a>
@@ -67,7 +87,6 @@
 				  	</ul>
 		   		</div>
 	   		</div>
-
    </body>
 </html>
    

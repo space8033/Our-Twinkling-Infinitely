@@ -79,10 +79,17 @@ public class UserServiceImpl implements UserService{
 		}
 		
 	}
-	
+	//로그인 유효성 검사
 	@Override
 	public LoginDto getUser(String uid) {
 		LoginDto user = userDao.selectByUsersId(uid);
 		return user;
 	}
+	
+	@Override
+	public void logout(String uid) {
+
+	}
+	
+	
 }

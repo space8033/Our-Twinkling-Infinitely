@@ -50,4 +50,6 @@ public class ProductController {
 		   model.addAttribute("images",  imageList);
 		   return "detail/detailView";
 	}
+	
+	
 }
