@@ -33,7 +33,7 @@ public class LoginCheckInterceptor implements HandlerInterceptor {
 			if(user != null) {
 				return true;
 			} else {
-				response.sendRedirect(request.getContextPath() + "/");
+				response.sendRedirect(request.getContextPath() + "/loginForm");
 				return false;
 			}
 			
