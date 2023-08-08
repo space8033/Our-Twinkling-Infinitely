@@ -53,7 +53,7 @@
 				  </div>
 				<button id="hideSearchBar" class="btn btn-outline-light text-dark">X</button>
 				</div>
-		   		<div>		   		
+		   		<div class="menu">		   		
 			   		<ul class="nav justify-content-end">
 					    <li class="nav-item">
 					      <a class="nav-link" href="${pageContext.request.contextPath}/loginForm">
