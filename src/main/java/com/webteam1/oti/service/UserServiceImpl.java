@@ -86,10 +86,10 @@ public class UserServiceImpl implements UserService{
 		return user;
 	}
 	
-/*	@Override
+	@Override
 	public void logout(String uid) {
-		
-	}*/
+
+	}
 	
 	
 }

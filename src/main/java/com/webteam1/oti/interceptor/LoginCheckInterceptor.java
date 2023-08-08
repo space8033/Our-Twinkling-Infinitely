@@ -24,7 +24,6 @@ public class LoginCheckInterceptor implements HandlerInterceptor {
 		HandlerMethod handlerMethod = (HandlerMethod) handler;
 		Login login = handlerMethod.getMethodAnnotation(Login.class);
 		
-		
 		if(login != null) {
 
 			//@Login 붙어 있을 경우
