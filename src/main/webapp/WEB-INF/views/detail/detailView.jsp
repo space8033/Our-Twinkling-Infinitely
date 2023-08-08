@@ -29,7 +29,12 @@
 					 	<a class="btn btn-outline-dark">구매하기</a>
 					 </span>
 					 <span>
-					 	<a href="${pageContext.request.contextPath}/cart/basket" class="btn btn-outline-dark">장바구니</a>
+					 	<c:if test="${loginIng != null}">
+						 	<a href="${pageContext.request.contextPath}/cart/basket" class="btn btn-outline-dark">장바구니</a>
+					 	</c:if>
+					 	<c:if test = "${loginIng == null}">
+					 		<a class="btn btn-outline-dark" href="${pageContext.request.contextPath}/loginForm">장바구니</a>
+					 	</c:if>
 					 </span>
 				</div>
 			</div>
