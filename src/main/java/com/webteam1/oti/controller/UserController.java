@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.webteam1.oti.dto.user.JoinDto;
 import com.webteam1.oti.dto.user.LoginDto;
+import com.webteam1.oti.dto.user.ModifyDto;
 import com.webteam1.oti.interceptor.Login;
 import com.webteam1.oti.service.UserService;
 import com.webteam1.oti.service.UserService.JoinResult;
@@ -37,7 +38,6 @@ public class UserController {
 		log.info(users.toString());
 		JoinResult result = userService.join(users);
 		
-		
 		if(result == JoinResult.FAIL_DUPLICATED_UID) {
 			String error1 = "이미 가입된 아이디입니다.";
 			model.addAttribute("error1", error1);
@@ -55,7 +55,7 @@ public class UserController {
 		} else {
 		
 			return "redirect:/loginForm";
-		   }
+		}
 		
 		
 	}
@@ -101,10 +101,21 @@ public class UserController {
 	}
 	
 	@Login
-	@RequestMapping("modify")
-	public String modify() {
-		log.info("실행");
+	@GetMapping("/modify")
+	public String modify(Model model, HttpSession session) {
+		LoginDto loginUser = (LoginDto) session.getAttribute("loginIng");
+		ModifyDto loginUserData = userService.getModifyByUsersId(loginUser.getUsers_id());
+		model.addAttribute("userInfo", loginUserData);
+		
 		return "modify/modify";
+	}
+	
+	@Login
+	@PostMapping("/modify")
+	public String modify(ModifyDto user) {
+		userService.modifyUser(user);
+		log.info(user.toString());
+		return "redirect:/modify";
 	}
 	
 	@Login

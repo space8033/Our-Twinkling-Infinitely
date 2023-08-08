@@ -39,5 +39,17 @@ public class AddressServiceImpl implements AddressService{
 		
 		return addressDao.countByUserId(userId);
 	}
+
+	@Override
+	public Address getByAddressNo(int address_no) {
+		
+		return addressDao.selectByAno(address_no);
+	}
+
+	@Override
+	public Address getDefault(String user_id) {
+		
+		return addressDao.selectByDefault(user_id);
+	}
 	
 }

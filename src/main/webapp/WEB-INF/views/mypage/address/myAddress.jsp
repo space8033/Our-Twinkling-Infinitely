@@ -62,7 +62,7 @@
 								<div class="mt-2">${address.address_detail} </div>
 								<div> ${address.users_phone}</div>
 								<div> ${address.deliveryRequest}</div>
-								<div><button class="modifyButton" onclick="goModifyPage()">수정</button></div>
+								<div><button class="modifyButton" onclick=location.href="modifyForm?addressNo=${address.address_no}">수정</button></div>
 							</div>
 						</c:forEach>
 					</div>

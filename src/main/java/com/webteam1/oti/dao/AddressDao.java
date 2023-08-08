@@ -13,4 +13,6 @@ public interface AddressDao {
 	public int update(Address address);
 	public List<Address> selectByPage(Map<String, Object> map);
 	public int countByUserId(String user_id);
+	public Address selectByAno(int address_no);
+	public Address selectByDefault(String user_id);
 }

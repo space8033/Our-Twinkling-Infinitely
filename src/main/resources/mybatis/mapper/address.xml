@@ -11,15 +11,21 @@
 		)
 		values(
 			#{address_no}, #{address_receiver}, #{address_roadAddress}, #{address_jibunAddress}, #{address_extraAddress}, #{address_detail}, #{address_isdefault}, 
-			'space5', to_char(sysdate,'yyyy.mm.dd hh24:mi:ss'), #{deliveryRequest}, #{users_phone}
+			#{users_users_id}, to_char(sysdate,'yyyy.mm.dd hh24:mi:ss'), #{deliveryRequest}, #{users_phone}
 		)
 	</insert>
 	
 	<update id="update" parameterType="Address">
-		update address set address_receiver=#{address_no}, address_roadaddress=#{address_roadAddress}, address_jibunaddress=#{address_jibunAddress}, address_extraaddress=#{address_extraAddress},
+		update address set address_receiver=#{address_receiver}, address_roadaddress=#{address_roadAddress}, address_jibunaddress=#{address_jibunAddress}, address_extraaddress=#{address_extraAddress},
 						  address_detail=#{address_detail}, address_isdefault=#{address_isdefault}, address_modifieddate=to_char(sysdate,'yyyy.mm.dd hh24:mi:ss'), deliveryrequest=#{deliveryRequest}, users_phone=#{users_phone}
 		where address_no = #{address_no}
 	</update>
+	
+	<select id="selectByAno" parameterType="int" resultType="Address">
+		select address_no, address_receiver, address_roadaddress, address_jibunaddress, address_extraaddress, address_detail, address_isdefault, users_users_id, address_createddate, deliveryrequest, users_phone
+		from address
+		where address_no=#{address_no}
+	</select>
 	
 	<select id="selectByPage" parameterType="Map" resultType="Address">
    		<![CDATA[
@@ -30,7 +36,7 @@
 			        select address_no, address_receiver, address_roadAddress, address_jibunAddress, address_extraAddress, address_detail, deliveryRequest, address_isdefault, users_users_id, users_phone
 			        from address
 			        where users_users_id=#{user_id}
-			        order by address_isdefault desc
+			        order by address_isdefault desc, address_createddate desc
 			    )
 			    where rownum <= #{endRowNo}
 			 )
@@ -42,5 +48,11 @@
   		select count(*)
   		from address
   		where users_users_id=#{user_id}
+  	</select>
+  	
+  	<select id="selectByDefault" parameterType="String" resultType="Address">
+  		select *
+  		from address
+  		where address_isdefault=1 and users_users_id=#{user_id}
   	</select>
 </mapper>
