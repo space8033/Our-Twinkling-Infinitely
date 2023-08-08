@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.webteam1.oti.dto.user.JoinDto;
 import com.webteam1.oti.dto.user.LoginDto;
+import com.webteam1.oti.interceptor.Login;
 import com.webteam1.oti.service.UserService;
 import com.webteam1.oti.service.UserService.JoinResult;
 import com.webteam1.oti.service.UserService.LoginResult;
@@ -93,18 +94,27 @@ public class UserController {
 	}
 	
 	
+	@GetMapping("/logout")
+	public String logout(HttpSession session) {
+		session.removeAttribute("loginIng");
+	    return "redirect:/";
+	}
+	
+	@Login
 	@RequestMapping("modify")
 	public String modify() {
 		log.info("실행");
 		return "modify/modify";
 	}
 	
+	@Login
 	@RequestMapping("cart")
 	public String basket() {
 		log.info("실행");
 		return "cart/basket";
 	}
 	
+	@Login
 	@RequestMapping("mypage")
 	public String mypage() {
 		log.info("실행");

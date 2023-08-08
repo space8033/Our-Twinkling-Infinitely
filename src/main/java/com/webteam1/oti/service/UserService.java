@@ -32,6 +32,6 @@ public interface UserService {
 	//LoginForm 수행 service
 	public LoginDto getUser(String uid);
 	//LogOut
-	//public void logout(String uid);
+	public void logout(String uid);
 	
 }

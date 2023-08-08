@@ -34,7 +34,7 @@
 			  	 <span>현재 ${loginIng.users_id} 아이디로 로그인 중입니다.</span>
 			   </c:if>
 			   <c:if test = "${loginIng == null}">
-			  	 <span>로그아웃 되었습니다.</span>
+			  	 <span></span>
 			   </c:if>
 		   	</div>
 		   </div>
@@ -55,12 +55,14 @@
 				</div>
 		   		<div class="menu">		   		
 			   		<ul class="nav justify-content-end">
-					    <li class="nav-item">
-					      <a class="nav-link" href="${pageContext.request.contextPath}/loginForm">
 					       <c:if test = "${loginIng != null}">
-			  				 <span>LOGOUT</span>
+					   		 <li class="nav-item">
+					     	  <a class="nav-link" href="${pageContext.request.contextPath}/logout">
+			  				  <span>LOGOUT</span>
 			   			   </c:if>
 			   			   <c:if test = "${loginIng == null}">
+			   			    <li class="nav-item">
+					     	 <a class="nav-link" href="${pageContext.request.contextPath}/loginForm">
 			  	 			 <span>LOGIN</span>
 			   			   </c:if>
 					      </a>
@@ -85,7 +87,6 @@
 				  	</ul>
 		   		</div>
 	   		</div>
-
    </body>
 </html>
    
