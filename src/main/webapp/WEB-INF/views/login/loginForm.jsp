@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html lang="ko">
 <head>
@@ -40,7 +41,16 @@
     font-size: 12px;">아이디를 입력해주세요.</span>
 					<span id="uidErr2" class="errorMsg text-danger d-none small" style="margin-left:10px; font-family: dotum,sans-serif;
     font-size: 12px;">아이디 형식으로 입력해주세요.</span>
-				
+					<c:if test="${error1 != null}">
+						<span id="uidErr3" class="errorMsg text-danger small" style="margin-left:10px; font-family: dotum,sans-serif;
+    						  font-size: 12px;">${error1}
+    				    </span>
+					</c:if>
+					<c:if test="${error2 != null}">
+						<span id="uidErr3" class="errorMsg text-danger small" style="margin-left:10px; font-family: dotum,sans-serif;
+    						  font-size: 12px;">${error2}
+    				    </span>
+					</c:if>
 				</div>
 				
 				
@@ -66,6 +76,11 @@
     font-size: 12px;">비밀번호를 입력해주세요.</span>
 					<span id="pwdErr2" class="errorMsg text-danger d-none small" style="margin-left:10px; font-family: dotum,sans-serif;
     font-size: 12px;">비밀번호를 형식에 맞게 입력해주세요.</span>
+    				<c:if test="${error3 != null}">
+						<span id="pwdErr3" class="errorMsg text-danger small" style="margin-left:10px; font-family: dotum,sans-serif;
+    						  font-size: 12px;">${error3}
+    				    </span>
+					</c:if>
 				</div>
 					
 			  <div class="form-check d-flex">

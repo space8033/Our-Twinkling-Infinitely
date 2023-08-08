@@ -23,7 +23,6 @@ public interface UserService {
 	public LoginResult login(LoginDto user);
 	//public void modifyUser(Users user);
 	//public void unjoin(String users_id);
-	//public void logout(String users_id);
 	
 	//JoinForm 수행 service
 	public JoinDto getUsersByUserId(String usersId);
@@ -32,5 +31,7 @@ public interface UserService {
 	
 	//LoginForm 수행 service
 	public LoginDto getUser(String uid);
+	//LogOut
+	//public void logout(String uid);
 	
 }
