@@ -8,7 +8,7 @@
 	</insert>
 	<select id="selectByusersId" resultType="Join" parameterType="String">
 
-		select users_id, users_email, users_password, users_phone
+		select users_id, users_email, users_password, users_phone, users_name
 		from users 
 		where users_id=#{users_id}
 
@@ -38,12 +38,19 @@
 	</select>
 	
 	<!-- ModifyDto로부터 -->
-	<update id="update" parameterType="String">
+	<update id="update" parameterType="Modify">
 	  
 	   update users set users_password=#{users_password}, users_email=#{users_email}, users_phone=#{users_phone}, users_name=#{users_name}
 	   where users_id=#{users_id}
 	  
     </update>
+    <select id="modifyByUsersId" resultType="Modify" parameterType="String">
+
+		select users_id, users_email, users_phone, users_name
+		from users 
+		where users_id=#{users_id}
+
+	</select>
    
 	
 

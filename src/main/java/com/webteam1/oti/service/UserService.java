@@ -35,5 +35,6 @@ public interface UserService {
 	public void logout(String uid);
 	//회원 정보 수정 service
 	public void modifyUser(ModifyDto user);
+	public ModifyDto getModifyByUsersId(String usersId);
 	
 }

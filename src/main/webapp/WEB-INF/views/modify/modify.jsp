@@ -30,7 +30,7 @@
 			회원 정보 수정
 		</div>
 		<br>
-		<form action="">
+		<form action="post" id="modify" name="modify" onsubmit="checkValidation()">
 		
 			<div class="container d-flex pt-4" style="border-top: 1px solid #e5e5e5">
 				<div class="d-flex pt-2" style="width: 15%">
@@ -38,7 +38,7 @@
 					<img src="https://img.echosting.cafe24.com/skin/base/common/ico_required.gif" width="7" height="7">
 				</div>
 				<div>
-					<input type="text" id="id" class="m-1">	
+					<input disabled="disabled" type="text" id="id" class="m-1" value="${modifyDto.users_id}" name="users_id">	
 				</div>
 				<div class="ml-2">
 					(영문자소문자/숫자, 4~16자)
@@ -51,10 +51,10 @@
 					<img src="https://img.echosting.cafe24.com/skin/base/common/ico_required.gif" width="7" height="7">
 				</div>
 				<div>
-					<input type="text" id="password" class="m-1">	
+					<input type="text" id="password" class="m-1" value="${modifyDto.users_password}" name="users_password">	
 				</div>
 				<div class="ml-2">
-					(영문 대소문자/숫자/특수문자 중 2가지 이상 조합, 10자~16자)
+					(영문 대소문자/숫자/특수문자 중 2가지 이상 조합, 8자~16자)
 				</div>
 			</div>
 			<br>
@@ -74,27 +74,7 @@
 					<img src="https://img.echosting.cafe24.com/skin/base/common/ico_required.gif" width="7" height="7">
 				</div>
 				<div>
-					<input type="text" id="name" class="m-1">	
-				</div>
-			</div>
-			<br>
-			<div class="container d-flex pt-4" style="border-top: 1px solid #e5e5e5">
-				<div class="d-flex pt-2" style="width: 15%">
-					<span style="font-size: 11px;">주소</span>
-				</div>
-				<div>
-					<div class="d-flex">
-						<div style="width:20%"><input type="text" id="address" class="m-1" style="width: 100%">	</div>
-						<div><button class="mt-2 ml-3">우편번호></button></div>
-					</div>
-					<div class="d-flex">
-						<div><input type="text" id="address" class="m-1">	</div>
-						<div class="mt-1 ml-2">기본 주소</div>
-					</div>
-					<div class="d-flex">
-						<div><input type="text" id="address" class="m-1">	</div>
-						<div class="mt-1 ml-2">나머지 주소(선택 입력 가능)</div>
-					</div>
+					<input type="text" id="name" class="m-1" value="${modifyDto.users_name}" name="users_name">	
 				</div>
 			</div>
 			<br>
@@ -104,11 +84,7 @@
 					<img src="https://img.echosting.cafe24.com/skin/base/common/ico_required.gif" width="7" height="7">
 				</div>
 				<div class="d-flex">
-					<input type="text" id="phone1" class="m-1" style="width:10%">
-					<span> - </span>	
-					<input type="text" id="phone2" class="m-1" style="width:10%">	
-					<span> - </span>	
-					<input type="text" id="phone3" class="m-1" style="width:10%">	
+					<input type="text" id="phone1" class="m-1" style="width:100%" value="${modifyDto.users_phone}" name="users_phone">
 				</div>
 			</div>
 			<br>
@@ -132,7 +108,7 @@
 					<img src="https://img.echosting.cafe24.com/skin/base/common/ico_required.gif" width="7" height="7">
 				</div>
 				<div class="d-flex">
-					<input type="text" id="email" class="m-1">
+					<input type="text" id="email" class="m-1" value="${modifyDto.users_email}" name="users_email">
 				</div>
 			</div>
 			<br>
@@ -149,12 +125,10 @@
 					<div style="font-size: 11px">쇼핑몰에서 제공하는 유익한 이벤트 소식을 SMS로 받으실 수 있습니다.</div> 				
 				</div>
 			</div>			
-			
-			<br>
 			<br>
 			<div class="d-flex container pt-4" style="border-top: 1px solid #e5e5e5">
 				<div style="width:30%"></div>
-				<button class="mx-2 p-2" style="width:15%">회원정보수정</button>
+				<button type="submit" class="mx-2 p-2" style="width:15%">회원정보수정</button>
 				<button class="mx-2 p-2" style="width:15%">취소</button>
 				<div style="width:30%"></div>
 				<button style="width:10%; border: 1px solid #d0d0d0; background-color: white">회원탈퇴</button>
