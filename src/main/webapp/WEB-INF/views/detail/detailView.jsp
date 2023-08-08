@@ -32,6 +32,15 @@
 								</c:forEach>
 							</select>
 						</div>
+						<div class="custom-qty">
+							<input type="hidden" name="product_no" value="${optionList.productOption_no}"/>
+							수량<select class="custom-select  m-3" name="amount">
+								<option>---[필수]수량을 선택해 주세요---</option>
+								<c:forEach begin="1" end="10" var="i">
+									<option value="${i}">${i}</option>
+								</c:forEach>
+							</select>
+						</div>
 						<div class="m-2">
 						<c:if test="${loginIng != null}">
 							 <div>

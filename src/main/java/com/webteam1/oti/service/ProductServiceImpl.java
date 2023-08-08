@@ -47,5 +47,11 @@ public class ProductServiceImpl implements ProductService{
 		List<String> productOptionType = productDao.getProductOption(product_no);
 		return productOptionType;
 	}
+
+	@Override
+	public List<ProductOption> getOptions(int product_no) {
+		List<ProductOption> optionList = productDao.getPOption(product_no);
+		return optionList;
+	}
 	
 }

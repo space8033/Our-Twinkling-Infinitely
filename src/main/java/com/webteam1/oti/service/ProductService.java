@@ -14,4 +14,5 @@ public interface ProductService {
 	public void addHitcount(int product_no);
 	public int getTotalProductNum();
 	public List<String>getOptionList(int product_no);
+	public List<ProductOption>getOptions(int product_no);
 }

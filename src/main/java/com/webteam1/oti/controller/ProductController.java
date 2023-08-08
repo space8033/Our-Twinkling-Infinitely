@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.webteam1.oti.dto.Image;
 import com.webteam1.oti.dto.Product;
+import com.webteam1.oti.dto.ProductOption;
 import com.webteam1.oti.service.ImageService;
 import com.webteam1.oti.service.ProductService;
 
@@ -59,6 +60,8 @@ public class ProductController {
 			   detailImg.setImage_fileName(base64Img);
 		   }
 		   model.addAttribute("detailImg", detailImg);
+		   List<ProductOption> options = productService.getOptions(productNum);
+		   model.addAttribute("optionsList", options);
 		   
 		   return "detail/detailView";
 	}

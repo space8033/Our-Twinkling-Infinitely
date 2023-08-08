@@ -23,3 +23,15 @@
 #detail img{
 	width: 100%;
 }
+.custom-qty{
+	border-bottom: 1px solid #ececec;
+    padding: 12px 0 8px;
+    margin: 13px 0 0;
+}
+.custom-qty input{
+	margin-left: 13px;
+}
+/* 반응형 */
+@media screen and (max-width: 768px) {
+
+}

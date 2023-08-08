@@ -18,4 +18,5 @@ public interface ProductDao {
 	public Image selectByImg(Product product);
 	public int count();
 	public List<String>getProductOption(int product_no);
+	public List<ProductOption> getPOption (int product_no);
 }
