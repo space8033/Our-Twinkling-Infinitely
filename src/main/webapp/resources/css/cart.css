@@ -1,0 +1,269 @@
+*{
+   margin: 0;
+   padding: 0;
+ }
+	 /* 장바구니 쿠팡로고 */
+#header{
+	position: relative;
+	left: 350px;
+	width: 980px;
+	height: 72px;
+	border-bottom: 2px solid #8a8a8a
+}
+.logo{
+	margin: 0 auto 70px;
+	width: 140px;
+	height: 67px;
+	float: left; 
+}
+.logo a{
+ position: relative;
+ top: 20px
+}
+.logo a img{
+	width: 140px;
+	height: 37px;	
+}
+/* 장바구니 내용 */
+#contents{
+ 	position: relative;
+	left: 350px;
+	width: 980px;
+}
+/* 장바구니 내용-title */
+.c_title img{
+	width: 933px;
+	margin-bottom: 40px;
+}
+
+/* 장바구니 내용- tab */
+ .tab1{
+   float: left;
+width: 100%;
+border-bottom: 2px solid #0073e9;
+padding-left: 20px;
+padding-bottom: 10px;
+background: #fff;
+font-weight: 700;
+color: #0073e9;
+ }
+ /* 테이블 */
+/* 테이블_thead ----------------------------------------------------------------------------------------------*/
+.table{
+border: 1px solid black;
+}
+.table thead{
+	 background-color: #f5f5f5;
+}
+.table thead tr th{
+	position: relative;
+} 
+/* 테이블_tbody -----------------------------------------------------------------------------------------------*/
+#span1{
+	font-weight: bold;
+}
+#span2{
+ font-size: 12px;
+}
+.t2{
+	height: 150px;
+}
+.t2_nonMessage{
+	text-align: center;
+	font-size: 14px;
+	padding: 40px;
+}
+.t3_td{
+	padding: 100px;
+}
+.t3_td_contents{
+	font-size: 13px;
+	font-weight: bold; 
+	text-align: center;
+}
+.t3_td_button{
+	text-align: center;
+	padding-top: 20px;
+}
+/*product_contents 상품이름*/
+.c_name{
+	border-bottom: 1px solid #e0e0e0;
+	width: 324px;
+}
+.c_name a{
+	color: #555;
+	font-size: 14px;
+	text-decoration: none;
+	cursor:pointer;
+}
+.c_name a img{
+
+}
+.c_name a:hover{
+	text-decoration: underline;
+	color: #555;
+}
+.c_date{
+	width: 324px;
+}
+.c_option{
+	float: right;
+}
+/* product_contents 상품배송예정일 */
+.arrival{
+	font-size: 13px;
+}
+.condition{
+	font-size: 5px;
+}
+/* cancel 버튼 */
+.cancel{
+	width: 18px;
+	height: 18px;
+	font-size: 10px;
+	border: 1px solid #d8d8d8;
+	background-color: #ffff; 
+}
+/* 수량변경 버튼 */
+.btn-quantity{
+	font-size: 10px;
+	border: 1px solid #d8d8d8;
+	background-color: #ffff; 
+	margin-left: 70px;
+}
+/* benefit */
+#pointwrapper{
+	 border: 1px solid #e0e0e0;
+	 padding-left: 5px;
+	 padding-right: 5px;
+ border-radius: 25px;
+}
+.point{
+	font-size: 12px;
+}
+/* discount */
+.discount{
+ 		border-left: 1px solid #e0e0e0;
+ 		border-right: 1px solid #e0e0e0;
+ 		border-bottom: 1px solid #e0e0e0;
+}
+.discount div{
+	font-size: 12px;
+	text-align: center;
+}
+.delivery_fee{
+border-bottom: 1px solid #e0e0e0;
+	font-size: 12px;
+	text-align: center;
+}
+/* t3-------------------------------------------------------------------------------------------------- */
+.t3{
+	background-color: #f5f5f5;
+	position: relative;
+}
+/* 툴팁 */
+.tool_tip{
+	margin-left: 200px;
+}
+.tip{
+	width: 400px;
+   padding: 12px 0px 12px 0px;
+   background: #fff;
+   text-align: center;
+   line-height: 15px;
+   z-index: 100;
+   border: 1px solid #999;
+}
+/*   .tip::after {
+         content:"";
+         position: absolute;
+         top: 153px;
+         right: 240px;
+         margin:-133px 0 0 -10px;
+         border-width: 8px;
+         border-style: solid;
+         /* 위는 색 지정, 오른쪽,아래,왼쪽은 색 지정 */
+       border-color: transparent transparent transparent white; 
+       z-index: 100; 
+   }
+.tip::before {
+    content:"";
+    position: absolute;
+    top: 151px;
+    right: 240px;
+    margin:-133px 0 0 -10px;
+    border-width: 10px;
+    border-style: solid;
+    /* 위는 색 지정, 오른쪽,아래,왼쪽은 색 지정 */
+     border-color: transparent transparent transparent  lightgray;  
+} 
+  
+  .tt_price{
+  	 padding-left: 5px; 
+  	 padding-bottom: 10xp; 
+  	 padding-top: 10px;
+  }
+ .tt_calproduct{
+ 	margin-top: 13px; 
+ }  
+  /*전체선택*/
+  .selection{
+  	font-size: 12px;
+}
+/* 삭제버튼 */
+.delete{
+	border: 1px solid #d8d8d8;
+	background-color: #ffff;
+	font-size: 10px;
+	padding: 3px;
+}
+/* cash_benefit_wrapper */
+.cash_benefit_wrapper{
+	border: #e1e1e1;
+	margin-top:40px;
+	margin-bottom: 40px;
+	padding: 20px; 
+}
+.cbc_title{
+	margin: 0 0 8px;
+font-size: 14px;
+font-weight: 700;
+}
+.ccbc_details{
+	display: inline-block;
+}
+.cbc_details div{
+	display: block;
+	font-size: 14px;
+}
+.coupaybtn{
+	display: inline-block;
+}
+/* total  */
+.total_order_price{
+	clear: both;
+border: 4px solid #c8c8c8;
+text-align: center;
+padding: 12px;
+margin-bottom: 80px; 
+}
+.top_text{
+	color: #888888;
+	font-size: 14px;
+}
+.top_price{
+	font-weight: bold;
+}
+.top_calculator{
+	border: 1px solid #d2d2d2;
+	width: 50px;
+}
+/* 계속 쇼핑하기, 구매하기 버튼 */
+.btn1{
+ 	width: 220px;
+ 	height: 63px;
+}
+.btn2{
+	width: 220px;
+	height: 63px;
+}
