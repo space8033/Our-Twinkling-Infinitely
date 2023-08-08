@@ -29,7 +29,7 @@
 					 	<a class="btn btn-outline-dark">구매하기</a>
 					 </span>
 					 <span>
-					 	<a class="btn btn-outline-dark">장바구니</a>
+					 	<a href="" class="btn btn-outline-dark">장바구니</a>
 					 </span>
 				</div>
 			</div>
