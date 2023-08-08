@@ -65,22 +65,29 @@ public class UserController {
 	}
 	
 	@PostMapping("/loginForm")
-	public String login(LoginDto users, Model model) {
+	public String login(LoginDto users, Model model, HttpSession session) {
 		LoginResult result = userService.login(users);
-		String error = "";
+		
 		log.info(result+"로그인 상태");
 		if(result == LoginResult.FAIL_UID) {
-			error = "가입된 ID가 없습니다.";
+			String error1 = "가입된 ID가 없습니다.";
+			model.addAttribute("error1", error1);
 			
 		} else if(result == LoginResult.FAIL_ENABLED) {
-			error = "ID가 비활성화 되어 있습니다.";
+			String error2 = "ID가 비활성화 되어 있습니다";
+			model.addAttribute("error2", error2);
 		} else if(result == LoginResult.FAIL_PASSWORD) {
-			error = "비밀번호가 틀립니다";
+			String error3 = "비밀번호가 틀립니다";
+			model.addAttribute("error3", error3);
 		} else {
 			log.info("로그인에 성공하였습니다");
-		return "redirect:/";
+			LoginDto dbUser = userService.getUser(users.getUsers_id());
+			session.setAttribute("loginIng", dbUser);
+			
+			LoginDto loginDto = (LoginDto) session.getAttribute("loginIng");
+			model.addAttribute("loginIng", loginDto);
+			return "redirect:/";
 		}
-		model.addAttribute("error", error);
 		return "login/loginForm";
 		
 	}

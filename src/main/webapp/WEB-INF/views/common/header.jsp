@@ -30,6 +30,12 @@
 		   	</div>
 		   	<div class="logo">		   	
 			   <p style="width: 200px;">Our-Twinkling-Infinitely</p>	   
+			   <c:if test = "${loginIng != null}">
+			  	 <span>현재 ${loginIng.users_id} 아이디로 로그인 중입니다.</span>
+			   </c:if>
+			   <c:if test = "${loginIng == null}">
+			  	 <span>로그아웃 되었습니다.</span>
+			   </c:if>
 		   	</div>
 		   </div>
 		   	<div class="menuBar" class="d-flex">
@@ -50,7 +56,14 @@
 		   		<div>		   		
 			   		<ul class="nav justify-content-end">
 					    <li class="nav-item">
-					      <a class="nav-link" href="${pageContext.request.contextPath}/loginForm">LOGIN</a>
+					      <a class="nav-link" href="${pageContext.request.contextPath}/loginForm">
+					       <c:if test = "${loginIng != null}">
+			  				 <span>LOGOUT</span>
+			   			   </c:if>
+			   			   <c:if test = "${loginIng == null}">
+			  	 			 <span>LOGIN</span>
+			   			   </c:if>
+					      </a>
 					    </li>
 					    <li class="nav-item">
 					      <a class="nav-link" href="${pageContext.request.contextPath}/joinForm">JOIN</a>
