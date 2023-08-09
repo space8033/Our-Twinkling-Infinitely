@@ -15,5 +15,6 @@ public interface CartDao {
 	 * @return: 상품 추가한 장바구니 cart_no
 	 */
 	public int cartInsert(Cart cart);
+	public void cartUpdate(Cart cart);
 	public int cartCheck(Cart cart);
 }

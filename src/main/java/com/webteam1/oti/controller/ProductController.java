@@ -41,8 +41,8 @@ public class ProductController {
 	private ProductService productService;
 	@Resource
 	private ImageService imageService;
-	@Resource
-	private CartService cartService;
+/*	@Resource
+	private CartService cartService;*/
 	
 	//상품 상세 페이지 불러오기
 	//상품리스트에서 그 상품에 해당하는 상품 상세정보
@@ -86,11 +86,11 @@ public class ProductController {
 		   
 		   return "detail/detailView";
 	}
-	
-	/**
+/*	
+	*//**
 	 * 상품 상세정보에서 해당 상품을  장바구니에 넣기
 	 * @return -> 1: 장바구니 추가 완료, 2: 중복되는 상품, 3: 그 외의 경우 
-	 */
+	 *//*
 	@GetMapping("/cart")
 	public String menuCart() {
 		return "cart/basket";
@@ -137,5 +137,5 @@ public class ProductController {
 			}
 		}
 		return 1;
-	}
+	}*/
 }

@@ -29,7 +29,7 @@
 	</insert>
 	
 	<!-- 로그인시 비회원에서 회원 장바구니로 update -->
-	<update id="cartUpdate">
+	<update id="cartUpdate" parameterType="Cart">
 		update cart set users_users_id=#{users_id} where cart_ckid=#{cart_ckid}
 	</update>
 	
