@@ -9,4 +9,5 @@ import com.webteam1.oti.dto.Image;
 @Mapper
 public interface ImageDao {
 	public List<Image> selectByPno(int pno); 
+	public Image getDetail(int pno); 
 }

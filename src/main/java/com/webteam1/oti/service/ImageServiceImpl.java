@@ -20,4 +20,10 @@ public class ImageServiceImpl implements ImageService{
 		return imageList;
 	}
 
+	@Override
+	public Image getDetailImg(int product_no) {
+		Image image = imageDao.getDetail(product_no);
+		return image;
+	}
+
 }

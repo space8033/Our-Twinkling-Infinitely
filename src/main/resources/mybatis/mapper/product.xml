@@ -41,7 +41,41 @@
     
     <update id="updateByPno" parameterType="Product">
     	update product set product_hitcount=#{product_hitcount}
-   		where product_pno=#{product_pno}
+   		where product_no=#{product_no}
     </update>
+    <!-- detail -->
+    <select id="getProductOption" parameterType="int" resultType="String">
+    	select productOption_type
+    	from productOption
+    	where product_product_no=#{product_no}
+    </select>
+    <select id="getPOption" parameterType="int" resultType="ProductOption">
+    	select *
+    	from productOption
+    	where product_product_no=#{product_no}
+    </select>
+    <!-- cart -->
+    <!-- 장바구니 등록 -->
+	<insert id="cartInsert">
+		insert into cart (cart_no, cart_qty, product_prodcuct_no, cart_createdDate
+		cart_cklimit
+		<if test="users_users_id == null">
+			cart_ckid 
+		</if>
+		<if test="users_users_id != 0">
+			users_users_id
+		</if>
+		)values(
+		(select
+			NVL(MAX(cart_no), 0) + 1 from cart) ,
+			 #{product_product_no} ,sysdate
+			<if test="users_users_id == null">
+				#{cart_ckid}
+			</if>
+			<if test="users_users_id != null">
+				#{users_users_id}
+			</if>
+		)
+	</insert>
 	
 </mapper>
