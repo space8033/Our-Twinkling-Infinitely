@@ -48,11 +48,6 @@
 							 		구매하기
 							 	</a>
 							 </div>
-							 <div>
-							 	<a href="${pageContext.request.contextPath}/cart/basket">
-							 		<button type="submit" class="dtailButton btn btn-outline-dark btn-block m-4">장바구니</button>
-							 	</a>
-							 </div>
 					 	</c:if>
 					 	<c:if test = "${loginIng == null}">
 					 		 <div>
@@ -60,10 +55,12 @@
 							 		구매하기
 							 	</a>
 							 </div>
-					 		<a href="${pageContext.request.contextPath}/loginForm">
+					 	</c:if>
+						 <div>
+						 	<a href="${pageContext.request.contextPath}/cart/basket">
 						 		<button type="submit" class="dtailButton btn btn-outline-dark btn-block m-4">장바구니</button>
 						 	</a>
-					 	</c:if>
+						 </div>
 						</div>
 					</div>
 				</div>
