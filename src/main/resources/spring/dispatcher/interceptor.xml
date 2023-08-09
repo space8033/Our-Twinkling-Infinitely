@@ -10,7 +10,6 @@
 	<mvc:interceptors>
 		<mvc:interceptor>
 			<mvc:mapping path="/**"/>
-		<!-- bean의 의미: 객체를 생성해야해 -->
 			<mvc:exclude-mapping path="/resources/**"/>
 			<bean class="com.webteam1.oti.interceptor.LoginCheckInterceptor"/>
 		</mvc:interceptor>
