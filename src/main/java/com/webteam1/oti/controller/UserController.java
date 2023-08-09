@@ -1,5 +1,7 @@
 package com.webteam1.oti.controller;
 
+import java.lang.ProcessBuilder.Redirect;
+
 import javax.annotation.Resource;
 import javax.servlet.http.HttpSession;
 
@@ -8,6 +10,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.servlet.ModelAndView;
 
 import com.webteam1.oti.dto.user.JoinDto;
 import com.webteam1.oti.dto.user.LoginDto;
@@ -60,7 +63,7 @@ public class UserController {
 		
 		
 	}
-	//로그이 폼 불러오기
+	//로그인 폼 불러오기
 	@GetMapping("/loginForm")
 	public String loginForm() {
 		return "login/loginForm";
@@ -213,6 +216,35 @@ public class UserController {
 	   model.addAttribute("userInfo", loginUserData);	
 	   return "modify/modify";
 	}
+	
+	@Login
+	@GetMapping("/unjoin")
+	public ModelAndView unjoin(HttpSession session, ModelAndView mv) {
+		
+		LoginDto loginUser = (LoginDto) session.getAttribute("loginIng");
+
+		String userId = loginUser.getUsers_id();
+
+		try {
+			userService.unjoin(userId);
+			
+			
+
+
+		} catch (Exception e) {
+
+			//mv.addObject("msg", e.getMessage());
+			//mv.setViewName("common/errorPage");
+		}
+
+		return mv;
+	}
+		
+		
+		
+		
+	
+	
 	
 	//로그인 기능 테스트용
 	@Login

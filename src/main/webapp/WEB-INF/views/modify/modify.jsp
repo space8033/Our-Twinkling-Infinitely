@@ -190,7 +190,7 @@
 				<button type="submit" class="mx-2 p-2" style="width:15%">회원정보수정</button>
 				<button class="mx-2 p-2" style="width:15%">취소</button>
 				<div style="width:30%"></div>
-				<button style="width:10%; border: 1px solid #d0d0d0; background-color: white">회원탈퇴</button>
+				<button type="button" onclick="unjoin()" style="width:10%; border: 1px solid #d0d0d0; background-color: white">회원탈퇴</button>
 			</div>
 		</form>
 		

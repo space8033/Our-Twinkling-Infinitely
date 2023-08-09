@@ -117,9 +117,13 @@ public class UserServiceImpl implements UserService{
 		PasswordEncoder passwordEncoder = PasswordEncoderFactories.createDelegatingPasswordEncoder();
 		user.setUsers_password(passwordEncoder.encode(user.getUsers_password()));
 		userDao.update(user);	
-
 		
-		
+	}
+	
+	@Override
+	public void unjoin(String uid) {
+		JoinDto user = userDao.selectByusersId(uid);
+		userDao.delete(user);
 	}
 }	
 	

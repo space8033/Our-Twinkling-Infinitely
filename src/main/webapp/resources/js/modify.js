@@ -12,6 +12,12 @@ function infoSuccess() {
 	}
 }
 
+function unjoin() {
+	if(window.confirm("탈퇴하시겠습니까?")){
+	location.href="/unjoin";
+	}
+}
+
 //폼 제출 시 유효성 검사
 function checkValidation() {
 	

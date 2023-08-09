@@ -25,4 +25,6 @@ public interface UserDao {
 	//ModifyDto로부터, Controller에서 post방식할때 사용 비밀번호 있는 버전
 	public ModifyDto modifyByUserId(String usersId);
 	
+	public int delete(JoinDto user);
+	
 }

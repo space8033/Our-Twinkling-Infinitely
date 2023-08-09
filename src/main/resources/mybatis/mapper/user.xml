@@ -62,6 +62,10 @@
 		where users_id=#{users_id}
 
 	</select>
+	
+	<delete id="delete" parameterType="int">
+		delete from users where users_id=#{users_id}
+	</delete>
    
 	
 
