@@ -34,4 +34,28 @@ function showSearchBar(){
 	});
 }
 
-
+//상품의 옵션을 선택하고, 수량을 선택했을 때 가격 변화
+function myOption1(){
+	console.log($(event.target));
+	if($(event.target).val() != "none"){
+		var option = $(event.target).val();
+		$("#select-p-option").html(option);
+		$(".myOption").show();
+	}else{
+		$(".myOption").hide();
+	}
+} 
+function myOption2(){
+	console.log($(event.target));
+	if($(event.target).val() != "none"){
+		var qty = $(event.target).val();
+		var no = Number(qty);
+		var price = Number($("#product_price").val());
+		var totalPrice = price * no;
+		$("#select-p-qty").html(": " + qty + " 개");	
+		$("#total-price").html(totalPrice.toLocaleString("ko-Kr") + "원");
+		$(".myOption").show();
+	}else{
+		$(".myOption").hide();
+	}
+} 
