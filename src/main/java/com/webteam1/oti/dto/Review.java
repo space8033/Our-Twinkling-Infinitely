@@ -1,7 +1,5 @@
 package com.webteam1.oti.dto;
 
-import java.util.Date;
-
 import lombok.Data;
 
 @Data
@@ -16,5 +14,5 @@ public class Review {
 	private String review_modifiedDate;
 	private String review_deletedDate;
 	private int product_no;
-	private boolean review_goodOrBad;
+	private boolean review_goodorbad;
 }

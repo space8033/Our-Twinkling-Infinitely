@@ -67,9 +67,11 @@
 			   			   </c:if>
 					      </a>
 					    </li>
-					    <li class="nav-item">
-					      <a class="nav-link" href="${pageContext.request.contextPath}/joinForm">JOIN</a>
-					    </li>
+					    <c:if test = "${loginIng == null}">
+						    <li class="nav-item">
+						      <a class="nav-link" href="${pageContext.request.contextPath}/joinForm">JOIN</a>
+						    </li>
+					    </c:if>
 					    <li class="nav-item">
 					      <a class="nav-link" href="${pageContext.request.contextPath}/modify">MODIFY</a>
 					    </li>

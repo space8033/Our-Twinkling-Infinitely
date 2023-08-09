@@ -7,6 +7,7 @@ import javax.annotation.Resource;
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+//github.com/space8033/Our-Twinkling-Infinitely.git
 import javax.servlet.http.HttpSession;
 
 import org.apache.commons.lang3.RandomStringUtils;
@@ -19,6 +20,9 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.util.WebUtils;
 
 import com.webteam1.oti.dto.Cart;
+
+//github.com/space8033/Our-Twinkling-Infinitely.git
+
 import com.webteam1.oti.dto.Image;
 import com.webteam1.oti.dto.Product;
 import com.webteam1.oti.dto.ProductOption;
@@ -76,6 +80,9 @@ public class ProductController {
 		   model.addAttribute("detailImg", detailImg);
 		   List<ProductOption> options = productService.getOptions(productNum);
 		   model.addAttribute("optionsList", options);
+		   
+		   session.setAttribute("productNum", productNum);
+		   model.addAttribute("productNum", productNum);
 		   
 		   return "detail/detailView";
 	}

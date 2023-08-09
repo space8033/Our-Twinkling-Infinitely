@@ -66,5 +66,6 @@ function myOption2(){
 
 function showReview(){
 	console.log("바보");
+	
 	$("#menu3").load("review");
 }
