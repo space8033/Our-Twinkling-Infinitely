@@ -25,6 +25,7 @@ public class HomeController {
 	private ProductService productService;
 	
 	//http://localhost:8080/our-twinkling-infinitely/ 요청하면 HomeController.index() 실행
+	//홈 페이지 불러오기
 	@RequestMapping("/")
 	public String index(String pageNo, Model model, HttpSession session) {
 		log.info("실행");

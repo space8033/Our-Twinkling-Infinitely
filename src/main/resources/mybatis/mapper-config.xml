@@ -13,6 +13,7 @@
 		<typeAlias alias="Image" type="com.webteam1.oti.dto.Image"/>
 		<typeAlias alias="Address" type="com.webteam1.oti.dto.Address"/>
 		<typeAlias alias="Image" type="com.webteam1.oti.dto.Image"/>
+		<typeAlias alias="Review" type="com.webteam1.oti.dto.Review"/>
 	</typeAliases>
 </configuration>
 

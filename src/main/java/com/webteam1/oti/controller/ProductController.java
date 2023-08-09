@@ -26,7 +26,8 @@ public class ProductController {
 	private ProductService productService;
 	@Resource
 	private ImageService imageService;
-
+	
+	//상품 상세 페이지 불러오기
 	@GetMapping("/detailProduct")
 	public String detailView(String product_no, Model model, HttpSession session) {
 		   int productNum = Integer.parseInt(product_no);
