@@ -24,7 +24,7 @@
 					<td>${review.review_no}</td>
 					<td><a href="reviewDetail?review_no=${review.review_no}">${review.review_title}</a></td>
 					<td>${review.review_name}</td>
-					<td><fmt:formatDate value="${review.review_createdDate}" pattern="yyyy-MM-dd"/></td>
+					<td>${review.review_createdDate}</td>
 				</tr>
 			</c:forEach>
 			
