@@ -4,21 +4,26 @@ import java.util.Base64;
 import java.util.List;
 
 import javax.annotation.Resource;
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import org.apache.commons.lang3.RandomStringUtils;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.util.WebUtils;
 
 import com.webteam1.oti.dto.Cart;
 import com.webteam1.oti.dto.Image;
 import com.webteam1.oti.dto.Product;
 import com.webteam1.oti.dto.ProductOption;
+import com.webteam1.oti.dto.user.LoginDto;
+import com.webteam1.oti.service.CartService;
 import com.webteam1.oti.service.ImageService;
 import com.webteam1.oti.service.ProductService;
 
@@ -32,6 +37,8 @@ public class ProductController {
 	private ProductService productService;
 	@Resource
 	private ImageService imageService;
+	@Resource
+	private CartService cartService;
 	
 	//상품 상세 페이지 불러오기
 	//상품리스트에서 그 상품에 해당하는 상품 상세정보
@@ -72,51 +79,56 @@ public class ProductController {
 		   
 		   return "detail/detailView";
 	}
-	/*//장바구니 
-	  @ResponseBody
-	  @RequestMapping(value = {"/cart"}, method = {RequestMethod.POST})
-	  public int cart(HttpSession session, HttpServletRequest request, HttpServletResponse response, CartVO cartVO) throws Exception {
-		  Cart cart = new Cart();
-		  log.info("itemno=" + );
-	    Cookie cookie = WebUtils.getCookie(request, "cartCookie");
-	    
-	    //비회원장바구니 첫 클릭시 쿠키생성
-	    if (cookie == null && session.getAttribute("member") == null) {
-	      String ckid = RandomStringUtils.random(6, true, true);
-	      Cookie cartCookie = new Cookie("cartCookie", ckid);
-	      cartCookie.setPath("/");
-	      cartCookie.setMaxAge(60 * 60 * 24 * 1);
-	      response.addCookie(cartCookie);
-	      cartVO.setCart_ckid(ckid);
-	      this.mainService.cartInsert(cartVO);
-	      
-	     //비회원 장바구니 쿠키생성 후 상품추가
-	    } else if (cookie != null && session.getAttribute("member") == null) {
-	    	
-	      String ckValue = cookie.getValue();
-	      cartVO.setCart_ckid(ckValue);
-	      //장바구니 중복제한
-	      if(mainService.cartCheck(cartVO) != 0) {
-	    	  return 2;
-	      }
-	      //쿠키 시간 재설정해주기
-	      cookie.setPath("/");
-	      cookie.setMaxAge(60 * 60 * 24 * 1);
-	      response.addCookie(cookie);
-	      
-	      mainService.cartInsert(cartVO);
-	      
-	     //회원 장바구니 상품추가
-	    } else if(session.getAttribute("member") != null){
-	      MemberVO memberVO = (MemberVO) session.getAttribute("member");
-	      cartVO.setCart_mem_no(memberVO.getMEM_NO());
-	      if(mainService.cartMemCheck(cartVO) != 0) {
-	    	  return 2;
-	      }
-	      mainService.cartInsert(cartVO);
-	    } 
-	    return 1;
-	  }*/
 	
+	/**
+	 * 상품 상세정보에서 해당 상품을  장바구니에 넣기
+	 * @return -> 1: 장바구니 추가 완료, 2: 중복되는 상품, 3: 그 외의 경우 
+	 */
+	@GetMapping("/cart")
+	public String menuCart() {
+		return "cart/basket";
+	}
 	
+	//비동기 장바구니 구현
+	@ResponseBody
+	@RequestMapping(value = {"/cart"}, method = {RequestMethod.POST})
+	public int datailCart(HttpSession session, HttpServletRequest request, HttpServletResponse response, Cart cart) throws Exception {
+		Cart cartDto = new Cart();
+		Cookie cookie = WebUtils.getCookie(request, "cartCookie");
+		
+		//비회원 장바구니 첫 클릭 시 쿠키 생성
+		if(cookie == null && session.getAttribute("loginIng") == null) {
+			String ckId = RandomStringUtils.random(6, true, true);
+			Cookie cartCookie = new Cookie("cartCookie", ckId);
+			cartCookie.setPath("/");//쿠키사용의 유효 디렉토리 설정 
+			cartCookie.setMaxAge(60 * 60 * 24 * 1);//쿠키의 유효기간 설정
+			response.addCookie(cartCookie);
+			cart.setCart_ckId(ckId);
+			cart.setCart_isLogin(false);//비회원
+			this.cartService.addCart(cartDto);
+		
+	    //비회원 장바구니 쿠키 생성 후 상품 추가
+		}else if(cookie == null && session.getAttribute("loginIng")==null) {
+			String ckValue = cookie.getValue();
+			cart.setCart_isLogin(false);//비회원
+			cart.setCart_ckId(ckValue);
+			//장바구니 중복 제한
+			if(cartService.productExsist(cartDto) != 0) {
+				return 2;
+			}
+			//쿠키 시간 재설정
+			cookie.setPath("/");
+			cookie.setMaxAge(60 * 60 * 24 * 1);
+			response.addCookie(cookie);
+			cartService.addCart(cartDto);
+		//회원 장바구니 추가	
+		}else if(session.getAttribute("loginIng") != null){
+			LoginDto loginDto = (LoginDto) session.getAttribute("loginIng");
+			cartDto.setUsers_users_id(loginDto.getUsers_id());
+			if(cartService.productExsist(cartDto) != 0) {
+				return 2;
+			}
+		}
+		return 1;
+	}
 }

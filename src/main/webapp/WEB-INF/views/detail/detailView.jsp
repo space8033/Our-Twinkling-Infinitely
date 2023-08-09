@@ -67,9 +67,7 @@
 								 </div>
 						 	</c:if>
 							<div>
-								<a href="${pageContext.request.contextPath}/cart/basket">
-									<button type="submit" class="dtailButton btn btn-outline-dark btn-block m-4">장바구니</button>
-								</a>
+								<button type="submit" class="dtailButton btn btn-outline-dark btn-block m-4">장바구니</button>
 							</div>
 						</div>
 					</div>

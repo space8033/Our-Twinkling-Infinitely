@@ -6,11 +6,18 @@ import lombok.Data;
 
 @Data
 public class Cart {
-	private int cart_no; //장바구니 PK
+	//장바구니 PK
+	private int cart_no; 
 	private int cart_qty;
-	private int product_product_no;//상품 PK
+	//상품옵션 PK(상품옵션)
+	private int productOption_productOption_no;
 	private Date cart_createdDate;
-	private Date cart_cklimit;//쿠키제한시간(삭제용)
-	private String cart_ckid; //쿠키value값
-	private String users_users_id;//회원PR
+	//쿠키제한시간(삭제용)
+	private Date cart_cklimit;
+	//쿠키value값
+	private String cart_ckId; 
+	//회원PR
+	private String users_users_id;
+	//로그인 했는지 유뮤 
+	private boolean cart_isLogin;
 }

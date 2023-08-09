@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.webteam1.oti.dao.CartDao">
+    <!-- 
+    cart
+   	장바구니 등록 : 세션이 null(비회원)일 때 ckid(쿠키아이디)를 insert하고, 
+   	세션이 null이 아닐 때 user_user_id를 insert 한다
+   	-->
+	<insert id="cartInsert" parameterType="Cart">
+		insert into cart (cart_no, cart_qty, product_prodcuct_no, cart_createdDate
+		cart_cklimit
+		<if test="cart_isLogin == 0">
+			cart_ckid 
+		</if>
+		<if test="cart_isLogin != 0">
+			users_users_id
+		</if>
+		)values(
+		(select
+			NVL(MAX(cart_no), 0) + 1 from cart) ,
+			 #{product_product_no} ,sysdate
+			<if test="cart_isLogin == 0">
+				#{cart_ckid}
+			</if>
+			<if test="cart_isLogin != 0">
+				#{users_users_id}
+			</if>
+		)
+	</insert>
+	
+	<!-- 로그인시 비회원에서 회원 장바구니로 update -->
+	<update id="cartUpdate">
+		update cart set users_users_id=#{users_id} where cart_ckid=#{cart_ckid}
+	</update>
+	
+	<!-- 중복된 상품이 있는지 검사하기 위함 -->
+	<select id="cartCheck" parameterType="Cart"  resultType="int">
+		select count(*)
+		from cart
+		where cart_ckId={#cart_ckId} and productOption_productOption_no =#{productOption_productOption_no}	
+	</select>
+	
+</mapper>
