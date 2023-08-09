@@ -74,12 +74,7 @@
 					      <a class="nav-link" href="${pageContext.request.contextPath}/modify">MODIFY</a>
 					    </li>
 					    <li class="nav-item">
-					    	<c:if test="${loginIng != null}">
-						      <a class="nav-link" href="${pageContext.request.contextPath}/cart">CART</a>				    	
-					    	</c:if>
-					       <c:if test = "${loginIng == null}">
-					       	<a class="nav-link" href="${pageContext.request.contextPath}/loginForm">CART</a>
-					       </c:if>
+					       <a class="nav-link" href="${pageContext.request.contextPath}/cart">CART</a>
 					    </li>
 					    <li class="nav-item">
 					      <a class="nav-link" href="${pageContext.request.contextPath}/mypage">MYPAGE</a>
