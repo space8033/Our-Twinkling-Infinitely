@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.webteam1.oti.dao.ReviewDao">
+	<select id="selectByPno" parameterType="Map" resultType="Review">
+		<![CDATA[
+	       select rnum, review_no, review_name, review_title, review_contents, review_summary, product_no, review_goodorbad
+			 from (
+			    select rownum as rnum, review_no, review_name, review_title, review_contents, review_summary, product_no, review_goodorbad
+			    from(
+			        select review_no, review_name, review_title, review_contents, review_summary, product_no, review_goodorbad
+			        from address
+			        where product_no=#{product_no}
+			        order by review_no desc
+			    )
+			    where rownum <= #{endRowNo}
+			 )
+			 where rnum >= #{startRowNo}
+		]]>
+	</select>
+	
+	<select id="countByPno" parameterType="int" resultType="int">
+		select count(*)
+  		from review
+  		where product_no=#{productNo}
+	</select>
+</mapper>

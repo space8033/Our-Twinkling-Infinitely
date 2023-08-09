@@ -27,6 +27,7 @@ public class AddressController {
 	@Resource
 	private AddressService addressService;
 	
+	//주소지 목록 불러오기
 	@GetMapping("/address")
 	public String addressList(String pageNo, Model model, HttpSession session) {
 		LoginDto userNow = (LoginDto) session.getAttribute("loginIng");
@@ -59,13 +60,13 @@ public class AddressController {
 		
 		return "mypage/address/myAddress";
 	}
-	
+	//주소지 등록 불러오기
 	@GetMapping("/registerForm")
 	public String registerForm() {
 		
 		return "mypage/address/myAddressAdd";
 	}
-	
+	//주소지 등록하기
 	@PostMapping("/registerForm")
 	public String register(Address address, HttpSession session) {	
 		LoginDto userNow = (LoginDto) session.getAttribute("loginIng");
@@ -84,8 +85,7 @@ public class AddressController {
 		
 		return "redirect:/address";
 	}
-	
-	//실험중
+	//주소지 수정 불러오기
 	@GetMapping("/modifyForm")
 	public String loadModifyForm(String addressNo, Model model, HttpSession session) {
 		Address now = addressService.getByAddressNo(Integer.parseInt(addressNo));
@@ -94,8 +94,7 @@ public class AddressController {
 		
 		return "mypage/address/myAddressModify";
 	}
-	
-	//실험중
+	//주소지 수정하기
 	@PostMapping("/modifyForm")
 	public String update(Address address, HttpSession session) {
 		address.setAddress_no((int) session.getAttribute("addressNo"));
@@ -112,7 +111,7 @@ public class AddressController {
 		addressService.updateAddress(address);
 		return "redirect:/address";
 	}
-	
+	//주소지 삭제하기
 	@PostMapping("/delete")
 	public String delete(int address_no) {
 		

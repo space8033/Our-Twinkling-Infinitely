@@ -27,13 +27,14 @@ public class UserController {
 	@Resource
 	private UserService userService;
 	
-	
+	//회원가입 폼 불러오기
 	@GetMapping("/joinForm")
 	public String joinForm() {
 		
 		return "join/joinForm";
 	}
 	
+	//회원가입 신청
 	@PostMapping("/joinForm")
 	public String join(JoinDto users, Model model) {
 		log.info(users.toString());
@@ -60,12 +61,12 @@ public class UserController {
 		
 		
 	}
-	
+	//로그이 폼 불러오기
 	@GetMapping("/loginForm")
 	public String loginForm() {
 		return "login/loginForm";
 	}
-	
+	//로그인 요청
 	@PostMapping("/loginForm")
 	public String login(LoginDto users, Model model, HttpSession session) {
 		LoginResult result = userService.login(users);
@@ -94,13 +95,13 @@ public class UserController {
 		
 	}
 	
-	
+	//로그아웃 요청
 	@GetMapping("/logout")
 	public String logout(HttpSession session) {
 		session.removeAttribute("loginIng");
 	    return "redirect:/";
 	}
-	
+	//개인정보 수정 불러오기
 	@Login
 	@GetMapping("/modify")
 	public String modify(Model model, HttpSession session) {
@@ -110,7 +111,7 @@ public class UserController {
 		
 		return "modify/modify";
 	}
-	
+	//개인정보 수정 요청
 	@Login
 	@PostMapping("/modify")
 	public String modify(ModifyDto user, Model model, HttpSession session) {
@@ -136,13 +137,7 @@ public class UserController {
 		 return "modify/modify";
 	}
 	
-	@Login
-	@RequestMapping("cart")
-	public String basket() {
-		log.info("실행");
-		return "cart/basket";
-	}
-	
+	//로그인 기능 테스트용
 	@Login
 	@RequestMapping("mypage")
 	public String mypage() {
