@@ -1,3 +1,16 @@
+$(init);
+function init() {
+	infoSuccess();
+}
+
+function infoSuccess() {
+	var successMsg = $("#successMsg").val();
+	console.log(successMsg);
+	if(successMsg==="pass") {
+		alert("회원정보를 수정하였습니다.");
+		
+	}
+}
 
 //폼 제출 시 유효성 검사
 function checkValidation() {

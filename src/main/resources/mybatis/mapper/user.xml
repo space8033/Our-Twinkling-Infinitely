@@ -44,9 +44,20 @@
 	   where users_id=#{users_id}
 	  
     </update>
+    
+    <!-- ModifyDto로부터, Controller에서 get방식할때 사용 비밀번호 없는 버전 -->
     <select id="modifyByUsersId" resultType="Modify" parameterType="String">
 
 		select users_id, users_email, users_phone, users_name
+		from users 
+		where users_id=#{users_id}
+
+	</select>
+	
+	<!-- ModifyDto로부터, Controller에서 post방식할때 사용 비밀번호 있는 버전 -->
+    <select id="modifyByUserId" resultType="Modify" parameterType="String">
+
+		select users_id, users_email, users_phone, users_name, users_password
 		from users 
 		where users_id=#{users_id}
 

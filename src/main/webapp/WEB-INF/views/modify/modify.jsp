@@ -31,7 +31,7 @@
 		</div>
 		<br>
 		<form method="post" action="modify" id="modify" name="modify" onsubmit="checkValidation()">
-		
+			<input type="hidden" value="${success}" id="successMsg">
 			<div class="container d-flex pt-4" style="border-top: 1px solid #e5e5e5">
 				<div class="d-flex pt-2" style="width: 15%">
 					<span style="font-size: 11px;">아이디</span>
