@@ -103,28 +103,23 @@ public class UserServiceImpl implements UserService{
 		return user;
 	}
 	
+	//ModifyDto로부터, Controller에서 post방식할때 사용 비밀번호 있는 버전
 	@Override
-	public ModifyResult modify(ModifyDto user) {
-		JoinDto dbUserId = userDao.selectByusersId(user.getUsers_id());
-		JoinDto dbUserEmail = userDao.selectByusersEmail(user.getUsers_email());
-		JoinDto dbUserPhone = userDao.selectByusersTel(user.getUsers_phone());
-		
-		if(dbUserEmail != null){
-			return ModifyResult.FAIL_DUPLICATED_EMAIL;
-			
-		} else if(dbUserPhone != null) {
-			return ModifyResult.FAIL_DUPLICATED_TEL;
-		} else {
-
-			PasswordEncoder passwordEncoder = PasswordEncoderFactories.createDelegatingPasswordEncoder();
-			user.setUsers_password(passwordEncoder.encode(user.getUsers_password()));
-			userDao.update(user);	
-			return ModifyResult.SUCCESS;
-	
-			
-		}
-		
+	public ModifyDto getModifyByUserId(String usersId) {
+		ModifyDto user = userDao.modifyByUserId(usersId);
+		return user;
 	}
 	
+	@Override
+	public void modify(ModifyDto user) {
+
+		PasswordEncoder passwordEncoder = PasswordEncoderFactories.createDelegatingPasswordEncoder();
+		user.setUsers_password(passwordEncoder.encode(user.getUsers_password()));
+		userDao.update(user);	
+
+		
+		
+	}
+}	
 	
-}
+	

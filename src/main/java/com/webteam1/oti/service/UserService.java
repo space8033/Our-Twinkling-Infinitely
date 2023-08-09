@@ -20,17 +20,12 @@ public interface UserService {
 		
 	}
 	
-	public enum ModifyResult {
-		SUCCESS,
-		FAIL_DUPLICATED_EMAIL,
-		FAIL_DUPLICATED_TEL
-		
-	}
+	
 	
 	public JoinResult join(JoinDto user);
 	public LoginResult login(LoginDto user);
-	public ModifyResult modify(ModifyDto user);
-	//public void unjoin(String users_id);
+	public void modify(ModifyDto user);
+	//public void (String users_id);
 	
 	//JoinForm 수행 service
 	public JoinDto getUsersByUserId(String usersId);
@@ -44,5 +39,9 @@ public interface UserService {
 	//회원 정보 수정 service
 	//public void modifyUser(ModifyDto user);
 	public ModifyDto getModifyByUsersId(String usersId);
+	//ModifyDto로부터, Controller에서 post방식할때 사용 비밀번호 있는 버전
+	public ModifyDto getModifyByUserId(String usersId);
+	
+	
 	
 }
