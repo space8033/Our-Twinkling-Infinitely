@@ -16,6 +16,7 @@ import com.webteam1.oti.interceptor.Login;
 import com.webteam1.oti.service.UserService;
 import com.webteam1.oti.service.UserService.JoinResult;
 import com.webteam1.oti.service.UserService.LoginResult;
+import com.webteam1.oti.service.UserService.ModifyResult;
 
 import lombok.extern.slf4j.Slf4j;
 
@@ -112,10 +113,27 @@ public class UserController {
 	
 	@Login
 	@PostMapping("/modify")
-	public String modify(ModifyDto user) {
-		userService.modifyUser(user);
+	public String modify(ModifyDto user, Model model, HttpSession session) {
 		log.info(user.toString());
-		return "redirect:/modify";
+		ModifyResult result = userService.modify(user);
+		LoginDto loginUser = (LoginDto) session.getAttribute("loginIng");
+		ModifyDto loginUserData = userService.getModifyByUsersId(loginUser.getUsers_id());
+		model.addAttribute("userInfo", loginUserData);
+		 if(result == ModifyResult.FAIL_DUPLICATED_EMAIL){
+			String error1 = "이미 사용중인 이메일입니다.";
+			model.addAttribute("error1", error1);
+			
+			log.info("이메일 중복으로 인해 수정에 실패하셨습니다 ㅅㄱ");
+		} else if(result == ModifyResult.FAIL_DUPLICATED_TEL) {
+			String error2 = "이미 사용중인 번호입니다.";
+			model.addAttribute("error2", error2);
+			log.info("전화번호 중복으로 인해 수정에 실패하셨습니다 ㅅㄱ");
+		} else {
+			log.info("님 수정성공ㅋ 올 운좋네");
+			return "redirect:/modify";
+		}
+		 
+		 return "modify/modify";
 	}
 	
 	@Login

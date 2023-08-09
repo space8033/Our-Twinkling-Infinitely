@@ -92,15 +92,38 @@ public class UserServiceImpl implements UserService{
 
 	}
 	
-	@Override
+	/*@Override
 	public void modifyUser(ModifyDto user) {
 		userDao.update(user);
-	}
+	}*/
 	
 	@Override
 	public ModifyDto getModifyByUsersId(String usersId) {
 		ModifyDto user = userDao.modifyByUsersId(usersId);
 		return user;
+	}
+	
+	@Override
+	public ModifyResult modify(ModifyDto user) {
+		JoinDto dbUserId = userDao.selectByusersId(user.getUsers_id());
+		JoinDto dbUserEmail = userDao.selectByusersEmail(user.getUsers_email());
+		JoinDto dbUserPhone = userDao.selectByusersTel(user.getUsers_phone());
+		
+		if(dbUserEmail != null){
+			return ModifyResult.FAIL_DUPLICATED_EMAIL;
+			
+		} else if(dbUserPhone != null) {
+			return ModifyResult.FAIL_DUPLICATED_TEL;
+		} else {
+
+			PasswordEncoder passwordEncoder = PasswordEncoderFactories.createDelegatingPasswordEncoder();
+			user.setUsers_password(passwordEncoder.encode(user.getUsers_password()));
+			userDao.update(user);	
+			return ModifyResult.SUCCESS;
+	
+			
+		}
+		
 	}
 	
 	
