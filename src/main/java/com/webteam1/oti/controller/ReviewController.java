@@ -22,10 +22,9 @@ import lombok.extern.slf4j.Slf4j;
 public class ReviewController {
 	@Resource
 	private ReviewService reviewService;
-	
 	//리뷰 가져오기 (진행중)
 	@GetMapping("/review")
-	public String review(String pageNo, String productNo, Model model, HttpSession session) {
+	public String review(String pageNo, Model model, HttpSession session) {
 		if(pageNo == null) {
 		   //세션에 저장되어 있는지 확인
 		   pageNo = (String) session.getAttribute("pageNo");
@@ -34,17 +33,19 @@ public class ReviewController {
 			   pageNo = "1";
 		   }
 		}
+		int productNum = (int)session.getAttribute("productNum");
+		
 		//문자열을 정수로 변환
 		int intPageNo = Integer.parseInt(pageNo);
 		//세션에 pageNo를 저장
 		session.setAttribute("pageNo", String.valueOf(pageNo));
-		int totalRows = reviewService.countByProductNo(1);
+		int totalRows = reviewService.countByProductNo(productNum);
 		Pager pager = new Pager(10, 5, totalRows, intPageNo);
 		
 		Map<String, Object> map = new HashMap<>();
 		map.put("startRowNo", pager.getStartRowNo());
 		map.put("endRowNo", pager.getEndRowNo());
-		map.put("productNo", 1);
+		map.put("productNo", productNum);
 		
 		List<Review> list = reviewService.getReviewListByPno(map);
 		
