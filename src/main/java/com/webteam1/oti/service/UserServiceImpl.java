@@ -108,6 +108,7 @@ public class UserServiceImpl implements UserService{
 	public ModifyDto getModifyByUserId(String usersId) {
 		ModifyDto user = userDao.modifyByUserId(usersId);
 		return user;
+
 	}
 	
 	@Override

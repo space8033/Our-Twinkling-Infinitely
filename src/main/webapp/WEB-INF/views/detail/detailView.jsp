@@ -18,52 +18,59 @@
 						</div>
 				</c:if>
 					<div class="detail1-content mt-4">
-						<h4 class="m-2 d-flex justify-content-start"><small>${product.product_name}</small></h4>
+						<h4 id="product_name" class="m-2 d-flex justify-content-start"><small>${product.product_name}</small></h4>
 						<h2 class="m-2 d-flex justify-content-start">
 							<small>
 								<fmt:formatNumber value="${product.product_price}" type="number"/>
+								<input type="hidden" id="product_price" value="${product.product_price}"/>
 							</small>
 						</h2>
 						<div class="custom-select-box">					
-							옵션<select class="custom-select m-3">
-								<option>---[필수]옵션을 선택해 주세요---</option>
+							옵션
+							<select class="option custom-select m-3" onclick="myOption1()">
+								<option value="none">---[필수]옵션을 선택해 주세요---</option>
 								<c:forEach var="productOption" items="${options}">
-									<option>${productOption}</option>
+									<option id="p-option" value="${productOption}">${productOption}</option>
 								</c:forEach>
 							</select>
 						</div>
 						<div class="custom-qty">
 							<input type="hidden" name="product_no" value="${optionList.productOption_no}"/>
-							수량<select class="custom-select  m-3" name="amount">
-								<option>---[필수]수량을 선택해 주세요---</option>
+							수량<select class="qty custom-select  m-3" name="amount" onclick="myOption2()">
+								<option value="none">---[필수]수량을 선택해 주세요---</option>
 								<c:forEach begin="1" end="10" var="i">
-									<option value="${i}">${i}</option>
+									<option id="p-qty" value="${i}">${i}</option>
 								</c:forEach>
 							</select>
 						</div>
+						<div class="myOption">
+							${product.product_name}
+							<div class="d-flex">							
+								<div id="select-p-option"></div>
+								<div id="select-p-qty"></div>
+								<div id="total-price"></div>
+							</div>
+						</div>
 						<div class="m-2">
-						<c:if test="${loginIng != null}">
-							 <div>
-							 	<a class="dtailButton btn btn-outline-dark btn-block m-4">
-							 		구매하기
-							 	</a>
-							 </div>
-							 <div>
-							 	<a href="${pageContext.request.contextPath}/cart/basket">
-							 		<button type="submit" class="dtailButton btn btn-outline-dark btn-block m-4">장바구니</button>
-							 	</a>
-							 </div>
-					 	</c:if>
-					 	<c:if test = "${loginIng == null}">
-					 		 <div>
-							 	<a class="dtailButton btn btn-outline-dark btn-block m-4" href="${pageContext.request.contextPath}/loginForm">
-							 		구매하기
-							 	</a>
-							 </div>
-					 		<a href="${pageContext.request.contextPath}/loginForm">
-						 		<button type="submit" class="dtailButton btn btn-outline-dark btn-block m-4">장바구니</button>
-						 	</a>
-					 	</c:if>
+							<c:if test="${loginIng != null}">
+								 <div>
+								 	<a class="dtailButton btn btn-outline-dark btn-block m-4">
+								 		구매하기
+								 	</a>
+								 </div>
+						 	</c:if>
+						 	<c:if test = "${loginIng == null}">
+						 		 <div>
+								 	<a class="dtailButton btn btn-outline-dark btn-block m-4" href="${pageContext.request.contextPath}/loginForm">
+								 		구매하기
+								 	</a>
+								 </div>
+						 	</c:if>
+							<div>
+								<a href="${pageContext.request.contextPath}/cart/basket">
+									<button type="submit" class="dtailButton btn btn-outline-dark btn-block m-4">장바구니</button>
+								</a>
+							</div>
 						</div>
 					</div>
 				</div>

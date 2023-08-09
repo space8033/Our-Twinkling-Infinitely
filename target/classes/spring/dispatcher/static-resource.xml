@@ -7,10 +7,6 @@
 		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd
 		http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc.xsd">
 	
-	<!-- 
-		/resources/** 경로가 포함되어 있을 경우 /resources/ 폴더로 바로 매핑
-		주의: resources 폴더는 WEB-INF 바깥쪽에 있어야함(URL로 접근해야 하므로)
-	 -->
 	<mvc:resources mapping="/resources/**" location="/resources/" />
 
 </beans>

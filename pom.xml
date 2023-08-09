@@ -81,11 +81,6 @@
 	    <version>5.3.29</version>
 	</dependency>
 
-	
-	<!-- 
-		Ch02
-	 	자바 코드로 json을 생성하거나 json을 파싱할 때 이용하는 라이브러리
-	 -->
 	<!-- Json -->
 	<dependency>
 	    <groupId>org.json</groupId>
@@ -94,7 +89,7 @@
 	</dependency>
 	
 	<!--
-		 Ch02: Jackson(자바 객체를 json으로, json을 자바 객체로 변환해주는 역할)
+		 Jackson
 	-->
   	<dependency>
 	    <groupId>com.fasterxml.jackson.core</groupId>
@@ -103,7 +98,7 @@
 	</dependency>
   	
   	<!-- 
-  		Ch04 : @Valid 어노테이션을 사용하기 위한 의존설정
+  		@Valid 어노테이션을 사용
   	 -->
   	 <dependency>
 	    <groupId>javax.validation</groupId>
@@ -111,7 +106,7 @@
 	    <version>2.0.1.Final</version>
 	</dependency>
   	 
-  	 <!-- Ch09 멀티파트를 해석하기 위해 필요(방법1) -->
+  	 <!-- 멀티파트를 해석-->
   	 <dependency>
 	    <groupId>commons-fileupload</groupId>
 	    <artifactId>commons-fileupload</artifactId>
@@ -119,7 +114,7 @@
 	</dependency>
   	 
   	 <!-- 
-  	 	Ch13 커넥션 풀을 사용하기 위해 필요
+  	 	 커넥션 풀 사용
   	  -->
   	 <dependency>
 	    <groupId>org.apache.commons</groupId>
@@ -128,7 +123,7 @@
 	</dependency>
   	
   	 <!-- 
-  	 	Ch13 JDBC Driver
+  	 	JDBC Driver
   	  -->
   	 <dependency>
 	    <groupId>com.oracle.database.jdbc</groupId>
@@ -137,7 +132,7 @@
 	</dependency>
   	 
   	 <!-- 
-  	 	Ch13 MyBatis가 생성하는 SQL문을 로그로 출력해주는 라이브러리
+  	 	MyBatis 로그
   	  -->
   	 <dependency>
 	    <groupId>com.googlecode.log4jdbc</groupId>
@@ -146,7 +141,7 @@
 	</dependency>
   	
   	<!-- 
-  		Ch13 스프링 프레임워크에서 MyBatis를 사용하기 위해 필요한 라이브러리
+  	  MyBatis
   	 -->
   	 <dependency>
 	    <groupId>org.mybatis</groupId>
@@ -161,7 +156,7 @@
 	</dependency>
 	
 	<!-- 
-		Ch13 PasswordEncoder를 사용하기 위해 필요한 라이브러리
+		PasswordEncoder
 	-->
 	<dependency>
 	    <groupId>org.springframework.security</groupId>
@@ -170,7 +165,7 @@
 	</dependency>
 	
 	<!-- 
-		Ch14 Aop 사용을 위한 라이브러리
+		Aop 
 	 -->
 	 <dependency>
 	    <groupId>org.aspectj</groupId>

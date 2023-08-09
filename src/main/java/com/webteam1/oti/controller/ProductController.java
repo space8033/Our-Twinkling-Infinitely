@@ -27,7 +27,9 @@ public class ProductController {
 	private ProductService productService;
 	@Resource
 	private ImageService imageService;
-
+	
+	//상품 상세 페이지 불러오기
+	//상품리스트에서 그 상품에 해당하는 상품 상세정보
 	@GetMapping("/detailProduct")
 	public String detailView(String product_no, Model model, HttpSession session) {
 		   int productNum = Integer.parseInt(product_no);
@@ -62,6 +64,9 @@ public class ProductController {
 		   model.addAttribute("detailImg", detailImg);
 		   List<ProductOption> options = productService.getOptions(productNum);
 		   model.addAttribute("optionsList", options);
+		   
+		   session.setAttribute("productNum", productNum);
+		   model.addAttribute("productNum", productNum);
 		   
 		   return "detail/detailView";
 	}

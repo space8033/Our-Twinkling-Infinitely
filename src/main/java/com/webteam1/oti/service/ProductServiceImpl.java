@@ -33,7 +33,7 @@ public class ProductServiceImpl implements ProductService{
 		Product product = productDao.selectByPno(product_no);
 		int hitcount = product.getProduct_hitcount() + 1;
 		product.setProduct_hitcount(hitcount);
-		productDao.updateByBno(product);	
+		productDao.updateByPno(product);	
 	}
 
 	@Override
