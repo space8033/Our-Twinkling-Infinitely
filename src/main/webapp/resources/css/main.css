@@ -266,6 +266,9 @@ footer .inner {
 	color: black;
 	font-weight: bold;
 }
+#menu3{
+	background-color: white;
+}
 
 /* 반응형 */
 @media screen and (max-width: 768px) {
