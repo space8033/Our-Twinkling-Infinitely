@@ -55,7 +55,7 @@
 						<div class="m-2">
 							<c:if test="${loginIng != null}">
 								 <div>
-								 	<a class="dtailButton btn btn-outline-dark btn-block m-4">
+								 	<a class="dtailButton btn btn-outline-dark btn-block m-4" href="${pageContext.request.contextPath}/orderPay">
 								 		구매하기
 								 	</a>
 								 </div>

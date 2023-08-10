@@ -99,17 +99,12 @@ public class UserServiceImpl implements UserService{
 	
 	@Override
 	public ModifyDto getModifyByUsersId(String usersId) {
+		log.info(usersId+"usersId");
 		ModifyDto user = userDao.modifyByUsersId(usersId);
+		log.info(user+"user");
 		return user;
 	}
 	
-	//ModifyDto로부터, Controller에서 post방식할때 사용 비밀번호 있는 버전
-	@Override
-	public ModifyDto getModifyByUserId(String usersId) {
-		ModifyDto user = userDao.modifyByUserId(usersId);
-		return user;
-
-	}
 	
 	@Override
 	public void modify(ModifyDto user) {
@@ -117,9 +112,13 @@ public class UserServiceImpl implements UserService{
 		PasswordEncoder passwordEncoder = PasswordEncoderFactories.createDelegatingPasswordEncoder();
 		user.setUsers_password(passwordEncoder.encode(user.getUsers_password()));
 		userDao.update(user);	
-
 		
-		
+	}
+	
+	@Override
+	public void unjoin(String uid) {
+		JoinDto user = userDao.selectByusersId(uid);
+		userDao.delete(user);
 	}
 }	
 	

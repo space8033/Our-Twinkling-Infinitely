@@ -54,14 +54,9 @@
 
 	</select>
 	
-	<!-- ModifyDto로부터, Controller에서 post방식할때 사용 비밀번호 있는 버전 -->
-    <select id="modifyByUserId" resultType="Modify" parameterType="String">
-
-		select users_id, users_email, users_phone, users_name, users_password
-		from users 
-		where users_id=#{users_id}
-
-	</select>
+	<delete id="delete" parameterType="Join">
+		delete from users where users_id=#{users_id}
+	</delete>
    
 	
 
