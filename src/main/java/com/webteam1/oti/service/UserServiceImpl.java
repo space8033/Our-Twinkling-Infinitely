@@ -103,13 +103,6 @@ public class UserServiceImpl implements UserService{
 		return user;
 	}
 	
-	//ModifyDto로부터, Controller에서 post방식할때 사용 비밀번호 있는 버전
-	@Override
-	public ModifyDto getModifyByUserId(String usersId) {
-		ModifyDto user = userDao.modifyByUserId(usersId);
-		return user;
-
-	}
 	
 	@Override
 	public void modify(ModifyDto user) {
