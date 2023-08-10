@@ -1,8 +1,6 @@
 $(init)
 
 function init(){
-	//상품 상세페이지  menu3-리뷰리스트
-	showReview();
 	//header 검색바 숨기기
 	$(".topnav").hide();
 	//상품 메인페이지 광고
@@ -63,11 +61,4 @@ function myOption2(){
 		$(".myOption").hide();
 	}
 } 
-
-function showReview(){
-	console.log("바보");
-	
-	$("#menu3").load("review");
-}
-
 
