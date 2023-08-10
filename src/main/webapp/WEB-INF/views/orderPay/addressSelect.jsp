@@ -6,16 +6,11 @@
   		<meta name="viewport" content="width=device-width, initial-scale=1.0">
       	<link rel="icon" href="/html_css_javascript/favicon.ico" type="image/x-icon">
       	<title>Insert title here</title>
-      
-
-  
-    
-      <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css">
-      <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.4/dist/jquery.min.js"></script>
-      <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
-      <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>
-  	 <script src="addressSelect.js"></script>
-  	 
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css">
+        <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.4/dist/jquery.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>
+  	    <script src="${pageContext.request.contextPath}/resources/js/addressSelect.js" charset="utf-8"></script>
   	 
 	<style>
 		#header {
@@ -119,8 +114,9 @@
                   <div>010-1111-2222</div>
                   <div>문 앞에 두고 도망가세여</div>
                   <div class="buttonClass">
-	                  <div><button class="abutton" id="modifyButton">수정</button></div>
-	                  <div><button class="abutton" id="select">선택</button></div>
+	                  <div><button class="abutton" id="modifyButton" onclick="modifyAddress()">수정</button></div>
+	                 
+	                  <div><button class="abutton" id="select" onclick="selectAddress()">선택</button></div>
                   </div>	
                </div>
              
@@ -130,7 +126,7 @@
              
           
               </div>
-              <div id="addAddress">
+              <div id="addAddress" onclick="addAddress()">
                   + 배송지 추가
                </div>
               
