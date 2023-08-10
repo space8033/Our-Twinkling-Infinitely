@@ -99,7 +99,9 @@ public class UserServiceImpl implements UserService{
 	
 	@Override
 	public ModifyDto getModifyByUsersId(String usersId) {
+		log.info(usersId+"usersId");
 		ModifyDto user = userDao.modifyByUsersId(usersId);
+		log.info(user+"user");
 		return user;
 	}
 	

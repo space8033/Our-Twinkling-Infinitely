@@ -6,16 +6,13 @@
 <head>
     <meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=2.0">
-	<link rel="shortcut icon"
-	href="//image9.coupangcdn.com/image/coupang/favicon/v2/favicon.ico"
-	type="image/x-icon" />
+	<link rel="shortcut icon" href="//image9.coupangcdn.com/image/coupang/favicon/v2/favicon.ico" type="image/x-icon" />
 	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css">
-		<script src="https://cdn.jsdelivr.net/npm/jquery@3.6.4/dist/jquery.min.js"></script>
-		<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
-		<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>
-		
-		<script src="${pageContext.request.contextPath}/resources/js/joinForm.js"></script>
 	<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/joinForm_css.css">
+	<script src="https://cdn.jsdelivr.net/npm/jquery@3.6.4/dist/jquery.min.js"></script>
+	<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>
+	<script src="${pageContext.request.contextPath}/resources/js/joinForm.js"></script>
     <title>쿠팡 회원가입 폼</title>
 </head>
 <body>
@@ -24,8 +21,6 @@
     </header>
     <section>
     	<form id="joinForm" name="joinForm" action="joinForm" onsubmit="checkValidation()" method="post">
-        	
-        	
         	회원정보를 입력해주세요.
         	<div class="form-group">
             	<div id="id-form" class="id-form-group line-gray">
@@ -35,19 +30,16 @@
 					<div>
 						<input type="text" class="input" placeholder="아이디" id="uid" onfocus="this.placeholder=''"
 							  autocomplete="off" value="${joinDto.users_id}" name="users_id">
-						
 					</div>
 				</div>	
 				<span id="uidErr1" class="errorMsg text-danger d-none small" style="margin-left:10px; font-family: dotum,sans-serif; font-size: 12px;">아이디를 입력해주세요.</span>
 				<span id="uidErr2" class="errorMsg text-danger d-none small" style="margin-left:10px; font-family: dotum,sans-serif; font-size: 12px;">아이디를 올바르게 입력해주세요.</span>
-				
 				<c:if test="${error1 != null}">
 					<div id="uidErr3" role="alert" class="alert alert-danger" style="margin-left:10px; font-family: dotum,sans-serif; font-size: 12px;">
 						${error1}
 					</div>
 				</c:if>
 		   </div>
-				
 				
 		   <div class="form-group">
 		 	   <div id="pwd-form" class="pwd-form-group line-gray">
@@ -142,10 +134,7 @@
 	       <span>전체 동의에는 필수 및 선택 정보에 대한 동의가 포함되어 있으며, 개별적으로 동의를 선택 하실 수 있습니다. 
 	       		 선택 항목에 대한 동의를 거부하시는 경우에도 서비스 이용이 가능합니다.</span>
 	      
-	      
 	       <div class="agreementbox">
-	       
-
 	           <div>
 	               <input class="agreement" type="checkbox" id="agree1" name="agree" value="agree"/>
 	               <label for="agree1">[필수] 쿠팡 이용약관 동의</label>
