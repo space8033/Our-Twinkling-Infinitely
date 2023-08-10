@@ -91,7 +91,7 @@ public class ProductController {
 		   session.setAttribute("productNum", productNum);
 		   model.addAttribute("productNum", productNum);
 		   
-		   log.info(pageNo2);
+		   //----------리뷰 페이징 및 리뷰 리스트 ----------------------------------------------------
 			if(pageNo2 == null) {
 			   //세션에 저장되어 있는지 확인
 			   pageNo2 = (String) session.getAttribute("pageNo2");
@@ -100,9 +100,7 @@ public class ProductController {
 				   pageNo2 = "1";
 			   }
 			}
-			log.info(pageNo2);
 			int productNo = (int)session.getAttribute("productNum");
-			log.info(productNo + "");
 			//문자열을 정수로 변환
 			int intPageNo = Integer.parseInt(pageNo2);
 			//세션에 pageNo를 저장
@@ -114,7 +112,7 @@ public class ProductController {
 			map.put("startRowNo", pager.getStartRowNo());
 			map.put("endRowNo", pager.getEndRowNo());
 			map.put("productNo", productNo);
-			
+			//리뷰 리스트 가져오기
 			List<Review> list = reviewService.getReviewListByPno(map);
 			
 			model.addAttribute("pager", pager);

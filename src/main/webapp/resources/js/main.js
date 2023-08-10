@@ -60,4 +60,6 @@ function myOption2(){
 	}else{
 		$(".myOption").hide();
 	}
-} 
+}
+
+
