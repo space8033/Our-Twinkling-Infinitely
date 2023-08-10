@@ -61,5 +61,3 @@ function myOption2(){
 		$(".myOption").hide();
 	}
 }
-
-

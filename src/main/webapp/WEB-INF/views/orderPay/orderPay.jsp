@@ -5,72 +5,56 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<link rel="icon" href="/html_css_javascript/favicon.ico"
+	<link rel="icon" href="/html_css_javascript/favicon.ico"
 	type="image/x-icon">
-<title>Insert title here</title>
-
-
-<link rel="stylesheet"
-	href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css">
-<script
-	src="https://cdn.jsdelivr.net/npm/jquery@3.6.4/dist/jquery.min.js"></script>
-<script
-	src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
-<script
-	src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>
-
-<script src="${pageContext.request.contextPath}/resources/js/orderPay.js"></script>
-
-<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/orderPay_css.css">
-
-
+	<title>Insert title here</title>
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css">
+	<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/orderPay_css.css">
+	<script src="https://cdn.jsdelivr.net/npm/jquery@3.6.4/dist/jquery.min.js"></script>
+	<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>
+	<script src="${pageContext.request.contextPath}/resources/js/orderPay.js"></script>
 </head>
-
 <body>
 	<div id="wrapper">
-	
 		<!-- 헤더 -->
 		<section class="d-flex-column mx-auto " style="width: 1250px;">
 			<header class="border-h">
-						<div class="head">
-							<img 
-								src="//image7.coupangcdn.com/image/coupang/common/logo_coupang_w350.png"
-								width="174" height="41" alt="쿠팡">
-						</div>
-				</header>
+				<div class="head">
+					<img src="//image7.coupangcdn.com/image/coupang/common/logo_coupang_w350.png" width="174" height="41" alt="쿠팡">
+				</div>
+			</header>
 		</section>
-		
 		<hr>
-		
 		<!-- 바디 -->
 		<section class="d-flex-column mx-auto " style="width: 1250px;">
-				
-				<!-- 페이지창 -->
+			<!-- 페이지창 -->
 			<div class="d-flex justify-content-between" style="border-bottom: 3px solid #777">
 				<h3>주문/결제</h3>
 				<span class="align-self-center"> <span style="color: #346AFF">주문결제></span>주문완료
 				</span>
 			</div>
-			
 			<form onsubmit="return false;">
-			
 				<!-- 구매자 정보 -->
 				<div class="">
 					<h2>구매자정보</h2>
 					<table class="consumerInfo">
 						<tr>
 							<th>이름</th>
-							<td>김시온</td>
+							<td>
+								 ${orderUser.users_name} 
+								
+							</td>
 						</tr>
 						<tr>
 							<th>이메일</th>
-							<td>www_lol@naver.com</td>
+							<td>${orderUser.users_email}</td>
 						</tr>
 						<tr>
 							<th>휴대폰 번호</th>
 							<td><input id="tel" type="tel" name="tel"
-								value="010-4504-1219" style="height:28px; margin-top:10px;">
-							<button id="telBtn" type="button" style="height:28px;">수정</button>
+								value="${orderUser.users_phone}" style="height:28px; margin-top:10px;">
+								<button id="telBtn" type="button" style="height:28px;">수정</button>
 								<span class="mx-3" style="color:#9A9A9A;">쿠폰/티켓 정보는 구매한 분의 번호로 전송됩니다.</span>
 								<div id="telErr1" class="errMsg" style="color: red;">전화번호
 									형식이 올바르지 않습니다.</div>
@@ -117,13 +101,11 @@
 						</tr>
 					</table>
 			</div>
-				
-
 				<!--배송 n건중 n -->
 				<div class="">
 					<h2>배송 1건 중 1</h2>
 					<div id="orderplus">
-					<!-- 	<table class="nofn" style="font-family: Dotum, sans-serif;">
+					 	<table class="nofn" style="font-family: Dotum, sans-serif;">
 							<tr>
 								<th colspan='3' class="text-left" style="font-size: 16px; color: #00891A;">내일(화)
 									7/12 도착 보장</th>
@@ -147,16 +129,9 @@
 										
 								</td>
 							</tr>
-							
-						
-									
-						
-						
-						</table> -->
+						</table> 
 					</div>
 				</div>
-
-
 				<!-- 결제 정보 -->
 				<div id="payInfo" class="">
 					<h2>결제 정보</h2>
@@ -172,13 +147,8 @@
 								<button id="couponSelect" >할인쿠폰선택</button>
 								</div>
 								<div id="dicountRow" style="background-color: #f8f8f8; padding-bottom:16px; padding-top:10px;">
-								 	
-									
 									<input id="couponUse" type="checkbox" name="Use"  style="margin-left: 170px;"> <span id="couponDiscount"> 2,000</span>원
 									<span style="margin-left: 20px;">30000원 이상  장바구니</span>
-									
-									
-									
 								</div> 
 							</td>
 						</tr>
@@ -200,8 +170,6 @@
 									<input id="cuCash" type="number" value="0" placeholder="0" name="cuCash" style="margin-left: 170px;">원 | 
 									<input id="allUse" type="checkbox" name="allUse"> 모두사용
 									<div><button id="cuCashApply" style="margin-left: 170px; margin-top:10px;">쿠팡캐시적용</button></div>
-									
-									
 									<div id="cashOver" class="choice-error" style="color: red; padding-left: 17px; margin-left: 170px; display: none;">
 									사용가능한 캐시를 초과 입력하였습니다.
 									</div>
@@ -538,11 +506,6 @@
             </div>
          </div>
       </footer>
-	
 </body>
-		 
-
-
-		
 
 </html>

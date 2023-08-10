@@ -1,7 +1,13 @@
 package com.webteam1.oti.controller;
 
+import java.util.List;
+
+//github.com/space8033/Our-Twinkling-Infinitely.git
 
 import javax.annotation.Resource;
+import javax.servlet.http.Cookie;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Controller;
@@ -9,12 +15,14 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.util.WebUtils;
 
+import com.webteam1.oti.dto.Cart;
 import com.webteam1.oti.dto.user.JoinDto;
 import com.webteam1.oti.dto.user.LoginDto;
 import com.webteam1.oti.dto.user.ModifyDto;
 import com.webteam1.oti.interceptor.Login;
+import com.webteam1.oti.service.CartService;
 import com.webteam1.oti.service.UserService;
 import com.webteam1.oti.service.UserService.JoinResult;
 import com.webteam1.oti.service.UserService.LoginResult;
@@ -27,6 +35,8 @@ import lombok.extern.slf4j.Slf4j;
 public class UserController {
 	@Resource
 	private UserService userService;
+	@Resource
+	private CartService cartService;
 	
 	//회원가입 폼 불러오기
 	@GetMapping("/joinForm")
@@ -71,7 +81,7 @@ public class UserController {
 	}
 	//로그인 요청
 	@PostMapping("/loginForm")
-	public String login(LoginDto users, Model model, HttpSession session) {
+	public String login(LoginDto users, Model model, HttpSession session, HttpServletRequest request, HttpServletResponse response) {
 		LoginResult result = userService.login(users);
 		
 		
@@ -94,10 +104,26 @@ public class UserController {
 			
 			LoginDto loginDto = (LoginDto) session.getAttribute("loginIng");
 			model.addAttribute("loginIng", loginDto);
+			
+			//비회원 장바구니 회원장바구니로 이동
+			Cookie cookie = WebUtils.getCookie(request, "cartCookie");
+
+			if (cookie != null) {
+				String ckValue = cookie.getValue();
+				
+				log.info("비회원장바구니 삭제");
+				
+				//쿠키가 있는 카트 중 해당 회원ID 입력
+				List<Cart> list = cartService.getCartByCkId(ckValue);
+				for(Cart cart: list) {
+					cart.setUsers_users_id(loginDto.getUsers_id());
+					cartService.cartUpdate(cart);
+					log.info("앙 바껴랏" + cart);
+				}
+			}
 			return "redirect:/";
 		}
 		return "login/loginForm";
-		
 	}
 	
 	//로그아웃 요청
