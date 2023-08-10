@@ -1,22 +1,25 @@
-$(init);
+$(init)
+
 function init() {
-	infoSuccess();
+	modifyCheck();
 }
 
-function infoSuccess() {
-	var successMsg = $("#successMsg").val();
-	console.log(successMsg);
-	if(successMsg==="pass") {
-		alert("회원정보를 수정하였습니다.");
+function modifyCheck() {
+	var modifyMsg = $("#modifyMsg").val();
+	console.log(modifyMsg);
+	if(modifyMsg!="") {
+		alert(modifyMsg);
 		
 	}
+	
 }
 
 function unjoin() {
 	if(window.confirm("탈퇴하시겠습니까?")){
-	location.href="/unjoin";
+		location.href="/our-twinkling-infinitely/unjoin";
 	}
 }
+
 
 //폼 제출 시 유효성 검사
 function checkValidation() {
@@ -156,10 +159,13 @@ function checkValidation() {
 	if(!isValidation) {
 		event.preventDefault();
 		window.alert('test');
+	} else {
+		if(window.confirm("회원정보를 수정하시겠습니까?")){
+			location.href="/our-twinkling-infinitely/modify";
+			
+		} else {
+			event.preventDefault();
+		}
 	}
-	
-	
-	
 }		
-
 

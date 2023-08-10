@@ -24,7 +24,7 @@
         <h1><a href="${pageContext.request.contextPath}"><img src="${pageContext.request.contextPath}/resources/yuimg/메인로고.png" alt="OTi로고"></a></h1>
     </header>
     <section>
-            
+               <input type="hidden" id="modifyMsg" value="${msg}">
                <form id="loginForm" name="loginForm" action="loginForm" onsubmit="checkValidation()" method="post">
                  <div class="form-group">
                  	<div id="id-form" class="id-form-group line-gray">
