@@ -1,8 +1,6 @@
 $(init)
 
 function init(){
-	//상품 상세페이지  menu3-리뷰리스트
-	showReview();
 	//header 검색바 숨기기
 	$(".topnav").hide();
 	//상품 메인페이지 광고
