@@ -1,3 +1,21 @@
+$(init)
+
+function init() {
+	modifyCheck();
+}
+
+function modifyCheck() {
+	var modifyMsg = $("#modifyMsg").val();
+	console.log(modifyMsg);
+	if(modifyMsg!="") {
+		alert(modifyMsg);
+		
+	}
+	
+}
+
+
+
 function blink() {
 	var click = document.getElementById('eye');
 	var pwdType = document.getElementById("pwd").getAttribute("type");

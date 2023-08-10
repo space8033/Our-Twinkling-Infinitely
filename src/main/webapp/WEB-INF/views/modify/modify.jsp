@@ -15,7 +15,7 @@
 		<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
 		<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>
 		
-		<script src="${pageContext.request.contextPath}/resources/js/modify.js"></script>
+		<script src="${pageContext.request.contextPath}/resources/js/modify.js" charset="utf-8"></script>
 			
 		<style>
 			button {
@@ -25,10 +25,12 @@
 	</head>
 	
 	<body>
-	<br>
+		
+		<br>
 		<div class="container" style="font-size: 26px; text-align: center;">
 			회원 정보 수정
 		</div>
+		<input type="hidden" id="modifyMsg" value="${msg}">
 		<br>
 		<form method="post" action="modify" id="modify" name="modify" onsubmit="checkValidation()">
 			<input type="hidden" value="${success}" id="successMsg">
@@ -183,7 +185,7 @@
 					</div>
 					<div style="font-size: 11px">쇼핑몰에서 제공하는 유익한 이벤트 소식을 SMS로 받으실 수 있습니다.</div> 				
 				</div>
-			</div>			
+			</div>		
 			<br>
 			<div class="d-flex container pt-4" style="border-top: 1px solid #e5e5e5">
 				<div style="width:30%"></div>

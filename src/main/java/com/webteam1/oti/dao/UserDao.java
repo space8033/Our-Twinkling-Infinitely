@@ -22,9 +22,7 @@ public interface UserDao {
 	public int update(ModifyDto user); //users_password, users_name, users_phone, users_email 수정
 	//ModifyDto로부터, Controller에서 get방식할때 사용 비밀번호 없는 버전
 	public ModifyDto modifyByUsersId(String usersId);
-	//ModifyDto로부터, Controller에서 post방식할때 사용 비밀번호 있는 버전
-	public ModifyDto modifyByUserId(String usersId);
-	
+	//JoinDto로부터 회원 탈퇴
 	public int delete(JoinDto user);
 	
 }
