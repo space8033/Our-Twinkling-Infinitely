@@ -63,9 +63,3 @@ function myOption2(){
 		$(".myOption").hide();
 	}
 } 
-
-function showReview(){
-	console.log("바보");
-	
-	$("#menu3").load("review");
-}

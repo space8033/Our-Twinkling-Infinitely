@@ -35,7 +35,7 @@ public class AddressController {
 		
 		if(pageNo == null) {
 		   //세션에 저장되어 있는지 확인
-		   pageNo = (String) session.getAttribute("pageNo");
+		   pageNo = (String) session.getAttribute("pageNo3");
 		   //저장되어있지 않다면 "1"로 초기화
 		   if(pageNo == null) {
 			   pageNo = "1";
@@ -44,7 +44,7 @@ public class AddressController {
 		//문자열을 정수로 변환
 		int intPageNo = Integer.parseInt(pageNo);
 		//세션에 pageNo를 저장
-		session.setAttribute("pageNo", String.valueOf(pageNo));
+		session.setAttribute("pageNo3", String.valueOf(pageNo));
 		int totalRows = addressService.countByUserId(user_id);
 		Pager pager = new Pager(5, 5, totalRows, intPageNo);
 		
