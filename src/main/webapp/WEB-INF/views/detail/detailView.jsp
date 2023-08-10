@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 
 <%@ include file="/WEB-INF/views/common/header.jsp" %>
-		<form method="post" action="addCart">
+		<form method="post" id="addCart" name="addCart" action="addCart">
 			<div class="detail1 d-flex">
 				<div>
 					<c:forEach var="image" items="${images}">				
@@ -13,21 +13,23 @@
 					</c:forEach>
 				</div>
 				<c:if test="${product.product_img !=null}">
-						<div class="detail1-image m-4">
-							<img src="data:MIME;base64, ${product.product_img}" width="500px"/> 
-						</div>
+					<div class="detail1-image m-4">
+						<img src="data:MIME;base64, ${product.product_img}" width="500px"/> 
+					</div>
 				</c:if>
 					<div class="detail1-content mt-4">
 						<h4 id="product_name" class="m-2 d-flex justify-content-start"><small>${product.product_name}</small></h4>
 						<h2 class="m-2 d-flex justify-content-start">
 							<small>
 								<fmt:formatNumber value="${product.product_price}" type="number"/>
-								<input type="hidden" id="product_price" value="${product.product_price}"/>
+								<input id="product_price" type="hidden" value="${product.product_price}"/>
+								<!-- submit: 해당 상품 번호 -->
+								<input type="hidden" id="product_price" name="product_product_no" value="${product.product_no}"/>
 							</small>
 						</h2>
 						<div class="custom-select-box">					
 							옵션
-							<select class="option custom-select m-3" onclick="myOption1()">
+							<select class="option custom-select m-3" name="cart_optionContent" onclick="myOption1()">
 								<option value="none">---[필수]옵션을 선택해 주세요---</option>
 								<c:forEach var="productOption" items="${options}">
 									<option id="p-option" value="${productOption}">${productOption}</option>
@@ -35,8 +37,7 @@
 							</select>
 						</div>
 						<div class="custom-qty">
-							<input type="hidden" name="product_no" value="${optionList.productOption_no}"/>
-							수량<select class="qty custom-select  m-3" name="amount" onclick="myOption2()">
+							수량<select class="qty custom-select  m-3" name="cart_qty" onclick="myOption2()">
 								<option value="none">---[필수]수량을 선택해 주세요---</option>
 								<c:forEach begin="1" end="10" var="i">
 									<option id="p-qty" value="${i}">${i}</option>
@@ -67,7 +68,10 @@
 								 </div>
 						 	</c:if>
 							<div>
-								<button type="submit" class="dtailButton btn btn-outline-dark btn-block m-4">장바구니</button>
+								<c:if test="${loginIng != null}">
+									<input type="hidden" name="users_users_id" value="${loginIng.users_id}">
+								</c:if>
+									<button type="submit" class="dtailButton btn btn-outline-dark btn-block m-4">장바구니</button>
 							</div>
 						</div>
 					</div>
