@@ -155,11 +155,7 @@ function AllDeleteConfirmDialog(){
 		init();
 	}
 }
-//로켓와우 무료 체험 신청하기 팝업
-function openPopup1(){
-		window.open("https://loyalty.coupang.com/loyalty/sign-up/intro?source=cart&benefitType=WOW_CASHBACK", 
-				"locketWowApplication", "left=100, top=100, width=350, height=500");
-}
+
 //전체선택 클릭시 로딩 스피너
 function loading() {
     LoadingWithMask();
@@ -211,10 +207,11 @@ function setSelectBox(){
 	//수량 선택에 따른 상품의 가격
 	if($(".select-option option:selected").length !== 0){
 		 $.ajax({
-			 url: "/cart",
+			 url: "addCart",
 			 method: "get",
-			 success: function(data){
-				 data.forEach((item, index) => {
+			 dataType: "Json",
+			 success: function(list){
+				 list.forEach((item, index) => {
 		        	 let idNo = "customSelect" + index;
 			       if(coPrice == idNo){
 			    	   let targetPrice = item.price * schField;
@@ -239,10 +236,11 @@ function setSelectBox(){
 		let coPrice = $(event.target).prop("id");
 		
 		$.ajax({
-			 url: "../html/basket_content.jsp",
+			 url: "addCart",
 			 method: "get",
-			 success: function(data){
-		         data.forEach((item, index) => {
+			 dataType: "Json",
+			 success: function(list){
+		         list.forEach((item, index) => {
 		        	 //select option id
 		        	 let idNo = "customSelect" + index;
 			       if(coPrice == idNo){
@@ -329,27 +327,27 @@ function jsonProduct() {
 	let day = weekday[days];
 	
   $.ajax({
-	 url: "/cart",
+	 url: "addCart",
 	 method: "get",
 	 dataType: "Json",
-	 success: function(data){
+	 success: function(list){
 		 let html = "";
-         data.forEach((item, index) => {
+         list.forEach((item, index) => {
         	priceArr.push(item.price);
-        	let price = item.price.toLocaleString("ko-KR");
-        	let benefit = Math.ceil(item.price * 0.05);
+        	let price = item.product_price.toLocaleString("ko-KR");
+        	let benefit = Math.ceil(item.product_price * 0.05);
         	html += '<tr class="productRow">';	
         	html += '<td>';
-      	    html += '	<input id="chk' + index + '" title="' + item.title + ' 상품을 결제상픔으로 결정" type="checkbox" name="chk" class="pchk" value='+ item.price +' onclick="loading()"/>';
+      	    html += '	<input id="chk' + index + '" title="' + item.product_name + ' 상품을 결제상픔으로 결정" type="checkbox" name="chk" class="pchk" value='+ item.price +' onclick="loading()"/>';
       		html += '</td>';
       		html += '<td class="p_img">';
       		html += '	<a href="#">';
-      		html += '		<img src="../../common/image/coupang/' + item.img + ' "width="78"/>';
+      		html += '		<img src="data:MIME;base64,' + item.product_img + ' "width="78"/>';
       		html += '	</a>';
       		html += '</td>';
       		html += '<td class="product_contents">';
       		html += '	<div class="c_name">';
-      		html += '		<a href="http://localhost:8080/html_css_javascript/homeworks/detailView.jsp">' + item.title;		
+      		html += '		<a href="http://localhost:8080/html_css_javascript/homeworks/detailView.jsp">' + item.product_name;		
       	    html += '		</a>';		
       		html += '	</div>';
       		html += '	<div class="c_date&c_option d-flex">';
@@ -364,7 +362,7 @@ function jsonProduct() {
       		html += '		<div class="c_option">';
       		html += '			<span>' + price + '</span>';
       		html += '			<span>원</span>';
-      		html += '				<select id="customSelect'+ index +'" class="select-option" onchange="setSelectBox();" title="' + item.title +', '+ item.color + ' 수량 변경">';
+      		html += '				<select id="customSelect'+ index +'" class="select-option" onchange="setSelectBox();" title="' + item.product_name +' 수량 변경">';
       		html += '					<option value="1">1</option>';
       		html += '					<option value="2">2</option>';
       		html += '					<option value="3">3</option>';
@@ -374,11 +372,8 @@ function jsonProduct() {
       		html += '					<option value="7">7</option>';
       		html += '					<option value="8">8</option>';
       		html += '					<option value="9">9</option>';
-      		html += '					<option value="10">10+</option>';
+      		html += '					<option value="10">10</option>';
       		html += '				</select>';
-      		html += '			</span>';
-      		html += '			<span id="select-text" class="select-text" style="display:none;">';
-      		html += '				<input id="text-co-price' + index + '" type="number" class="quantity-text" min="10" max="100" title="'+ item.title +' 수량변경" maxlength="4" style="width:52px; ">';
       		html += '			</span>';
       		html += '			<span id="co-price'+ index +'" class="p_price" value="'+ index +'" style="padding-left: 10px;">'+ price +'</span>';
       		html += '			<span>원</span>';
@@ -414,12 +409,14 @@ function jsonProduct() {
 	     	$("#s_t_choice").html($numberOfProducts);
 	     	isProductThead();
 	     	setSelectBox();//선택한 상품의 가격 변화 함수
+	     	console.log("성공");
 	     	
 	 },
 	 error: function(error){
 		 empty();
 		 $("#lastselector").hide();
 		 console.log(error.status);
+		 console.log("응아니야");
 	 }
   });
   

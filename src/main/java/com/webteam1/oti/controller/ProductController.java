@@ -22,8 +22,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.util.WebUtils;
 
-import com.webteam1.oti.dto.Cart;
-
 //github.com/space8033/Our-Twinkling-Infinitely.git
 
 import com.webteam1.oti.dto.Image;
@@ -31,6 +29,7 @@ import com.webteam1.oti.dto.Pager;
 import com.webteam1.oti.dto.Product;
 import com.webteam1.oti.dto.ProductOption;
 import com.webteam1.oti.dto.Review;
+import com.webteam1.oti.dto.cart.Cart;
 import com.webteam1.oti.dto.user.LoginDto;
 import com.webteam1.oti.service.CartService;
 import com.webteam1.oti.service.CartService.AddCartResult;

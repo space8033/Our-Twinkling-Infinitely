@@ -22,8 +22,9 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.util.WebUtils;
 
-import com.webteam1.oti.dto.Cart;
 import com.webteam1.oti.dto.Product;
+import com.webteam1.oti.dto.cart.Cart;
+import com.webteam1.oti.dto.cart.CartDto;
 import com.webteam1.oti.dto.user.LoginDto;
 import com.webteam1.oti.service.CartService;
 import com.webteam1.oti.service.CartService.AddCartResult;
@@ -51,13 +52,14 @@ public class CartController {
 	
 	//장바구니에 담은 상품 리스트 불러오기
 	@ResponseBody
-	@RequestMapping(value = {"/cartView"}, method = {RequestMethod.GET})
-	public List<Product> cartView (HttpSession session, HttpServletRequest request, HttpServletResponse response, Cart cart, Model model) throws Exception {
+	@RequestMapping(value = {"/addCart"}, method = {RequestMethod.GET})
+	public List<CartDto> cartView (HttpSession session, HttpServletRequest request, HttpServletResponse response, Cart cart, Model model) throws Exception {
 		Cookie cookie = WebUtils.getCookie(request, "cartCookie");
-	    List<Product> list = new ArrayList<>();
-	    
+	    List<CartDto> list = new ArrayList<>();
+	    log.info("실행함 나 진짜");
 	    //비회원시 쿠키value인 ckId사용
 	    if(cookie != null && session.getAttribute("loginIng")==null) {
+	    	log.info("웅 나 비회원~~");
 	    	//비회원
 			cart.setCart_isLogin(0);
 			
@@ -65,16 +67,19 @@ public class CartController {
 			String ckValue = cookie.getValue();
 			cart.setCart_ckId(ckValue);
 			list = cartService.getCartList();
-		
+			log.info("리스트 나와라 얍: " + list);
 		//회원시 users_id 이용
 	    }else if(cookie == null && session.getAttribute("loginIng") != null) {
+	    	log.info("웅 나 회원~~");
 	    	//로그인 완료
 			cart.setCart_isLogin(1);
 			//로그인 세션 가져오기
 			LoginDto loginDto = (LoginDto) session.getAttribute("loginIng");
 			//장바구니에 로그인 한 user_id 삽입
 			cart.setUsers_users_id(loginDto.getUsers_id());
+			log.info("넣었쥬!");
 			list = cartService.getCartList();
+			log.info("리스트 나와라 얍: " + list);
 	    }
 	    
 	    model.addAttribute("carts", list);
@@ -152,11 +157,12 @@ public class CartController {
 			
 		//회원 장바구니 추가	
 		}else if(session.getAttribute("loginIng") != null){
-			log.info("응 나 로그인");
 			//로그인 완료
 			cart.setCart_isLogin(1);
 			//로그인 세션 가져오기
 			LoginDto loginDto = (LoginDto) session.getAttribute("loginIng");
+			//장바구니에 쿠키제거
+			cart.setCart_cklimit(null);
 			//장바구니에 로그인 한 user_id 삽입
 			cart.setUsers_users_id(loginDto.getUsers_id());
 			

@@ -57,10 +57,12 @@
 	</select>
 	
 	<!-- 장바구니 상품리스트 -->
-	<select id="selectCartList" resultMap="Cart">
-		select 
-		from CART c left outer join PRODUCT p on c.product_product_no = p.product_no
-		left outer join PRODUCTOPTION po c.productOption_productOption_no = po.productOption_no
+	<select id="selectCartList" resultType="CartDto">
+		c.cart_no, c.productOption_productOption_no, c.cart_optionContent, p.product_no,
+		p.product_name , p.product_price ,p.product_img, o.productOption_no , o.productOption_type
+		from CART c
+		left outer join PRODUCT p on c.product_product_no = p.product_no 
+		left outer join PRODUCTOPTION o on c.productOption_productOption_no = o.productOption_no
 		where 
 		<if test="cart_isLogin == 0">
 			cart_ckid = #{cart_ckid}
@@ -69,34 +71,5 @@
 			users_users_id = #{users_users_id}
 		</if>
 	</select>
-	
-	<resultMap type="Cart" id="Cart">
-		<result column="CART_NO" property="cart_no" />
-		<result column="USERS_USERS_ID" property="users_users_id"/>
-		<result column="PRODUCT_PRODUCT_NO" property="product_product_no" />
-		<result column="PRODUCTOPTION_PRODUCTOPTION_NO" property="productOption_productOption_no" />
-		<result column="CART_OPTIONCONTENT" property="cart_optionContent" />
-		<collection property="product_product_no" resultMap="Product"></collection>
-		<collection property="productOption_productOption_no" resultMap="ProductOption"></collection>
-	</resultMap>
-	
-	<resultMap type="Product" id="Product">
-		<result column="PRODUCT_NO" property="product_no" />
-		<result column="PRODUCT_NAME" property="product_name" />
-		<result column="PRODUCT_STATUS" property="product_status" />
-		<result column="PRODUCT_PRICE" property="product_price" />
-		<result column="PRODUCT_QTY" property="product_qty" />
-		<result column="PRODUCT_CREATEDDATE" property="product_createdDate" />
-		<result column="PRODUCT_DETAIL" property="product_detail" />
-		<result column="PRODUCT_HITCOUNT" property="product_hitcount" />
-		<result column="PRODUCT_DISCOUNTRATE" property="product_discountRate" />
-		<result column="PRODUCT_IMGFILE" property="product_imgFile" />
-		<result column="PRODUCT_IMG" property="product_img" />
-	</resultMap>
-	
-	<resultMap type="ProductOption" id="ProductOption">
-		<result column="PRODUCTOPTION_NO" property="productOption_no" />
-		<result column="PRODUCT_PRODUCT_NO" property="product_product_no" />
-		<result column="PRODUCTOPTION_TYPE" property="productOtion_type" />
-	</resultMap>
+
 </mapper>
