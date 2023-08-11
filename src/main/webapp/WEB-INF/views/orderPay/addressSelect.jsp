@@ -42,6 +42,15 @@
 				margin-top: 5px;
 				margin-bottom: 15px;
 			}
+			.selectButton {
+				color: white;
+				text-align: center;
+				background-color: #628ac5;
+				border: 1px solid rgb(224, 224, 224);
+				width: 80px;
+				margin-top: 5px;
+				margin-bottom: 15px;
+			}
 			#addAddress {
 				color: rgb(41, 141, 239);
 				font-weight: bold;
@@ -75,7 +84,10 @@
 						<div class="mt-2">${address.address_detail} </div>
 						<div> ${address.users_phone}</div>
 						<div> ${address.deliveryRequest}</div>
-						<div><button class="modifyButton" onclick=location.href="addressModify?addressNo=${address.address_no}">수정</button></div>
+						<div class="d-flex justify-content-between">
+							<button class="modifyButton" onclick=location.href="addressModify?addressNo=${address.address_no}">수정</button>
+							<button class="selectButton mr-3">선택</button>
+						</div>
 					</div>
 				</c:forEach>
 			</div>

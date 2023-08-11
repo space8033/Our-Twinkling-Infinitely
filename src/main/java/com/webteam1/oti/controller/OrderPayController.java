@@ -172,10 +172,18 @@ public class OrderPayController {
 				addressService.updateAddress(nowDefault);
 			}
 		}
+		log.info(user_id+"users_id");
+		log.info(address+"address");
 		
 		addressService.registerAddress(address);
 		
 		return "redirect:/addressSelect";
+	}
+	
+	@PostMapping("/addressdelete")
+	public String addressdelete(int address_no) {
+		
+		return "redirect:/";
 	}
 	
 	
