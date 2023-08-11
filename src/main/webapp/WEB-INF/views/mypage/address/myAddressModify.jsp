@@ -4,7 +4,7 @@
 		
 		<script src="${pageContext.request.contextPath}/resources/js/myAddressAdd.js"></script>
 		<script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
-
+		<script src="${pageContext.request.contextPath}/resources/js/addressRequest.js" charset="utf-8"></script>
 		<style>
 			.myAddress {
 				width: 95%;
