@@ -114,6 +114,10 @@ public class UserController {
 					cartService.cartUpdate(cart);
 					log.info("앙 바껴랏" + cart);
 				}
+				//쿠키 삭제
+				cookie.setPath("/");
+				cookie.setMaxAge(0);
+				response.addCookie(cookie);
 			}
 			return "redirect:/";
 		}

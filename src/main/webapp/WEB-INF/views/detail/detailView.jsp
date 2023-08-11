@@ -37,7 +37,8 @@
 							</select>
 						</div>
 						<div class="custom-qty">
-							수량<select class="qty custom-select  m-3" name="cart_qty" onclick="myOption2()">
+							수량
+							<select class="qty custom-select  m-3" name="cart_qty" onclick="myOption2()">
 								<option value="none">---[필수]수량을 선택해 주세요---</option>
 								<c:forEach begin="1" end="10" var="i">
 									<option id="p-qty" value="${i}">${i}</option>

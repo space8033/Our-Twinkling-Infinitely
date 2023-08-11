@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 
 <!DOCTYPE html>
 <html>
@@ -25,116 +26,108 @@
    		<div id="wrapper" width="980px">
    			<header id="header">
    				<div class="logo">
-   					<a href="#">
-   					  <img src="../../common/image/coupang/s_coupang로고.png"/>
+   					<a href="${pageContext.request.contextPath}">
+   					  <img src="${pageContext.request.contextPath}/resources/yuimg/메인로고.png"/>
    					</a>
    				</div>
    			</header>
    			<section id="contents" style="background-color: white;">
    				<div  class="card-body">
-		      		<section style="border: 1px solid black;">
+		      		<section>
    						<div class="c_title">
-   							<img src="../../common/image/coupang/s_장바구니title.jpg"/>
+   							<img src=""/>
    						</div>
    						<article>
    							<div>
    								<span class="tab1">일반구매</span>
    							</div>
 							<table id="table" class="table">
-									<colgroup>
-										<col width="50">
-										<col width="80">
-										<col width="*">
-										<col width="90">
-										<col width="90">
-									</colgroup>
-									   <thead>
-									     <tr class="head">
-									       <th scope="col" background-color: lightgray;">
-									       	<label>
-									       		
-									       	</label>
-									       </th>
-									       <th scope="col"><span></span></th>
-									       <th scope="colgroup">상품정보</th>
-									       <th scope="col">상품금액</th>
-									       <th scope="col">배송비</th>
-									       <th scope="col"></th>
-									     </tr>
-									   </thead>
+								<colgroup>
+									<col width="50">
+									<col width="80">
+									<col width="*">
+									<col width="90">
+									<col width="90">
+								</colgroup>
+							    <thead>
+							     <tr class="head">
+							       <th scope="col"></th>
+							       <th scope="col"><span></span></th>
+							       <th scope="colgroup">상품정보</th>
+							       <th scope="col">상품금액</th>
+							       <th scope="col">배송비</th>
+							       <th scope="col"></th>
+							     </tr>
+							    </thead>
 									   
-									   <div id="spinner_container">
-									     	
-									   </div>
-									   <tbody id ="basket_tbody">
-									    <!-- Json으로 불러오는 곳 -->
-									    <c:if test="${cart.product_product_no != null}">									    
-										    <tr class="t2">
-										     	<td></td>
-										     	<td></td>
-										     	<td>
-										     		<p class="t2_nonMessage">장바구니에 담은 상품이 없습니다.</p>
-										     	</td>
-										     	<td></td>
-										     	<td></td>
-										   </tr>	
-									    </c:if>
-									   </tbody>
-									     <tr class="t3" colspan="5">
-									        <td></td>
-									        <td></td>
-									        <td class="t3_td">
-									        	<div class="t3_td_contents">
-									        		<span class="t3_td_contents text-muted">장바구니에서 선택할 옵션을 선택하시고,</span>
-										    	<span class="t3_td_contents text-primary">구매하기</span>
-										    	<span class="t3_td_contents text-muted">버튼을 눌러보세요!</span>
-									        	</div>
-									    	<div class="t3_td_contents text-muted">선택한 옵션을 모두 장바구니에 담을 수 있습니다</div>
-									    	<div class="t3_td_button">
+							    <tbody id ="basket_tbody">
+									<c:if test="${cart.productOption_productOption_no != null}">
+										<tbody id ="basket_tbody">
+										<!-- json 불러오는 곳 -->  
+									    </tbody>
+									</c:if>
+								    <c:if test="${cart.productOption_productOption_no == null}">									    
+									    <tr class="t2">
+									     	<td></td>
+									     	<td></td>
+									     	<td>
+									     		<p class="t2_nonMessage">장바구니에 담은 상품이 없습니다.</p>
+									     	</td>
+									     	<td></td>
+									     	<td></td>
+										</tr>	
+								    </c:if>
+							     </tbody>
+					     	     <tr class="t3" colspan="5">
+							         <td></td>
+							         <td></td>
+							         <td class="t3_td">
+							        	 <div class="t3_td_contents">
+								             <span class="t3_td_contents text-muted">장바구니에서 선택할 옵션을 선택하시고,</span>
+										     <span class="t3_td_contents text-primary">구매하기</span>
+										     <span class="t3_td_contents text-muted">버튼을 눌러보세요!</span>
+							        	 </div>
+							    		<div class="t3_td_contents text-muted">선택한 옵션을 모두 장바구니에 담을 수 있습니다</div>
+							    	    <div class="t3_td_button">
+										    <a href="${pageContext.request.contextPath}">										    	
 									    		<button class="btn btn-primary">오늘의 추천 상품보기 ></button>
-									    	</div>
-									      </td>
-									     <td></td>
-									     <td></td>
-									     <td></td>
-									    </tr>
-						    	</table>
-					    	
+										    </a>
+										</div>    
+							       	</td>
+						     		<td></td>
+						     		<td></td>
+						     		<td></td>
+					    		</tr>
+						    </table>
 							<div id="lastselector" class="lastselector">
-							  <label>
-				        		<input title="모든 상품을 결제상품으로 설정" 
-				        				type="checkbox"
-				    					id="cboxAll_bottom"
-				        				class="cboxAll"  
-				        				value="selectall"
-				        				name="chk"
-				        				onclick="checkAll()" />
-				        		<span class="selection">전체선택</span>
-				        		<span class="selection">(</span>
-				        		<span id="s_p_choice" class="selection"></span>
-				        		<span class="selection">/</span>
-				        		<span id="s_t_choice" class="selection"></span>
-				        		<span class="selection" style="margin-right: 10px;">)</span>
-				        	 </label>
+								<label>
+					        		<input title="모든 상품을 결제상품으로 설정" 
+					        				type="checkbox"
+					    					id="cboxAll_bottom"
+					        				class="cboxAll"  
+					        				value="selectall"
+					        				name="chk"
+					        				onclick="checkAll()" />
+					        	    <span class="selection">전체선택</span>
+					        		<span class="selection">(</span>
+					        		<span id="s_p_choice" class="selection"></span>
+					        		<span class="selection">/</span>
+					        		<span id="s_t_choice" class="selection"></span>
+					        		<span class="selection" style="margin-right: 10px;">)</span>
+				        	    </label>
 				        	 <button id="btn_delete" class="delete" style="margin-right: 10px;" onclick="removeProduct()"></button>
 				        	 <button id="poolDelete" class="delete">품절/판매종료상품 전체삭제</button>
 						   </div>
 						   <div class="cash_benefit_wrapper border rounded-sm">
-					    		<div class="cash_benefit_contents">
-					    			<img src="//img1a.coupangcdn.com/image/cart/generalCart/ico_cash_m_2x.png" width="24"/>
-					    			<span class="cbc_title">캐시적립 혜택</span>
+				    		<div class="cash_benefit_contents">
+				    			<img src="//img1a.coupangcdn.com/image/cart/generalCart/ico_cash_m_2x.png" width="24"/>
+				    			<span class="cbc_title">캐시적립 혜택</span>
+				    		</div>
+				    		<div class="d-flex">
+					    		<div class="cbc_details" style="width: 75%">
+						    		<div>모든 상품 결제 시 5%  추가적립</div>
 					    		</div>
-					    		<div class="d-flex">
-						    		<div class="cbc_details" style="width: 75%">
-						    			<div>[로켓와우 + 쿠페이 계좌이체] 결제 시 2% 적립</div>
-							    		<div>[로켓와우 + 쿠페이 머니] 결제 시 4%  추가적립</div>
-							    		<div>쿠페이 머니 결제 시 1% 적렙</div>
-						    		</div>
-						    		<div>
-						    			<div class="coupaybtn btn btn-outline-primary btn-sm" 
-						    			style="padding-bottom: -50px;" onclick="openPopup1()">로켓와우 무료체험 신청하기</div>
-						    		</div>
-					    		</div>
+				    		</div>
   				    	  </div>
   				    	  <div class="total_order_price">
   				    	  	<span class="top_text">총 상품가격</span>
@@ -151,12 +144,21 @@
   				    	  </div>
    				    	</article>
    				    	<div class="btns d-flex justify-content-center">
-   				    		<button class="btn1 btn btn-outline-primary m-1">계속 쇼핑하기</button>
-   				    		<button class="btn2 btn btn-primary m-1">구매하기</button>
+   				    		<a href="${pageContext.request.contextPath}">   				    		
+   				    			<button class="btn1 btn btn-outline-primary m-1">계속 쇼핑하기</button>
+   				    		</a>
+   				    		<c:if test="${loginIng == null}">
+   				    			<a href="${pageContext.request.contextPath}/loginForm">   				    			
+   				    				<button class="btn2 btn btn-primary m-1">구매하기</button>
+   				    			</a>   				    		
+   				    		</c:if>
+   				    		<c:if test="${loginIng != null}">
+   				    			<a href="${pageContext.request.contextPath}/orderPay">   				    			
+   				    				<button class="btn2 btn btn-primary m-1">구매하기</button>
+   				    			</a>   				    		
+   				    		</c:if>
    				    	</div>
-   				    
    				    </section>
-   				    
       			</div>
    			</section>
 <%@ include file="/WEB-INF/views/common/footer.jsp" %> 
