@@ -29,5 +29,11 @@ public class ReviewServiceImpl implements ReviewService{
 		
 		return reviewDao.countByPno(productNo);
 	}
+
+	@Override
+	public Review getReviewByRno(int review_no) {
+		
+		return reviewDao.selectByRno(review_no);
+	}
 	
 }

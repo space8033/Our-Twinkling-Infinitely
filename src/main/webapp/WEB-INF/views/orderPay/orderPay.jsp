@@ -96,7 +96,7 @@
 							</tr>
 							<tr>
 								<th><img src="//img1a.coupangcdn.com/image/www/common/icon_arrow.gif"> 배송 요청사항</th>
-								<td>문 앞
+								<td>${selectedValue} , ${selectedPwdValue}
 									<button onclick="openRequest()">변경</button>
 								</td>
 							</tr>
@@ -148,7 +148,7 @@
 								<td  style="margin:0px; padding:0px;">
 									<div style=" padding-top:10px; padding-left:16px; color: red; padding-bottom:10px;">
 										<span style= "width:155px; display:inline-block;">
-											-<span id="discount" ">0</span>원
+											-<span id="discount">0</span>원
 										</span>
 										<button id="couponSelect" >할인쿠폰선택</button>
 									</div>

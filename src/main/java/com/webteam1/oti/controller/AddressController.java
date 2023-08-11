@@ -58,6 +58,8 @@ public class AddressController {
 		model.addAttribute("pager", pager);
 		model.addAttribute("list", list);
 		
+		
+		
 		return "mypage/address/myAddress";
 	}
 	//주소지 등록 불러오기

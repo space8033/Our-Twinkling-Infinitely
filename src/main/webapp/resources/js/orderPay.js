@@ -82,11 +82,12 @@ function priceCalculate() {
 }
 
 function openAdress() {
+
    	window.open("/our-twinkling-infinitely/addressSelect", "winLogin", "left=350, top=300, width=500, height=650");
 }
 
 function openRequest() {
-	window.open("/our-twinkling-infinitely/addressRequest", "winLogin", "left=350, top=300, wi${pageContext.request.contextPath}/views/orderPay/dth=530, height=650");
+	window.open("/our-twinkling-infinitely/addressRequest", "winLogin", "left=350, top=300, width=530, height=650");
 }
 
 $(document).ready(function(){

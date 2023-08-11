@@ -16,6 +16,7 @@ import org.apache.commons.lang3.RandomStringUtils;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -55,7 +56,7 @@ public class ProductController {
 	//상품 상세 페이지 불러오기
 	//상품리스트에서 그 상품에 해당하는 상품 상세정보
 	@GetMapping("/detailProduct")
-	public String detailView(String pageNo2, String product_no, Model model, HttpSession session) {
+	public String detailView(String product_no, String pageNo2, Model model, HttpSession session) {
 		   int productNum = Integer.parseInt(product_no);
 		   Product product = productService.getProduct(productNum);
 		   if(product.getProduct_imgFile() != null) {
@@ -91,9 +92,9 @@ public class ProductController {
 		   
 		   session.setAttribute("productNum", productNum);
 		   model.addAttribute("productNum", productNum);
-		   
+		   model.addAttribute("pageNo2", pageNo2);
 		   //----------리뷰 페이징 및 리뷰 리스트 ----------------------------------------------------
-			if(pageNo2 == null) {
+		   if(pageNo2 == null) {
 			   //세션에 저장되어 있는지 확인
 			   pageNo2 = (String) session.getAttribute("pageNo2");
 			   //저장되어있지 않다면 "1"로 초기화
@@ -114,10 +115,8 @@ public class ProductController {
 			map.put("endRowNo", pager.getEndRowNo());
 			map.put("productNo", productNo);
 			//리뷰 리스트 가져오기
-			List<Review> list = reviewService.getReviewListByPno(map);
 			
 			model.addAttribute("pager", pager);
-			model.addAttribute("reviews", list);
 		   
 		   return "detail/detailView";
 	}

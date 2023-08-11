@@ -1,4 +1,4 @@
-/*package com.webteam1.oti.controller;
+package com.webteam1.oti.controller;
 
 import java.util.HashMap;
 import java.util.List;
@@ -25,7 +25,6 @@ public class ReviewController {
 	//리뷰 가져오기 (진행중)
 	@GetMapping("/review")
 	public String review(String pageNo2, Model model, HttpSession session) {
-		log.info(pageNo2);
 		if(pageNo2 == null) {
 		   //세션에 저장되어 있는지 확인
 		   pageNo2 = (String) session.getAttribute("pageNo2");
@@ -54,7 +53,13 @@ public class ReviewController {
 		model.addAttribute("pager", pager);
 		model.addAttribute("reviews", list);
 
-		return "mypage/review/review";
+		return "detail/review";
+	}
+	
+	@GetMapping("/reviewDetail")
+	public String getReview(String review_no, Model model, HttpSession session) {
+		Review review = reviewService.getReviewByRno(Integer.parseInt(review_no));
+		model.addAttribute("review", review);
+		return "detail/reviewDetail";
 	}
 }
-*/

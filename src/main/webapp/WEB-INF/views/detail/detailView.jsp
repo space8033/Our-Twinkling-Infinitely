@@ -106,7 +106,7 @@
 				      <h3>Menu 2</h3>
 				    </div>
 				    <div id="menu3" class="container tab-pane fade"><br>
-				      <h3>Menu 3</h3>
+				      
 				    </div>
 			  	</div>
 			</div>
