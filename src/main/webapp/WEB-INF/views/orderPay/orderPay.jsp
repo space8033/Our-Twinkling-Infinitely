@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>	
 <!DOCTYPE html>
 <html>
 	<head>
@@ -78,28 +80,29 @@
 							<span style="margin-left: 10px;"><button id="transAddress" onclick="openAdress()"> 배송지변경</button></span>
 						</div>
 						<table class="receiverInfo">
-							<tr>
-								<th>이름</th>
-								<td>김시온
-									<span id="border1">기본 배송지</span> 
-									<span id="border2">로켓프레시 가능</span> 
-									<span id="border3">로켓와우가능</span>
-								</td>
-							</tr>
-							<tr>
-								<th>배송주소</th>
-								<td>경기도 하남시 미사강변남로125 102동 408호</td>
-							</tr>
-							<tr>
-								<th>연락처</th>
-								<td>010-4504-1219</td>
-							</tr>
-							<tr>
-								<th><img src="//img1a.coupangcdn.com/image/www/common/icon_arrow.gif"> 배송 요청사항</th>
-								<td>${selectedValue} , ${selectedPwdValue}
-									<button onclick="openRequest()">변경</button>
-								</td>
-							</tr>
+								<tr>
+									<th>이름</th>
+									<td>${address.address_receiver}
+									<c:if test="${address.address_isdefault == true}">
+									<span id="border1">기본배송지</span>
+									</c:if>
+									</td>
+								</tr>
+								<tr>
+									<th>배송주소</th>
+									<td>${address.address_roadAddress} ${address.address_jibunAddress} ${address.address_extraAddress} ${address.address_detail}</td>
+								</tr>
+								<tr>
+									<th>연락처</th>
+									<td>${address.users_phone}</td>
+								</tr>
+								<tr>
+									<th><img src="//img1a.coupangcdn.com/image/www/common/icon_arrow.gif"> 배송 요청사항</th>
+									<td> ${address.deliveryRequest} ${selectedValue}  ${selectedPwdValue}
+										<button onclick="openRequest()">변경</button>
+									</td>
+								</tr>
+								
 						</table>
 					</div>
 					

@@ -43,11 +43,22 @@ public class OrderPayController {
 	
 	@Login
 	@GetMapping("/orderPay")
-	public String orderPay(Model model, HttpSession session) {
+	public String orderPay(String addressNo, Model model, HttpSession session) {
 		LoginDto loginUser = (LoginDto) session.getAttribute("loginIng");
 		ModifyDto loginUserData = userService.getModifyByUsersId(loginUser.getUsers_id());
 		model.addAttribute("orderUser", loginUserData);
 		
+		if(addressNo == null) {
+			addressNo = "1";
+			
+		} else {
+			Address now = addressService.getByAddressNo(Integer.parseInt(addressNo));
+			model.addAttribute("address", now);
+			session.setAttribute("addressNo", now.getAddress_no());
+			
+			
+		}
+		//배송 요청사항 목록 받아오기
 		String selectedValue = (String) session.getAttribute("selectedValue");
 	    String selectedPwdValue = (String) session.getAttribute("selectedPwdValue");
 	    log.info(selectedValue + "=selectedValue");
@@ -55,6 +66,7 @@ public class OrderPayController {
 
 	    model.addAttribute("selectedValue", selectedValue);
 	    model.addAttribute("selectedPwdValue", selectedPwdValue);
+	    
 		
 		return "orderPay/orderPay";
 	}
@@ -101,6 +113,23 @@ public class OrderPayController {
 		
 		
 		return "orderPay/addressSelect";
+	}
+	
+	@PostMapping("/addressSelect")
+	public String addressSelect(Address address, HttpSession session) {
+		address.setAddress_no((int) session.getAttribute("addressNo"));
+		if(address.isAddress_isdefault() ) {
+			LoginDto userNow = (LoginDto) session.getAttribute("loginIng");
+			String user_id = userNow.getUsers_id();
+			if(addressService.getDefault(user_id) != null) {
+				Address nowDefault = addressService.getDefault(user_id);
+				nowDefault.setAddress_isdefault(false);
+				addressService.updateAddress(nowDefault);
+			}
+		}
+		
+		addressService.updateAddress(address);
+		return "redirect:/orderPay";
 	}
 	
 	@Login

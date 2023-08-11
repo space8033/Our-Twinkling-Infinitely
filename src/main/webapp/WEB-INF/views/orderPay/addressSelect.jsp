@@ -86,7 +86,7 @@
 						<div> ${address.deliveryRequest}</div>
 						<div class="d-flex justify-content-between">
 							<button class="modifyButton" onclick=location.href="addressModify?addressNo=${address.address_no}">수정</button>
-							<button class="selectButton mr-3">선택</button>
+							<button class="selectButton mr-3" onclick=location.href="orderPay?addressNo=${address.address_no}">선택</button>
 						</div>
 					</div>
 				</c:forEach>
