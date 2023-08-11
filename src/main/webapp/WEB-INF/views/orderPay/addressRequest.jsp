@@ -31,7 +31,7 @@
 				</div>
 	            <div  class="on"> 
 			         <label>
-						<input type="radio" id="ftof" name="select" value="직접" />
+						<input type="radio" id="ftof" name="select" value="직접 받고 부재 시 문 앞" />
 							직접 받고 부재 시 문 앞
 					 </label>
 				</div>
@@ -49,7 +49,7 @@
 				</div>
 			  	<div id="show1" class="on" style=" display: none; background-color: #f4f4f4; padding-left:10px; padding-right:10px;">
 			  		<div>로켓배송에만 사용됩니다.</div>
-			  		<div><input type="text" placeholder="택배함 번호 (필수)" style="width:100%;"></div>
+			  		<div><input type="text" id="boxNo" placeholder="택배함 번호 (필수)" style="width:100%;"></div>
 			  	</div>
 	            <div class="on"> 
 	       			<label>
@@ -59,7 +59,7 @@
 				</div>
 			   <div id="show2" class="on" style="display: none; background-color: #f4f4f4;  padding-left:10px; padding-right:10px;">
 			  		<div>소화전/EPS/TPS 등은 안전상 보관 불가</div>
-			  		<div><input type="text" placeholder="장소만 입력 (필수)" style="width:100%;"></div>
+			  		<div><input type="text" id = "etcName" placeholder="장소만 입력 (필수)" style="width:100%;"></div>
 			   </div>      
 	         </div>
 	                
@@ -67,13 +67,13 @@
 	         	<div class="doorNum" >공동현관 출입번호</div>
 	         	<div style="padding:10px;"> 
 	        		<label>
-						<input type="radio" id="pwdY" name="pwdselect" value="YES"/>
-						<input type="text" style="width:90%;" id="etc" name="select" placeholder="예 : #1234"/>
+						<input type="radio" id="pwdY" name="pwdselect" value=" 공동현관 출입번호 : "/>
+						<input type="text" style="width:90%;" id="pwdNo" name="pwdselect" placeholder="예 : #1234"/>
 	  				</label>
 				</div>
 				<div class="doorNumNotice" style="padding:10px;"> 
 	        		<label>
-						<input type="radio" id="pwdN" name="pwdselect" value="NONE"/>
+						<input type="radio" id="pwdN" name="pwdselect" value=" 비밀번호 없이 출입 가능해요." checked="checked"/>
 							비밀번호없이 출입 가능해요.
 		 			</label>
 				</div> 

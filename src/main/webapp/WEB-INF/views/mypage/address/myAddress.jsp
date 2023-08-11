@@ -1,7 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
-<%@ include file="/WEB-INF/views/common/header.jsp" %>
-		
+		<%@ include file="/WEB-INF/views/common/header.jsp"  %>
+
 		<script src="${pageContext.request.contextPath}/resources/js/myAddress.js"></script>
 		
 		<style>
@@ -94,4 +95,6 @@
 				</div>
       
 	</body>
-<%@ include file="/WEB-INF/views/common/footer.jsp" %> 
+	<c:if test = "${loginIng != null}">
+	<%@ include file="/WEB-INF/views/common/footer.jsp" %> 
+	</c:if>
