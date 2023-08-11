@@ -20,13 +20,13 @@
 						</p>
 						
 						<p>
-							<span>글쓴이:</span> ????????????
+							<span>글쓴이:</span>
 							<span>${review.review_name}</span>
 						<p>
 						
 						<p>
 							<span>날짜:</span> 
-							<span>value="${review.review_createdDate}"</span> <br/>
+							<span>${review.review_createdDate}</span> <br/>
 						</p>
 						
 					</div>
