@@ -11,4 +11,5 @@ import com.webteam1.oti.dto.Review;
 public interface ReviewDao {
 	public List<Review> selectByPno(Map<String , Object> map);
 	public int countByPno(int pno);
+	public Review selectByRno(int review_no);
 }
