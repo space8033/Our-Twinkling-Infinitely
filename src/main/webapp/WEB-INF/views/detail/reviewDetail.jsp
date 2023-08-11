@@ -10,25 +10,26 @@
 				<div>
 					<div>
 						<p>
-							<span>제목:</span> 
+							<span style="font-weight: bold">한줄평</span> <br> 
 							<span>${review.review_title}</span>
 						</p>
 						
 						<p>
-							<span>글쓴이:</span>
+							<span>작성자:</span>
 							<span>${review.review_name}</span>
 						<p>
 						
 						<p>
-							<span>날짜:</span> 
 							<span>${review.review_createdDate}</span> <br/>
 						</p>
 						
 					</div>
 					
 					<div>
-						<span class="title">내용:</span> <br/>
-						<textarea style="width:100%" readonly>${review.review_contents}</textarea>
+						<span class="title">내용</span> <br/>
+						<div style="width:100%; border:1px solid #dadfe3">
+							${review.review_contents}
+						</div>
 					</div>
 					
 					<a class="btn btn-info btn-sm mt-2" href="javascript:showReview(${productNum}, 1)">목록</a>
