@@ -154,13 +154,13 @@ public class OrderPayController {
 	
 	@Login
 	@GetMapping("/addressAdd")
-	public String addAddress() {
+	public String addressAdd() {
 		
 		return "orderPay/addressAdd";
 	}
 	
 	@PostMapping("/addressAdd")
-	public String addAddress(Address address, HttpSession session) {	
+	public String addressAdd(Address address, HttpSession session) {	
 		LoginDto userNow = (LoginDto) session.getAttribute("loginIng");
 		String user_id = userNow.getUsers_id();
 		address.setUsers_users_id(user_id);

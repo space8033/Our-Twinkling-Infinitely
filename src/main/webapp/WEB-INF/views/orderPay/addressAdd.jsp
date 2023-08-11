@@ -189,7 +189,7 @@
 	<body class="container">
 		<div id="wrapper" class="d-flex justify-content-center">	
 		<!------------------------------------- 내용 들어갈 div -------------------------------------->
-			<form id="addAddress" name="addAddress" action="addAddress" method="post" class="pt-5">
+			<form id="addressAdd" name="addressAdd" action="addressAdd" method="post" class="pt-5">
 				<div class="my-3">
 					<div class="my-3 d-flex">
 						<div style="border: 1px solid #d0d0d0;">
