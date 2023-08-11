@@ -68,7 +68,7 @@
 									   </div>
 									   <tbody id ="basket_tbody">
 									    <!-- Json으로 불러오는 곳 -->
-									    <c:if test="${optionList.product_product_no != null}">									    
+									    <c:if test="${cart.product_product_no != null}">									    
 										    <tr class="t2">
 										     	<td></td>
 										     	<td></td>

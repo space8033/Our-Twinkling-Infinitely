@@ -1,6 +1,7 @@
 $(init)
 
 function init(){
+	showReview();
 	//header 검색바 숨기기
 	$(".topnav").hide();
 	//상품 메인페이지 광고
@@ -60,5 +61,18 @@ function myOption2(){
 	}else{
 		$(".myOption").hide();
 	}
-} 
+}
 
+function showReview() {
+	$.ajax({
+		url: "review",
+		dataType : "html",
+		method: "get",
+		success: function(data) {
+			$("#menu3").html(data);
+		},
+		error: function(error) {
+			console.log("아왜");
+		}
+	});
+}

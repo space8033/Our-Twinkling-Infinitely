@@ -1,12 +1,18 @@
 package com.webteam1.oti.service;
 
+import java.util.List;
+import java.util.Map;
+
 import javax.annotation.Resource;
+
+import org.springframework.stereotype.Service;
 
 import com.webteam1.oti.dao.CartDao;
 import com.webteam1.oti.dto.Cart;
-
+@Service
 public class CartServiceImpl implements CartService{
-	@Resource private CartDao cartDao;
+	@Resource 
+	private CartDao cartDao;
 
 	@Override
 	public int addCart(Cart cart) {
@@ -15,9 +21,30 @@ public class CartServiceImpl implements CartService{
 	}
 
 	@Override
-	public int productExsist(Cart cart) {
+	public AddCartResult productCheck(Cart cart) {
 		int products = cartDao.cartCheck(cart);
-		return products;
+		if(products != 0) {
+			return AddCartResult.DUPLICATED_PRODUCT_OPTION;
+		}
+		return AddCartResult.SUCCESS;
+	}
+	
+	//옵션 내용에 해당하는 상품의 옵션번호 가져오기 위함 
+	@Override
+	public int getOptionNo(Map<String, Object> map) {
+		int optionNo = cartDao.selectOptionNo(map);
+		return optionNo;
+	}
+
+	@Override
+	public void cartUpdate(Cart cart) {
+		cartDao.cartUpdate(cart.getUsers_users_id());
+	}
+
+	@Override
+	public List<Cart> getCartByCkId(String ckId) {
+		List<Cart> list = cartDao.selectByCkId(ckId);
+		return list;
 	}
 
 }

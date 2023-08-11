@@ -25,7 +25,6 @@
 	</head>
 	
 	<body>
-		
 		<br>
 		<div class="container" style="font-size: 26px; text-align: center;">
 			회원 정보 수정
@@ -197,5 +196,5 @@
 		</form>
 		
 		<hr>
-	</body>
-</html>
+		<div>
+<%@ include file="/WEB-INF/views/common/footer.jsp" %> 

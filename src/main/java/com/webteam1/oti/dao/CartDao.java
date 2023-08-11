@@ -1,6 +1,7 @@
 package com.webteam1.oti.dao;
 
 import java.util.List;
+import java.util.Map;
 
 import org.apache.ibatis.annotations.Mapper;
 
@@ -15,6 +16,8 @@ public interface CartDao {
 	 * @return: 상품 추가한 장바구니 cart_no
 	 */
 	public int cartInsert(Cart cart);
-	public void cartUpdate(Cart cart);
+	public void cartUpdate(String user_id);
 	public int cartCheck(Cart cart);
+	public int selectOptionNo(Map<String, Object> map);
+	public List<Cart> selectByCkId(String ckId);
 }
