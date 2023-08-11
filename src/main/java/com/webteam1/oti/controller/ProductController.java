@@ -100,22 +100,22 @@ public class ProductController {
 			   if(pageNo2 == null) {
 				   pageNo2 = "1";
 			   }
-			}
-			int productNo = (int)session.getAttribute("productNum");
+		   }
+		   int productNo = (int)session.getAttribute("productNum");
 			//문자열을 정수로 변환
-			int intPageNo = Integer.parseInt(pageNo2);
+		   int intPageNo = Integer.parseInt(pageNo2);
 			//세션에 pageNo를 저장
-			session.setAttribute("pageNo2", String.valueOf(pageNo2));
-			int totalRows = reviewService.countByProductNo(productNo);
-			Pager pager = new Pager(5, 5, totalRows, intPageNo);
+		   session.setAttribute("pageNo2", String.valueOf(pageNo2));
+		   int totalRows = reviewService.countByProductNo(productNo);
+		   Pager pager = new Pager(5, 5, totalRows, intPageNo);
 			
-			Map<String, Object> map = new HashMap<>();
-			map.put("startRowNo", pager.getStartRowNo());
-			map.put("endRowNo", pager.getEndRowNo());
-			map.put("productNo", productNo);
+		   Map<String, Object> map = new HashMap<>();
+		   map.put("startRowNo", pager.getStartRowNo());
+		   map.put("endRowNo", pager.getEndRowNo());
+		   map.put("productNo", productNo);
 			//리뷰 리스트 가져오기
 			
-			model.addAttribute("pager", pager);
+		   model.addAttribute("pager", pager);
 		   
 		   return "detail/detailView";
 	}
