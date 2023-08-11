@@ -6,6 +6,7 @@ import com.webteam1.oti.dto.user.JoinDto;
 import com.webteam1.oti.dto.user.LoginDto;
 import com.webteam1.oti.dto.user.ModifyDto;
 
+//UserDao 전체 작성자 : 김시온
 @Mapper
 public interface UserDao {
 	//JoinDto

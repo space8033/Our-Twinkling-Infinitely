@@ -11,6 +11,7 @@ import com.webteam1.oti.dto.user.LoginDto;
 
 import lombok.extern.slf4j.Slf4j;
 
+//작성자 : 김시온
 @Slf4j
 public class LoginCheckInterceptor implements HandlerInterceptor {
 

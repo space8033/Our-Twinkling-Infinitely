@@ -95,7 +95,7 @@
 						</tr>
 						<tr>
 							<th><img src="//img1a.coupangcdn.com/image/www/common/icon_arrow.gif"> 배송 요청사항</th>
-							<td>문 앞
+							<td>${reqMsg}
 								<button onclick="openRequest()">변경</button>
 							</td>
 						</tr>

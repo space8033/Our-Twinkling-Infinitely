@@ -12,21 +12,20 @@ import com.webteam1.oti.dto.user.LoginDto;
 import com.webteam1.oti.dto.user.ModifyDto;
 
 import lombok.extern.slf4j.Slf4j;
+
+//UserServiceImpl 전체 작성자 : 김시온
 @Slf4j
 @Service
 public class UserServiceImpl implements UserService{
 	@Resource
 	private UserDao userDao;
 	
+	//회원가입
 	@Override
 	public JoinResult join(JoinDto user) {
-		
 		JoinDto dbUserId = userDao.selectByusersId(user.getUsers_id());
 		JoinDto dbUserEmail = userDao.selectByusersEmail(user.getUsers_email());
 		JoinDto dbUserPhone = userDao.selectByusersTel(user.getUsers_phone());
-		
-
-
 		if(dbUserId != null) {
 			return JoinResult.FAIL_DUPLICATED_UID;
 		} else if(dbUserEmail != null){
@@ -34,15 +33,14 @@ public class UserServiceImpl implements UserService{
 		} else if(dbUserPhone != null) {
 			return JoinResult.FAIL_DUPLICATED_TEL;
 		} else {
-
 			PasswordEncoder passwordEncoder = PasswordEncoderFactories.createDelegatingPasswordEncoder();
 			user.setUsers_password(passwordEncoder.encode(user.getUsers_password()));
 			userDao.insert(user);		
 			return JoinResult.SUCCESS;
-	
 		}
 	}
 
+	//회원의 아이디로부터 유저정보가져오기
 	@Override
 	public JoinDto getUsersByUserId(String usersId) {
 		JoinDto user = userDao.selectByusersId(usersId);
@@ -61,10 +59,10 @@ public class UserServiceImpl implements UserService{
 		return user;
 	}
 	
+	//로그인
 	@Override
 	public LoginResult login(LoginDto user) {
 		LoginDto dbUser = userDao.selectByUsersId(user.getUsers_id());
-		log.info(dbUser + "디비유저는 저예욤");
 		if(dbUser == null) {
 			return LoginResult.FAIL_UID;
 		}
@@ -80,6 +78,7 @@ public class UserServiceImpl implements UserService{
 		}
 		
 	}
+	
 	//로그인 유효성 검사
 	@Override
 	public LoginDto getUser(String uid) {
@@ -87,34 +86,29 @@ public class UserServiceImpl implements UserService{
 		return user;
 	}
 	
+	//로그 아웃
 	@Override
 	public void logout(String uid) {
 
 	}
-	
-	/*@Override
-	public void modifyUser(ModifyDto user) {
-		userDao.update(user);
-	}*/
-	
+
+	//회원정보 수정에서 유저의 아이디로 부터 정보가져오기
 	@Override
 	public ModifyDto getModifyByUsersId(String usersId) {
-		log.info(usersId+"usersId");
 		ModifyDto user = userDao.modifyByUsersId(usersId);
-		log.info(user+"user");
 		return user;
 	}
 	
-	
+	//회원정보 수정
 	@Override
 	public void modify(ModifyDto user) {
-
 		PasswordEncoder passwordEncoder = PasswordEncoderFactories.createDelegatingPasswordEncoder();
 		user.setUsers_password(passwordEncoder.encode(user.getUsers_password()));
 		userDao.update(user);	
 		
 	}
 	
+	//탈퇴하기
 	@Override
 	public void unjoin(String uid) {
 		JoinDto user = userDao.selectByusersId(uid);

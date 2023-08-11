@@ -1,11 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.webteam1.oti.dao.UserDao">
-	<!-- JoinDto -->
+	
+	<!-- user.xml 전체 작성자 : 김시온 -->
+	<!-- JoinDto 회원 정보 삽입 -->
 	<insert id="insert" parameterType="Join">
 		insert into users(users_id, users_email, users_password, users_name, users_phone, users_type, users_opoint, users_createddate)
 		values(#{users_id}, #{users_email}, #{users_password}, #{users_name}, #{users_phone}, 'ENABLED', 0, to_char(sysdate,'yyyy.mm.dd hh24:mi:ss'))
 	</insert>
+	
+	<!-- JoinDto 아이디가 동일한 것으로부터 JoinDto 가져오기 -->
 	<select id="selectByusersId" resultType="Join" parameterType="String">
 
 		select users_id, users_email, users_password, users_phone, users_name
@@ -14,6 +18,7 @@
 
 	</select>
 	
+	<!-- JoinDto 이메일 동일한 것으로부터 JoinDto 가져오기 -->
 	<select id="selectByusersEmail" resultType="Join" parameterType="String">
 
 		select users_email, users_id
@@ -21,6 +26,8 @@
 		where users_email=#{users_email}
 
 	</select>
+	
+	<!-- JoinDto 전화번호 동일한 것으로부터 JoinDto 가져오기 -->
 	<select id="selectByusersTel" resultType="Join" parameterType="String">
 
 		select users_phone, users_id
@@ -29,7 +36,7 @@
 
 	</select>
 	
-	<!-- LoginDto로부터 -->
+	<!-- LoginDto 아이디 같은 것으로부터 LoginDto에 담아오기-->
 	<select id="selectByUsersId" resultType="Login" parameterType="String">
 		select users_id, users_password, users_type
 		from users 
@@ -37,7 +44,7 @@
 
 	</select>
 	
-	<!-- ModifyDto로부터 -->
+	<!-- ModifyDto로부터 아이디 같은 것을 검색해서 회원정보 수정하기 -->
 	<update id="update" parameterType="Modify">
 	  
 	   update users set users_password=#{users_password}, users_email=#{users_email}, users_phone=#{users_phone}, users_name=#{users_name}
@@ -45,7 +52,7 @@
 	  
     </update>
     
-    <!-- ModifyDto로부터, Controller에서 get방식할때 사용 비밀번호 없는 버전 -->
+    <!-- ModifyDto로부터, Controller에서 get방식할때 사용. 비밀번호는 보안을 위해 가져오지 않음-->
     <select id="modifyByUsersId" resultType="Modify" parameterType="String">
 
 		select users_id, users_email, users_phone, users_name
@@ -54,8 +61,11 @@
 
 	</select>
 	
+	<!-- 회원 탈퇴 -->
 	<delete id="delete" parameterType="Join">
+	
 		delete from users where users_id=#{users_id}
+		
 	</delete>
    
 	

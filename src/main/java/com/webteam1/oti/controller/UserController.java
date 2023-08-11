@@ -21,6 +21,8 @@ import com.webteam1.oti.service.UserService.LoginResult;
 
 import lombok.extern.slf4j.Slf4j;
 
+
+//UserController 전체 작성자 : 김시온
 @Controller
 @RequestMapping("/")
 @Slf4j
@@ -38,9 +40,7 @@ public class UserController {
 	//회원가입 신청
 	@PostMapping("/joinForm")
 	public String join(JoinDto users, Model model) {
-		log.info(users.toString());
 		JoinResult result = userService.join(users);
-		
 		if(result == JoinResult.FAIL_DUPLICATED_UID) {
 			String error1 = "이미 가입된 아이디입니다.";
 			model.addAttribute("error1", error1);
@@ -59,28 +59,22 @@ public class UserController {
 		
 			return "redirect:/loginForm";
 		}
-		
-		
 	}
+	
 	//로그인 폼 불러오기
 	@GetMapping("/loginForm")
 	public String loginForm(String msg, Model model) {
-		log.info("msg : " + msg);
 		model.addAttribute("msg", msg);
 		return "login/loginForm";
 	}
+	
 	//로그인 요청
 	@PostMapping("/loginForm")
 	public String login(LoginDto users, Model model, HttpSession session) {
 		LoginResult result = userService.login(users);
-		
-		
-		
-		log.info(result+"로그인 상태");
 		if(result == LoginResult.FAIL_UID) {
 			String error1 = "가입된 ID가 없습니다.";
 			model.addAttribute("error1", error1);
-			
 		} else if(result == LoginResult.FAIL_ENABLED) {
 			String error2 = "ID가 비활성화 되어 있습니다";
 			model.addAttribute("error2", error2);
@@ -91,13 +85,12 @@ public class UserController {
 			log.info("로그인에 성공하였습니다");
 			LoginDto dbUser = userService.getUser(users.getUsers_id());
 			session.setAttribute("loginIng", dbUser);
-			
 			LoginDto loginDto = (LoginDto) session.getAttribute("loginIng");
 			model.addAttribute("loginIng", loginDto);
 			return "redirect:/";
 		}
-		return "login/loginForm";
 		
+		return "login/loginForm";
 	}
 	
 	//로그아웃 요청
@@ -106,6 +99,7 @@ public class UserController {
 		session.removeAttribute("loginIng");
 	    return "redirect:/";
 	}
+	
 	//개인정보 수정 불러오기
 	@Login
 	@GetMapping("/modify")
@@ -116,20 +110,22 @@ public class UserController {
 		
 		return "modify/modify";
 	}
+	
 	//개인정보 수정 요청
 	@Login
 	@PostMapping("/modify")
 	public String modify(ModifyDto user, Model model, HttpSession session) {
+		//로그인한 유저의 정보를 불러오기
 		LoginDto loginUser = (LoginDto) session.getAttribute("loginIng");
 		JoinDto dbUserE = (JoinDto) userService.getUsersByUserEmail(user.getUsers_email());
 		String dbUserEmail;
-		
 		if(dbUserE != null) {
 			dbUserEmail = dbUserE.getUsers_email();
 		} else {
 			dbUserEmail = "없음";
 		}
 		
+		//입력한 정보와 db에 있는 유저 정보간의 중복체크
 		JoinDto dbUserP = (JoinDto) userService.getUsersByUserPhone(user.getUsers_phone());
 		String dbUserPhone;
 		if(dbUserP != null) {
@@ -137,13 +133,9 @@ public class UserController {
 		} else {
 			dbUserPhone = "없음";
 		}
-		
-		
 		ModifyDto loginUserData = userService.getModifyByUsersId(loginUser.getUsers_id());
 		boolean emailModifyResult = user.getUsers_email().equals(loginUserData.getUsers_email());
 		boolean phoneModifyResult = user.getUsers_phone().equals(loginUserData.getUsers_phone());
-
-		log.info(loginUserData.toString());
 			
 		if(!emailModifyResult) {
 			//입력한 이메일과 로그인 이메일이 다른 경우 : 입력한 이메일이 db에서 null이거나 로그인 이메일이 db에서 null
@@ -213,19 +205,16 @@ public class UserController {
 	   return "modify/modify";
 	}
 	
+	//회원탈퇴 불러오기
 	@Login
 	@GetMapping("/unjoin")
 	public String unjoin(HttpSession session) {
-		
 		LoginDto loginUser = (LoginDto) session.getAttribute("loginIng");
 		String userId = loginUser.getUsers_id();
 		userService.unjoin(userId);
 		session.invalidate();
 		return "home";
-		
 	}
-		
-		
 	
 	//로그인 기능 테스트용
 	@Login

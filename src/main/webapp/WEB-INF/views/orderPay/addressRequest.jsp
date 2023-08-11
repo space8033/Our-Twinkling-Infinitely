@@ -104,7 +104,7 @@
             color: #fff;
    			border: 0;
             box-shadow: inset 0 -2px 0 rgba(0,0,0,0.38);
-          
+          	width: 100%;
             border-radius: 2px;
        
            
@@ -129,29 +129,30 @@
 					‘직접 받고 부재 시 문 앞’을 선택해도 문 앞으로 배송합니다.</span>
           
 	                
-               </div>	
+               </div>
+               <form id="requestForm" method="post">	
 	           <div class="selec">     
 	                  <div  class="on"> 
 				          <label>
-							<input type="radio" id="door" name="select" value="문 앞" checked="checked"/>
+							<input type="radio" id="door" name="reqMsg" value="문 앞" checked="checked"/>
 							문 앞
 						  </label>
 					  </div>
 	                  <div  class="on"> 
 				          <label>
-							<input type="radio" id="ftof" name="select" value="직접" />
+							<input type="radio" id="ftof" name="reqMsg" value="직접" />
 							직접 받고 부재 시 문 앞
 						  </label>
 					  </div>
 	                  <div  class="on"> 
 				          <label>
-							<input type="radio" id="securityOffice" name="select" value="경비실"/>
+							<input type="radio" id="securityOffice" name="reqMsg" value="경비실"/>
 							경비실
 						  </label>
 					  </div>
 	                  <div  class="on"> 
 				          <label>
-							<input type="radio" id="delBox" name="select" value="택배함"/>
+							<input type="radio" id="delBox" name="reqMsg" value="택배함"/>
 							택배함
 						  </label>
 					  </div>
@@ -161,7 +162,7 @@
 					  </div>
 	                  <div class="on"> 
 				          <label>
-							<input type="radio" id="etc" name="select" value="기타사항"/>
+							<input type="radio" id="etc" name="reqMsg" value="기타사항"/>
 							기타사항
 						  </label>
 					  </div>
@@ -196,9 +197,10 @@
                </div>
              
           
-              <div id="agreeSave">
-                  	동의하고 저장하기
+               <div>
+                  	<button id="agreeSave" type="submit" onclick="requestPost">동의하고 저장하기</button>
                </div>
+               </form>
               
               
               

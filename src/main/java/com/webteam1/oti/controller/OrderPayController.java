@@ -15,6 +15,7 @@ import com.webteam1.oti.service.UserService;
 
 import lombok.extern.slf4j.Slf4j;
 
+//OrderPayController 전체 작성자 : 김시온
 @Slf4j
 @Controller
 public class OrderPayController {
@@ -28,14 +29,11 @@ public class OrderPayController {
 	
 	@Login
 	@GetMapping("/orderPay")
-	public String orderPay(Model model, HttpSession session) {
+	public String orderPay(String reqMsg, Model model, HttpSession session) {
 		LoginDto loginUser = (LoginDto) session.getAttribute("loginIng");
-		log.info(loginUser+"=loginUser");
-		log.info(loginUser.getUsers_id());
 		ModifyDto loginUserData = userService.getModifyByUsersId(loginUser.getUsers_id());
-		
-		log.info(loginUserData+"=loginUserData");
 		model.addAttribute("orderUser", loginUserData);
+		model.addAttribute("reqMsg", reqMsg);
 		
 		return "orderPay/orderPay";
 	}
@@ -49,7 +47,9 @@ public class OrderPayController {
 	
 	@Login
 	@GetMapping("/addressRequest")
-	public String addressRequest() {
+	public String addressRequest(Model model) {
+		
+		
 		
 		return "orderPay/addressRequest";
 	}
