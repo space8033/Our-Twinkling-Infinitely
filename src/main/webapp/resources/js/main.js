@@ -63,10 +63,28 @@ function myOption2(){
 	}
 }
 
-function showReview() {
+function showReview(productNum, pageNo2) {
 	$.ajax({
 		url: "review",
 		method: "get",
+		data:{
+				"productNum": productNum,
+				"pageNo2": pageNo2
+		},
+		success: function(data) {
+			$("#menu3").html(data);
+		},
+		error: function(error) {
+			console.log("아왜");
+		}
+	});
+}
+
+function reviewDetail(review_no) {
+	$.ajax({
+		url: "reviewDetail",
+		method: "get",
+		data:{"review_no": review_no},
 		success: function(data) {
 			$("#menu3").html(data);
 		},

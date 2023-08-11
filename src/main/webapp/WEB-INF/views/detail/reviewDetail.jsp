@@ -10,11 +10,6 @@
 				<div>
 					<div>
 						<p>
-							<span>번호:</span> 
-							<span>${review.review_no}</span>
-						</p>
-						
-						<p>
 							<span>제목:</span> 
 							<span>${review.review_title}</span>
 						</p>
@@ -36,7 +31,7 @@
 						<textarea style="width:100%" readonly>${review.review_contents}</textarea>
 					</div>
 					
-					<a class="btn btn-info btn-sm mt-2" href="review">목록</a>
+					<a class="btn btn-info btn-sm mt-2" href="javascript:showReview(${productNum}, 1)">목록</a>
 					
 					<c:if test="${review.review_name == loginIng.users_id}">
 						<a class="btn btn-info btn-sm mt-2" href="updateReview?review_no=${review.review_no}">수정</a>
