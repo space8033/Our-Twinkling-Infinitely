@@ -17,31 +17,8 @@
       <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>
 	  <script src="${pageContext.request.contextPath}/resources/js/myAddressModify.js"></script>
 	  <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
-	  <script>
-			function findAddress() {
-		        new daum.Postcode({
-		            oncomplete: function(data) {
-		                // 도로명 주소의 노출 규칙에 따라 주소를 표시한다.
-		                // 내려오는 변수가 값이 없는 경우엔 공백('')값을 가지므로, 이를 참고하여 분기 한다.
-		                var roadAddr = data.roadAddress; // 도로명 주소 변수
-		                var extraRoadAddr = ''; // 참고 항목 변수
-		
-		                // 법정동명이 있을 경우 추가한다. (법정리는 제외)
-		                // 법정동의 경우 마지막 문자가 "동/로/가"로 끝난다.
-	                    extraRoadAddr += data.bname;
-		                // 표시할 참고항목이 있을 경우, 괄호까지 추가한 최종 문자열을 만든다.
-		                extraRoadAddr = ' (' + extraRoadAddr + ')';
-		
-		                // 우편번호와 주소 정보를 해당 필드에 넣는다.
-		                document.getElementById("roadAddress").value = roadAddr;
-		                document.getElementById("jibunAddress").value = data.jibunAddress;
-		                document.getElementById("extraAddress").value = extraRoadAddr;
-	
-		            }
-		        }).open();
-		    }
-		</script>
-		<style>
+	 
+	  <style>
 			.myAddress {
 				width: 95%;
 				margin-top : 25px;
@@ -102,45 +79,45 @@
 				border: 1px solid red;
 			}
 			
-			.modal {
-			  display: none; /* Hidden by default */
-			  position: fixed; /* Stay in place */
-			  z-index: 1; /* Sit on top */
-			  left: 0;
-			  top: 0;
-			  width: 100%; /* Full width */
-			  height: 100%; /* Full height */
-			  overflow: auto; /* Enable scroll if needed */
-			  background-color: rgb(0,0,0); /* Fallback color */
-			  background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+		    .modal {
+				display: none; /* Hidden by default */
+				position: fixed; /* Stay in place */
+				z-index: 1; /* Sit on top */
+				left: 0;
+				top: 0;
+				width: 100%; /* Full width */
+				height: 100%; /* Full height */
+				overflow: auto; /* Enable scroll if needed */
+				background-color: rgb(0,0,0); /* Fallback color */
+				background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
 			}
 			
 			/* Modal Content/Box */
 			.modal-content {
-			  background-color: #fefefe;
-			  margin: 15% auto; /* 15% from the top and centered */
-			  padding: 20px;
-			  border: 1px solid #888;
-			  width: 50%; /* Could be more or less, depending on screen size */
+				background-color: #fefefe;
+				margin: 15% auto; /* 15% from the top and centered */
+				padding: 20px;
+				border: 1px solid #888;
+				width: 50%; /* Could be more or less, depending on screen size */
 			}
 			#close {
-			  color: #aaa;
-			  font-size: 28px;
-			  font-weight: bold;
+				color: #aaa;
+				font-size: 28px;
+				font-weight: bold;
 			}
 			
 			#close:hover,
 			#close:focus {
-			  color: black;
-			  text-decoration: none;
-			  cursor: pointer;
+				color: black;
+				text-decoration: none;
+				cursor: pointer;
 			}
 			
 			#selectRequest:hover {
 				cursor: pointer;
 			}
-
-
+	
+	
 			.addressIcon {
 				width: 50px;
 				height: 50px;

@@ -11,7 +11,7 @@
 	href="//image9.coupangcdn.com/image/coupang/favicon/v2/favicon.ico"
 	type="image/x-icon" />
 <title>쿠팡 상품 등록</title>
-<link rel="stylesheet" href="registerForm_css.css">
+ <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/registerForm_css.css"/>
 </head>
 <body>
 	
@@ -380,34 +380,6 @@
 			</div>
 	</div>
 	
-	
-	
-	<div id= "footer">
-	
-	        <section id="wingFooter">
-	           <section id="wingFooterLogo">
-	              <a href="https://www.coupang.com/"> <img src="image/coupang_logo.png" width="150" height="30" />
-	              </a>
-	        	</section>
-	        
-	        	<section id="wingFooterSns">
-	             <ul id="snsList">
-		          	  <li><a href=""><img src="image/1.JPG" width="35" height="30" /></a></li>
-		              <li><a href=""><img src="image/2.JPG" width="35" height="30" /></a></li>
-		              <li><a href=""><img src="image/3.JPG" width="35" height="30" /></a></li>
-	             </ul>
-	        	</section>
-	        
-	      	   <section id="footerInfo">
-	               <p id="corpInfo" class="footerInfoDetail">쿠팡(주) | 대표이사 : 강한승,
-	                  박대준 | 사업자 등록번호 : 120-88-00767 | 통신판매업신고 : 2017-서울송파-0680</p>
-	               <p id="corpContact" class="footerInfoDetail">(05510) 서울특별시 송파구
-	                  송파대로 570(신천동, 7-30) | Tel: 1600-9879 | Fax : 02-3441-7011</p>
-	               <p id="corpRights" class="footerInfoDetail">© Coupang Corp. All
-	                  rights reserved.</p>
-	      	   </section>
-	        </section>
-	</div>
 	
 </body>
 

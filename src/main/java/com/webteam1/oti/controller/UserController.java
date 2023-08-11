@@ -84,8 +84,6 @@ public class UserController {
 	public String login(LoginDto users, Model model, HttpSession session, HttpServletRequest request, HttpServletResponse response) {
 		LoginResult result = userService.login(users);
 		
-		
-		
 		log.info(result+"로그인 상태");
 		if(result == LoginResult.FAIL_UID) {
 			String error1 = "가입된 ID가 없습니다.";
