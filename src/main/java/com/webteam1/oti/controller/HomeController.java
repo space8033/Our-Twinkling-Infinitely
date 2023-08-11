@@ -60,11 +60,5 @@ public class HomeController {
 	   
 	   return "home";
 	}
-	
-	@GetMapping("/ff")
-	public String index() {
-		
-		return "register/registerForm";
-	}
 
 }

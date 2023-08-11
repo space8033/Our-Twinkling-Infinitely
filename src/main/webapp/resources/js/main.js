@@ -66,7 +66,6 @@ function myOption2(){
 function showReview() {
 	$.ajax({
 		url: "review",
-		dataType : "html",
 		method: "get",
 		success: function(data) {
 			$("#menu3").html(data);
