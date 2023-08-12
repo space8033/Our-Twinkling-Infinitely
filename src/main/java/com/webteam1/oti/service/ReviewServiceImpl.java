@@ -8,7 +8,7 @@ import javax.annotation.Resource;
 import org.springframework.stereotype.Service;
 
 import com.webteam1.oti.dao.ReviewDao;
-import com.webteam1.oti.dto.Review;
+import com.webteam1.oti.dto.review.Review;
 
 import lombok.extern.slf4j.Slf4j;
 

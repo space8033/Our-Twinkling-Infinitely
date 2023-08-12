@@ -10,10 +10,12 @@ import javax.servlet.http.HttpSession;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 
 import com.webteam1.oti.dto.Pager;
-import com.webteam1.oti.dto.Review;
+import com.webteam1.oti.dto.review.Review;
 import com.webteam1.oti.dto.user.LoginDto;
+import com.webteam1.oti.dto.user.ReviewReceive;
 import com.webteam1.oti.interceptor.Login;
 import com.webteam1.oti.service.ReviewService;
 import com.webteam1.oti.service.UserService;
@@ -74,6 +76,13 @@ public class ReviewController {
 	public String getWriteReview(String productNum, Model model, HttpSession session) {
 		LoginDto user = (LoginDto) session.getAttribute("loginIng");
 		model.addAttribute("user", user.getUsers_id());
+		model.addAttribute("productNum", productNum);
 		return "detail/reviewWrite";
+	}
+	
+	@PostMapping("/reviewWrite")
+	public String writeReview(ReviewReceive review) {
+		log.info(review.getImages().length + "");
+		return "redirect:/review";
 	}
 }

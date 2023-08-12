@@ -6,28 +6,51 @@
 	      	리뷰 작성하기
 	   </div>
 	   <div class="card-body">
-	      <form id="writeBoardForm" method="post" action="writeBoard" enctype="multipart/form-data">
+	      <form id="reviewWrite" method="post" action="reviewWrite" enctype="multipart/form-data">
 	         <div class="input-group">
 	            <div class="input-group-prepend"><span class="input-group-text">한줄평</span></div>
-	            <input id="btitle" type="text" name="btitle" class="form-control">
+	            <input id="btitle" type="text" name="reviewTitle" class="form-control">
+	         </div>
+	         
+	         <div class="input-group">
+	            <div class="input-group-prepend"><span class="input-group-text">별점</span></div>
+		         <div class="rate">
+		         	 <input type="radio" id="rating5" name="rating" value="5"><label for="rating5" title="5점"></label>
+	                 <input type="radio" id="rating4" name="rating" value="4"><label for="rating4" title="4점"></label>
+	                 <input type="radio" id="rating3" name="rating" value="3"><label for="rating3" title="3점"></label>
+	                 <input type="radio" id="rating2" name="rating" value="2"><label for="rating2" title="2점"></label>
+	                 <input type="radio" id="rating1" name="rating" value="1"><label for="rating1" title="1점"></label>
+	                 <input type="hidden" id="starValue" name="reviewRating" value="4">
+		         </div>
 	         </div>
 	         
 	         <div class="input-group">
 	            <div class="input-group-prepend"><span class="input-group-text">리뷰 상세</span></div>
-	            <textarea id="bcontent" name="bcontent" class="form-control"></textarea>
+	            <textarea id="bcontent" name="reviewContents" class="form-control"></textarea>
 	         </div>
 	         
 	         <div class="input-group">
 	            <div class="input-group-prepend"><span class="input-group-text">작성자</span></div>
-	            <input id="bwriter" type="text" name="mid" class="form-control" value="${user}" readonly>
+	            <input id="bwriter" type="text" name="reviewWriter" class="form-control" value="${user}" readonly>
 	         </div>
-	         <div class="input-group">
-	            <div class="input-group-prepend"><span class="input-group-text">첨부이미지</span></div>
-	            <input id="battach" type="file" name="battach" class="form-control">
-	         </div>
+	         
+	         <div class="form-group" id="file-list">
+	         	<br>
+	         	<div class="d-flex">
+			        <a href="#this" onclick="addFile()" class="btn btn-info mr-2">이미지 추가</a>
+			        <div id="showAlert" style="color: red;">
+			        	<span> 이미지는 최대 5개까지 등록 가능합니다.</span>
+			        </div>	         	
+	         	</div>
+		        <br>
+		        <div class="file-group mt-2">
+		            <input type="file" name="images" style="width:80%; border: solid 1px #f0f0f0">
+		            <a href="#this" name="file-delete" class="btn btn-danger m-1">삭제</a>
+		        </div>
+		    </div>
 	            
 	         <div class="mt-3">
-	            <button class="btn btn-info btn-sm mr-2">글쓰기</button>
+	            <button class="btn btn-info btn-sm mr-2" >글쓰기</button>
 	            <a class="btn btn-info btn-sm" href="javascript:showReview(${productNum}, 1)">목록보기</a>
 	         </div>
 	      </form>
