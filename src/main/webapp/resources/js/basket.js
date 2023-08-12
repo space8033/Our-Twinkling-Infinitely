@@ -242,7 +242,7 @@ function jsonProduct() {
 	//배송될 날짜
 	var tomorrow = new Date(now.setDate(now.getDate() + 3));
 	//배송될 월
-	let month = tomorrow.getMonth();
+	let month = tomorrow.getMonth() + 1;
 	//배송될 일
 	let date = tomorrow.getDate();
 	//배송될 요일
@@ -286,7 +286,7 @@ function jsonProduct() {
       		html += '</td>';
       		html += '<td class="product_contents">';
       		html += '	<div class="c_name">';
-      		html += '		<a href="detailProduct?product_no="' + item.product_no + '>' + item.product_name;		
+      		html += '		<a href="detailProduct?product_no="' + item.product_no + '>' + item.product_name + '(' + item.productOption_type + ')';		
       	    html += '		</a>';		
       		html += '	</div>';
       		html += '	<div class="c_date&c_option d-flex">';

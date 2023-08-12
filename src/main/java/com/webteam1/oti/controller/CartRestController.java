@@ -31,7 +31,7 @@ import lombok.extern.slf4j.Slf4j;
 public class CartRestController {
 	@Resource
 	private CartService cartService;
-	//장바구니에 담은 상품 리스트 불러오기
+	//비동기로 장바구니에 담은 상품 리스트 불러오기
 	@ResponseBody
 	@GetMapping("/addCart")
 	public List<CartDto> cartView (HttpSession session, HttpServletRequest request, HttpServletResponse response, Cart cart, Model model) throws Exception {
@@ -41,9 +41,9 @@ public class CartRestController {
 	    if(cookie != null && session.getAttribute("loginIng")==null) {
 			//전에 받은 쿠키 id 값 삽입
 			String cartCookie = cookie.getValue();
-			log.info(cartCookie);
 			cart.setCart_ckId(cartCookie);
 			list = cartService.getCartList(cart);
+			log.info("list: " + list);
 		//회원시 users_id 이용
 	    }else if(cookie == null && session.getAttribute("loginIng") != null) {
 			//로그인 세션 가져오기
@@ -51,6 +51,7 @@ public class CartRestController {
 			//장바구니에 로그인 한 user_id 삽입
 			cart.setUsers_users_id(loginDto.getUsers_id());
 			list = cartService.getCartList(cart);
+			log.info("list: " + list);
 	    }
 	    
 	    return list;

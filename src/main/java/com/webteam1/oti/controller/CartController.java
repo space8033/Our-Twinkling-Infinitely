@@ -1,6 +1,7 @@
 package com.webteam1.oti.controller;
 
 import java.io.PrintWriter;
+import java.util.Base64;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -70,8 +71,7 @@ public class CartController {
 		//비회원 장바구니 첫 클릭 시 쿠키 생성
 		if(cookie == null && session.getAttribute("loginIng") == null) {
 			//비회원
-			cart.setCart_isLogin(0);
-			
+			cart.setCart_isLogin(0);	
 			//쿠키 id 설정
 			String ckId = RandomStringUtils.random(6, true, true);
 			Cookie cartCookie = new Cookie("cartCookie", ckId);
@@ -106,6 +106,7 @@ public class CartController {
 			    out.close();
 				return "redirect:/cart";
 			}
+			
 			//쿠키 시간 재설정
 			cookie.setPath("/");
 			cookie.setMaxAge(60 * 60 * 24 * 1);
@@ -125,6 +126,11 @@ public class CartController {
 			cart.setCart_cklimit(null);
 			//장바구니에 로그인 한 user_id 삽입
 			cart.setUsers_users_id(loginDto.getUsers_id());
+			//상품 이미지 삽입
+			if(product.getProduct_imgFile() != null) {
+			   String base64Img = Base64.getEncoder().encodeToString(product.getProduct_imgFile());
+			   cart.setProduct_img(base64Img);
+			}
 			
 			cartService.addCart(cart);
 			
