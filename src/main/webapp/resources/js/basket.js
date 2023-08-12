@@ -327,12 +327,12 @@ function jsonProduct() {
 	let day = weekday[days];
 	
   $.ajax({
-	 url: "addCart",
-	 method: "get",
-	 dataType: "Json",
-	 success: function(list){
+	 url: "/addCart",
+	 method: "GET",
+	 dataType: "json",
+	 success: function(data){
 		 let html = "";
-         list.forEach((item, index) => {
+		 data.forEach((item, index) => {
         	priceArr.push(item.price);
         	let price = item.product_price.toLocaleString("ko-KR");
         	let benefit = Math.ceil(item.product_price * 0.05);

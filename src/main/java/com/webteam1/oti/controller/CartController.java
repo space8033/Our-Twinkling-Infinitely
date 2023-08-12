@@ -1,8 +1,6 @@
 package com.webteam1.oti.controller;
 
-import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 import javax.annotation.Resource;
@@ -13,12 +11,14 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.apache.commons.lang3.RandomStringUtils;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.util.WebUtils;
 
@@ -52,39 +52,36 @@ public class CartController {
 	
 	//장바구니에 담은 상품 리스트 불러오기
 	@ResponseBody
-	@RequestMapping(value = {"/addCart"}, method = {RequestMethod.GET})
-	public List<CartDto> cartView (HttpSession session, HttpServletRequest request, HttpServletResponse response, Cart cart, Model model) throws Exception {
+	@GetMapping("/addCart")
+	public ResponseEntity<Map<String, CartDto>> cartView (HttpSession session, HttpServletRequest request, HttpServletResponse response, @RequestBody CartDto cartDto, Model model) throws Exception {
 		Cookie cookie = WebUtils.getCookie(request, "cartCookie");
-	    List<CartDto> list = new ArrayList<>();
+	    Map<String, CartDto> map = new HashMap<>();
 	    log.info("실행함 나 진짜");
 	    //비회원시 쿠키value인 ckId사용
 	    if(cookie != null && session.getAttribute("loginIng")==null) {
 	    	log.info("웅 나 비회원~~");
-	    	//비회원
-			cart.setCart_isLogin(0);
-			
 			//전에 받은 쿠키 id 값 삽입
 			String ckValue = cookie.getValue();
-			cart.setCart_ckId(ckValue);
-			list = cartService.getCartList();
-			log.info("리스트 나와라 얍: " + list);
+			log.info(ckValue);
+			cartDto.setCart_ckId(ckValue);
+			log.info("얍!!!!!!!!!!: " + cartDto);
+			map = cartService.getCartList();
+			log.info("리스트 나와라 얍: " + map.toString());
 		//회원시 users_id 이용
 	    }else if(cookie == null && session.getAttribute("loginIng") != null) {
 	    	log.info("웅 나 회원~~");
-	    	//로그인 완료
-			cart.setCart_isLogin(1);
 			//로그인 세션 가져오기
 			LoginDto loginDto = (LoginDto) session.getAttribute("loginIng");
 			//장바구니에 로그인 한 user_id 삽입
-			cart.setUsers_users_id(loginDto.getUsers_id());
+			cartDto.setUsers_users_id(loginDto.getUsers_id());
 			log.info("넣었쥬!");
-			list = cartService.getCartList();
-			log.info("리스트 나와라 얍: " + list);
+			map = cartService.getCartList();
+			log.info("리스트 나와라 얍: " + map.toString());
 	    }
+	    model.addAttribute("cartDto", cartDto);
+	    model.addAttribute("map", map);
 	    
-	    model.addAttribute("carts", list);
-	    
-	    return list;
+	    return new ResponseEntity<>(map, HttpStatus.OK);
 	}
 
 	//상품 상세정보에서 장바구니 넣기 구현
@@ -149,9 +146,7 @@ public class CartController {
 			cookie.setMaxAge(60 * 60 * 24 * 1);
 			response.addCookie(cookie);
 			cartService.addCart(cart);
-			log.info("cart" + cart);
 			cart.setProductOption_productOption_no(cartService.getOptionNo(map));
-			log.info("카트: " + cart);
 			
 			model.addAttribute("carts", cart);
 			

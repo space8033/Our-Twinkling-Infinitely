@@ -49,9 +49,9 @@ public class CartServiceImpl implements CartService{
 	}
 
 	@Override
-	public List<CartDto> getCartList() {
-		List<CartDto> list = cartDao.selectCartList();
-		return list;
+	public Map<String, CartDto> getCartList() {
+		Map<String, CartDto> map = cartDao.selectCartList();
+		return map;
 	}
 
 }

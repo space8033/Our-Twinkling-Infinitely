@@ -16,6 +16,6 @@ public interface CartService {
 	public void cartUpdate(Cart cart);
 	public List<Cart> getCartByCkId(String ckId);
 	public int getOptionNo(Map<String, Object> map);
-	public List<CartDto> getCartList();
+	public Map<String, CartDto> getCartList();
 }
 
