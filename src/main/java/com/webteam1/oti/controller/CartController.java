@@ -62,7 +62,7 @@ public class CartController {
 		Map<String, Object> map = new HashMap<>();
 		map.put("cart_optionContent", cart.getCart_optionContent());
 		map.put("product_product_no", cart.getProduct_product_no());
-		
+
 		//선택한 상품의 옵션 번호 결정
 		int productOptionNo = cartService.getOptionNo(map);
 		//선택한 옵션번호 카트에 넣기
@@ -86,7 +86,6 @@ public class CartController {
 			cartService.addCart(cart);
 			
 			model.addAttribute("carts", cart);
-			
 		//비회원이 하루 안에 한번 더 장바구니 방문 시 쿠키 생성 후 상품 추가
 		}else if(cookie != null && session.getAttribute("loginIng")==null) {
 			//비회원
@@ -113,7 +112,6 @@ public class CartController {
 			response.addCookie(cookie);
 			cartService.addCart(cart);
 			cart.setProductOption_productOption_no(cartService.getOptionNo(map));
-			
 			model.addAttribute("carts", cart);
 			
 		//회원 장바구니 추가	

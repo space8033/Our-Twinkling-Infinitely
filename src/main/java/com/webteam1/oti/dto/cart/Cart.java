@@ -17,6 +17,7 @@ public class Cart {
 	private int product_product_no;
 	//해당 상품 이미지
 	private String product_img;
+	private byte[] product_imgFile;
 	private Date cart_createdDate;
 	//쿠키제한시간(삭제용)
 	private Date cart_cklimit;

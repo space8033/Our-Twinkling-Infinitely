@@ -13,7 +13,7 @@ public class CartDto {
 	private int product_no;
 	private String product_name;
 	private int product_price;
-	private String product_img;
+	private byte[] product_imgFile;
 	private int productOption_no; 
 	private String productOption_type;
 }

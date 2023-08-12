@@ -56,10 +56,10 @@
 		select * from cart where cart_ckId=#{cart_ckId}
 	</select>
 	
-	<!-- 장바구니 상품리스트 -->
-	<select id="selectCartList" parameterType="Product" resultMap="CartDto">
+	<!-- 장바구니 추가한 상품리스트 불러오기-->
+	<select id="selectCartList" parameterType="Cart" resultType="CartDto">
 		select  c.cart_no, c.productOption_productOption_no, c.cart_optionContent, p.product_no,
-		p.product_name , p.product_price ,p.product_img, o.productOption_no , o.productOption_type
+		p.product_name , p.product_price ,p.product_imgFile, o.productOption_no , o.productOption_type
 		from CART c 
 		left outer join PRODUCT p on c.product_product_no = p.product_no 
 		left outer join PRODUCTOPTION o on c.productOption_productOption_no = o.productOption_no
@@ -72,18 +72,4 @@
 			</if>
 		</where>
 	</select>
-	<resultMap type="CartDto" id="CartDto">
-		<result column="cart_no" property="cart_no"/>
-		<result column="productOption_productOption_no" property="productOption_productOption_no"/>
-		<result column="cart_optionContent" property="cart_optionContent"/>
-		<result column="cart_ckId" property="cart_ckId"/>
-		<result column="users_users_id" property="users_users_id"/>
-		<result column="product_no" property="product_no"/>
-		<result column="product_name" property="product_name"/>
-		<result column="product_price" property="product_price"/>
-		<result column="product_img" property="product_img"/>
-		<result column="productOption_no" property="productOption_no"/>
-		<result column="productOption_type" property="productOption_type"/>
-	</resultMap>
-
 </mapper>

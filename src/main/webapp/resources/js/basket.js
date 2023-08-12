@@ -234,6 +234,7 @@ function setSelectBox(){
 	
 }
 
+
 //상품이 있을 경우 Json으로 상품 불러오기
 let priceArr = new Array();
 function jsonProduct() {
@@ -281,7 +282,7 @@ function jsonProduct() {
       		html += '</td>';
       		html += '<td class="p_img">';
       		html += '	<a href="#">';
-      		html += '		<img src="data:MIME;base64,' + item.product_img + ' "width="78"/>';
+      		html += '		 <img src="data:MIME;base64, '+ item.product_imgFile +'" width="78"/>';
       		html += '	</a>';
       		html += '</td>';
       		html += '<td class="product_contents">';
@@ -350,6 +351,7 @@ function jsonProduct() {
 	     	$("#s_t_choice").html($numberOfProducts);
 	     	isProductThead();
 	     	setSelectBox();//선택한 상품의 가격 변화 함수
+	     	putImg();
 	     	
 	 },
 	 error: function(error){
@@ -358,5 +360,6 @@ function jsonProduct() {
 		 console.log(error.status);
 	 }
   });
+  
   
 }
