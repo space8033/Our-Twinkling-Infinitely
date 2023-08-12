@@ -169,7 +169,7 @@ function LoadingWithMask() {
     //로딩중 이미지 표시
     $.LoadingOverlay("show", {
     	background       : "rgba(0, 0, 0, 0.5)",
-    	image            : "../../common/image/coupang/s_spinner2.gif",
+    	image            : "${pageContext.request.contextPath}/resources/yuimg/s_spinner2.gif",
     	maxSize          : 60,
     	fontawesome      : "fa fa-spinner fa-pulse fa-fw",
     	fontawesomeColor : "#FFFFFF",
@@ -230,75 +230,6 @@ function setSelectBox(){
 				 console.log(error.status);
 			 }
 		  });
-		 
-	//10+를 selected했을 경우 가격	
-	}else if(schField == "10+"&& $(".select-option option:selected").length !== 0){
-		let coPrice = $(event.target).prop("id");
-		
-		$.ajax({
-			 url: "addCart",
-			 method: "get",
-			 dataType: "Json",
-			 success: function(list){
-		         list.forEach((item, index) => {
-		        	 //select option id
-		        	 let idNo = "customSelect" + index;
-			       if(coPrice == idNo){
-			    	   //input text id
-			    	   let textid = "text-co-price" + index;
-			    	   //수량변경 버튼 id
-			    	   let btnid= "btn" + index
-			    	   $("#" + idNo).hide();
-			    	   $("#" + textid).parent().show();
-			    	   //input박스를 클릭했을 때 버튼 나타나기
-			    	   $("#" + textid).click(function(){
-			    		   $("#" + btnid).parent().show();			    		   
-			    	   });
-			    	   //수량변경버튼을 클릭했을 때
-			    	   $("#" + btnid).click(function () { 
-			    		  var textField = $("#" + textid).val();
-			    		  //10보다 작은 값을 입력하고 수량버튼을 눌렀을 때
-			    		  if(textField < 10){
-			    			  $("#" + textid).parent().hide();
-			    			  $("#" + idNo).show();
-			    			  $("#" + coPrice).val(textField).prop("selected", true);
-			    			  $("#" + btnid).parent().hide();
-			    			  let quty = $("#" + coPrice + " option:selected").text();
-			    			  let targetPrice = item.price * quty;
-			    			  let benefitPrice = Math.ceil(item.price * quty * 0.05);
-			    			  let id = "co-price" + index;//상품가격1 id
-			    			  let benefitId = "benefit" + index;//혜택id
-			    			  let toPrId = "toPr" + index;//상품가격2 id
-			    			  $("#" + id).html(targetPrice.toLocaleString("ko-KR"));
-					    	  $("#" + benefitId).html(benefitPrice.toLocaleString("ko-KR"));
-					    	  $("#" + toPrId).html(targetPrice.toLocaleString("ko-KR"));
-					    	  $("#chk" + index).val(targetPrice);
-					    	  console.log($("#chk" + index).val());
-					      //10보다 큰 값을 입력하고 수량버튼을 클릭했을 때  
-			    		  }else{
-			    			  let id = "co-price" + index;//상품가격i id
-			    			  let targetPrice = item.price * textField;
-			    			  let benefitPrice = Math.ceil(item.price * textField * 0.05);
-			    			  let benefitId = "benefit" + index;//혜택id
-			    			  let toPrId = "toPr" + index;//상품가격2 id
-			    			  
-			    			  $("#" + id).html(targetPrice.toLocaleString("ko-KR"));
-			    			  $("#" + benefitId).html(benefitPrice.toLocaleString("ko-KR"));
-			    			  $("#" + toPrId).html(targetPrice.toLocaleString("ko-KR"));
-			    			  $("#chk" + index).attr("value", targetPrice);
-			    			  $("#chk" + index).val(targetPrice);
-			    			  $("#" + btnid).parent().hide();
-			    		  }
-			    		  
-			           });
-			       }
-		         }); 
-		      
-			 },
-			 error: function(error){
-				 console.log(error.status);
-			 }
-		  });      	
 	}
 	
 }
@@ -309,9 +240,9 @@ function jsonProduct() {
 	//오늘 날짜
 	var now = new Date();
 	//배송될 날짜
-	var tomorrow = new Date(now.setDate(now.getDate() + 1));
+	var tomorrow = new Date(now.setDate(now.getDate() + 3));
 	//배송될 월
-	let month = tomorrow.getMonth() + 3;
+	let month = tomorrow.getMonth();
 	//배송될 일
 	let date = tomorrow.getDate();
 	//배송될 요일
@@ -331,6 +262,15 @@ function jsonProduct() {
 	 method: "get",
 	 success: function(data){
 		 let html = "";
+		 if(data<1){
+			 html += '<tr class="t2">';
+			 html += '	<td></td>';
+			 html += '	<td></td>';
+			 html += '	<td>';
+			 html += '		<p class="t2_nonMessage">장바구니에 담은 상품이 없습니다.</p>';
+			 html += '	</td>';
+			 html += '</tr>';
+		 }
          data.forEach((item, index) => {
         	priceArr.push(item.price);
         	let price = item.product_price.toLocaleString("ko-KR");
@@ -351,9 +291,8 @@ function jsonProduct() {
       		html += '	</div>';
       		html += '	<div class="c_date&c_option d-flex">';
       		html += '		<div class="c_date">';
-      		html += '			<span class="arrival d-day text-success">내일</span>';
-      		html += '			<span class="arrival day text-success">(' + day + ')</span>';
       		html += '			<span class="arrival date text-success">'+ month +'/' + date +'</span>';
+      		html += '			<span class="arrival day text-success">(' + day + ')</span>';
       		html += '			<span class="arrival time text-success">새벽 7시 전</span>';
       		html += '			<span class="arrival message text-success">도착 보장</span>';
       		html += '			<span class="condition text-muted"><small>(오후 9시 전 주문 시)</small></span>';

@@ -1,8 +1,7 @@
 package com.webteam1.oti.controller;
 
-import java.util.ArrayList;
+import java.io.PrintWriter;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 import javax.annotation.Resource;
@@ -13,24 +12,17 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.apache.commons.lang3.RandomStringUtils;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.util.WebUtils;
 
 import com.webteam1.oti.dto.Product;
 import com.webteam1.oti.dto.cart.Cart;
-import com.webteam1.oti.dto.cart.CartDto;
 import com.webteam1.oti.dto.user.LoginDto;
 import com.webteam1.oti.service.CartService;
-import com.webteam1.oti.service.CartService.AddCartResult;
 import com.webteam1.oti.service.ImageService;
 import com.webteam1.oti.service.ProductService;
 
@@ -105,9 +97,13 @@ public class CartController {
 			cart.setCart_ckId(ckValue);
 
 			//겹치는 상품인지 유효성 검사
-			if(cartService.productCheck(cart) == AddCartResult.SUCCESS) {				
-				cartService.addCart(cart);
-
+			if(cartService.productCheck(cart) != 0) {
+				response.setContentType("text/html; charset=UTF-8");
+			    PrintWriter out = response.getWriter();
+			    out.println("<script>alert('이미 추가한 상품입니다.'); history.go(-1);</script>");
+			    out.flush();
+			    response.flushBuffer();
+			    out.close();
 				return "redirect:/cart";
 			}
 			//쿠키 시간 재설정

@@ -8,12 +8,8 @@ import com.webteam1.oti.dto.cart.Cart;
 import com.webteam1.oti.dto.cart.CartDto;
 
 public interface CartService {
-	public enum AddCartResult {
-		SUCCESS,
-		DUPLICATED_PRODUCT_OPTION
-	}
 	public int addCart(Cart cart);
-	public AddCartResult productCheck(Cart cart);
+	public int productCheck(Cart cart);
 	public void cartUpdate(Cart cart);
 	public List<Cart> getCartByCkId(String ckId);
 	public int getOptionNo(Map<String, Object> map);
