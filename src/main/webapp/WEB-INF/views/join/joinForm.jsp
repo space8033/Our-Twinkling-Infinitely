@@ -112,7 +112,7 @@
 							 	<label for="tel"><img src = "${pageContext.request.contextPath}/resources/image/sion/stel.JPG"></label>
 						  </div>
 						  <div>
-								<input type="tel" onfocus="this.placeholder=''" pattern="010-[0-9]{3,4}-[0-9]{4}" placeholder="휴대폰 번호" id="tel"
+								<input type="tel" onfocus="this.placeholder=''" oninput="autoHyphen(this)" pattern="010-[0-9]{3,4}-[0-9]{4}"  maxlegth="13" placeholder="휴대폰 번호" id="tel"
 								 autocomplete="off" value="${joinDto.users_phone}" name="users_phone">
 						  </div>
 					 </div>

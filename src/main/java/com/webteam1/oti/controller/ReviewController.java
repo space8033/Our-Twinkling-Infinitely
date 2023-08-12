@@ -33,6 +33,7 @@ public class ReviewController {
 			   pageNo2 = "1";
 		   }
 		}
+		
 		log.info(pageNo2);
 		int productNo = (int)session.getAttribute("productNum");
 		log.info(productNo + "");
