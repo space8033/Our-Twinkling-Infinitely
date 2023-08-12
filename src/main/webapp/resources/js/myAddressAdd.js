@@ -5,11 +5,16 @@ function init() {
 	var joinForm = $("#joinForm");
 	$("#submit").click(checkValidation);
 	$("#uname").blur(onBlurName);
-	$("#utel").blur(onBlurTel);
 	$("#addButton").click(addContact);
 	$("#modalButton").click(showModal);
 	$("#close").click(closeModalByX);
-	$("#selectRequest").click(selectRequest);
+	$("#agreeSave").click(agreeSave);
+}
+
+const autoHyphen = (target) => {
+	 target.value = target.value
+	   .replace(/[^0-9]/g, '')
+	  .replace(/^(\d{0,3})(\d{0,4})(\d{0,4})$/g, "$1-$2-$3").replace(/(\-{1,2})$/g, "");
 }
 	
 function onBlurName() {
@@ -31,24 +36,71 @@ function onBlurName() {
 	}
 }
 
-function onBlurTel() {
-	var utel = $("#utel").val();
-	var telPattern = /^\d{3}-\d{3,4}-\d{4}$/;
-	var result = telPattern.test(utel);
-	
-	var utelErr1 = $("#utelErr1");
-	var utelErr2 = $("#utelErr2");
-	
-	utelErr1.addClass("d-none");
-	utelErr2.addClass("d-none");
+$(document).ready(function(){
+	 $("input").blur(function(event) {
+		 if($(event.target).attr('id') == "utel") { 
+		      let isValidation = true;
+	 
+			  var utel = $("#utel").val();
+			  console.log("utel: "+ utel);
+			
+			  var utelErr1 = $("#utelErr1");
+			  var utelErr2 = $("#utelErr2");
+			
+		      utelErr1.addClass("d-none");
+		      utelErr2.addClass("d-none");
+		
+			  if(utel === "") {
+				  utelErr1.removeClass("d-none");
+				  utelErr1.addClass("redLine");
+				  utelErr2.addClass("d-none");
+				  isValidation = false;
+		      } else {
+				  var telPattern = /^(01[016789]{1})-?[0-9]{3,4}-?[0-9]{4}$/;
+				  var result = telPattern.test(utel);
+				  console.log(result+"결관뭐게");
+				  if(!result) {
+					  isValidation = false;
+					  utelErr2.removeClass("d-none");
+					  utelErr2.addClass("redLine");
+					  utelErr1.addClass("d-none");
+				  } else {
+					  telErr1.addClass("d-none");
+					  telErr2.addClass("d-none");
+					  utelErr2.removeClass("redLine");
+					  utelErr1.removeClass("redLine");
+				  }
+			  }
+			
+		 }
+		 
+		 
+		 
+		 
+	 });
+	 
+	$("input[name='select']").change(function(){
+		$('#show1').css('display', 'none');
+		$('#show2').css('display', 'none');
+		// 계좌이체 선택 시.
+		if($("input[name='select']:checked").val() == '택배함'){
+			$('#show1').css('display', 'block');
+			$('#show2').css('display', 'none');
+		}else if($("input[name='select']:checked").val() == '기타사항'){
+			$('#show2').css('display', 'block');
+			$('#show1').css('display', 'none');
+		} else {
+			$('#show1').css('display', 'none');
+			$('#show2').css('display', 'none');
+		}
+			
+	});
+		
+	$("#pwdNo").click(function(){
+		$("#pwdY").prop('checked', true);
+	});
 
-	if(utel === "") {
-		utelErr1.removeClass("d-none");
-		utelErr1.addClass("redLine");
-	}else if(!result) {
-		utelErr2.removeClass("d-none");
-	}
-}
+});		 
 
 function checkValidation() {
 	let isValidation = true;
@@ -85,9 +137,8 @@ function checkValidation() {
 		isValidation = false;
 	}
 	
+	
 	var utel = $("#utel").val();
-	var telPattern = /^\d{3}-\d{3,4}-\d{4}$/;
-	var result = telPattern.test(utel);
 	
 	var utelErr1 = $("#utelErr1");
 	var utelErr2 = $("#utelErr2");
@@ -98,9 +149,35 @@ function checkValidation() {
 	if(utel === "") {
 		utelErr1.removeClass("d-none");
 		utelErr1.addClass("redLine");
+		utelErr2.addClass("d-none");
 		isValidation = false;
-	}else if(!result) {
-		utelErr2.removeClass("d-none");
+	} else {
+		var telPattern = /^(01[016789]{1})-?[0-9]{3,4}-?[0-9]{4}$/;
+		var result = telPattern.test(utel);
+		if(!result) {
+			isValidation = false;
+			utelErr2.removeClass("d-none");
+			utelErr2.addClass("redLine");
+			utelErr1.addClass("d-none");
+		} else {
+			telErr1.addClass("d-none");
+			telErr2.addClass("d-none");
+			utelErr2.removeClass("redLine");
+			utelErr1.removeClass("redLine");
+		}
+	}
+	
+	utel = $("#utel").val( $("#utel").val().replace(/[^0-9]/g, "").replace(/(^02|^0505|^1[0-9]{3}|^0[0-9]{2})([0-9]+)?([0-9]{4})$/,"$1-$2-$3").replace("--", "-") );
+	
+	var deliveryNotify = $("#deliveryNotify").val();
+	
+	var deliveryNotifyErr = $("#deliveryNotifyErr");
+	
+	deliveryNotifyErr.addClass("d-none");
+	
+	if(deliveryNotify === "") {
+		deliveryNotifyErr.removeClass("d-none");
+		deliveryNotifyErr.addClass("redLine");
 		isValidation = false;
 	}
 	
@@ -148,8 +225,8 @@ function closeModalByX() {
 	$("#requestModal").css("display", "none");
 }
 
-function selectRequest() {
-	var listVar = $("input[name=requestType]:checked").val();
+function agreeSave() {
+	var listVar = $("input[name=select]:checked").val() + " " +  $("#boxNo").val() + " " + $("#etcName").val() + " " + $("input[name=pwdselect]:checked").val() + $("#pwdNo").val();
 	$("#deliveryNotify").val(listVar);
 	$("#requestModal").css("display", "none");
 }
