@@ -93,3 +93,17 @@ function reviewDetail(review_no) {
 		}
 	});
 }
+
+function writeReview(productNum) {
+	$.ajax({
+		url: "reviewWrite",
+		method: "get",
+		data:{"productNum": productNum},
+		success: function(data) {
+			$("#menu3").html(data);
+		},
+		error: function(error) {
+			console.log("아왜");
+		}
+	});
+}

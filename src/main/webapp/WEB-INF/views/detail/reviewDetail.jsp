@@ -10,27 +10,66 @@
 				<div>
 					<div>
 						<p>
-							<span style="font-weight: bold">한줄평</span> <br> 
+							<span style="font-weight: bold">한줄평</span>
+							<c:if test="${review.review_rating == 0}">
+								<span class="fa fa-star"></span>
+								<span class="fa fa-star"></span>
+								<span class="fa fa-star"></span>
+								<span class="fa fa-star"></span>
+								<span class="fa fa-star"></span>
+							</c:if>
+							<c:if test="${review.review_rating == 1}">
+								<span class="fa fa-star checked"></span>
+								<span class="fa fa-star"></span>
+								<span class="fa fa-star"></span>
+								<span class="fa fa-star"></span>
+								<span class="fa fa-star"></span>
+							</c:if>
+							<c:if test="${review.review_rating == 2}">
+								<span class="fa fa-star checked"></span>
+								<span class="fa fa-star checked"></span>
+								<span class="fa fa-star"></span>
+								<span class="fa fa-star"></span>
+								<span class="fa fa-star"></span>
+							</c:if>
+							<c:if test="${review.review_rating == 3}">
+								<span class="fa fa-star checked"></span>
+								<span class="fa fa-star checked"></span>
+								<span class="fa fa-star checked"></span>
+								<span class="fa fa-star"></span>
+								<span class="fa fa-star"></span>
+							</c:if>
+							<c:if test="${review.review_rating == 4}">
+								<span class="fa fa-star checked"></span>
+								<span class="fa fa-star checked"></span>
+								<span class="fa fa-star checked"></span>
+								<span class="fa fa-star checked"></span>
+								<span class="fa fa-star"></span>
+							</c:if>
+							<c:if test="${review.review_rating == 5}">
+								<span class="fa fa-star checked"></span>
+								<span class="fa fa-star checked"></span>
+								<span class="fa fa-star checked"></span>
+								<span class="fa fa-star checked"></span>
+								<span class="fa fa-star checked"></span>
+							</c:if>
+							<br>
 							<span>${review.review_title}</span>
 						</p>
 						
+						<div>
+							<span class="title">리뷰 상세</span> <br/>
+							<div style="width:100%; border:1px solid #dadfe3">
+								${review.review_contents}
+							</div>
+						</div>
+						<br>
 						<p>
-							<span>작성자:</span>
-							<span>${review.review_name}</span>
-						<p>
-						
-						<p>
-							<span>${review.review_createdDate}</span> <br/>
+							<span>${review.review_name}</span> <span>${review.review_createdDate}</span> <br/>
 						</p>
 						
 					</div>
 					
-					<div>
-						<span class="title">내용</span> <br/>
-						<div style="width:100%; border:1px solid #dadfe3">
-							${review.review_contents}
-						</div>
-					</div>
 					
 					<a class="btn btn-info btn-sm mt-2" href="javascript:showReview(${productNum}, 1)">목록</a>
 					

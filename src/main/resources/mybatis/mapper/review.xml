@@ -3,11 +3,11 @@
 <mapper namespace="com.webteam1.oti.dao.ReviewDao">
 	<select id="selectByPno" parameterType="Map" resultType="Review">
 		<![CDATA[
-	       select rnum, review_no, review_name, review_title, review_contents, product_no, review_goodorbad, review_createdDate
+	       select rnum, review_no, review_name, review_title, review_contents, product_no, review_goodorbad, review_createdDate, review_rating
 			 from (
-			    select rownum as rnum, review_no, review_name, review_title, review_contents, product_no, review_goodorbad, review_createdDate
+			    select rownum as rnum, review_no, review_name, review_title, review_contents, product_no, review_goodorbad, review_createdDate, review_rating
 			    from(
-			        select review_no, review_name, review_title, review_contents, product_no, review_goodorbad, review_createdDate
+			        select review_no, review_name, review_title, review_contents, product_no, review_goodorbad, review_createdDate, review_rating
 			        from review
 			        where product_no=#{productNo}
 			        order by review_no desc

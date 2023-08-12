@@ -54,6 +54,10 @@ img {vertical-align: middle;}
   animation-name: fade;
   animation-duration: 1.5s;
 }
+/* rating 체크 */
+.checked {
+	color: orange;
+}
 
 @keyframes fade {
   from {opacity: .4} 
