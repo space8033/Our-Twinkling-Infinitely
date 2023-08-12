@@ -290,7 +290,7 @@
 								</div>
 							  	<div id="show1" class="on" style=" display: none; background-color: #f4f4f4; padding-left:10px; padding-right:10px;">
 							  		<div>로켓배송에만 사용됩니다.</div>
-							  		<div><input type="text" id="boxNo" placeholder="택배함 번호 (필수)" style="width:100%;"></div>
+							  		<div><input type="text" id="boxNo" placeholder="택배함 번호" style="width:100%;"></div>
 							  	</div>
 					            <div class="on"> 
 					       			<label>
@@ -300,7 +300,7 @@
 								</div>
 							   <div id="show2" class="on" style="display: none; background-color: #f4f4f4;  padding-left:10px; padding-right:10px;">
 							  		<div>소화전/EPS/TPS 등은 안전상 보관 불가</div>
-							  		<div><input type="text" id = "etcName" placeholder="장소만 입력 (필수)" style="width:100%;"></div>
+							  		<div><input type="text" id = "etcName" placeholder="장소만 입력" style="width:100%;"></div>
 							   </div>      
 					         </div>
 					                
@@ -328,39 +328,6 @@
 					             	동의하고 저장하기
 					         </div>
 				 	</div> 
-				
-				
-				
-					<!-- <div class="modal-content">
-						<div class="d-flex">
-							<div style="width: 87%"></div>
-							<div style="width: 13%">
-								<span id="close">X</span>
-							</div>
-						</div>
-						<div>
-							<input type="radio" name="requestType" value="문 앞 보관">
-							<label for="door">문 앞 보관</label>							
-						</div>
-						<div>
-							<input type="radio" name="requestType" value="경비실 보관">
-							<label for="securityOffice">경비실 보관</label>
-						</div>
-						<div>
-							<input type="radio" name="requestType" value="택배함 보관">
-							<label for="courierBox">택배함 보관</label>
-						</div>
-						<br>
-						<div class="d-flex">
-							<div style="width: 85%"></div>
-							<div id="selectRequest" class="p-2" style="border: solid 1px black; background-color: #0073e8; color: white">선택</div>
-						</div>
-					</div> -->
-				</div>
-			
-			
-			
-			
 				<div class="my-3">
 					<input type="checkbox" id="basicCheck" style="width: 20px; height: 20px; vertical-align: middle;" 
 						name="address_isdefault" value="true"> <span style="vertical-align: middle;">기본 배송지로 선택</span>

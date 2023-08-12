@@ -43,34 +43,46 @@ public class OrderPayController {
 	
 	@Login
 	@GetMapping("/orderPay")
-	public String orderPay(String addressNo, Model model, HttpSession session) {
+	public String orderPay(Model model, HttpSession session) {
 		LoginDto loginUser = (LoginDto) session.getAttribute("loginIng");
 		ModifyDto loginUserData = userService.getModifyByUsersId(loginUser.getUsers_id());
 		model.addAttribute("orderUser", loginUserData);
 		
-		if(addressNo == null) {
-			addressNo = "1";
-			
-		} else {
-			Address now = addressService.getByAddressNo(Integer.parseInt(addressNo));
-			model.addAttribute("address", now);
-			session.setAttribute("addressNo", now.getAddress_no());
-			
-			
-		}
-		//배송 요청사항 목록 받아오기
-		String selectedValue = (String) session.getAttribute("selectedValue");
-	    String selectedPwdValue = (String) session.getAttribute("selectedPwdValue");
-	    log.info(selectedValue + "=selectedValue");
-	    log.info(selectedPwdValue + "=selectedPwdValue");
-
-	    model.addAttribute("selectedValue", selectedValue);
-	    model.addAttribute("selectedPwdValue", selectedPwdValue);
-	    
+			Address loginUserAddress = addressService.getDefault(loginUser.getUsers_id());
+			log.info(loginUserAddress+"loginUserAddress");
+			if(loginUserAddress == null) {
 		
-		return "orderPay/orderPay";
-	}
+				return "orderPay/orderPay";
+			} else {
+				
+				model.addAttribute("address", loginUserAddress);
+				
+				
+			}
+		 
+		String addressNo = (String) session.getAttribute("addressNum");
+		if(addressNo != null) { 
+			model.asMap().remove("address");
+			Address now = addressService.getByAddressNo(Integer.parseInt(addressNo));
+			
+			model.addAttribute("address", now);	
+				
+			//배송 요청사항 목록 받아오기
+			String selectedValue = (String) session.getAttribute("selectedValue");
+		    String selectedPwdValue = (String) session.getAttribute("selectedPwdValue");
+		    log.info(selectedValue + "=selectedValue");
+		    log.info(selectedPwdValue + "=selectedPwdValue");
 	
+		    model.addAttribute("selectedValue", selectedValue);
+		    model.addAttribute("selectedPwdValue", selectedPwdValue);
+		    return "orderPay/orderPay";
+			    
+		}		
+		return "orderPay/orderPay";
+		
+		
+	}
+
 	@Login
 	@PostMapping("/orderPay")
 	@ResponseBody
@@ -116,19 +128,10 @@ public class OrderPayController {
 	}
 	
 	@PostMapping("/addressSelect")
-	public String addressSelect(Address address, HttpSession session) {
-		address.setAddress_no((int) session.getAttribute("addressNo"));
-		if(address.isAddress_isdefault() ) {
-			LoginDto userNow = (LoginDto) session.getAttribute("loginIng");
-			String user_id = userNow.getUsers_id();
-			if(addressService.getDefault(user_id) != null) {
-				Address nowDefault = addressService.getDefault(user_id);
-				nowDefault.setAddress_isdefault(false);
-				addressService.updateAddress(nowDefault);
-			}
-		}
+	public String addressSelect(@RequestParam("addressNo") String addressNo, HttpSession session) {
+		session.setAttribute("addressNum", addressNo);
 		
-		addressService.updateAddress(address);
+		log.info(addressNo+"addressNo");
 		return "redirect:/orderPay";
 	}
 	
@@ -136,10 +139,9 @@ public class OrderPayController {
 	@GetMapping("/addressRequest")
 	public String addressRequest(Model model) {
 		
-		
-		
 		return "orderPay/addressRequest";
 	}
+	
 	@Login
 	@PostMapping("/addressRequest")
 	@ResponseBody
@@ -156,10 +158,11 @@ public class OrderPayController {
 	@Login
 	@GetMapping("/addressModify")
 	public String modifyAddress(String addressNo, Model model, HttpSession session) {
+		log.info(addressNo+"=addressNo");
 		Address now = addressService.getByAddressNo(Integer.parseInt(addressNo));
 		model.addAttribute("address", now);
 		session.setAttribute("addressNo", now.getAddress_no());
-			
+		
 		return "orderPay/addressModify";
 	}
 	

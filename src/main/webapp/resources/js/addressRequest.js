@@ -45,7 +45,6 @@ $(document).ready(function(){
             success: function(response) {
                 // 서버 응답 처리 (예: 성공 메시지 표시)
                 alert("배송 요청사항이 변경되었습니다.");
-                opener.parent.location.reload();
             	window.close();
             },
             error: function() {

@@ -85,12 +85,14 @@
 						<div> ${address.users_phone}</div>
 						<div> ${address.deliveryRequest}</div>
 						<div class="d-flex justify-content-between">
-							<button class="modifyButton" onclick=location.href="addressModify?addressNo=${address.address_no}">수정</button>
-							<button class="selectButton mr-3" onclick=location.href="orderPay?addressNo=${address.address_no}">선택</button>
+							 <button class="modifyButton" onclick=location.href="addressModify?addressNo=${address.address_no}">수정</button> 
+						    <!--  <button class="selectButton mr-3" onclick=location.href="orderPay?addressNo=${address.address_no}">선택</button>  -->
+						    <a class="btn btn-outline-primary btn-sm" href="javascript:select(${address.address_no})">선택</a>
 						</div>
-					</div>
-				</c:forEach>
+					</div>	
+				</c:forEach>	
 			</div>
+		</div>
 			
 			<div class="d-flex justify-content-center m-4">
 				<a class="btn btn-sm" href="?pageNo=1">처음</a>

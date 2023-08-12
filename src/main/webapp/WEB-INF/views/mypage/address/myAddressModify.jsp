@@ -4,7 +4,7 @@
 		
 		<script src="${pageContext.request.contextPath}/resources/js/myAddressAdd.js"></script>
 		<script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
-		<script src="${pageContext.request.contextPath}/resources/js/addressRequest.js" charset="utf-8"></script>
+		<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/addressRequest.css"/>	
 		<style>
 			.myAddress {
 				width: 95%;
@@ -228,8 +228,8 @@
 							<img class="addressIcon" src="${pageContext.request.contextPath}/resources/oimg/w핸드폰.png">
 						</div>
 						<div>
-							<input type="text" id="utel" placeholder="휴대폰 번호" class="inputHolder" style="border: 1px solid #d0d0d0;"
-									value="${address.users_phone}" name="users_phone">
+							<input type="tel" id="utel" placeholder="휴대폰 번호" class="inputHolder" style="border: 1px solid #d0d0d0;"
+								   pattern="010-[0-9]{3,4}-[0-9]{4}" maxlength="13" oninput="autoHyphen(this)" value="${address.users_phone}" name="users_phone">
 						</div>
 					</div>
 					<span id=utelErr1 class="errorMsg text-danger d-none small ml-2" style="border: none;">휴대폰 번호를 입력해주세요.</span>
@@ -290,7 +290,7 @@
 							</div>
 						  	<div id="show1" class="on" style=" display: none; background-color: #f4f4f4; padding-left:10px; padding-right:10px;">
 						  		<div>로켓배송에만 사용됩니다.</div>
-						  		<div><input type="text" id="boxNo" placeholder="택배함 번호 (필수)" style="width:100%;"></div>
+						  		<div><input type="text" id="boxNo" placeholder="택배함 번호" style="width:100%;"></div>
 						  	</div>
 				            <div class="on"> 
 				       			<label>
@@ -300,7 +300,7 @@
 							</div>
 						   <div id="show2" class="on" style="display: none; background-color: #f4f4f4;  padding-left:10px; padding-right:10px;">
 						  		<div>소화전/EPS/TPS 등은 안전상 보관 불가</div>
-						  		<div><input type="text" id = "etcName" placeholder="장소만 입력 (필수)" style="width:100%;"></div>
+						  		<div><input type="text" id = "etcName" placeholder="장소만 입력" style="width:100%;"></div>
 						   </div>      
 				         </div>
 				                

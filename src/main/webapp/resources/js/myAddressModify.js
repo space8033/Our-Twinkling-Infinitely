@@ -75,7 +75,7 @@ function checkValidation() {
 		unameErr1.removeClass("d-none");
 		unameErr1.addClass("redLine");
 		isValidation = false;
-	}else if(!result) {
+	} else if(!result) {
 		unameErr2.removeClass("d-none");
 		isValidation = false;
 	}
@@ -241,5 +241,4 @@ $(document).ready(function(){
 		$("#pwdNo").click(function(){
 			$("#pwdY").prop('checked', true);
 		});
-
 });		 

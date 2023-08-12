@@ -2,12 +2,12 @@ $(init)
 
 //결제 페이지 실행시 불러들이는 값
 function init(){
-	order(); 
+	
 	priceCalculate();
 }
 
 //주문 json
-function order() {
+/*function order() {
 	$.ajax({
 		url: "../WEB-INF/views/orderPay/orderPay_content.jsp",
 		method: "get",
@@ -52,8 +52,14 @@ function order() {
 		}
 	
 	});
-} 
-
+} */
+function receiveUpdatedUrl(url) {
+    // Handle the received updated URL in the parent window
+    console.log("Received updated URL:", url);
+    
+    // You can use the received URL to update the parent page as needed
+    // For example, you can update an iframe src or perform other actions
+}
 //결제 금액 계산
 function priceCalculate() {
 	var totalPrice = parseInt($('#totalPrice').text().replace(/,/gi, ""));
