@@ -5,7 +5,6 @@
 		<script src="${pageContext.request.contextPath}/resources/js/myAddressAdd.js"></script>
 		<script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 		<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/addressRequest.css"/>	
-		<script src="${pageContext.request.contextPath}/resources/js/addressRequest.js" charset="utf-8"></script>
 		<style>
 			.myAddress {
 				width: 95%;
@@ -249,7 +248,7 @@
 				</div>
 				<span id=deliveryNotifyErr class="errorMsg d-none text-danger small ml-2" style="border: none;">배송 요청사항을 입력해주세요.</span>
 				<div id="requestModal" class="modal">
-						<div id="requestContainer"  class="modal-content" style="width: 50%; margin-top: 10px;">
+						<div id="requestContainer"  class="modal-content" style="width: 60%; margin-left: 200px;  margin-top: 10px;">
 							<div class="d-flex">
 								<div style="width: 87%"></div>
 								<div style="width: 13%">

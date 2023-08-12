@@ -9,7 +9,13 @@ function init() {
 	$("#addButton").click(addContact);
 	$("#modalButton").click(showModal);
 	$("#close").click(closeModalByX);
-	$("#selectRequest").click(selectRequest);
+	$("#agreeSave").click(agreeSave);
+}
+
+const autoHyphen = (target) => {
+	 target.value = target.value
+	   .replace(/[^0-9]/g, '')
+	  .replace(/^(\d{0,3})(\d{0,4})(\d{0,4})$/g, "$1-$2-$3").replace(/(\-{1,2})$/g, "");
 }
 	
 function onBlurName() {
@@ -104,6 +110,18 @@ function checkValidation() {
 		isValidation = false;
 	}
 	
+	var deliveryNotify = $("#deliveryNotify").val();
+	
+	var deliveryNotifyErr = $("#deliveryNotifyErr");
+	
+	deliveryNotifyErr.addClass("d-none");
+	
+	if(deliveryNotify === "") {
+		deliveryNotifyErr.removeClass("d-none");
+		deliveryNotifyErr.addClass("redLine");
+		isValidation = false;
+	}
+	
 	if(!isValidation) {
 		event.preventDefault();
 		console.log("제출 안됨");
@@ -148,8 +166,8 @@ function closeModalByX() {
 	$("#requestModal").css("display", "none");
 }
 
-function selectRequest() {
-	var listVar = $("input[name=requestType]:checked").val();
+function agreeSave() {
+	var listVar = $("input[name=select]:checked").val() + " " +  $("#boxNo").val() + " " + $("#etcName").val() + " " + $("input[name=pwdselect]:checked").val() + $("#pwdNo").val();
 	$("#deliveryNotify").val(listVar);
 	$("#requestModal").css("display", "none");
 }
@@ -179,3 +197,49 @@ function findAddress() {
         }
     }).open();
 }
+
+$(document).ready(function(){
+	 $("input").blur(function(event) {
+		 if($(event.target).attr('id') == "deliveryNotify") { 
+		      let isValidation = true;
+	 
+		      utel = $("#utel").val( $("#utel").val().replace(/[^0-9]/g, "").replace(/(^02|^0505|^1[0-9]{3}|^0[0-9]{2})([0-9]+)?([0-9]{4})$/,"$1-$2-$3").replace("--", "-") );
+		  	
+		  	  var deliveryNotify = $("#deliveryNotify").val();
+		  	  var deliveryNotifyErr = $("#deliveryNotifyErr");
+		      deliveryNotifyErr.addClass("d-none");
+		  	
+		      if(deliveryNotify === "") {
+		  	  	  deliveryNotifyErr.removeClass("d-none");
+		  		  deliveryNotifyErr.addClass("redLine");
+		  		  isValidation = false;
+		   	  }
+		  	  if(!isValidation) {
+				  event.preventDefault();
+				  console.log("제출 안됨");
+			}
+		 }
+	 });
+	 
+	 $("input[name='select']").change(function(){
+			$('#show1').css('display', 'none');
+			$('#show2').css('display', 'none');
+			// 계좌이체 선택 시.
+			if($("input[name='select']:checked").val() == '택배함'){
+				$('#show1').css('display', 'block');
+				$('#show2').css('display', 'none');
+			}else if($("input[name='select']:checked").val() == '기타사항'){
+				$('#show2').css('display', 'block');
+				$('#show1').css('display', 'none');
+			} else {
+				$('#show1').css('display', 'none');
+				$('#show2').css('display', 'none');
+			}
+				
+		});
+			
+		$("#pwdNo").click(function(){
+			$("#pwdY").prop('checked', true);
+		});
+
+});		 
