@@ -8,7 +8,9 @@ import javax.annotation.Resource;
 import org.springframework.stereotype.Service;
 
 import com.webteam1.oti.dao.CartDao;
-import com.webteam1.oti.dto.Cart;
+import com.webteam1.oti.dto.Product;
+import com.webteam1.oti.dto.cart.Cart;
+import com.webteam1.oti.dto.cart.CartDto;
 @Service
 public class CartServiceImpl implements CartService{
 	@Resource 
@@ -38,12 +40,18 @@ public class CartServiceImpl implements CartService{
 
 	@Override
 	public void cartUpdate(Cart cart) {
-		cartDao.cartUpdate(cart.getUsers_users_id());
+		cartDao.cartUpdate(cart);
 	}
 
 	@Override
 	public List<Cart> getCartByCkId(String ckId) {
 		List<Cart> list = cartDao.selectByCkId(ckId);
+		return list;
+	}
+
+	@Override
+	public List<CartDto> getCartList(Cart cart) {
+		List<CartDto> list = cartDao.selectCartList(cart);
 		return list;
 	}
 

@@ -2,27 +2,26 @@
    margin: 0;
    padding: 0;
  }
-	 /* 장바구니 쿠팡로고 */
+/* 장바구니 로고 */
 #header{
 	position: relative;
 	left: 350px;
 	width: 980px;
-	height: 72px;
+	height: 90px;
 	border-bottom: 2px solid #8a8a8a
 }
 .logo{
 	margin: 0 auto 70px;
 	width: 140px;
-	height: 67px;
+	height: 70px;
 	float: left; 
 }
 .logo a{
- position: relative;
- top: 20px
+	position: relative;
+	top: 20px
 }
 .logo a img{
 	width: 140px;
-	height: 37px;	
 }
 /* 장바구니 내용 */
 #contents{
@@ -38,16 +37,16 @@
 
 /* 장바구니 내용- tab */
  .tab1{
-   float: left;
-width: 100%;
-border-bottom: 2px solid #0073e9;
-padding-left: 20px;
-padding-bottom: 10px;
-background: #fff;
-font-weight: 700;
-color: #0073e9;
+	float: left;
+	width: 100%;
+	border-bottom: 2px solid #0073e9;
+	padding-left: 20px;
+	padding-bottom: 10px;
+	background: #fff;
+	font-weight: 700;
+	color: #0073e9;
  }
- /* 테이블 */
+/* 테이블 */
 /* 테이블_thead ----------------------------------------------------------------------------------------------*/
 .table{
 border: 1px solid black;
