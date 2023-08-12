@@ -10,10 +10,15 @@ import javax.servlet.http.HttpSession;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 
 import com.webteam1.oti.dto.Pager;
-import com.webteam1.oti.dto.Review;
+import com.webteam1.oti.dto.review.Review;
+import com.webteam1.oti.dto.user.LoginDto;
+import com.webteam1.oti.dto.user.ReviewReceive;
+import com.webteam1.oti.interceptor.Login;
 import com.webteam1.oti.service.ReviewService;
+import com.webteam1.oti.service.UserService;
 
 import lombok.extern.slf4j.Slf4j;
 
@@ -22,6 +27,8 @@ import lombok.extern.slf4j.Slf4j;
 public class ReviewController {
 	@Resource
 	private ReviewService reviewService;
+	@Resource
+	private UserService userService;
 	//리뷰 가져오기 (진행중)
 	@GetMapping("/review")
 	public String review(String pageNo2, Model model, HttpSession session) {
@@ -33,10 +40,10 @@ public class ReviewController {
 			   pageNo2 = "1";
 		   }
 		}
-		
-		log.info(pageNo2);
-		int productNo = (int)session.getAttribute("productNum");
-		log.info(productNo + "");
+		int productNo = -1;
+		if(session.getAttribute("productNum") != null) {
+			productNo = (int)session.getAttribute("productNum");			
+		}
 		//문자열을 정수로 변환
 		int intPageNo = Integer.parseInt(pageNo2);
 		//세션에 pageNo를 저장
@@ -62,5 +69,20 @@ public class ReviewController {
 		Review review = reviewService.getReviewByRno(Integer.parseInt(review_no));
 		model.addAttribute("review", review);
 		return "detail/reviewDetail";
+	}
+	
+	@Login
+	@GetMapping("/reviewWrite")
+	public String getWriteReview(String productNum, Model model, HttpSession session) {
+		LoginDto user = (LoginDto) session.getAttribute("loginIng");
+		model.addAttribute("user", user.getUsers_id());
+		model.addAttribute("productNum", productNum);
+		return "detail/reviewWrite";
+	}
+	
+	@PostMapping("/reviewWrite")
+	public String writeReview(ReviewReceive review) {
+		log.info(review.getImages().length + "");
+		return "redirect:/review";
 	}
 }

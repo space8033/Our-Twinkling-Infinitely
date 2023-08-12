@@ -15,7 +15,7 @@
 		<typeAlias alias="CartDto" type="com.webteam1.oti.dto.cart.CartDto"/>
 		<typeAlias alias="Image" type="com.webteam1.oti.dto.Image"/>
 		<typeAlias alias="Address" type="com.webteam1.oti.dto.Address"/>
-		<typeAlias alias="Review" type="com.webteam1.oti.dto.Review"/>
+		<typeAlias alias="Review" type="com.webteam1.oti.dto.review.Review"/>
 	</typeAliases>
 </configuration>
 
