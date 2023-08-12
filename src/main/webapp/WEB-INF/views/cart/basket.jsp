@@ -61,24 +61,21 @@
 							    </thead>
 									   
 							    <tbody id ="basket_tbody">
-									<c:forEach var="cart" items="${carts}">									
-										<c:if test="${cart.productOption_productOption_no != null}">
-											<tbody id ="basket_tbody">
-											<!-- json 불러오는 곳 -->  
-										    </tbody>
-										</c:if>
-									    <c:if test="${cart.productOption_productOption_no == null}">									    
-										    <tr class="t2">
-										     	<td></td>
-										     	<td></td>
-										     	<td>
-										     		<p class="t2_nonMessage">장바구니에 담은 상품이 없습니다.</p>
-										     	</td>
-										     	<td></td>
-										     	<td></td>
-											</tr>	
-									    </c:if>
-									</c:forEach>
+									<tbody id ="basket_tbody">
+									<!-- json 불러오는 곳 -->  
+								    </tbody>
+									
+								   <%--  <c:if test="${cart.productOption_productOption_no == null}">									    
+									    <tr class="t2">
+									     	<td></td>
+									     	<td></td>
+									     	<td>
+									     		<p class="t2_nonMessage">장바구니에 담은 상품이 없습니다.</p>
+									     	</td>
+									     	<td></td>
+									     	<td></td>
+										</tr>	
+								    </c:if> --%>
 							     </tbody>
 					     	     <tr class="t3" colspan="5">
 							         <td></td>

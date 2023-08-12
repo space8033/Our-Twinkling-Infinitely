@@ -5,6 +5,7 @@ import java.util.Map;
 
 import org.apache.ibatis.annotations.Mapper;
 
+import com.webteam1.oti.dto.Product;
 import com.webteam1.oti.dto.cart.Cart;
 import com.webteam1.oti.dto.cart.CartDto;
 
@@ -20,5 +21,5 @@ public interface CartDao {
 	public int cartCheck(Cart cart);
 	public int selectOptionNo(Map<String, Object> map);
 	public List<Cart> selectByCkId(String ckId);
-	public Map<String, CartDto> selectCartList();
+	public List<CartDto> selectCartList(Cart cart);
 }

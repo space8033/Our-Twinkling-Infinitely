@@ -304,7 +304,6 @@ function setSelectBox(){
 }
 
 //상품이 있을 경우 Json으로 상품 불러오기
-let priceArr = new Array();
 function jsonProduct() {
 	//오늘 날짜
 	var now = new Date();
@@ -327,79 +326,95 @@ function jsonProduct() {
 	let day = weekday[days];
 	
   $.ajax({
-	 url: "/addCart",
-	 method: "GET",
+	 url: "addCart",
+	 method: "get",
 	 dataType: "json",
-	 success: function(data){
+	 success: function(list){
 		 let html = "";
-		 data.forEach((item, index) => {
-        	priceArr.push(item.price);
-        	let price = item.product_price.toLocaleString("ko-KR");
-        	let benefit = Math.ceil(item.product_price * 0.05);
-        	html += '<tr class="productRow">';	
-        	html += '<td>';
-      	    html += '	<input id="chk' + index + '" title="' + item.product_name + ' 상품을 결제상픔으로 결정" type="checkbox" name="chk" class="pchk" value='+ item.price +' onclick="loading()"/>';
-      		html += '</td>';
-      		html += '<td class="p_img">';
-      		html += '	<a href="#">';
-      		html += '		<img src="data:MIME;base64,' + item.product_img + ' "width="78"/>';
-      		html += '	</a>';
-      		html += '</td>';
-      		html += '<td class="product_contents">';
-      		html += '	<div class="c_name">';
-      		html += '		<a href="http://localhost:8080/html_css_javascript/homeworks/detailView.jsp">' + item.product_name;		
-      	    html += '		</a>';		
-      		html += '	</div>';
-      		html += '	<div class="c_date&c_option d-flex">';
-      		html += '		<div class="c_date">';
-      		html += '			<span class="arrival d-day text-success">내일</span>';
-      		html += '			<span class="arrival day text-success">(' + day + ')</span>';
-      		html += '			<span class="arrival date text-success">'+ month +'/' + date +'</span>';
-      		html += '			<span class="arrival time text-success">새벽 7시 전</span>';
-      		html += '			<span class="arrival message text-success">도착 보장</span>';
-      		html += '			<span class="condition text-muted"><small>(오후 9시 전 주문 시)</small></span>';
-      		html += '		</div>';
-      		html += '		<div class="c_option">';
-      		html += '			<span>' + price + '</span>';
-      		html += '			<span>원</span>';
-      		html += '				<select id="customSelect'+ index +'" class="select-option" onchange="setSelectBox();" title="' + item.product_name +' 수량 변경">';
-      		html += '					<option value="1">1</option>';
-      		html += '					<option value="2">2</option>';
-      		html += '					<option value="3">3</option>';
-      		html += '					<option value="4">4</option>';
-      		html += '					<option value="5">5</option>';
-      		html += '					<option value="6">6</option>';
-      		html += '					<option value="7">7</option>';
-      		html += '					<option value="8">8</option>';
-      		html += '					<option value="9">9</option>';
-      		html += '					<option value="10">10</option>';
-      		html += '				</select>';
-      		html += '			</span>';
-      		html += '			<span id="co-price'+ index +'" class="p_price" value="'+ index +'" style="padding-left: 10px;">'+ price +'</span>';
-      		html += '			<span>원</span>';
-      		html += '			<button class="cancel" type="button" onclick="deleteRow()">X</button>';
-      		html += '			<div class="select-text" style="display:none;">';
-      		html += '				<button id="btn'+ index +'" class="btn-quantity" type="button">수량변경</button>';
-      		html += '			</div>';
-      		html += '		</div>';
-      		html += '	</div>';
-      		html += '	<div class="benefit" style="padding-left:389px;">';
-      		html += '		<span id="pointwrapper">';
-      		html += '			<img src="//img1a.coupangcdn.com/image/cart/generalCart/ico_cash_m_2x.png" width="14">';
-      		html += '			<span class="point">최대</span>';
-      		html += '			<span id="benefit' + index + '" class="point cash">' + benefit +'</span>';
-      		html += '			<span class="point">원 적립</span>';
-      		html += '		</span>';
-      		html += '	</div>';
-      		html += '</td>';
-      		html += '<td class="discount">';
-      		html += '   <div style="padding-top:20px;"></div>';
-      		html += '	<div id="toPr' + index + '" class="discounted_price">' +  price  +'원</div>';
-      		html += '	<img src="//image10.coupangcdn.com/image/badges/rocket/rocket_logo.png" class="delivery-badge-img " style="width: 56px;">';
-      		html += '</td>';
-      		html += '<td class="delivery_fee" style="padding-top: 50px; text-align: center;">무료</td>';
-        	html += '</tr>'; 
-         });  
+		 if(list<1){
+			 html += '<tr class="t2">';
+			 html += '	<td></td>';
+			 html += '	<td></td>';
+			 html += '	<td>';
+			 html += '		<p class="t2_nonMessage">장바구니에 담은 상품이 없습니다.</p>';
+			 html += '	</td>';
+			 html += '</tr>';
+		 }
+			 $each(list, function(key,value){
+				 var item_price = parseInt(value.product_price);
+				 var benefit = item_price * 0.05;
+				 var price = new Intl.NumberFormat('ko-KR',{
+					 style:'currency',
+					 currency:'KRW'
+				 }).format(product_price)
+			
+			 var cart_no = parseInt(value.cart_no);
+			 		
+			 html += '<tr class="productRow">';	
+			 html += '<td>';
+			 html += '	<input id="chk'+ cart_no +'" title="' + value.product_name + ' 상품을 결제상픔으로 결정" type="checkbox" name="chk" class="pchk" value='+ item_price +' onclick="loading()"/>';
+			 html += '</td>';
+			 html += '<td class="p_img">';
+			 html += '	<a href="#">';
+			 html += '		<img src="data:MIME;base64,' + value.product_img + ' "width="78"/>';
+			 html += '	</a>';
+			 html += '</td>';
+			 html += '<td class="product_contents">';
+			 html += '	<div class="c_name">';
+			 html += '		<a href="detailProduct?product_no= ' + value.product_no + '">' + value.product_name;		
+			 html += '		</a>';		
+			 html += '	</div>';
+			 html += '	<div class="c_date&c_option d-flex">';
+			 html += '		<div class="c_date">';
+			 html += '			<span class="arrival d-day text-success">내일</span>';
+			 html += '			<span class="arrival day text-success">(' + day + ')</span>';
+			 html += '			<span class="arrival date text-success">'+ month +'/' + date +'</span>';
+			 html += '			<span class="arrival time text-success">새벽 7시 전</span>';
+			 html += '			<span class="arrival message text-success">도착 보장</span>';
+			 html += '			<span class="condition text-muted"><small>(오후 9시 전 주문 시)</small></span>';
+			 html += '		</div>';
+			 html += '		<div class="c_option">';
+			 html += '			<span>' + price + '</span>';
+			 html += '			<span>원</span>';
+			 html += '				<select id="customSelect'+ cart_no +'" class="select-option" onchange="setSelectBox();" title="' + value.product_name +' 수량 변경">';
+			 html += '					<option value="1">1</option>';
+			 html += '					<option value="2">2</option>';
+			 html += '					<option value="3">3</option>';
+			 html += '					<option value="4">4</option>';
+			 html += '					<option value="5">5</option>';
+			 html += '					<option value="6">6</option>';
+			 html += '					<option value="7">7</option>';
+			 html += '					<option value="8">8</option>';
+			 html += '					<option value="9">9</option>';
+			 html += '					<option value="10">10</option>';
+			 html += '				</select>';
+			 html += '			</span>';
+			 html += '			<span id="co-price'+ cart_no +'" class="p_price" value="'+ cart_no +'" style="padding-left: 10px;">'+ price +'</span>';
+			 html += '			<span>원</span>';
+			 html += '			<button class="cancel" type="button" onclick="deleteRow()">X</button>';
+			 html += '			<div class="select-text" style="display:none;">';
+			 html += '				<button id="btn'+ cart_no +'" class="btn-quantity" type="button">수량변경</button>';
+			 html += '			</div>';
+			 html += '		</div>';
+			 html += '	</div>';
+			 html += '	<div class="benefit" style="padding-left:389px;">';
+			 html += '		<span id="pointwrapper">';
+			 html += '			<img src="//img1a.coupangcdn.com/image/cart/generalCart/ico_cash_m_2x.png" width="14">';
+			 html += '			<span class="point">최대</span>';
+			 html += '			<span id="benefit' + cart_no + '" class="point cash">' + benefit +'</span>';
+			 html += '			<span class="point">원 적립</span>';
+			 html += '		</span>';
+			 html += '	</div>';
+			 html += '</td>';
+			 html += '<td class="discount">';
+			 html += '   <div style="padding-top:20px;"></div>';
+			 html += '	<div id="toPr' + cart_no + '" class="discounted_price">' +  price  +'원</div>';
+			 html += '	<img src="//image10.coupangcdn.com/image/badges/rocket/rocket_logo.png" class="delivery-badge-img " style="width: 56px;">';
+			 html += '</td>';
+			 html += '<td class="delivery_fee" style="padding-top: 50px; text-align: center;">무료</td>';
+			 html += '</tr>'; 
+         });
+  				 
          $("#basket_tbody").html(html);
 	       //선택항목 개수
 	     	var $choice = $(".pchk:checked").length;

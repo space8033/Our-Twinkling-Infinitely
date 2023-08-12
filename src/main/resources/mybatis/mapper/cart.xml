@@ -57,7 +57,7 @@
 	</select>
 	
 	<!-- 장바구니 상품리스트 -->
-	<select id="selectCartList" resultMap="CartDto">
+	<select id="selectCartList" parameterType="Product" resultMap="CartDto">
 		select  c.cart_no, c.productOption_productOption_no, c.cart_optionContent, p.product_no,
 		p.product_name , p.product_price ,p.product_img, o.productOption_no , o.productOption_type
 		from CART c 
