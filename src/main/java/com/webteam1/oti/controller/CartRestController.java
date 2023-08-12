@@ -36,6 +36,7 @@ import com.webteam1.oti.service.ProductService;
 
 import lombok.extern.slf4j.Slf4j;
 
+//장바구니 리스트를 데이터로 반환하기 위함 
 @RestController
 @RequestMapping("/")
 @Slf4j
@@ -48,17 +49,13 @@ public class CartRestController {
 	public List<CartDto> cartView (HttpSession session, HttpServletRequest request, HttpServletResponse response, Cart cart, Model model) throws Exception {
 		Cookie cookie = WebUtils.getCookie(request, "cartCookie");
 	   List<CartDto> list = new ArrayList<>();
-	    log.info("실행함 나 진짜");
 	    //비회원시 쿠키value인 ckId사용
 	    if(cookie != null && session.getAttribute("loginIng")==null) {
-	    	log.info("웅 나 비회원~~");
 			//전에 받은 쿠키 id 값 삽입
 			String cartCookie = cookie.getValue();
 			log.info(cartCookie);
 			cart.setCart_ckId(cartCookie);
-			log.info("얍!!!!!!!!!!: " + cart);
 			list = cartService.getCartList(cart);
-			log.info("리스트 나와라 얍: " + list);
 		//회원시 users_id 이용
 	    }else if(cookie == null && session.getAttribute("loginIng") != null) {
 	    	log.info("웅 나 회원~~");
@@ -66,9 +63,7 @@ public class CartRestController {
 			LoginDto loginDto = (LoginDto) session.getAttribute("loginIng");
 			//장바구니에 로그인 한 user_id 삽입
 			cart.setUsers_users_id(loginDto.getUsers_id());
-			log.info("넣었쥬!");
 			list = cartService.getCartList(cart);
-			log.info("리스트 나와라 얍: " + list);
 	    }
 	    
 	    return list;
