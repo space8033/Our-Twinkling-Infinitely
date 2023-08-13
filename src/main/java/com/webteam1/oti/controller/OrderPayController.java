@@ -90,20 +90,14 @@ public class OrderPayController {
 		    model.addAttribute("selectedValue", selectedValue);
 		    model.addAttribute("selectedPwdValue", selectedPwdValue);
 		    return "orderPay/orderPay";
-			    
 		}		
-		
 		return "orderPay/orderPay";
-		
-		
 	}
 
 	@Login
 	@PostMapping("/orderPay")
 	@ResponseBody
 	public String orderPay(HttpSession session) {
-
-	    
         return "orderPay/orderPay";
 	}
 	
@@ -161,7 +155,6 @@ public class OrderPayController {
 	@PostMapping("/addressRequest")
 	@ResponseBody
 	public String addressRequest(@RequestParam("selectedValue") String selectedValue, @RequestParam("selectedPwdValue") String selectedPwdValue, HttpSession session) {
-
 		session.setAttribute("selectedValue", selectedValue);
 	    session.setAttribute("selectedPwdValue", selectedPwdValue);
 	    log.info(selectedValue + "=selectedValue");
@@ -193,11 +186,9 @@ public class OrderPayController {
 				addressService.updateAddress(nowDefault);
 			}
 		}
-		
 		addressService.updateAddress(address);
 		return "redirect:/addressSelect";
 	}
-	
 	
 	@Login
 	@GetMapping("/addressAdd")

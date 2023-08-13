@@ -9,9 +9,7 @@ function modifyCheck() {
 	console.log(modifyMsg);
 	if(modifyMsg!="") {
 		alert(modifyMsg);
-		
 	}
-	
 }
 
 function unjoin() {
@@ -19,7 +17,6 @@ function unjoin() {
 		location.href="/our-twinkling-infinitely/unjoin";
 	}
 }
-
 
 //폼 제출 시 유효성 검사
 function checkValidation() {
@@ -56,8 +53,6 @@ function checkValidation() {
     		}
     	}
 		
-
-			
 	//pwd-check 검사
 	var pwdCheck = $("#pwd-check").val();
 	var pwdCheckErr1 = $("#pwdCheckErr1");
@@ -80,9 +75,6 @@ function checkValidation() {
 			pwdCheckErr1.addClass("d-none");
 		}
 	}
-
-    	
-	
 	
 	//email 검사
 	var email = $("#email").val();

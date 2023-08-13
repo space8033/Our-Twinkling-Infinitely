@@ -21,7 +21,7 @@
 	<body>
 	    <header>
 	        <h1>
-	        	<a href="${pageContext.request.contextPath}"><img src="${pageContext.request.contextPath}/resources/yuimg/메인로고.png" alt="OTi로고"></a>
+	        	<a href="${pageContext.request.contextPath}"><img src="${pageContext.request.contextPath}/resources/yuimg/메인로고.png" alt="OTi로고" style="height: 90px; margin-bottom: 30px;" ></a>
 	        </h1>
 	    </header>
 	    <section>
