@@ -51,13 +51,27 @@ public class OrderPayController {
 			Address loginUserAddress = addressService.getDefault(loginUser.getUsers_id());
 			log.info(loginUserAddress+"loginUserAddress");
 			if(loginUserAddress == null) {
-		
+				String addressNo = (String) session.getAttribute("addressNum");
+				if(addressNo != null) { 
+					model.asMap().remove("address");
+					Address now = addressService.getByAddressNo(Integer.parseInt(addressNo));
+					model.addAttribute("address", now);	
+						
+					//배송 요청사항 목록 받아오기
+					String selectedValue = (String) session.getAttribute("selectedValue");
+				    String selectedPwdValue = (String) session.getAttribute("selectedPwdValue");
+				    log.info(selectedValue + "=selectedValue");
+				    log.info(selectedPwdValue + "=selectedPwdValue");
+			
+				    model.addAttribute("selectedValue", selectedValue);
+				    model.addAttribute("selectedPwdValue", selectedPwdValue);
+				    return "orderPay/orderPay";
+					    
+				}		
 				return "orderPay/orderPay";
 			} else {
 				
 				model.addAttribute("address", loginUserAddress);
-				
-				
 			}
 		 
 		String addressNo = (String) session.getAttribute("addressNum");
@@ -78,6 +92,7 @@ public class OrderPayController {
 		    return "orderPay/orderPay";
 			    
 		}		
+		
 		return "orderPay/orderPay";
 		
 		
