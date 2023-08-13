@@ -11,11 +11,12 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.webteam1.oti.dto.Pager;
 import com.webteam1.oti.dto.review.Review;
+import com.webteam1.oti.dto.review.ReviewReceive;
 import com.webteam1.oti.dto.user.LoginDto;
-import com.webteam1.oti.dto.user.ReviewReceive;
 import com.webteam1.oti.interceptor.Login;
 import com.webteam1.oti.service.ReviewService;
 import com.webteam1.oti.service.UserService;
@@ -81,8 +82,22 @@ public class ReviewController {
 	}
 	
 	@PostMapping("/reviewWrite")
-	public String writeReview(ReviewReceive review) {
-		log.info(review.getImages().length + "");
-		return "redirect:/review";
+	public String writeReview(ReviewReceive review, HttpSession session) {
+		LoginDto user = (LoginDto) session.getAttribute("loginIng");
+		String user_id = user.getUsers_id();
+		
+		int productNo = -1;
+		if(session.getAttribute("productNum") != null) {
+			productNo = (int)session.getAttribute("productNum");			
+		}else {
+			log.info("망했어유 상품정보가 없어유");
+		}
+		review.setProductNo(productNo);
+		reviewService.createReview(review);
+		int reviewNo = reviewService.findByUserId(user_id);
+		log.info(reviewNo + "리뷰 번호");
+		
+		
+		return "redirect:/";
 	}
 }

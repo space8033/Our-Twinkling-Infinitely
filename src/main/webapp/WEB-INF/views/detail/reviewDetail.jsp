@@ -70,7 +70,6 @@
 						
 					</div>
 					
-					
 					<a class="btn btn-info btn-sm mt-2" href="javascript:showReview(${productNum}, 1)">목록</a>
 					
 					<c:if test="${review.review_name == loginIng.users_id}">

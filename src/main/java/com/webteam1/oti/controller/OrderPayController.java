@@ -51,12 +51,11 @@ public class OrderPayController {
 			Address loginUserAddress = addressService.getDefault(loginUser.getUsers_id());
 			log.info(loginUserAddress+"loginUserAddress");
 			if(loginUserAddress == null) {
-		
+				
 				return "orderPay/orderPay";
 			} else {
 				
 				model.addAttribute("address", loginUserAddress);
-				
 				
 			}
 		 
