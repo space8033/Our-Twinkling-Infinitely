@@ -1,8 +1,8 @@
 package com.webteam1.oti.controller;
 
-import java.util.ArrayList;
+import java.io.PrintWriter;
+import java.util.Base64;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 import javax.annotation.Resource;
@@ -13,24 +13,17 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.apache.commons.lang3.RandomStringUtils;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.util.WebUtils;
 
 import com.webteam1.oti.dto.Product;
 import com.webteam1.oti.dto.cart.Cart;
-import com.webteam1.oti.dto.cart.CartDto;
 import com.webteam1.oti.dto.user.LoginDto;
 import com.webteam1.oti.service.CartService;
-import com.webteam1.oti.service.CartService.AddCartResult;
 import com.webteam1.oti.service.ImageService;
 import com.webteam1.oti.service.ProductService;
 
@@ -69,7 +62,7 @@ public class CartController {
 		Map<String, Object> map = new HashMap<>();
 		map.put("cart_optionContent", cart.getCart_optionContent());
 		map.put("product_product_no", cart.getProduct_product_no());
-		
+
 		//선택한 상품의 옵션 번호 결정
 		int productOptionNo = cartService.getOptionNo(map);
 		//선택한 옵션번호 카트에 넣기
@@ -78,8 +71,7 @@ public class CartController {
 		//비회원 장바구니 첫 클릭 시 쿠키 생성
 		if(cookie == null && session.getAttribute("loginIng") == null) {
 			//비회원
-			cart.setCart_isLogin(0);
-			
+			cart.setCart_isLogin(0);	
 			//쿠키 id 설정
 			String ckId = RandomStringUtils.random(6, true, true);
 			Cookie cartCookie = new Cookie("cartCookie", ckId);
@@ -94,7 +86,6 @@ public class CartController {
 			cartService.addCart(cart);
 			
 			model.addAttribute("carts", cart);
-			
 		//비회원이 하루 안에 한번 더 장바구니 방문 시 쿠키 생성 후 상품 추가
 		}else if(cookie != null && session.getAttribute("loginIng")==null) {
 			//비회원
@@ -105,18 +96,22 @@ public class CartController {
 			cart.setCart_ckId(ckValue);
 
 			//겹치는 상품인지 유효성 검사
-			if(cartService.productCheck(cart) == AddCartResult.SUCCESS) {				
-				cartService.addCart(cart);
-
-				return "redirect:/cart";
+			if(cartService.productCheck(cart) != 0) {
+				response.setContentType("text/html; charset=UTF-8");
+			    PrintWriter out = response.getWriter();
+			    out.println("<script>alert('이미 추가한 상품입니다.'); history.go(-1);</script>");
+			    out.flush();
+			    response.flushBuffer();
+			    out.close();
+				return "cart/basket";
 			}
+			
 			//쿠키 시간 재설정
 			cookie.setPath("/");
 			cookie.setMaxAge(60 * 60 * 24 * 1);
 			response.addCookie(cookie);
 			cartService.addCart(cart);
 			cart.setProductOption_productOption_no(cartService.getOptionNo(map));
-			
 			model.addAttribute("carts", cart);
 			
 		//회원 장바구니 추가	
@@ -129,6 +124,11 @@ public class CartController {
 			cart.setCart_cklimit(null);
 			//장바구니에 로그인 한 user_id 삽입
 			cart.setUsers_users_id(loginDto.getUsers_id());
+			//상품 이미지 삽입
+			if(product.getProduct_imgFile() != null) {
+			   String base64Img = Base64.getEncoder().encodeToString(product.getProduct_imgFile());
+			   cart.setProduct_img(base64Img);
+			}
 			
 			cartService.addCart(cart);
 			

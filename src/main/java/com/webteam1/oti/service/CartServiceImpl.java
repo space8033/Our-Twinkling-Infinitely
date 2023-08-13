@@ -23,12 +23,9 @@ public class CartServiceImpl implements CartService{
 	}
 
 	@Override
-	public AddCartResult productCheck(Cart cart) {
+	public int productCheck(Cart cart) {
 		int products = cartDao.cartCheck(cart);
-		if(products != 0) {
-			return AddCartResult.DUPLICATED_PRODUCT_OPTION;
-		}
-		return AddCartResult.SUCCESS;
+		return products;
 	}
 	
 	//옵션 내용에 해당하는 상품의 옵션번호 가져오기 위함 

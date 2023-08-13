@@ -11,14 +11,11 @@ import com.webteam1.oti.dto.cart.CartDto;
 
 @Mapper
 public interface CartDao {
-	/**
-	 * 장바구니에 상품추가
-	 * @param cart : 장바구니 객체
-	 * @return: 상품 추가한 장바구니 cart_no
-	 */
 	public int cartInsert(Cart cart);
 	public void cartUpdate(Cart cart);
+	//이미 추가한 상품의 옵션이 같은 상품을 또 장바구니에  추가할 경우를 알기 위함
 	public int cartCheck(Cart cart);
+	//상품 번호에 해당하는 상품옵션 내용을 받기 위함
 	public int selectOptionNo(Map<String, Object> map);
 	public List<Cart> selectByCkId(String ckId);
 	public List<CartDto> selectCartList(Cart cart);

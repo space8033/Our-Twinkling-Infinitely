@@ -15,6 +15,7 @@
 				<c:if test="${product.product_img !=null}">
 					<div class="detail1-image m-4">
 						<img src="data:MIME;base64, ${product.product_img}" width="500px"/> 
+						<input type="hidden" name="product_img" value="${product.product_img}"/> 
 					</div>
 				</c:if>
 					<div class="detail1-content mt-4">
