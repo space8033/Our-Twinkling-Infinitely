@@ -9,6 +9,7 @@ public class CartDto {
 	private int productOption_productOption_no;
 	private String cart_optionContent;
 	private String cart_ckId;
+	private int cart_qty;
 	private String users_users_id;
 	private int product_no;
 	private String product_name;

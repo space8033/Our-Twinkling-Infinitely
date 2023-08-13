@@ -46,6 +46,7 @@ public class AddressController {
 		//세션에 pageNo를 저장
 		session.setAttribute("pageNo3", String.valueOf(pageNo));
 		int totalRows = addressService.countByUserId(user_id);
+		log.info(totalRows + "총 수");
 		Pager pager = new Pager(5, 5, totalRows, intPageNo);
 		
 		Map<String, Object> map = new HashMap<>();
@@ -57,8 +58,6 @@ public class AddressController {
 		
 		model.addAttribute("pager", pager);
 		model.addAttribute("list", list);
-		
-		
 		
 		return "mypage/address/myAddress";
 	}
