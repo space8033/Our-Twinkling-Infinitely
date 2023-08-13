@@ -127,7 +127,7 @@ public class UserController {
 	//로그아웃 요청
 	@GetMapping("/logout")
 	public String logout(HttpSession session) {
-		session.removeAttribute("loginIng");
+		session.invalidate();
 	    return "redirect:/";
 	}
 	
