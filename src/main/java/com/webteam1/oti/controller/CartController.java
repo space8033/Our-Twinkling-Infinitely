@@ -103,7 +103,7 @@ public class CartController {
 			    out.flush();
 			    response.flushBuffer();
 			    out.close();
-				return "redirect:/cart";
+				return "cart/basket";
 			}
 			
 			//쿠키 시간 재설정

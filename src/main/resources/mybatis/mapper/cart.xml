@@ -58,7 +58,7 @@
 	
 	<!-- 장바구니 추가한 상품리스트 불러오기-->
 	<select id="selectCartList" parameterType="Cart" resultType="CartDto">
-		select  c.cart_no, c.productOption_productOption_no, c.cart_optionContent, p.product_no,
+		select  c.cart_no, c.productOption_productOption_no, c.cart_optionContent, c.cart_qty, p.product_no,
 		p.product_name , p.product_price ,p.product_imgFile, o.productOption_no , o.productOption_type
 		from CART c 
 		left outer join PRODUCT p on c.product_product_no = p.product_no 
