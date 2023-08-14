@@ -18,10 +18,12 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.util.WebUtils;
 
 import com.webteam1.oti.dto.cart.Cart;
+import com.webteam1.oti.dto.user.Agreement;
 import com.webteam1.oti.dto.user.JoinDto;
 import com.webteam1.oti.dto.user.LoginDto;
 import com.webteam1.oti.dto.user.ModifyDto;
 import com.webteam1.oti.interceptor.Login;
+import com.webteam1.oti.service.AgreementService;
 import com.webteam1.oti.service.CartService;
 import com.webteam1.oti.service.UserService;
 import com.webteam1.oti.service.UserService.JoinResult;
@@ -39,6 +41,8 @@ public class UserController {
 	private UserService userService;
 	@Resource
 	private CartService cartService;
+	@Resource
+	private AgreementService agreementService;
 	
 	//회원가입 폼 불러오기
 	@GetMapping("/joinForm")
@@ -49,7 +53,7 @@ public class UserController {
 	
 	//회원가입 신청
 	@PostMapping("/joinForm")
-	public String join(JoinDto users, Model model) {
+	public String join(JoinDto users, Agreement agreement, Model model) {
 		JoinResult result = userService.join(users);
 		if(result == JoinResult.FAIL_DUPLICATED_UID) {
 			String error1 = "이미 가입된 아이디입니다.";
@@ -66,7 +70,10 @@ public class UserController {
 			model.addAttribute("error3", error3);
 			return "join/joinForm";
 		} else {
-		
+			log.info(agreement.isAgreement_info()+"동의 인포");
+			log.info(agreement.isAgreement_required()+"동의 이용약관");
+			log.info(agreement.isAgreement_sns()+"동의sns");
+			agreementService.insertAgreement(users, agreement);
 			return "redirect:/loginForm";
 		}
 	}

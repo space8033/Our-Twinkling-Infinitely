@@ -178,11 +178,18 @@
 			border: 1px solid #346aff;
 			margin-bottom: 0px;
 		}
+		
 		#join_btn {
 			background-color: #fff;
 			color: #454f5b;
 			border: 1px solid #b1b1b1;
+			margin-top: 15px;
+			padding-top: 8px;
+			font-weight: bold;
+			font-family: apple sd gothic neo,malgun gothic,nanumbarungothic,nanumgothic,dotum,sans-serif;
 			margin: 0px;
+			width: 450px;
+			height: 45px;
 			
 		}
 		

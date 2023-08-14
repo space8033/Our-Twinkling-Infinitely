@@ -115,7 +115,7 @@
 					<img src="https://img.echosting.cafe24.com/skin/base/common/ico_required.gif" width="7" height="7">
 				</div>
 				<div class="d-flex">
-					<input type="text" id="tel" class="m-1" style="width:100%" value="${userInfo.users_phone}" name="users_phone">
+					<input type="text" id="tel" oninput="autoHyphen(this)" maxlength="13" class="m-1" style="width:100%" value="${userInfo.users_phone}" name="users_phone">
 				</div>
 			</div>
 			<div class="container d-flex pt-1">

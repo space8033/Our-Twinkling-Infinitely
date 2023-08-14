@@ -11,7 +11,6 @@ function modifyCheck() {
 		alert(modifyMsg);
 		
 	}
-	
 }
 
 
