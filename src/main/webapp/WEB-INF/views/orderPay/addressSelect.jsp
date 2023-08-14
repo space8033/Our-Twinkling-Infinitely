@@ -85,7 +85,7 @@
 				margin-bottom: 20px;
 				font-size: 25px;
 				border-bottom-width: 3px;
-				height: 50px;
+				height: 60px;
 				cursor: pointer;
 			}
 			

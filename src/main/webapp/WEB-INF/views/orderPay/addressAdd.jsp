@@ -350,7 +350,7 @@
 				</div>
 				
 				<div class="d-flex justify-content-center">
-					<input id="submit" type="submit" style="border: none; background-color: #0073e8; color: white;" class="inputHolder" value="저장">
+					<input id="submit" type="submit" style="border: none; background-color: #0073e8; color: white; margin-bottom: 20px;" class="inputHolder" value="저장">
 				</div>
 			</form>
 		</div>

@@ -377,7 +377,7 @@
 					<input id="submit" type="submit" style="border: none; background-color: #0073e8; color: white;" class="inputHolder" value="저장">
 				</div>
 				<div class="d-flex justify-content-center mt-3">
-					<input id="delete" type="submit" style="border: none; background-color: #d53328; color: white;" class="inputHolder" value="삭제">
+					<input id="delete" type="submit" style="border: none; background-color: #d53328; color: white; margin-bottom: 20px;" class="inputHolder" value="삭제">
 				</div>
 			</form>
 		</div>
