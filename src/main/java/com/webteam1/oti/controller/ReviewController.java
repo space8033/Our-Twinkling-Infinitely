@@ -37,7 +37,7 @@ public class ReviewController {
 	private UserService userService;
 	@Resource
 	private ImageService imageService;
-	//리뷰 가져오기 (진행중)
+
 	@GetMapping("/review")
 	public String review(String pageNo2, Model model, HttpSession session) {
 		if(pageNo2 == null) {
@@ -100,12 +100,10 @@ public class ReviewController {
 	
 	@PostMapping("/reviewWrite")
 	public String writeReview(ReviewReceive review, HttpSession session) throws IOException {
-		log.info("넘어오나?");
 		int productNo = -1;
 		if(session.getAttribute("productNum") != null) {
 			productNo = (int)session.getAttribute("productNum");			
 		}else {
-			log.info("망했어유 상품정보가 없어유");
 		}
 		Map<String, Object> map = new HashMap<>();
 		map.put("user_id", review.getReviewWriter());

@@ -48,10 +48,8 @@
 		   		</div>
 			  	<div class="topnav container">
 				  <div class="search-container">
-				    <form action="/action_page.php">
 				      <input type="text" placeholder="Search.." name="search">
-				      <button type="submit"><i class="fa fa-search"></i></button>
-				    </form>
+				      <button><i class="fa fa-search"></i></button>
 				  </div>
 				<button id="hideSearchBar" class="btn btn-outline-light text-dark">X</button>
 				</div>
