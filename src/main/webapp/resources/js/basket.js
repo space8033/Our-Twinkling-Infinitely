@@ -232,6 +232,7 @@ function setSelectBox(){
 			 },
 			 error: function(error){
 				 console.log(error.status);
+				 console.log("응 아냐");
 			 }
 		  });
 	}
@@ -276,6 +277,8 @@ function jsonProduct() {
 			 html += '		<p class="t2_nonMessage">장바구니에 담은 상품이 없습니다.</p>';
 			 html += '	</td>';
 			 html += '</tr>';
+			 $("#cboxAll_top").hide();
+			 $("#lastselector").hide();
 		 }
          data.forEach((item, index) => {
         	priceArr.push(item.price);
@@ -283,9 +286,11 @@ function jsonProduct() {
         	let benefit = Math.ceil(item.product_price * 0.05);
         	let totalProduct = (item.product_price*item.cart_qty).toLocaleString("ko-KR"); //장바구니에 넣을 상품 수량
         	selectedQty = item.cart_qty;
+        	
         	html += '<tr class="productRow">';	
         	html += '	<td>';
       	    html += '		<input id="chk' + index + '" title="' + item.product_name + ' 상품을 결제상픔으로 결정" type="checkbox" name="chk" class="pchk" value='+ item.product_price +' onclick="loading()"/>';
+      	    html += '		<input type="hidden" name="cart_no" value="'+ item.cart_no +'"/>';
       		html += '	</td>';
       		html += '	<td class="p_img">';
       		html += '		<a href="#">';
@@ -294,7 +299,7 @@ function jsonProduct() {
       		html += '	</td>';
       		html += '	<td class="product_contents">';
       		html += '		<div class="c_name">';
-      		html += '			<a href="detailProduct?product_no="' + item.product_no + '>' + item.product_name + '(' + item.productOption_type + ')';		
+      		html += '			<a href="detailProduct?product_no="' + Number(item.product_no) + '>' + item.product_name + '(' + item.productOption_type + ')';		
       	    html += '			</a>';		
       		html += '		</div>';
       		html += '		<div class="c_date&c_option d-flex">';
@@ -326,7 +331,7 @@ function jsonProduct() {
       		html += '				</span>';
       		html += '				<span id="co-price'+ index +'" class="p_price" value="'+ index +'" style="padding-left: 10px;">'+ totalProduct +'</span>';
       		html += '				<span>원</span>';
-      		html += '				<button class="cancel" type="button" onclick="deleteRow()">X</button>';
+      		html += '				<button class="cancel" type="button" onclick="cartDelete('+ item.cart_no +')">X</button>';
       		html += '				<div class="select-text" style="display:none;">';
       		html += '					<button id="btn'+ index +'" class="btn-quantity" type="button">수량변경</button>';
       		html += '				</div>';
@@ -347,7 +352,7 @@ function jsonProduct() {
       		html += '		<img src="//image10.coupangcdn.com/image/badges/rocket/rocket_logo.png" class="delivery-badge-img " style="width: 56px;">';
       		html += '	</td>';
       		html += '	<td class="delivery_fee" style="padding-top: 50px; text-align: center;">무료</td>';
-        	html += '</tr>'; 
+        	html += '</tr>';  
          });  
          $("#basket_tbody").html(html);
 	       //선택항목 개수
@@ -368,16 +373,13 @@ function jsonProduct() {
   
 }
 
-function cartHeaderDel(cart_no){
+function cartDelete(cart_no){
 	$.ajax({
-		url : "/cartDelete",
-		type : "post",
-		dataType : "json",
+		url : "cartDelete",
+		method : "post",
 		data : {"cart_no" : cart_no},
 		success : function(data){
-			cartHeaderView();
-			toastr.options.preventDuplicates = true;
-			toastr.success("삭제완료");
+			jsonProduct();
 		}
-	})
+	});
 }

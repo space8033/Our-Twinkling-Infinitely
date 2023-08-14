@@ -23,6 +23,7 @@ import org.springframework.web.util.WebUtils;
 
 import com.webteam1.oti.dto.Product;
 import com.webteam1.oti.dto.cart.Cart;
+import com.webteam1.oti.dto.cart.CartDto;
 import com.webteam1.oti.dto.user.LoginDto;
 import com.webteam1.oti.service.CartService;
 import com.webteam1.oti.service.ImageService;
@@ -46,7 +47,6 @@ public class CartController {
 	public String menuCart() {
 		return "cart/basket";
 	}
-
 	//상품 상세정보에서 장바구니 넣기 구현
 	@PostMapping("/addCart")
 	public String datailCart( 
@@ -54,8 +54,6 @@ public class CartController {
 				HttpServletResponse response, Cart cart, Product product, Model model
 			) throws Exception {
 		
-		//상품옵션 내용
-		String productOption = cart.getCart_optionContent();
 		//쿠키 생성
 		Cookie cookie = WebUtils.getCookie(request, "cartCookie");
 		
@@ -133,7 +131,7 @@ public class CartController {
 			
 			cartService.addCart(cart);
 			
-			model.addAttribute("carts", cart);
+			model.addAttribute("cart", cart);
 		}
 		return "cart/basket";
 	}
