@@ -98,9 +98,18 @@
 								</tr>
 								<tr>
 									<th><img src="//img1a.coupangcdn.com/image/www/common/icon_arrow.gif"> 배송 요청사항</th>
-									<td> ${address.deliveryRequest} ${selectedValue}  ${selectedPwdValue}
+									
+									<c:if test = "${selectedValue == null}">
+									<td> ${address.deliveryRequest}
 										<button onclick="openRequest()">변경</button>
 									</td>
+									</c:if>
+									 <c:if test = "${selectedValue != null}">
+									<td> ${selectedValue}  ${selectedPwdValue}
+										<button onclick="openRequest()">변경</button>
+									</td>
+									 </c:if>
+									
 								</tr>
 								
 						</table>

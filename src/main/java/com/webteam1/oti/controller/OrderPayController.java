@@ -62,9 +62,11 @@ public class OrderPayController {
 				    String selectedPwdValue = (String) session.getAttribute("selectedPwdValue");
 				    log.info(selectedValue + "=selectedValue");
 				    log.info(selectedPwdValue + "=selectedPwdValue");
-			
-				    model.addAttribute("selectedValue", selectedValue);
-				    model.addAttribute("selectedPwdValue", selectedPwdValue);
+				    if(selectedValue != null) {
+				    	model.addAttribute("selectedValue", selectedValue);
+				    	model.addAttribute("selectedPwdValue", selectedPwdValue);
+				    }
+				    
 				    return "orderPay/orderPay";
 					    
 				}		
@@ -78,18 +80,17 @@ public class OrderPayController {
 		if(addressNo != null) { 
 			model.asMap().remove("address");
 			Address now = addressService.getByAddressNo(Integer.parseInt(addressNo));
-			
 			model.addAttribute("address", now);	
 				
 			//배송 요청사항 목록 받아오기
 			String selectedValue = (String) session.getAttribute("selectedValue");
 		    String selectedPwdValue = (String) session.getAttribute("selectedPwdValue");
-		    log.info(selectedValue + "=selectedValue");
-		    log.info(selectedPwdValue + "=selectedPwdValue");
-	
-		    model.addAttribute("selectedValue", selectedValue);
-		    model.addAttribute("selectedPwdValue", selectedPwdValue);
-		    return "orderPay/orderPay";
+		    
+		    if(selectedValue != null) {
+		    	model.addAttribute("selectedValue", selectedValue);
+		    	model.addAttribute("selectedPwdValue", selectedPwdValue);
+		    	return "orderPay/orderPay";
+		    }
 		}		
 		return "orderPay/orderPay";
 	}
@@ -153,10 +154,8 @@ public class OrderPayController {
 	
 	@Login
 	@PostMapping("/addressRequest")
-	@ResponseBody
 	public String addressRequest(@RequestParam("selectedValue") String selectedValue, @RequestParam("selectedPwdValue") String selectedPwdValue, HttpSession session) {
 		session.setAttribute("selectedValue", selectedValue);
-		
 	    session.setAttribute("selectedPwdValue", selectedPwdValue);
 	    log.info(selectedValue + "=selectedValue");
 	    log.info(selectedPwdValue + "=selectedPwdValue");
