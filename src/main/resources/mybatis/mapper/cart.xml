@@ -72,4 +72,19 @@
 			</if>
 		</where>
 	</select>
+	
+	<!-- 장바구니삭제 -->
+	<delete id="cartDelete" parameterType="Cart">
+		DELETE FROM CART WHERE CART_NO = ${cart_no}
+	</delete>
+	
+	<!-- 전체삭제 비회원 -->
+	<delete id="cartDeleteCk">
+		DELETE FROM CART WHERE CART_CKID = ${cart_ckid}
+	</delete>
+
+	<!-- 전체삭제 회원 -->
+	<delete id="cartDeleteMem">
+		DELETE FROM CART WHERE CART_MEM_NO = ${cart_mem_no}
+	</delete>
 </mapper>

@@ -20,9 +20,20 @@
 	  <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/addressRequest.css"/>	
 	 
 	  <style>
+	  		#header {
+				font-family: apple sd gothic neo,malgun gothic,nanumbarungothic,nanumgothic,dotum,sans-serif;
+			    border: 0;
+			    padding: 9px 0;
+			    color: #111;
+			    font-size: 16px;
+			    line-height: 22px;
+			    text-align: center;
+			    font-weight: bold;
+			    border-bottom : 1px solid rgb(224, 224, 224);
+			    margin-bottom: 10px;
+			}
 			.myAddress {
 				width: 95%;
-				margin-top : 25px;
 				margin-left : 18px;
 				padding-left: 15px;
 				border: 1px solid rgb(224, 224, 224);
@@ -51,7 +62,6 @@
 				border: 1px solid rgb(224, 224, 224);
 				width: 95%;
 				margin-left: 18px;
-				margin-top: 10px;
 				font-size: 25px;
 				border-bottom-width: 3px;
 				cursor: pointer;
@@ -97,7 +107,7 @@
 			.modal-content {
 				background-color: #fefefe;
 				margin: 15% auto; /* 15% from the top and centered */
-				padding: 20px;
+				padding: 10px;
 				border: 1px solid #888;
 				width: 50%; /* Could be more or less, depending on screen size */
 			}
@@ -161,6 +171,29 @@
 				
 			}
 			
+			@media (min-width:490px)  {
+				.addressIcon {
+					width: 50px;
+					height: 50px;
+				}
+				.inputHolder {
+					width: 450px;
+					height: 51.5px;
+				}
+				.inputHolder2 {
+					width: 500px;
+					height: 51.5px;
+				}
+				.inputHolder3 {
+					width: 500px;
+					height: 51.5px;
+				}
+				.modal-content {
+				  width: 50%; /* Could be more or less, depending on screen size */
+				}
+				
+			}
+			
 			@media (max-width:768px)  {
 				.addressIcon {
 					width:  40px;
@@ -189,9 +222,10 @@
 	</head>
 	
 	<body class="container">
+		<div id= "header">배송지 수정</div>
 		<div id="wrapper" class="d-flex justify-content-center">	
 		<!------------------------------------- 내용 들어갈 div -------------------------------------->
-			<form id="addressModify" name="addressModify" action="addressModify" method="post" class="pt-5">
+			<form id="addressModify" name="addressModify" action="addressModify" method="post">
 				<div class="my-3">
 					<div class="my-3 d-flex">
 						<div style="border: 1px solid #d0d0d0;">
@@ -263,10 +297,10 @@
 				</div>
 				<span id=deliveryNotifyErr class="errorMsg d-none text-danger small ml-2" style="border: none;">배송 요청사항을 입력해주세요.</span>
 				<div id="requestModal" class="modal">
-					<div id="requestContainer"  class="modal-content" style="width: 60%; margin-left: 200px;  margin-top: 10px;">
+					<div id="requestContainer"  class="modal-content pl-3" style="width: 100%;  margin-top: 10px;">
 						<div class="d-flex">
-							<div style="width: 87%"></div>
-							<div style="width: 13%">
+							<div style="width: 95%"></div>
+							<div style="width: 5%">
 								<span id="close">X</span>
 							</div>
 						</div>
@@ -354,7 +388,7 @@
 					<input id="submit" type="submit" style="border: none; background-color: #0073e8; color: white;" class="inputHolder" value="저장">
 				</div>
 				<div class="d-flex justify-content-center mt-3">
-					<input id="delete" type="submit" style="border: none; background-color: #d53328; color: white;" class="inputHolder" value="삭제">
+					<input id="delete" type="submit" style="border: none; background-color: #d53328; color: white; margin-bottom: 20px;" class="inputHolder" value="삭제">
 				</div>
 			</form>
 		</div>

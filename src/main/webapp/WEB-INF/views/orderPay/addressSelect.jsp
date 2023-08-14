@@ -18,7 +18,19 @@
 	  <script src="${pageContext.request.contextPath}/resources/js/myAddress.js"></script>
 		
 		<style>
-			
+		
+			#header {
+				font-family: apple sd gothic neo,malgun gothic,nanumbarungothic,nanumgothic,dotum,sans-serif;
+			    border: 0;
+			    padding: 9px 0;
+			    color: #111;
+			    font-size: 16px;
+			    line-height: 22px;
+			    text-align: center;
+			    font-weight: bold;
+			    border-bottom : 1px solid rgb(224, 224, 224);
+			    margin-bottom: 10px;
+			}
 			.myAddress {
 				width: 95%;
 				margin-left : 18px;
@@ -51,26 +63,40 @@
 				margin-top: 5px;
 				margin-bottom: 15px;
 			}
+			.select {
+				color: white;
+				text-align: center;
+				background-color: #628ac5;
+				border: 1px solid rgb(224, 224, 224);
+				width: 80px;
+				margin-top: 5px;
+				margin-bottom: 15px;
+				margin-right: 10px;
+			}
 			#addAddress {
 				color: rgb(41, 141, 239);
+				background-color: white;
 				font-weight: bold;
 				text-align: center;
 				border: 1px solid rgb(224, 224, 224);
 				width: 95%;
 				margin-left: 18px;
 				margin-top: 10px;
+				margin-bottom: 20px;
 				font-size: 25px;
 				border-bottom-width: 3px;
+				height: 60px;
 				cursor: pointer;
 			}
 			
 		</style>
 	</head>
 	
-	<body class="container">
+	<body>
+		<div id= "header">배송지 선택</div>
 				
 		<!------------------------------------- 내용 들어갈 div -------------------------------------->
-		<div style="width: 100%; margin-top: 20px;">
+		<div class="container" style="width: 100%;">
 			<div id="addressContainer" style="width: 100%;">
 				<c:forEach var="address" items="${list}">
 					<div class="myAddress">
@@ -87,7 +113,7 @@
 						<div class="d-flex justify-content-between">
 							 <button class="modifyButton" onclick=location.href="addressModify?addressNo=${address.address_no}">수정</button> 
 						    <!--  <button class="selectButton mr-3" onclick=location.href="orderPay?addressNo=${address.address_no}">선택</button>  -->
-						    <a class="btn btn-outline-primary btn-sm" href="javascript:select(${address.address_no})">선택</a>
+						    <a class="select btn btn-outline-primary btn-sm" href="javascript:select(${address.address_no})">선택</a>
 						</div>
 					</div>	
 				</c:forEach>	
@@ -118,7 +144,6 @@
 			<button id="addAddress" onclick=location.href="addressAdd">
 				+ 배송지 추가
 			</button>
-		</div>
       
 	</body>
 	
