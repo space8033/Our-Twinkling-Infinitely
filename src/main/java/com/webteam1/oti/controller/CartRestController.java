@@ -15,6 +15,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.util.WebUtils;
@@ -53,13 +54,13 @@ public class CartRestController {
 			cart.setUsers_users_id(loginDto.getUsers_id());
 			list = cartService.getCartList(cart);
 	    }
-	    
+	    model.addAttribute("list", list);
 	    return list;
 	}
 	@ResponseBody
-	@PostMapping("/DeletCart")
-	public int cartDelete(HttpSession session, HttpServletRequest request, HttpServletResponse response, Cart cart, Model model) throws Exception{
-		  int deleteNo = cartService.cartDelete(cart);
-		  return deleteNo;
+	@PostMapping("/cartDelete")
+	public void cartDelete(HttpSession session, HttpServletRequest request, HttpServletResponse response, @RequestParam int cart_no, Model model) throws Exception{
+		cartService.cartDelete(cart_no);
 	}
+
 }

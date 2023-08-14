@@ -8,7 +8,7 @@
    	-->
 	<insert id="cartInsert" parameterType="Cart">
 		insert into cart (cart_no, cart_qty, productOption_productOption_no, 
-			cart_optionContent, product_product_no, cart_createdDate, cart_cklimit,
+		product_product_no, cart_createdDate, cart_cklimit,
 		<if test="cart_isLogin == 0">
 			cart_ckId 
 		</if>
@@ -19,7 +19,6 @@
 				(select NVL(MAX(cart_no)+1,0)from cart),
 				 #{cart_qty},
 				 #{productOption_productOption_no}, 
-				 #{cart_optionContent},
 				 #{product_product_no},
 				 sysdate,
 				 sysdate+1
@@ -74,7 +73,7 @@
 	</select>
 	
 	<!-- 장바구니삭제 -->
-	<delete id="cartDelete" parameterType="Cart">
+	<delete id="cartDelete" parameterType="CartDto">
 		DELETE FROM CART WHERE CART_NO = ${cart_no}
 	</delete>
 	
@@ -84,7 +83,7 @@
 	</delete>
 
 	<!-- 전체삭제 회원 -->
-	<delete id="cartDeleteMem">
+	<delete id="cartDeleteMem" parameterType="int">
 		DELETE FROM CART WHERE CART_MEM_NO = ${cart_mem_no}
 	</delete>
 </mapper>

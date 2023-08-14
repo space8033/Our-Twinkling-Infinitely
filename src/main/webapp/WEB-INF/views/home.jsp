@@ -51,7 +51,7 @@
 						    <div class="product-content">
 						    	<div class="product-title d-flex justify-content-center text-dark m-2">${product.product_name}</div>
 						    	<div class="d-flex justify-content-center product-price">
-						    		<fmt:formatNumber value="${product.product_price}" type="number"/>
+						    		<fmt:formatNumber value="${product.product_price}" type="number"/> 원
 						    	</div>
 						     </div>
 						</div>
