@@ -11,5 +11,5 @@ public interface ReviewService {
 	public int countByProductNo(int productNo);
 	public Review getReviewByRno(int review_no);
 	public void createReview(ReviewReceive review);
-	public int findByUserId(String user_id);
+	public int findByUserId(Map<String , Object> map);
 }

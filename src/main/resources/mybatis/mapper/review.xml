@@ -39,9 +39,9 @@
 		values(#{review_no}, #{reviewWriter}, #{reviewRating}, #{reviewTitle}, #{reviewContents}, to_char(sysdate,'yyyy.mm.dd hh24:mi:ss'), #{productNo})
 	</insert>
 	<!-- productnum 등 조건 추가해야함 -->
-	<select id="selectByUserId" resultType="int" parameterType="String">
+	<select id="selectByUserId" parameterType="Map" resultType="int">
 		select review_no
 		from review
-		where review_name = #{user_id}
+		where review_name = #{user_id} and product_no=#{productNo} and review_title = #{title}
 	</select>
 </mapper>

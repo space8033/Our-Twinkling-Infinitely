@@ -14,5 +14,5 @@ public interface ReviewDao {
 	public int countByPno(int pno);
 	public Review selectByRno(int review_no);
 	public int insertReview(ReviewReceive review);
-	public int selectByUserId(String user_id);
+	public int selectByUserId(Map<String , Object> map);
 }

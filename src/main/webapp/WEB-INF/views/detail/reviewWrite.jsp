@@ -6,7 +6,7 @@
 	      	리뷰 작성하기
 	   </div>
 	   <div class="card-body">
-	      <form id="reviewWrite" method="post" action="reviewWrite" enctype="multipart/form-data">
+	      <form id="reviewWrite" method="post" action="javascript:submitForm()" enctype="multipart/form-data">
 	         <div class="input-group">
 	            <div class="input-group-prepend"><span class="input-group-text">한줄평</span></div>
 	            <input id="btitle" type="text" name="reviewTitle" class="form-control">
