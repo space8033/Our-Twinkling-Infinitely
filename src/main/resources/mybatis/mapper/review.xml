@@ -38,7 +38,7 @@
 		insert into review(review_no, review_name, review_rating, review_title, review_contents, review_createdDate, product_no)
 		values(#{review_no}, #{reviewWriter}, #{reviewRating}, #{reviewTitle}, #{reviewContents}, to_char(sysdate,'yyyy.mm.dd hh24:mi:ss'), #{productNo})
 	</insert>
-	<!-- productnum 등 조건 추가해야함 -->
+
 	<select id="selectByUserId" parameterType="Map" resultType="int">
 		select review_no
 		from review
