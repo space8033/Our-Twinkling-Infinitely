@@ -113,7 +113,7 @@
 					        		<span id="s_t_choice" class="selection"></span>
 					        		<span class="selection" style="margin-right: 10px;">)</span>
 				        	    </label>
-					        	<button id="btn_delete" onclick="cartDelete( [ cart_no ] )" class="delete" style="margin-right: 10px;"></button>   
+					        	<button id="btn_delete" onclick=" AllDeleteConfirmDialog()" class="delete" style="margin-right: 10px;">전체삭제</button>   
 						   </div>
 						   <div class="cash_benefit_wrapper border rounded-sm">
 				    		<div class="cash_benefit_contents">
