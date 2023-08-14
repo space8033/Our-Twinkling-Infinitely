@@ -52,4 +52,10 @@ public class CartServiceImpl implements CartService{
 		return list;
 	}
 
+	@Override
+	public int cartDelete(Cart cart) {
+		int deleteNo = cartDao.cartDelete(cart);
+		return deleteNo;
+	}
+
 }

@@ -11,9 +11,9 @@ function checkAll() {
 		$("#cboxAll_top").prop("checked", true);
 		$("#cboxAll_bottom").prop("checked", true);
 		deleteButton1();
+		$("#s_p_choice").html($(".pchk").length);
 		for(var i=0; i<$(".pchk").length; i++){	
 			var pchkPrice = Number($("#chk" + i).val());
-			console.log("p: " + pchkPrice);
 			totalCheckedPrice += pchkPrice;
 			$("#tt_price_product").html(totalCheckedPrice.toLocaleString("ko-KR"));
 			$("#tt-product-total").html(totalCheckedPrice.toLocaleString("ko-KR"));
@@ -26,6 +26,7 @@ function checkAll() {
 			$("#tt-product-total").html(totalCheckedPrice);
 			$("#top_product").html(totalCheckedPrice);
 			$("#top_total").html(totalCheckedPrice);
+			$("#s_p_choice").html(0);
 			$(".pchk").prop("checked", false);
 			$("#cboxAll_top").prop("checked", false);
 			$("#cboxAll_bottom").prop("checked", false);
@@ -39,7 +40,6 @@ function checkAll() {
 		$("#top_total").html(totalCheckedPrice);
 		$(".pchk").prop("checked", false);
 		$("#cboxAll_top").prop("checked", false);
-		$("#cboxAll_bottom").prop("checked", false);
 		deleteButton2();
 	}
 }
@@ -214,11 +214,12 @@ function setSelectBox(){
 			 dataType: "json",
 			 success: function(data){
 				 data.forEach((item, index) => {
+					 // 장바구니에 담은  상품 수량 옵션 selected
+					 $('select[name="'+ item.cart_no +'"]').find('option[value="'+ item.cart_qty +'"]').attr("selected",true);
 		        	 let idNo = "customSelect" + index;
 			       if(coPrice == idNo){
-			    	   let qty = Number($(".select-option option:selected").val());
-			    	   let targetPrice = item.product_price * qty;
-			    	   let benefitPrice = Math.ceil(item.product_price * qty * 0.05);
+			    	   let targetPrice = item.product_price * schField;
+			    	   let benefitPrice = Math.ceil(item.product_price * schField * 0.05);
 			    	   let id = "co-price" + index;//가격1 id
 			    	   let benefitId = "benefit" + index;//적립 id
 			    	   let toPrId = "toPr" + index;//가격2 id
@@ -307,18 +308,17 @@ function jsonProduct() {
       		html += '			<div class="c_option">';
       		html += '				<span>' + price + '</span>';
       		html += '				<span>원</span>';
-      		html += '					<select id="customSelect'+ index +'" class="select-option" onchange="setSelectBox();" title="' + item.product_name + ' 수량 변경" onclick="hideFirst()">';
-      		html += '						<option name="options" value="1">1</option>';
-      		html += '						<option name="options" value="2">2</option>';
-      		html += '						<option name="options" value="3">3</option>';
-      		html += '						<option name="options" value="4">4</option>';
-      		html += '						<option name="options" value="5">5</option>';
-      		html += '						<option name="options" value="6">6</option>';
-      		html += '						<option name="options" value="7">7</option>';
-      		html += '						<option name="options" value="8">8</option>';
-      		html += '						<option name="options" value="9">9</option>';
-      		html += '						<option name="options" value="10">10</option>';
-      		html += '						<option id="default" name="options" value="' + item.cart_qty + '" selected>' + item.cart_qty + '</option>';
+      		html += '					<select id="customSelect'+ index +'" name="' + item.cart_no + '" class="select-option" onchange="setSelectBox();" title="' + item.product_name + ' 수량 변경">';
+      		html += '						<option value="1">1</option>';
+      		html += '						<option value="2">2</option>';
+      		html += '						<option value="3">3</option>';
+      		html += '						<option value="4">4</option>';
+      		html += '						<option value="5">5</option>';
+      		html += '						<option value="6">6</option>';
+      		html += '						<option value="7">7</option>';
+      		html += '						<option value="8">8</option>';
+      		html += '						<option value="9">9</option>';
+      		html += '						<option value="10">10</option>';
       		html += '					</select>';
       		html += '				</span>';
       		html += '				<span id="select-text" class="select-text" style="display:none;">';
@@ -367,6 +367,17 @@ function jsonProduct() {
   });
   
 }
-function hideFirst(){
-	$("#default").hide();
+
+function cartHeaderDel(cart_no){
+	$.ajax({
+		url : "/cartDelete",
+		type : "post",
+		dataType : "json",
+		data : {"cart_no" : cart_no},
+		success : function(data){
+			cartHeaderView();
+			toastr.options.preventDuplicates = true;
+			toastr.success("삭제완료");
+		}
+	})
 }

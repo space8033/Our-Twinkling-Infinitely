@@ -15,6 +15,7 @@
 				<c:if test="${product.product_img !=null}">
 					<div class="detail1-image m-4">
 						<img src="data:MIME;base64, ${product.product_img}" width="500px"/> 
+						<!-- submit: product_img (해당 상품 base64로 인코딩 된 이미지) -->
 						<input type="hidden" name="product_img" value="${product.product_img}"/> 
 					</div>
 				</c:if>
@@ -23,8 +24,9 @@
 						<h2 class="m-2 d-flex justify-content-start">
 							<small>
 								<fmt:formatNumber value="${product.product_price}" type="number"/>
-								<input id="product_price" type="hidden" value="${product.product_price}"/>
-								<!-- submit: 해당 상품 번호 -->
+								<!-- submit: product_price(해당 상품 가격) -->
+								<input id="product_price" name="product_price" type="hidden" value="${product.product_price}"/>
+								<!-- submit: product_product_no(해당 상품 번호) -->
 								<input type="hidden" id="product_price" name="product_product_no" value="${product.product_no}"/>
 							</small>
 						</h2>
@@ -39,6 +41,7 @@
 						</div>
 						<div class="custom-qty">
 							수량
+							<!-- submit: cart_qty(상품 수량) -->
 							<select class="qty custom-select  m-3" name="cart_qty" onclick="myOption2()">
 								<option value="none">---[필수]수량을 선택해 주세요---</option>
 								<c:forEach begin="1" end="10" var="i">
@@ -71,6 +74,7 @@
 						 	</c:if>
 							<div>
 								<c:if test="${loginIng != null}">
+									<!-- submit: users_users_id (로그인 한 유저 아이디) -->
 									<input type="hidden" name="users_users_id" value="${loginIng.users_id}">
 								</c:if>
 									<button type="submit" class="dtailButton btn btn-outline-dark btn-block m-4">장바구니</button>
