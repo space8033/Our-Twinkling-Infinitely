@@ -12,4 +12,17 @@
 		where product_product_no=#{product_product_no} and image_name='detail'
 	</select>
 	
+	<insert id="insertReviewImage" parameterType="Image">
+		<selectKey keyProperty="image_no" resultType="int" order="BEFORE">
+	         select image_seq.nextval from dual
+      	</selectKey>
+		insert into image(image_no, image_name, image_file, review_review_no, image_filename)
+		values(#{image_no}, #{image_name}, #{image_file}, #{review_review_no}, #{image_fileName})
+	</insert>
+	
+	<select id="selectByRno" parameterType="int" resultType="Image">
+		select image_no, image_name, image_file, image_fileName, product_product_no, review_review_no
+		from image
+		where review_review_no=#{review_review_no}
+	</select>
 </mapper>

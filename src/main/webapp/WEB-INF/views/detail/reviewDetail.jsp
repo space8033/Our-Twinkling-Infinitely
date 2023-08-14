@@ -60,6 +60,11 @@
 						<div>
 							<span class="title">리뷰 상세</span> <br/>
 							<div style="width:100%; border:1px solid #dadfe3">
+								<div class="d-flex">
+									<c:forEach var="image" items="${base64Img}">
+										<img src="data:MIME;base64, ${image}" height="75" width="75" class="mx-1">
+									</c:forEach>
+								</div>
 								${review.review_contents}
 							</div>
 						</div>

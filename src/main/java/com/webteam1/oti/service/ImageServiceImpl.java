@@ -26,4 +26,15 @@ public class ImageServiceImpl implements ImageService{
 		return image;
 	}
 
+	@Override
+	public void registerImg(Image image) {
+		imageDao.insertReviewImage(image);
+	}
+
+	@Override
+	public List<Image> getReviewImages(int review_no) {
+		
+		return imageDao.selectByRno(review_no);
+	}
+
 }
