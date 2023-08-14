@@ -277,20 +277,19 @@ $(document).ready(function(){
 	$("#agree").click(function(){
 		//전체 선택 선택시 모두 체크, 해제
 		if($("#agree").prop("checked")){ 
-			$("input[name=agree]").prop("checked", true);
+			$(".agreement").prop("checked", true);
 		} else {
-			$("input[name=agree]").prop("checked", false);
+			$(".agreement").prop("checked", false);
 		}
 	});	
 		
 		//선택 갯수가 전체 선택 갯수와 같을 경우 전체 선택 체크
 	$(".agreement").click(function(){	
-		if($('input[class=agreement]:checked').length==$('.agreement').length){
+		if($('input[class=agreement]:checked').length ==$('.agreement').length){
 	        $('#agree').prop('checked',true);
 	    }else{
 	       $('#agree').prop('checked',false);
 	    }
-		
 			
 	});
 	
