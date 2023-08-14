@@ -83,18 +83,20 @@ public class ReviewController {
 	
 	@PostMapping("/reviewWrite")
 	public String writeReview(ReviewReceive review, HttpSession session) {
-		LoginDto user = (LoginDto) session.getAttribute("loginIng");
-		String user_id = user.getUsers_id();
-		
 		int productNo = -1;
 		if(session.getAttribute("productNum") != null) {
 			productNo = (int)session.getAttribute("productNum");			
 		}else {
 			log.info("망했어유 상품정보가 없어유");
 		}
+		Map<String, Object> map = new HashMap<>();
+		map.put("user_id", review.getReviewWriter());
+		map.put("productNo", productNo);
+		map.put("title", review.getReviewTitle());
+		
 		review.setProductNo(productNo);
 		reviewService.createReview(review);
-		int reviewNo = reviewService.findByUserId(user_id);
+		int reviewNo = reviewService.findByUserId(map);
 		log.info(reviewNo + "리뷰 번호");
 		
 		
