@@ -61,7 +61,7 @@ function myOption2(){
 		$(".myOption").hide();
 	}
 }
-
+//리뷰 리스트 보여주기
 function showReview(productNum, pageNo2) {
 	$.ajax({
 		url: "review",
@@ -99,7 +99,7 @@ function submitForm() {
         processData: false
 	});
 }
-
+//리뷰번호로 리뷰 상세정보 찾기
 function reviewDetail(review_no) {
 	$.ajax({
 		url: "reviewDetail",
