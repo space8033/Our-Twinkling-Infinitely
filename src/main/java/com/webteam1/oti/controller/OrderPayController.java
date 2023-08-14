@@ -156,6 +156,7 @@ public class OrderPayController {
 	@ResponseBody
 	public String addressRequest(@RequestParam("selectedValue") String selectedValue, @RequestParam("selectedPwdValue") String selectedPwdValue, HttpSession session) {
 		session.setAttribute("selectedValue", selectedValue);
+		
 	    session.setAttribute("selectedPwdValue", selectedPwdValue);
 	    log.info(selectedValue + "=selectedValue");
 	    log.info(selectedPwdValue + "=selectedPwdValue");
