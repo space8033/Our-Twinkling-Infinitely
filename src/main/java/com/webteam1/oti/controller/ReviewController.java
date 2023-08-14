@@ -37,7 +37,11 @@ public class ReviewController {
 	private UserService userService;
 	@Resource
 	private ImageService imageService;
-
+	/*@ 작성자 오우주
+	 * 
+	 */
+	
+	//해당 상품의 전체 리뷰 가져오기
 	@GetMapping("/review")
 	public String review(String pageNo2, Model model, HttpSession session) {
 		if(pageNo2 == null) {
@@ -72,6 +76,7 @@ public class ReviewController {
 		return "detail/review";
 	}
 	
+	//리뷰 상세히 보기
 	@GetMapping("/reviewDetail")
 	public String getReview(String review_no, Model model, HttpSession session) {
 		Review review = reviewService.getReviewByRno(Integer.parseInt(review_no));
@@ -89,6 +94,7 @@ public class ReviewController {
 		return "detail/reviewDetail";
 	}
 	
+	//새 리뷰 작성창 띄우기
 	@Login
 	@GetMapping("/reviewWrite")
 	public String getWriteReview(String productNum, Model model, HttpSession session) {
@@ -98,6 +104,7 @@ public class ReviewController {
 		return "detail/reviewWrite";
 	}
 	
+	//리뷰 작성하기
 	@PostMapping("/reviewWrite")
 	public String writeReview(ReviewReceive review, HttpSession session) throws IOException {
 		int productNo = -1;

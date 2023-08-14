@@ -113,7 +113,7 @@ function reviewDetail(review_no) {
 		}
 	});
 }
-
+//리뷰 작성하기
 function writeReview(productNum) {
 	$.ajax({
 		url: "reviewWrite",
@@ -128,14 +128,14 @@ function writeReview(productNum) {
 		}
 	});
 }
-
+//파일 업로드 칸 삭제
 $(document).ready(function() {
     $("a[name='file-delete']").on("click", function(e) {
         e.preventDefault();
         deleteFile($(this));
     });
 })
-
+//파일 업로드 칸 추가하기
 function addFile() {
 	var count = $(".file-group").length;
 	if(count >= 5) {
