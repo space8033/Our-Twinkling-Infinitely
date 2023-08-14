@@ -107,7 +107,7 @@
 
 			.addressIcon {
 				width: 50px;
-				height: 50px;
+				height: 100%;
 			}
 			.inputHolder {
 				width: 750px;
@@ -126,7 +126,7 @@
 			@media (min-width:1250px)  {
 				.addressIcon {
 					width: 50px;
-					height: 50px;
+					height: 100%;
 				}
 				.inputHolder {
 					width: 750px;
@@ -149,12 +149,12 @@
 			@media (max-width:768px)  {
 				.addressIcon {
 					width:  40px;
-					height: 50px;
+					height: 100%;
 					justify-content: center;
 				}
 				.inputHolder {
 					width: 440px;
-					height: 51.5px;
+					height: 42px;
 					justify-content: center;
 				}
 				.inputHolder2 {
@@ -182,8 +182,8 @@
 						<div style="border: 1px solid #d0d0d0;">
 							<img class="addressIcon" src="${pageContext.request.contextPath}/resources/oimg/w회원.png">
 						</div>
-						<div>
-							<input type="text" id="uname" class="inputHolder" placeholder="받는 사람" style="border: 1px solid #d0d0d0;" 
+						<div style="border: 1px solid #d0d0d0;">
+							<input type="text" id="uname" class="inputHolder" placeholder="받는 사람" style="border: none; vertical-align: super;" 
 									value="${address.address_receiver}" name="address_receiver">
 						</div>
 					</div>
@@ -194,8 +194,8 @@
 					<div style="border: 1px solid #d0d0d0;">
 						<img class="addressIcon" src="${pageContext.request.contextPath}/resources/oimg/w주소.png">
 					</div>
-					<div>
-						<input class="inputHolder2" id="findNum" type="text" placeholder="우편번호 찾기" disabled="disabled" style="border: 1px solid #d0d0d0; border-right:none; background-color: white;">
+					<div style="border: 1px solid #d0d0d0;">
+						<input class="inputHolder2" id="findNum" type="text" placeholder="우편번호 찾기" disabled="disabled" style="border:none; background-color: white;">
 					</div>
 					<div class="cursorPointer" style="border: 1px solid #d0d0d0; border-left: none;" onclick="findAddress()">
 						<img class="addressIcon" src="${pageContext.request.contextPath}/resources/oimg/w돋보기.png">
@@ -227,8 +227,8 @@
 						<div style="border: 1px solid #d0d0d0;">
 							<img class="addressIcon" src="${pageContext.request.contextPath}/resources/oimg/w핸드폰.png">
 						</div>
-						<div>
-							<input type="tel" id="utel" placeholder="휴대폰 번호" class="inputHolder" style="border: 1px solid #d0d0d0;"
+						<div style="border: 1px solid #d0d0d0;">
+							<input type="tel" id="utel" placeholder="휴대폰 번호" class="inputHolder" style="border: none;"
 								   pattern="010-[0-9]{3,4}-[0-9]{4}" maxlength="13" oninput="autoHyphen(this)" value="${address.users_phone}" name="users_phone">
 						</div>
 					</div>
@@ -239,8 +239,8 @@
 					<div style="border: 1px solid #d0d0d0;">
 						<img class="addressIcon" src="${pageContext.request.contextPath}/resources/oimg/w요청사항.png">
 					</div>
-					<div>
-						<input id="deliveryNotify" class="inputHolder2" type="text" placeHolder="배송 요청사항" readonly="readonly" style="border: 1px solid #d0d0d0; border-right:none; background-color: white;" value="${address.deliveryRequest}" name="deliveryRequest">
+					<div style="border: 1px solid #d0d0d0;">
+						<input id="deliveryNotify" class="inputHolder2" type="text" placeHolder="배송 요청사항" readonly="readonly" style="border:none; background-color: white;" value="${address.deliveryRequest}" name="deliveryRequest">
 					</div>
 					<div id="modalButton" class="cursorPointer" style="border: 1px solid #d0d0d0; border-left: none;">
 						<img class="addressIcon" src="${pageContext.request.contextPath}/resources/oimg/w우꺽쇠.png" >

@@ -24,11 +24,11 @@
 			<section class="d-flex-column mx-auto " style="width: 1250px;">
 				<header class="border-h">
 					<div class="head">
-						<img src="//image7.coupangcdn.com/image/coupang/common/logo_coupang_w350.png" width="174" height="41" alt="쿠팡">
+						<img src="${pageContext.request.contextPath}/resources/yuimg/메인로고.png" alt="OTi로고" style="width: 174px; height: 70px; margin-bottom: 200px;" alt="쿠팡">
 					</div>
 				</header>
 			</section>
-			<hr>
+			<hr style="margin-top: 30px;">
 			<!-- 바디 -->
 			<section class="d-flex-column mx-auto " style="width: 1250px;">
 				<!-- 페이지창 -->

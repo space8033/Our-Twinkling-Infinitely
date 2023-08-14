@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 
 import com.webteam1.oti.dao.ReviewDao;
 import com.webteam1.oti.dto.review.Review;
+import com.webteam1.oti.dto.review.ReviewReceive;
 
 import lombok.extern.slf4j.Slf4j;
 
@@ -34,6 +35,17 @@ public class ReviewServiceImpl implements ReviewService{
 	public Review getReviewByRno(int review_no) {
 		
 		return reviewDao.selectByRno(review_no);
+	}
+
+	@Override
+	public void createReview(ReviewReceive review) {
+		reviewDao.insertReview(review);
+	}
+
+	@Override
+	public int findByUserId(Map<String , Object> map) {
+		
+		return reviewDao.selectByUserId(map);
 	}
 	
 }

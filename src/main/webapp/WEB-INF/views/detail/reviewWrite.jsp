@@ -6,7 +6,7 @@
 	      	리뷰 작성하기
 	   </div>
 	   <div class="card-body">
-	      <form id="reviewWrite" method="post" action="reviewWrite" enctype="multipart/form-data">
+	      <form id="reviewWrite" method="post" action="javascript:submitForm()" enctype="multipart/form-data">
 	         <div class="input-group">
 	            <div class="input-group-prepend"><span class="input-group-text">한줄평</span></div>
 	            <input id="btitle" type="text" name="reviewTitle" class="form-control">
@@ -15,12 +15,11 @@
 	         <div class="input-group">
 	            <div class="input-group-prepend"><span class="input-group-text">별점</span></div>
 		         <div class="rate">
-		         	 <input type="radio" id="rating5" name="rating" value="5"><label for="rating5" title="5점"></label>
-	                 <input type="radio" id="rating4" name="rating" value="4"><label for="rating4" title="4점"></label>
-	                 <input type="radio" id="rating3" name="rating" value="3"><label for="rating3" title="3점"></label>
-	                 <input type="radio" id="rating2" name="rating" value="2"><label for="rating2" title="2점"></label>
-	                 <input type="radio" id="rating1" name="rating" value="1"><label for="rating1" title="1점"></label>
-	                 <input type="hidden" id="starValue" name="reviewRating" value="4">
+		         	 <input type="radio" id="rating5" name="reviewRating" value="5"><label for="rating5" title="5점"></label>
+	                 <input type="radio" id="rating4" name="reviewRating" value="4"><label for="rating4" title="4점"></label>
+	                 <input type="radio" id="rating3" name="reviewRating" value="3"><label for="rating3" title="3점"></label>
+	                 <input type="radio" id="rating2" name="reviewRating" value="2"><label for="rating2" title="2점"></label>
+	                 <input type="radio" id="rating1" name="reviewRating" value="1"><label for="rating1" title="1점"></label>
 		         </div>
 	         </div>
 	         
@@ -44,8 +43,7 @@
 	         	</div>
 		        <br>
 		        <div class="file-group mt-2">
-		            <input type="file" name="images" style="width:80%; border: solid 1px #f0f0f0">
-		            <a href="#this" name="file-delete" class="btn btn-danger m-1">삭제</a>
+		            <input type="file" name="file" style="width:80%; border: solid 1px #f0f0f0">
 		        </div>
 		    </div>
 	            

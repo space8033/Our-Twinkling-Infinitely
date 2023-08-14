@@ -10,4 +10,6 @@ import com.webteam1.oti.dto.Image;
 public interface ImageDao {
 	public List<Image> selectByPno(int pno); 
 	public Image getDetail(int pno); 
+	public int insertReviewImage(Image image);
+	public List<Image> selectByRno(int rno);
 }

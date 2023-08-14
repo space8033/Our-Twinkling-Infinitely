@@ -1,5 +1,8 @@
 package com.webteam1.oti.controller;
 
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Base64;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -11,12 +14,15 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.multipart.MultipartFile;
 
+import com.webteam1.oti.dto.Image;
 import com.webteam1.oti.dto.Pager;
 import com.webteam1.oti.dto.review.Review;
+import com.webteam1.oti.dto.review.ReviewReceive;
 import com.webteam1.oti.dto.user.LoginDto;
-import com.webteam1.oti.dto.user.ReviewReceive;
 import com.webteam1.oti.interceptor.Login;
+import com.webteam1.oti.service.ImageService;
 import com.webteam1.oti.service.ReviewService;
 import com.webteam1.oti.service.UserService;
 
@@ -29,6 +35,8 @@ public class ReviewController {
 	private ReviewService reviewService;
 	@Resource
 	private UserService userService;
+	@Resource
+	private ImageService imageService;
 	//리뷰 가져오기 (진행중)
 	@GetMapping("/review")
 	public String review(String pageNo2, Model model, HttpSession session) {
@@ -68,6 +76,16 @@ public class ReviewController {
 	public String getReview(String review_no, Model model, HttpSession session) {
 		Review review = reviewService.getReviewByRno(Integer.parseInt(review_no));
 		model.addAttribute("review", review);
+		List<Image> images = imageService.getReviewImages(Integer.parseInt(review_no));
+		List<String> base64Img = new ArrayList<>();
+		
+		for(Image image : images) {
+			String img = Base64.getEncoder().encodeToString(image.getImage_file());
+			base64Img.add(img);
+		}
+		
+		model.addAttribute("base64Img", base64Img);
+		
 		return "detail/reviewDetail";
 	}
 	
@@ -81,8 +99,37 @@ public class ReviewController {
 	}
 	
 	@PostMapping("/reviewWrite")
-	public String writeReview(ReviewReceive review) {
-		log.info(review.getImages().length + "");
+	public String writeReview(ReviewReceive review, HttpSession session) throws IOException {
+		log.info("넘어오나?");
+		int productNo = -1;
+		if(session.getAttribute("productNum") != null) {
+			productNo = (int)session.getAttribute("productNum");			
+		}else {
+			log.info("망했어유 상품정보가 없어유");
+		}
+		Map<String, Object> map = new HashMap<>();
+		map.put("user_id", review.getReviewWriter());
+		map.put("productNo", productNo);
+		map.put("title", review.getReviewTitle());
+		
+		review.setProductNo(productNo);
+		reviewService.createReview(review);
+		int reviewNo = reviewService.findByUserId(map);
+		log.info(reviewNo + "리뷰 번호");
+		
+		MultipartFile[] files = review.getFile();
+		
+		for(MultipartFile file : files) {
+			Image image = new Image();
+			if(!file.isEmpty()) {
+				image.setImage_name(file.getOriginalFilename());
+				image.setImage_fileName(file.getContentType());
+				image.setImage_file(file.getBytes());
+				image.setReview_review_no(reviewNo);
+				
+				imageService.registerImg(image);
+			}
+		}
 		return "redirect:/review";
 	}
 }

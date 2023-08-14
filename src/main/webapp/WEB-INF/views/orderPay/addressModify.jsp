@@ -161,6 +161,29 @@
 				
 			}
 			
+			@media (min-width:490px)  {
+				.addressIcon {
+					width: 50px;
+					height: 50px;
+				}
+				.inputHolder {
+					width: 450px;
+					height: 51.5px;
+				}
+				.inputHolder2 {
+					width: 500px;
+					height: 51.5px;
+				}
+				.inputHolder3 {
+					width: 500px;
+					height: 51.5px;
+				}
+				.modal-content {
+				  width: 50%; /* Could be more or less, depending on screen size */
+				}
+				
+			}
+			
 			@media (max-width:768px)  {
 				.addressIcon {
 					width:  40px;
@@ -263,7 +286,7 @@
 				</div>
 				<span id=deliveryNotifyErr class="errorMsg d-none text-danger small ml-2" style="border: none;">배송 요청사항을 입력해주세요.</span>
 				<div id="requestModal" class="modal">
-					<div id="requestContainer"  class="modal-content" style="width: 60%; margin-left: 200px;  margin-top: 10px;">
+					<div id="requestContainer"  class="modal-content" style="width: 100%;   margin-top: 10px;">
 						<div class="d-flex">
 							<div style="width: 87%"></div>
 							<div style="width: 13%">

@@ -55,4 +55,5 @@
   		from address
   		where address_isdefault=1 and users_users_id=#{user_id}
   	</select>
+  	
 </mapper>

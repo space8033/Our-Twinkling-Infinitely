@@ -55,10 +55,7 @@
 		.form-group > div > div:first-child {
 			border-right: 1px solid #ccc;
 		}
-/* 		.form-group > div > div:nth-child(2) {
-			border-right: 1px solid #ccc;
-		}
-		 */
+
 		.form-group img {
 			width: 44px;
 			height: 45px;
@@ -84,13 +81,6 @@
 		.line-blue{
 			border-bottom : 2px solid blue;
 		}
-		
-		
-		/* .email-form-group > div {
-			border-left: 1px solid #ccc;
-			margin: 0px;
-		} */
-		
 		
 		.pwd-form-group {
 			display: flex;
@@ -230,9 +220,7 @@
 		    font-family: dotum,sans-serif;
 		}
 		.biz_register p {
-		  
 		    margin: 1px;
-		    
 		}
 		
 		.biz_register a {
