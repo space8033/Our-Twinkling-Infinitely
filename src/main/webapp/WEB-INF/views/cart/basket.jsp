@@ -16,6 +16,8 @@
       <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
       <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>
       <script src="https://cdn.jsdelivr.net/npm/gasparesganga-jquery-loading-overlay@2.1.7/dist/loadingoverlay.min.js"></script>
+      <!-- jquery.loadingOverlay.js -->
+	  <script src="path/to/jquery.loadingOverlay.js"></script>
       
       <script src="${pageContext.request.contextPath}/resources/js/basket.js"></script>
       <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/cart.css"/>

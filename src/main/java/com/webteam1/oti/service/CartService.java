@@ -11,6 +11,7 @@ public interface CartService {
 	public int addCart(Cart cart);
 	public int productCheck(Cart cart);
 	public void cartUpdate(Cart cart);
+	public void qtyUpdate(Cart cart);
 	public void cartDelete(int cart_no);
 	public List<Cart> getCartByCkId(String ckId);
 	public int getOptionNo(Map<String, Object> map);
