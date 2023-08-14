@@ -1,6 +1,7 @@
 $(init)
 
 function init() {
+   loading();
    jsonProduct();
    $("#btn_delete").hide();
 }
@@ -110,9 +111,7 @@ function AllDeleteConfirmDialog(){
 //전체선택 클릭시 로딩 스피너
 function loading() {
     LoadingWithMask();
-    setTimeout("closeLoadingWithMask()", 500);
-    numberOfChoice();
-    chkCalculate();
+    setTimeout("closeLoadingWithMask()", 1000);
 }
 
 //체크박스 클릭 시 스피너와 마스크 표시
@@ -120,8 +119,8 @@ function LoadingWithMask() {
     //로딩중 이미지 표시
     $.LoadingOverlay("show", {
     	background       : "rgba(0, 0, 0, 0.5)",
-    	image            : "../yuimg/spinner.gif",
-    	maxSize          : 60,
+    	image            : "https://upload.wikimedia.org/wikipedia/commons/c/c7/Loading_2.gif",
+    	maxSize          : 100,
     	fontawesome      : "fa fa-spinner fa-pulse fa-fw",
     	fontawesomeColor : "#FFFFFF",
     });
@@ -151,9 +150,6 @@ function isProductThead(){
 
 //option(수량)중에서 선택한 값 
 function setSelectBox(){
-	let coPrice = $(event.target).prop("id");
-	//옵션에서 selected된 값
-	var schField = $("#" + coPrice + " option:selected").text();
 	//수량 선택에 따른 상품의 가격
 	if($(".select-option option:selected").length !== 0){
 		 $.ajax({
@@ -164,23 +160,10 @@ function setSelectBox(){
 				 data.forEach((item, index) => {
 					 // 장바구니에 담은  상품 수량 옵션 selected
 					 $('select[name="'+ item.cart_no +'"]').find('option[value="'+ item.cart_qty +'"]').attr("selected",true);
-		        	 let idNo = "customSelect" + index;
-			       if(coPrice == idNo){
-			    	   let targetPrice = item.product_price * schField;
-			    	   let benefitPrice = Math.ceil(item.product_price * schField * 0.05);
-			    	   let id = "co-price" + index;//가격1 id
-			    	   let benefitId = "benefit" + index;//적립 id
-			    	   let toPrId = "toPr" + index;//가격2 id
-			    	   $("#" + id).html(targetPrice.toLocaleString("ko-KR"));
-			    	   $("#" + benefitId).html(benefitPrice.toLocaleString("ko-KR"));
-			    	   $("#" + toPrId).html(targetPrice.toLocaleString("ko-KR"));
-			    	   $("#chk" + index).val(targetPrice);
-			       }
 		         }); 
 			 },
 			 error: function(error){
 				 console.log(error.status);
-				 console.log("응 아냐");
 			 }
 		  });
 	}
@@ -227,17 +210,17 @@ function jsonProduct() {
 			 html += '</tr>';
 			 $("#cboxAll_top").hide();
 			 $("#lastselector").hide();
+			 $(".total_order_price").hide();
 		 }
          data.forEach((item, index) => {
         	priceArr.push(item.price);
         	let price = item.product_price.toLocaleString("ko-KR");
-        	let benefit = Math.ceil(item.product_price * 0.05);
+        	let benefit = Math.ceil(item.product_price*item.cart_qty * 0.04);
         	let totalProduct = (item.product_price*item.cart_qty).toLocaleString("ko-KR"); //장바구니에 넣을 상품 수량
-        	selectedQty = item.cart_qty;
         	
         	html += '<tr class="productRow">';	
         	html += '	<td>';
-      	    html += '		<input id="chk' + index + '" title="' + item.product_name + ' 상품을 결제상픔으로 결정" type="checkbox" name="chk" class="pchk" value='+ item.product_price*item.cart_qty +' onclick="loading()"/>';
+      	    html += '		<input id="chk' + index + '" title="' + item.product_name + ' 상품을 결제상픔으로 결정" type="checkbox" name="chk" class="pchk" value='+ item.product_price*item.cart_qty +' onclick="chkCalculate()"/>';
       	    html += '		<input type="hidden" name="cart_no" value="'+ item.cart_no +'"/>';
       		html += '	</td>';
       		html += '	<td class="p_img">';
@@ -261,7 +244,7 @@ function jsonProduct() {
       		html += '			<div class="c_option">';
       		html += '				<span>' + price + '</span>';
       		html += '				<span>원</span>';
-      		html += '					<select id="customSelect'+ index +'" name="' + item.cart_no + '" class="select-option" onchange="setSelectBox();" title="' + item.product_name + ' 수량 변경">';
+      		html += '					<select id="customSelect'+ index +'" name="' + item.cart_no + '" class="select-option" onclick="setSelectQty()" title="' + item.product_name + ' 수량 변경">';
       		html += '						<option value="1">1</option>';
       		html += '						<option value="2">2</option>';
       		html += '						<option value="3">3</option>';
@@ -273,9 +256,6 @@ function jsonProduct() {
       		html += '						<option value="9">9</option>';
       		html += '						<option value="10">10</option>';
       		html += '					</select>';
-      		html += '				</span>';
-      		html += '				<span id="select-text" class="select-text" style="display:none;">';
-      		html += '					<input id="text-co-price' + index + '" type="number" class="quantity-text" min="10" max="100" title="'+ item.product_name +' 수량변경" maxlength="4" style="width:52px; ">';
       		html += '				</span>';
       		html += '				<span id="co-price'+ index +'" class="p_price" value="'+ index +'" style="padding-left: 10px;">'+ totalProduct +'</span>';
       		html += '				<span>원</span>';
@@ -309,17 +289,16 @@ function jsonProduct() {
 	     	//전체선택 개수
 	     	var $numberOfProducts = $(".pchk").length;
 	     	$("#s_t_choice").html($numberOfProducts);
-	     	setSelectBox();//선택한 상품의 가격 변화 함수
+	     	//선택했던 수량
+	     	setSelectBox();
 	 },
 	 error: function(error){
-		 empty();
-		 $("#lastselector").hide();
 		 console.log(error.status);
 	 }
   });
   
 }
-
+//X버튼 눌렀을 때 해당 상품 삭제
 function cartDelete(cart_no){
 	$.ajax({
 		url : "cartDelete",
@@ -327,6 +306,35 @@ function cartDelete(cart_no){
 		data : {"cart_no" : cart_no},
 		success : function(data){
 			jsonProduct();
+			loading();
 		}
 	});
+}
+
+//장바구니 수량 변경
+function setSelectQty(){
+    $(".select-option").change(function() {
+        var cartNo = Number($(this).attr("name"));
+        var newQty = Number($(this).val()); 
+        qtyUpdate(cartNo, newQty);
+        loading();
+    });
+}
+
+function qtyUpdate(cartNo, newQty) {
+    $.ajax({
+        url: "qtyUpdate", 
+        method: "post",
+        data: {
+            "cart_no": cartNo,
+            "cart_qty": newQty
+        },
+        success: function(response) {
+            jsonProduct();
+            setSelectBox();
+        },
+        error: function(error) {
+            console.log(error);
+        }
+    });
 }
