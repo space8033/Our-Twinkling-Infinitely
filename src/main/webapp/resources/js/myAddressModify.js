@@ -2,11 +2,8 @@
 $(init);
 
 function init() {
-	var joinForm = $("#joinForm");
-	$("#submit").click(checkValidation);
 	$("#uname").blur(onBlurName);
 	$("#utel").blur(onBlurTel);
-	$("#addButton").click(addContact);
 	$("#modalButton").click(showModal);
 	$("#close").click(closeModalByX);
 	$("#agreeSave").click(agreeSave);
@@ -128,36 +125,6 @@ function checkValidation() {
 	}
 }
 
-function addContact() {
-	$("#contactBox").removeClass("d-none");
-	$("#addButton").addClass("d-none");
-	
-	if (matchMedia("screen and (min-width: 1250px)").matches) {
-		$("#utel").css("width", 750);
-	}else if(matchMedia("screen and (max-width: 768px)").matches) {
-		$("#utel").css("width", 440);		
-	}
-	
-	window.onresize = function(){
-		  document.location.reload();
-	};
-}
-
-function removeContact() {
-	$("#contactBox").addClass("d-none");
-	$("#addButton").removeClass("d-none");
-	
-	if (matchMedia("screen and (min-width: 1250px)").matches) {
-		$("#utel").css("width", 700);
-	}else if(matchMedia("screen and (max-width: 768px)").matches) {
-		$("#utel").css("width", 400);		
-	}
-	
-	window.onresize = function(){
-		  document.location.reload();
-	};
-}
-
 function showModal() {
 	$("#requestModal").css("display", "block");
 }
@@ -172,6 +139,9 @@ function agreeSave() {
 	$("#requestModal").css("display", "none");
 }
 function findAddress() {
+	var uaddressErr = $("#uaddressErr");
+	uaddressErr.addClass("d-none");
+	
     new daum.Postcode({
         oncomplete: function(data) {
             // 도로명 주소의 노출 규칙에 따라 주소를 표시한다.
@@ -241,4 +211,21 @@ $(document).ready(function(){
 		$("#pwdNo").click(function(){
 			$("#pwdY").prop('checked', true);
 		});
-});		 
+});		
+
+function modifyAddress() {
+	checkValidation();
+	
+	var form1 = $("#modifyForm").serialize();
+	$.ajax({
+		url: "modifyForm",
+		type: "post",
+		data: form1,
+		success: function(data) {
+			$("#addressList").html(data);
+		},
+		error: function(error) {
+			console.log(error);
+		}
+	});
+}

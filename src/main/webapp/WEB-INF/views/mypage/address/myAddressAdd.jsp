@@ -1,11 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 
-<%@ include file="/WEB-INF/views/common/header.jsp" %>
 		
 		<script src="${pageContext.request.contextPath}/resources/js/myAddressAdd.js"></script>
 		<script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 		<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/addressRequest.css"/>	
-		<style>
+<style>
 			.myAddress {
 				width: 95%;
 				margin-top : 25px;
@@ -107,7 +106,7 @@
 
 			.addressIcon {
 				width: 50px;
-				height: 50px;
+				height: 100%;
 			}
 			.inputHolder {
 				width: 750px;
@@ -126,7 +125,7 @@
 			@media (min-width:1250px)  {
 				.addressIcon {
 					width: 50px;
-					height: 50px;
+					height: 100%;
 				}
 				.inputHolder {
 					width: 750px;
@@ -149,12 +148,12 @@
 			@media (max-width:768px)  {
 				.addressIcon {
 					width:  40px;
-					height: 50px;
+					height: 100%;
 					justify-content: center;
 				}
 				.inputHolder {
 					width: 440px;
-					height: 51.5px;
+					height: 42px;
 					justify-content: center;
 				}
 				.inputHolder2 {
@@ -176,14 +175,14 @@
 	<body class="container">
 		<div id="wrapper" class="d-flex justify-content-center">	
 		<!------------------------------------- 내용 들어갈 div -------------------------------------->
-			<form id="registerForm" name="registerForm" action="registerForm" method="post" class="pt-5">
+			<form id="registerForm" name="registerForm" action="javascript:submitAddress()" method="post" class="pt-5">
 				<div class="my-3">
 					<div class="my-3 d-flex">
 						<div style="border: 1px solid #d0d0d0;">
 							<img class="addressIcon" src="${pageContext.request.contextPath}/resources/oimg/w회원.png">
 						</div>
-						<div>
-							<input type="text" id="uname" class="inputHolder" placeholder="받는 사람" style="border: 1px solid #d0d0d0;" 
+						<div style="border: 1px solid #d0d0d0;">
+							<input type="text" id="uname" class="inputHolder" placeholder="받는 사람" style="border: none; vertical-align: super;" 
 									value="${address.address_receiver}" name="address_receiver">
 						</div>
 					</div>
@@ -194,8 +193,8 @@
 					<div style="border: 1px solid #d0d0d0;">
 						<img class="addressIcon" src="${pageContext.request.contextPath}/resources/oimg/w주소.png">
 					</div>
-					<div>
-						<input class="inputHolder2" id="findNum" type="text" placeholder="우편번호 찾기" disabled="disabled" style="border: 1px solid #d0d0d0; border-right:none; background-color: white;">
+					<div style="border: 1px solid #d0d0d0;">
+						<input class="inputHolder2" id="findNum" type="text" placeholder="우편번호 찾기" disabled="disabled" style="border:none; background-color: white;">
 					</div>
 					<div class="cursorPointer" style="border: 1px solid #d0d0d0; border-left: none;" onclick="findAddress()">
 						<img class="addressIcon" src="${pageContext.request.contextPath}/resources/oimg/w돋보기.png">
@@ -204,7 +203,7 @@
 				<div>
 					<div id="addressContainer" class="mb-3">	
 						<div>
-							<input class="inputHolder3" type="text" id="roadAddress" value="도로명주소"  placeholder="도로명주소" readonly="readonly" style="border: 1px solid #d0d0d0;"
+							<input class="inputHolder3" type="text" id="roadAddress" placeholder="도로명주소" readonly="readonly" style="border: 1px solid #d0d0d0;"
 										value="${address.address_roadAddress}" name="address_roadAddress">
 						</div>				
 						<div>
@@ -227,9 +226,9 @@
 						<div style="border: 1px solid #d0d0d0;">
 							<img class="addressIcon" src="${pageContext.request.contextPath}/resources/oimg/w핸드폰.png">
 						</div>
-						<div>
-							<input type="tel" id="utel" placeholder="휴대폰 번호" class="inputHolder" style="border: 1px solid #d0d0d0;"
-									 pattern="010-[0-9]{3,4}-[0-9]{4}" maxlength="13" oninput="autoHyphen(this)" value="${address.users_phone}" name="users_phone">
+						<div style="border: 1px solid #d0d0d0;">
+							<input type="tel" id="utel" placeholder="휴대폰 번호" class="inputHolder" style="border: none;"
+								   pattern="010-[0-9]{3,4}-[0-9]{4}" maxlength="13" oninput="autoHyphen(this)" value="${address.users_phone}" name="users_phone">
 						</div>
 					</div>
 					<span id=utelErr1 class="errorMsg text-danger d-none small ml-2" style="border: none;">휴대폰 번호를 입력해주세요.</span>
@@ -239,8 +238,8 @@
 					<div style="border: 1px solid #d0d0d0;">
 						<img class="addressIcon" src="${pageContext.request.contextPath}/resources/oimg/w요청사항.png">
 					</div>
-					<div>
-						<input id="deliveryNotify" class="inputHolder2" type="text" placeHolder="배송 요청사항" readonly="readonly" style="border: 1px solid #d0d0d0; border-right:none; background-color: white;" value="${address.deliveryRequest}" name="deliveryRequest">
+					<div style="border: 1px solid #d0d0d0;">
+						<input id="deliveryNotify" class="inputHolder2" type="text" placeHolder="배송 요청사항" readonly="readonly" style="border:none; background-color: white;" value="${address.deliveryRequest}" name="deliveryRequest">
 					</div>
 					<div id="modalButton" class="cursorPointer" style="border: 1px solid #d0d0d0; border-left: none;">
 						<img class="addressIcon" src="${pageContext.request.contextPath}/resources/oimg/w우꺽쇠.png" >
@@ -248,86 +247,88 @@
 				</div>
 				<span id=deliveryNotifyErr class="errorMsg d-none text-danger small ml-2" style="border: none;">배송 요청사항을 입력해주세요.</span>
 				<div id="requestModal" class="modal">
-						<div id="requestContainer"  class="modal-content" style="width: 60%; margin-left: 200px;  margin-top: 10px;">
-							<div class="d-flex">
-								<div style="width: 87%"></div>
-								<div style="width: 13%">
-									<span id="close">X</span>
-								</div>
+					<div id="requestContainer"  class="modal-content" style="width: 60%; margin-left: 200px;  margin-top: 10px;">
+						<div class="d-flex">
+							<div style="width: 87%"></div>
+							<div style="width: 13%">
+								<span id="close">X</span>
 							</div>
-							
-							<div id= "header">배송 요청사항</div>
-							<div class="notice">
-					            <span style="padding-botton:10px;">
-					           		사회적 거리두기를 위해, 모든 배송을 비대면으로 진행합니다.<br>
-									‘직접 받고 부재 시 문 앞’을 선택해도 문 앞으로 배송합니다.
-								</span>
-					        </div>	
-					         <div class="selec">     
-					            <div  class="on"> 
-					          		<label>
-										<input type="radio" id="door" name="select" value="문 앞" checked="checked"/>
-											문 앞
-									</label>
-								</div>
-					            <div  class="on"> 
-							         <label>
-										<input type="radio" id="ftof" name="select" value="직접 받고 부재 시 문 앞" />
-											직접 받고 부재 시 문 앞
-									 </label>
-								</div>
-						        <div  class="on"> 
-									 <label>
-										<input type="radio" id="securityOffice" name="select" value="경비실"/>
-											경비실
-									 </label>
-							    </div>
-					            <div  class="on"> 
-					       			<label>
-										<input type="radio" id="delBox" name="select" value="택배함"/>
-											택배함
-					 				</label>
-								</div>
-							  	<div id="show1" class="on" style=" display: none; background-color: #f4f4f4; padding-left:10px; padding-right:10px;">
-							  		<div>로켓배송에만 사용됩니다.</div>
-							  		<div><input type="text" id="boxNo" placeholder="택배함 번호" style="width:100%;"></div>
-							  	</div>
-					            <div class="on"> 
-					       			<label>
-										<input type="radio" id="etc" name="select" value="기타사항"/>
-											기타사항
-						 			</label>
-								</div>
-							   <div id="show2" class="on" style="display: none; background-color: #f4f4f4;  padding-left:10px; padding-right:10px;">
-							  		<div>소화전/EPS/TPS 등은 안전상 보관 불가</div>
-							  		<div><input type="text" id = "etcName" placeholder="장소만 입력" style="width:100%;"></div>
-							   </div>      
-					         </div>
-					                
-					         <div class="num">
-					         	<div class="doorNum" >공동현관 출입번호</div>
-					         	<div style="padding:10px;"> 
-					        		<label>
-										<input type="radio" id="pwdY" name="pwdselect" value=" 공동현관 출입번호 : "/>
-										<input type="text" style="width:90%;" id="pwdNo" name="pwdselect" placeholder="예 : #1234"/>
-					  				</label>
-								</div>
-								<div class="doorNumNotice" style="padding:10px;"> 
-					        		<label>
-										<input type="radio" id="pwdN" name="pwdselect" value=" 비밀번호 없이 출입 가능해요." checked="checked"/>
-											비밀번호없이 출입 가능해요.
-						 			</label>
-								</div> 
-					
-								<div style="color: #888888; font-size:12px; padding-right:15px;">
-									입력된 공동현관 출입번호는 쿠팡이 로켓배송을 위해 필요한 정보로, 향후 배송을 위해 필요한 기간 동안 보관하는데 동의합니다.
-								</div> 
-					         </div>
-					         
-					         <div id="agreeSave">
-					             	동의하고 저장하기
-					         </div>
+						</div>
+						
+						<div id= "header">배송 요청사항</div>
+						<div class="notice">
+				            <span style="padding-botton:10px;">
+				           		사회적 거리두기를 위해, 모든 배송을 비대면으로 진행합니다.<br>
+								‘직접 받고 부재 시 문 앞’을 선택해도 문 앞으로 배송합니다.
+							</span>
+				        </div>	
+				         <div class="selec">     
+				            <div  class="on"> 
+				          		<label>
+									<input type="radio" id="door" name="select" value="문 앞" checked="checked"/>
+										문 앞
+								</label>
+							</div>
+				            <div  class="on"> 
+						         <label>
+									<input type="radio" id="ftof" name="select" value="직접 받고 부재 시 문 앞" />
+										직접 받고 부재 시 문 앞
+								 </label>
+							</div>
+					        <div  class="on"> 
+								 <label>
+									<input type="radio" id="securityOffice" name="select" value="경비실"/>
+										경비실
+								 </label>
+						    </div>
+				            <div  class="on"> 
+				       			<label>
+									<input type="radio" id="delBox" name="select" value="택배함"/>
+										택배함
+				 				</label>
+							</div>
+						  	<div id="show1" class="on" style=" display: none; background-color: #f4f4f4; padding-left:10px; padding-right:10px;">
+						  		<div>로켓배송에만 사용됩니다.</div>
+						  		<div><input type="text" id="boxNo" placeholder="택배함 번호" style="width:100%;"></div>
+						  	</div>
+				            <div class="on"> 
+				       			<label>
+									<input type="radio" id="etc" name="select" value="기타사항"/>
+										기타사항
+					 			</label>
+							</div>
+						   <div id="show2" class="on" style="display: none; background-color: #f4f4f4;  padding-left:10px; padding-right:10px;">
+						  		<div>소화전/EPS/TPS 등은 안전상 보관 불가</div>
+						  		<div><input type="text" id = "etcName" placeholder="장소만 입력" style="width:100%;"></div>
+						   </div>      
+				         </div>
+				                
+				         <div class="num">
+				         	<div class="doorNum" >공동현관 출입번호</div>
+				         	<div style="padding:10px;"> 
+				        		<label>
+									<input type="radio" id="pwdY" name="pwdselect" value=" 공동현관 출입번호 : "/>
+									<input type="text" style="width:90%;" id="pwdNo" name="pwdselect" placeholder="예 : #1234"/>
+				  				</label>
+							</div>
+							<div class="doorNumNotice" style="padding:10px;"> 
+				        		<label>
+									<input type="radio" id="pwdN" name="pwdselect" value=" 비밀번호 없이 출입 가능해요." checked="checked"/>
+										비밀번호없이 출입 가능해요.
+					 			</label>
+							</div> 
+				
+							<div style="color: #888888; font-size:12px; padding-right:15px;">
+								입력된 공동현관 출입번호는 쿠팡이 로켓배송을 위해 필요한 정보로, 향후 배송을 위해 필요한 기간 동안 보관하는데 동의합니다.
+							</div> 
+				         </div>
+				         
+				         <div id="agreeSave">
+				             	동의하고 저장하기
+				         </div>
 				 	</div> 
+				</div>
+				
 				<div class="my-3">
 					<input type="checkbox" id="basicCheck" style="width: 20px; height: 20px; vertical-align: middle;" 
 						name="address_isdefault" value="true"> <span style="vertical-align: middle;">기본 배송지로 선택</span>
@@ -339,4 +340,3 @@
 			</form>
 		</div>
 	</body>
-<%@ include file="/WEB-INF/views/common/footer.jsp" %> 

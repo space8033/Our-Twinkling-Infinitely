@@ -1,7 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
-		<%@ include file="/WEB-INF/views/common/header.jsp"  %>
 
 		<script src="${pageContext.request.contextPath}/resources/js/myAddress.js"></script>
 		
@@ -63,7 +62,7 @@
 								<div class="mt-2">${address.address_detail} </div>
 								<div> ${address.users_phone}</div>
 								<div> ${address.deliveryRequest}</div>
-								<div><button class="modifyButton" onclick=location.href="modifyForm?addressNo=${address.address_no}">수정</button></div>
+								<div><button class="modifyButton" onclick="javascript:showModifyAddress(${address.address_no})">수정</button></div>
 							</div>
 						</c:forEach>
 					</div>
@@ -89,12 +88,9 @@
 						<a class="btn btn-sm" href="javascript:showAddress(${pager.totalPageNo}">맨끝</a>
 					</div>
 					
-					<div id="addAddress" onclick="goAddPage()">
+					<div id="addAddress" onclick="showAddressAdd()">
 						+ 배송지 추가
 					</div>
 				</div>
       
 	</body>
-	<c:if test = "${loginIng != null}">
-	<%@ include file="/WEB-INF/views/common/footer.jsp" %> 
-	</c:if>

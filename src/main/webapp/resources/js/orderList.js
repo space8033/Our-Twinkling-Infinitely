@@ -12,7 +12,24 @@ function showAddress(pageNo3) {
 			"pageNo": pageNo3
 		},
 		success: function(data) {
-			console.log("fgf");			
+			$("#addressList").html(data);
+		},
+		error: function(error) {
+			console.log("아왜");
+		}
+	});
+}
+
+
+
+function showModifyAddress(addressNo) {
+	$.ajax({
+		url: "modifyForm",
+		method: "get",
+		data:{
+			"addressNo": addressNo
+		},
+		success: function(data) {
 			$("#addressList").html(data);
 		},
 		error: function(error) {

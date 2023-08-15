@@ -1,8 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 
-<%@ include file="/WEB-INF/views/common/header.jsp" %>
-		
-		<script src="${pageContext.request.contextPath}/resources/js/myAddressAdd.js"></script>
+		<script src="${pageContext.request.contextPath}/resources/js/myAddressModify.js"></script>
 		<script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 		<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/addressRequest.css"/>	
 		<style>
@@ -176,7 +174,7 @@
 	<body class="container">
 		<div id="wrapper" class="d-flex justify-content-center">	
 		<!------------------------------------- 내용 들어갈 div -------------------------------------->
-			<form id="modifyForm" name="modifyForm" action="modifyForm" method="post" class="pt-5">
+			<form id="modifyForm" name="modifyForm" action="javascript:modifyAddress()" method="post" class="pt-5">
 				<div class="my-3">
 					<div class="my-3 d-flex">
 						<div style="border: 1px solid #d0d0d0;">
@@ -204,7 +202,7 @@
 				<div>
 					<div id="addressContainer" class="mb-3">	
 						<div>
-							<input class="inputHolder3" type="text" id="roadAddress" value="도로명주소"  placeholder="도로명주소" readonly="readonly" style="border: 1px solid #d0d0d0;"
+							<input class="inputHolder3" type="text" id="roadAddress" placeholder="도로명주소" readonly="readonly" style="border: 1px solid #d0d0d0;"
 										value="${address.address_roadAddress}" name="address_roadAddress">
 						</div>				
 						<div>
@@ -344,4 +342,3 @@
 			</form>
 		</div>
 	</body>
-<%@ include file="/WEB-INF/views/common/footer.jsp" %> 

@@ -4,11 +4,6 @@ function init() {
 	//$(".selectButton").click(selectButton);
 }
 
-
-function goAddPage() {
-	location.href="registerForm";
-}
-
 $(document).ready(function(){
 	$(".selectButton").click(function() {
 	   
@@ -62,7 +57,19 @@ function select(addressNo) {
 			alert("데이터 전송 중 오류가 발생했습니다.");
 		}
 	});
-	
+}
+
+function showAddressAdd() {
+	$.ajax({
+		url: "registerForm",
+		method: "get",
+		success: function(data) {
+			$("#addressList").html(data);
+		},
+		error: function(error) {
+			console.log("아왜");
+		}
+	});
 }
 
 

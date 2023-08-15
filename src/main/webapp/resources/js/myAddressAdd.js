@@ -2,10 +2,7 @@
 $(init);
 
 function init() {
-	var joinForm = $("#joinForm");
-	$("#submit").click(checkValidation);
 	$("#uname").blur(onBlurName);
-	$("#addButton").click(addContact);
 	$("#modalButton").click(showModal);
 	$("#close").click(closeModalByX);
 	$("#agreeSave").click(agreeSave);
@@ -73,10 +70,6 @@ $(document).ready(function(){
 			  }
 			
 		 }
-		 
-		 
-		 
-		 
 	 });
 	 
 	$("input[name='select']").change(function(){
@@ -99,11 +92,12 @@ $(document).ready(function(){
 	$("#pwdNo").click(function(){
 		$("#pwdY").prop('checked', true);
 	});
-
+	
 });		 
 
 function checkValidation() {
 	let isValidation = true;
+	
 	var errorMsgs = $(".errorMsg");
 	errorMsgs.each((index, el) => $(el).addClass("d-none"));
 	
@@ -131,12 +125,11 @@ function checkValidation() {
 	
 	uaddressErr.addClass("d-none");
 	
-	if(roadAddress == "도로명주소") {
+	if(!roadAddress) {
 		uaddressErr.removeClass("d-none");
 		uaddressErr.addClass("redLine");
 		isValidation = false;
 	}
-	
 	
 	var utel = $("#utel").val();
 	
@@ -145,7 +138,7 @@ function checkValidation() {
 	
 	utelErr1.addClass("d-none");
 	utelErr2.addClass("d-none");
-
+	
 	if(utel === "") {
 		utelErr1.removeClass("d-none");
 		utelErr1.addClass("redLine");
@@ -160,8 +153,6 @@ function checkValidation() {
 			utelErr2.addClass("redLine");
 			utelErr1.addClass("d-none");
 		} else {
-			telErr1.addClass("d-none");
-			telErr2.addClass("d-none");
 			utelErr2.removeClass("redLine");
 			utelErr1.removeClass("redLine");
 		}
@@ -183,38 +174,7 @@ function checkValidation() {
 	
 	if(!isValidation) {
 		event.preventDefault();
-		console.log("제출 안됨");
 	}
-}
-
-function addContact() {
-	$("#contactBox").removeClass("d-none");
-	$("#addButton").addClass("d-none");
-	
-	if (matchMedia("screen and (min-width: 1250px)").matches) {
-		$("#utel").css("width", 750);
-	}else if(matchMedia("screen and (max-width: 768px)").matches) {
-		$("#utel").css("width", 440);		
-	}
-	
-	window.onresize = function(){
-		  document.location.reload();
-	};
-}
-
-function removeContact() {
-	$("#contactBox").addClass("d-none");
-	$("#addButton").removeClass("d-none");
-	
-	if (matchMedia("screen and (min-width: 1250px)").matches) {
-		$("#utel").css("width", 700);
-	}else if(matchMedia("screen and (max-width: 768px)").matches) {
-		$("#utel").css("width", 400);		
-	}
-	
-	window.onresize = function(){
-		  document.location.reload();
-	};
 }
 
 function showModal() {
@@ -231,6 +191,9 @@ function agreeSave() {
 	$("#requestModal").css("display", "none");
 }
 function findAddress() {
+	var uaddressErr = $("#uaddressErr");
+	uaddressErr.addClass("d-none");
+	
     new daum.Postcode({
         oncomplete: function(data) {
             // 도로명 주소의 노출 규칙에 따라 주소를 표시한다.
@@ -255,4 +218,21 @@ function findAddress() {
 
         }
     }).open();
+}
+
+function submitAddress() {
+	checkValidation();
+	
+	var form1 = $("#registerForm").serialize();
+	$.ajax({
+		url: "registerForm",
+		type: "post",
+		data: form1,
+		success: function(data) {
+			$("#addressList").html(data);
+		},
+		error: function(error) {
+			console.log(error);
+		}
+	});
 }
