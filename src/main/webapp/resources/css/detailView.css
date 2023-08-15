@@ -31,3 +31,8 @@
 .custom-qty input{
 	margin-left: 13px;
 }
+.myOption{
+	border: 1px solid #ececec;
+	margin: 10px;
+	padding-left: 20px;
+}
