@@ -62,5 +62,12 @@ public class CartRestController {
 	public void cartDelete(HttpSession session, HttpServletRequest request, HttpServletResponse response, @RequestParam int cart_no, Model model) throws Exception{
 		cartService.cartDelete(cart_no);
 	}
+	@ResponseBody
+	@PostMapping("/qtyUpdate")
+	public void qtyUpdate(HttpSession session, HttpServletRequest request, HttpServletResponse response,Cart cart, @RequestParam int cart_no,  @RequestParam int cart_qty, Model model) throws Exception{
+		cart.setCart_qty(cart_qty);
+		cart.setCart_no(cart_no);
+		cartService.qtyUpdate(cart);
+	}
 
 }

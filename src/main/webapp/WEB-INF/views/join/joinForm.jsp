@@ -112,7 +112,7 @@
 							 	<label for="tel"><img src = "${pageContext.request.contextPath}/resources/image/sion/stel.JPG"></label>
 						  </div>
 						  <div>
-								<input type="tel" onfocus="this.placeholder=''" oninput="autoHyphen(this)" pattern="010-[0-9]{3,4}-[0-9]{4}"  maxlegth="13" placeholder="휴대폰 번호" id="tel"
+								<input type="tel" onfocus="this.placeholder=''" oninput="autoHyphen(this)" maxlength="13" pattern="010-[0-9]{3,4}-[0-9]{4}"  maxlegth="13" placeholder="휴대폰 번호" id="tel"
 								 autocomplete="off" value="${joinDto.users_phone}" name="users_phone">
 						  </div>
 					 </div>
@@ -128,7 +128,7 @@
 			   <!-- 이용약관 동의 -->	
 				
 			   <div class="allagree">
-		          <input type="checkbox" class="agreement" id="agree" name="agree" value="agree"/>
+		          <input type="checkbox" class="agreeAll" id="agree" name="agree" value="agree"/>
 		             <label for="agree">모두 확인하였으며 동의합니다.</label>
 		       </div>
 		       <span>전체 동의에는 필수 및 선택 정보에 대한 동의가 포함되어 있으며, 개별적으로 동의를 선택 하실 수 있습니다. 
@@ -136,17 +136,17 @@
 		      
 		       <div class="agreementbox">
 		           <div>
-		               <input class="agreement" type="checkbox" id="agree1" name="agree" value="agree"/>
-		               <label for="agree1">[필수] 쿠팡 이용약관 동의</label>
+		               <input class="agreement" type="checkbox" id="agree1" name="agreement_required"/>
+		               <label for="agree1">[필수] oti 이용약관 동의</label>
 		           </div>     
 		       
 		           <div>
-		               <input class="agreement" type="checkbox" id="agree2" name="agree" value="agree"/>
+		               <input class="agreement" type="checkbox" id="agree2" name="agreement_info"/>
 		               <label for="agree2">[선택] 마케팅 목적의 개인정보 수집 및 이용 동의</label>
 		           </div>     
 		       
 			       <div>
-			           <input class="agreement" type="checkbox" id="agree3" name="agree" value="agree"/>
+			           <input class="agreement" type="checkbox" id="agree3" name="agreement_sns"/>
 			           <label for="agree3">[선택] SMS, SNS 수신 동의</label>
 			       </div>     
 			        

@@ -5,7 +5,6 @@ import java.util.Map;
 
 import org.apache.ibatis.annotations.Mapper;
 
-import com.webteam1.oti.dto.Product;
 import com.webteam1.oti.dto.cart.Cart;
 import com.webteam1.oti.dto.cart.CartDto;
 
@@ -13,6 +12,7 @@ import com.webteam1.oti.dto.cart.CartDto;
 public interface CartDao {
 	public int cartInsert(Cart cart);
 	public void cartUpdate(Cart cart);
+	public void qtyUpdate(Cart cart);
 	public void cartDelete(int cart_no);
 	//이미 추가한 상품의 옵션이 같은 상품을 또 장바구니에  추가할 경우를 알기 위함
 	public int cartCheck(Cart cart);

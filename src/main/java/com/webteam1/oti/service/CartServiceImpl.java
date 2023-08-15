@@ -57,5 +57,10 @@ public class CartServiceImpl implements CartService{
 		cartDao.cartDelete(cart_no);
 	}
 
+	@Override
+	public void qtyUpdate(Cart cart) {
+		cartDao.qtyUpdate(cart);
+	}
+
 
 }

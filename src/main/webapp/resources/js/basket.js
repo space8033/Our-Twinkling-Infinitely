@@ -1,48 +1,47 @@
 $(init)
 
 function init() {
+   loading();
    jsonProduct();
-   $("#allDelete").click(removeProduct);
+   $("#btn_delete").hide();
 }
 //전체선택 체크 및 전체 상품 가격 계산
 function checkAll() {
-	if($(".cboxAll").is(":checked") == true){
-		$(".pchk").prop("checked", true);
-		$("#cboxAll_top").prop("checked", true);
-		$("#cboxAll_bottom").prop("checked", true);
-		deleteButton1();
-		$("#s_p_choice").html($(".pchk").length);
-		for(var i=0; i<$(".pchk").length; i++){	
-			var pchkPrice = Number($("#chk" + i).val());
-			totalCheckedPrice += pchkPrice;
-			$("#tt_price_product").html(totalCheckedPrice.toLocaleString("ko-KR"));
-			$("#tt-product-total").html(totalCheckedPrice.toLocaleString("ko-KR"));
+	if($(event.target).is(":checked") == true){
+		if($("#cboxAll_top").is(":checked") == true){
+			$(".pchk").prop("checked", true);
+			$("#cboxAll_bottom").prop("checked", true);
+			$("#s_p_choice").html($(".pchk").length);
+			for(var i=0; i<$(".pchk").length; i++){	
+				var pchkPrice = Number($("#chk" + i).val());
+				totalCheckedPrice += pchkPrice;
+			}
 			$("#top_product").html(totalCheckedPrice.toLocaleString("ko-KR"));
 			$("#top_total").html(totalCheckedPrice.toLocaleString("ko-KR"));
+			$("#btn_delete").show();
+		}else if($("#cboxAll_bottom").is(":checked") == true){
+			$(".pchk").prop("checked", true);
+			$("#cboxAll_top").prop("checked", true);
+			$("#s_p_choice").html($(".pchk").length);
+			for(var i=0; i<$(".pchk").length; i++){	
+				var pchkPrice = Number($("#chk" + i).val());
+				totalCheckedPrice += pchkPrice;
+			}
+			$("#top_product").html(totalCheckedPrice.toLocaleString("ko-KR"));
+			$("#top_total").html(totalCheckedPrice.toLocaleString("ko-KR"));
+			$("#btn_delete").show();
 		}
-		if($(".cboxAll:checked").length != 2){
-			totalCheckedPrice = 0;
-			$("#tt_price_product").html(totalCheckedPrice);
-			$("#tt-product-total").html(totalCheckedPrice);
-			$("#top_product").html(totalCheckedPrice);
-			$("#top_total").html(totalCheckedPrice);
-			$("#s_p_choice").html(0);
-			$(".pchk").prop("checked", false);
-			$("#cboxAll_top").prop("checked", false);
-			$("#cboxAll_bottom").prop("checked", false);
-			deleteButton2();
-		}
-	}else if($(".cboxAll:checked").length < 2){
+	}else{
 		totalCheckedPrice = 0;
-		$("#tt_price_product").html(totalCheckedPrice);
-		$("#tt-product-total").html(totalCheckedPrice);
-		$("#top_product").html(totalCheckedPrice);
-		$("#top_total").html(totalCheckedPrice);
 		$(".pchk").prop("checked", false);
 		$("#cboxAll_top").prop("checked", false);
-		deleteButton2();
+		$("#cboxAll_bottom").prop("checked", false);
+		$("#top_product").html(totalCheckedPrice);
+		$("#top_total").html(totalCheckedPrice);
+		$("#btn_delete").hide();
 	}
 }
+
 
 //체크한 상품 가격 계산
 var totalCheckedPrice = 0;
@@ -58,8 +57,10 @@ function chkCalculate(){
 		$("#top_product").html(totalCheckedPrice.toLocaleString("ko-KR"));
 		$("#top_total").html(totalCheckedPrice.toLocaleString("ko-KR"));
 		$(".cboxAll").prop("checked", false);
+		$("#btn_delete").hide();
 		if($(".pchk:checked").length == $(".pchk").length){			
 			$(".cboxAll").prop("checked", true);
+			$("#btn_delete").show();
 		}		
 	}else if($(event.target).is(":checked")==false){
 		var checkedPrice = Number($(event.target).val());
@@ -73,13 +74,10 @@ function chkCalculate(){
 		$("#top_product").html(totalCheckedPrice.toLocaleString("ko-KR"));
 		$("#top_total").html(totalCheckedPrice.toLocaleString("ko-KR"));
 		$(".cboxAll").prop("checked", false);
+		$("#btn_delete").hide();
 	}
 }
 
-$(document).ready(function() {
-	//default 선택삭제 버튼
-	deleteButton2();
-});
 
 //전체선택 버튼
 function deleteButton1(){
@@ -87,84 +85,33 @@ function deleteButton1(){
 	btnContent += "전체삭제";
 	$("#btn_delete").html(btnContent);
 }
-//선택삭제 버튼
-function deleteButton2(){
-	var btnContent = '';
-	btnContent += "선택삭제";
-	$("#btn_delete").html(btnContent);
-}
-//상품삭제버튼
-function removeProduct(){
-	//체크박스 유효성 검사
-	//아무 것도 선택하지 않았을 때
-	if($("input[name=chk]:checked").length == 0){
-		window.alert("삭제할 상품을 선택해주세요.");
-	//전체선택일 경우
-	}else if($(".cboxAll:checked").length !== 0){
-		deleteButton1();
-		isProductThead();
-		$(".productRow").remove();
-		//선택항목 개수
-		var $choice = $(".pchk:checked").length;
-		$("#s_p_choice").html($choice);
-		//전체선택 개수
-		var $numberOfProducts = $(".pchk").length;
-		$("#s_t_choice").html($numberOfProducts);
-		AllDeleteConfirmDialog();
-		
-	//선택삭제일 경우
-	}else{
-		deleteButton2();
-		isProductThead();
-		var td = $(".pchk:checked").parent();
-		var tr = td.parent();
-		tr.remove();
-		//선택항목 개수
-		var $choice = $(".pchk:checked").length;
-		$("#s_p_choice").html($choice);
-		//전체선택 개수
-		var $numberOfProducts = $(".pchk").length;
-		$("#s_t_choice").html($numberOfProducts);
-		//아래 가격
-		totalCheckedPrice = 0;
-		$("#tt_price_product").html(totalCheckedPrice);
-		$("#tt-product-total").html(totalCheckedPrice);
-		$("#top_product").html(totalCheckedPrice);
-		$("#top_total").html(totalCheckedPrice);
-	}	
-}
 
-function deleteRow(){
-    var div = $(event.target).parent();
-    var div2 = div.parent();
-    var td = div2.parent();
-    var tr = td.parent();
-    tr.remove();
-    //선택항목 개수
-	var $choice = $(".pchk:checked").length;
-	$("#s_p_choice").html($choice);
-	//전체선택 개수
-	var $numberOfProducts = $(".pchk").length;
-	$("#s_t_choice").html($numberOfProducts);
-	empty();
-}
-//전체삭제 버튼을 클릭했을 때 알림창
+//삭제 버튼을 클릭했을 때 알림창
 function AllDeleteConfirmDialog(){
-	var result = window.confirm("선택한 상품을 삭제하시겠습니까?");
-	if(result){
-		empty();
-		$("#lastselector").hide();
-	}else{
-		init();
+	if($(".pchk:checked").length != 0){		
+		var result = window.confirm("선택한 상품을 삭제하시겠습니까?");
+		if(result){
+			$.ajax({
+				url: "addCart",
+				method: "get",
+				dataType: "json",
+				success: function(data){
+					data.forEach((item, index) => {
+						cartDelete(item.cart_no);
+					});
+				},
+				error: function(error){
+					console.log(error.status);
+				}
+			});
+		}
 	}
 }
 
 //전체선택 클릭시 로딩 스피너
 function loading() {
     LoadingWithMask();
-    setTimeout("closeLoadingWithMask()", 500);
-    numberOfChoice();
-    chkCalculate();
+    setTimeout("closeLoadingWithMask()", 1000);
 }
 
 //체크박스 클릭 시 스피너와 마스크 표시
@@ -172,8 +119,8 @@ function LoadingWithMask() {
     //로딩중 이미지 표시
     $.LoadingOverlay("show", {
     	background       : "rgba(0, 0, 0, 0.5)",
-    	image            : "../yuimg/spinner.gif",
-    	maxSize          : 60,
+    	image            : "https://upload.wikimedia.org/wikipedia/commons/c/c7/Loading_2.gif",
+    	maxSize          : 100,
     	fontawesome      : "fa fa-spinner fa-pulse fa-fw",
     	fontawesomeColor : "#FFFFFF",
     });
@@ -203,9 +150,6 @@ function isProductThead(){
 
 //option(수량)중에서 선택한 값 
 function setSelectBox(){
-	let coPrice = $(event.target).prop("id");
-	//옵션에서 selected된 값
-	var schField = $("#" + coPrice + " option:selected").text();
 	//수량 선택에 따른 상품의 가격
 	if($(".select-option option:selected").length !== 0){
 		 $.ajax({
@@ -216,23 +160,10 @@ function setSelectBox(){
 				 data.forEach((item, index) => {
 					 // 장바구니에 담은  상품 수량 옵션 selected
 					 $('select[name="'+ item.cart_no +'"]').find('option[value="'+ item.cart_qty +'"]').attr("selected",true);
-		        	 let idNo = "customSelect" + index;
-			       if(coPrice == idNo){
-			    	   let targetPrice = item.product_price * schField;
-			    	   let benefitPrice = Math.ceil(item.product_price * schField * 0.05);
-			    	   let id = "co-price" + index;//가격1 id
-			    	   let benefitId = "benefit" + index;//적립 id
-			    	   let toPrId = "toPr" + index;//가격2 id
-			    	   $("#" + id).html(targetPrice.toLocaleString("ko-KR"));
-			    	   $("#" + benefitId).html(benefitPrice.toLocaleString("ko-KR"));
-			    	   $("#" + toPrId).html(targetPrice.toLocaleString("ko-KR"));
-			    	   $("#chk" + index).val(targetPrice);
-			       }
 		         }); 
 			 },
 			 error: function(error){
 				 console.log(error.status);
-				 console.log("응 아냐");
 			 }
 		  });
 	}
@@ -279,17 +210,17 @@ function jsonProduct() {
 			 html += '</tr>';
 			 $("#cboxAll_top").hide();
 			 $("#lastselector").hide();
+			 $(".total_order_price").hide();
 		 }
          data.forEach((item, index) => {
         	priceArr.push(item.price);
         	let price = item.product_price.toLocaleString("ko-KR");
-        	let benefit = Math.ceil(item.product_price * 0.05);
+        	let benefit = Math.ceil(item.product_price*item.cart_qty * 0.04);
         	let totalProduct = (item.product_price*item.cart_qty).toLocaleString("ko-KR"); //장바구니에 넣을 상품 수량
-        	selectedQty = item.cart_qty;
         	
         	html += '<tr class="productRow">';	
         	html += '	<td>';
-      	    html += '		<input id="chk' + index + '" title="' + item.product_name + ' 상품을 결제상픔으로 결정" type="checkbox" name="chk" class="pchk" value='+ item.product_price +' onclick="loading()"/>';
+      	    html += '		<input id="chk' + index + '" title="' + item.product_name + ' 상품을 결제상픔으로 결정" type="checkbox" name="chk" class="pchk" value='+ item.product_price*item.cart_qty +' onclick="chkCalculate()"/>';
       	    html += '		<input type="hidden" name="cart_no" value="'+ item.cart_no +'"/>';
       		html += '	</td>';
       		html += '	<td class="p_img">';
@@ -313,7 +244,7 @@ function jsonProduct() {
       		html += '			<div class="c_option">';
       		html += '				<span>' + price + '</span>';
       		html += '				<span>원</span>';
-      		html += '					<select id="customSelect'+ index +'" name="' + item.cart_no + '" class="select-option" onchange="setSelectBox();" title="' + item.product_name + ' 수량 변경">';
+      		html += '					<select id="customSelect'+ index +'" name="' + item.cart_no + '" class="select-option" onclick="setSelectQty()" title="' + item.product_name + ' 수량 변경">';
       		html += '						<option value="1">1</option>';
       		html += '						<option value="2">2</option>';
       		html += '						<option value="3">3</option>';
@@ -325,9 +256,6 @@ function jsonProduct() {
       		html += '						<option value="9">9</option>';
       		html += '						<option value="10">10</option>';
       		html += '					</select>';
-      		html += '				</span>';
-      		html += '				<span id="select-text" class="select-text" style="display:none;">';
-      		html += '					<input id="text-co-price' + index + '" type="number" class="quantity-text" min="10" max="100" title="'+ item.product_name +' 수량변경" maxlength="4" style="width:52px; ">';
       		html += '				</span>';
       		html += '				<span id="co-price'+ index +'" class="p_price" value="'+ index +'" style="padding-left: 10px;">'+ totalProduct +'</span>';
       		html += '				<span>원</span>';
@@ -361,18 +289,16 @@ function jsonProduct() {
 	     	//전체선택 개수
 	     	var $numberOfProducts = $(".pchk").length;
 	     	$("#s_t_choice").html($numberOfProducts);
-	     	isProductThead();
-	     	setSelectBox();//선택한 상품의 가격 변화 함수
+	     	//선택했던 수량
+	     	setSelectBox();
 	 },
 	 error: function(error){
-		 empty();
-		 $("#lastselector").hide();
 		 console.log(error.status);
 	 }
   });
   
 }
-
+//X버튼 눌렀을 때 해당 상품 삭제
 function cartDelete(cart_no){
 	$.ajax({
 		url : "cartDelete",
@@ -380,6 +306,35 @@ function cartDelete(cart_no){
 		data : {"cart_no" : cart_no},
 		success : function(data){
 			jsonProduct();
+			loading();
 		}
 	});
+}
+
+//장바구니 수량 변경
+function setSelectQty(){
+    $(".select-option").change(function() {
+        var cartNo = Number($(this).attr("name"));
+        var newQty = Number($(this).val()); 
+        qtyUpdate(cartNo, newQty);
+        loading();
+    });
+}
+
+function qtyUpdate(cartNo, newQty) {
+    $.ajax({
+        url: "qtyUpdate", 
+        method: "post",
+        data: {
+            "cart_no": cartNo,
+            "cart_qty": newQty
+        },
+        success: function(response) {
+            jsonProduct();
+            setSelectBox();
+        },
+        error: function(error) {
+            console.log(error);
+        }
+    });
 }

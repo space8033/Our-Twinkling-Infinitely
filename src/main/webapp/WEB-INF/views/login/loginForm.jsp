@@ -85,7 +85,7 @@
 	                <div class="login_form_btn">
 	                    <button type="submit" id="login_btn">로그인</button>
 	                    <hr/>
-	                    <button onclick="joinForm" id="join_btn">회원가입</button>
+	                    <a class="btn" id="join_btn" href="${pageContext.request.contextPath}/joinForm">회원가입</a>
 	                </div>
 	        
 	       	   </form>

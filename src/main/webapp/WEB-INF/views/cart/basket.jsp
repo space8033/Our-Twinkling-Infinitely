@@ -16,6 +16,8 @@
       <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
       <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>
       <script src="https://cdn.jsdelivr.net/npm/gasparesganga-jquery-loading-overlay@2.1.7/dist/loadingoverlay.min.js"></script>
+      <!-- jquery.loadingOverlay.js -->
+	  <script src="path/to/jquery.loadingOverlay.js"></script>
       
       <script src="${pageContext.request.contextPath}/resources/js/basket.js"></script>
       <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/cart.css"/>
@@ -113,7 +115,7 @@
 					        		<span id="s_t_choice" class="selection"></span>
 					        		<span class="selection" style="margin-right: 10px;">)</span>
 				        	    </label>
-					        	<button id="btn_delete" onclick="cartDelete( [ cart_no ] )" class="delete" style="margin-right: 10px;"></button>   
+					        	<button id="btn_delete" onclick=" AllDeleteConfirmDialog()" class="delete" style="margin-right: 10px;">전체삭제</button>   
 						   </div>
 						   <div class="cash_benefit_wrapper border rounded-sm">
 				    		<div class="cash_benefit_contents">
