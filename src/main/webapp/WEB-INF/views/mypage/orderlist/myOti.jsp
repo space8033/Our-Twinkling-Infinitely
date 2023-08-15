@@ -1,10 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ include file="/WEB-INF/views/common/header.jsp" %>
-		<script src="${pageContext.request.contextPath}/resources/js/mycoupang.js"></script>
+
+		<script src="${pageContext.request.contextPath}/resources/js/orderList.js"></script>
 		
 		<style>
 			/*--------------------------------- frame ----------------------------------------*/
-			
 			.boxes {
 				width: 73px;
 				height: 25px;
@@ -127,15 +127,36 @@
 				<div id="myCoupangContent" class="container">
 						<div class="font-weight-bold mt-4" style="font-size: 20px; margin-bottom: 10px;">주문목록</div>
 					
-					<div class="d-flex mt-4 container" style="width: 95%;">
-						<button id="all" value="all" class="classifyMine selectedClass">전체</button>
-						<button id="deliver" value="deliver" class="classifyMine">배송상품</button>
-						<button id="travel" value="travel" class="classifyMine">여행상품</button>
-						<button id="ticket" value="ticket" class="classifyMine">티켓상품</button>
-					</div>
+					<ul id="menu-tab" class="nav nav-tabs nav-justified m-3">
+					    <li class="t-menu nav-item">
+					      <a class="nav-link active" data-toggle="tab" href="#detail">주문 내역</a>
+					    </li>
+					    <li class="t-menu nav-item">
+					      <a class="nav-link" data-toggle="tab" href="#addressList">배송지 관리</a>
+					    </li>
+					    <li class="t-menu nav-item">
+					      <a class="nav-link" data-toggle="tab" href="#menuu2">리뷰 관리</a>
+					    </li>
+					    <li class="t-menu nav-item">
+					      <a class="nav-link" data-toggle="tab" href="#menuu3">교환/환불/취소 내역</a>
+					    </li>
+					</ul>
 					
-					<div id="breakDown" class="mb-4 container">
-						
+					<div class="container mt-3">
+						<div class="tab-content">
+						    <div id="orderList" class="container tab-pane active" style="background-color: white"><br>
+							      <img src="data:MIME;base64, ${detailImg.image_fileName}"/>
+						    </div>
+						    <div id="addressList" class="container tab-pane fade" style="background-color: white"><br>
+						    
+						    </div>
+						    <div id="menuu2" class="container tab-pane fade" style="background-color: white"><br>
+						    
+						    </div>
+						    <div id="menuu3" class="container tab-pane fade" style="background-color: white"><br>
+						      
+						    </div>
+					  	</div>
 					</div>
 					
 					<div id="deliveryNotify" class="my-5 container">

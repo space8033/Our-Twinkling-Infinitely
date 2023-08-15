@@ -57,16 +57,16 @@
 				</div>
 		   		<div class="menu">		   		
 			   		<ul class="nav justify-content-end">
-					       <c:if test = "${loginIng != null}">
-					   		 <li class="nav-item">
-					     	  <a class="nav-link" href="${pageContext.request.contextPath}/logout">
-			  				  <span>LOGOUT</span>
-			   			   </c:if>
-			   			   <c:if test = "${loginIng == null}">
-			   			    <li class="nav-item">
-					     	 <a class="nav-link" href="${pageContext.request.contextPath}/loginForm">
-			  	 			 <span>LOGIN</span>
-			   			   </c:if>
+				        <c:if test = "${loginIng != null}">
+				   		  <li class="nav-item">
+				     	   <a class="nav-link" href="${pageContext.request.contextPath}/logout">
+		  				   <span>LOGOUT</span>
+		   			    </c:if>
+		   			    <c:if test = "${loginIng == null}">
+		   			     <li class="nav-item">
+				     	  <a class="nav-link" href="${pageContext.request.contextPath}/loginForm">
+		  	 			  <span>LOGIN</span>
+		   			    </c:if>
 					      </a>
 					    </li>
 					    <c:if test = "${loginIng == null}">
