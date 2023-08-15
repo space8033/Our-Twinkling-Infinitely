@@ -240,13 +240,13 @@ function jsonProduct() {
       	    html += '		<input type="hidden" name="cart_no" value="'+ item.cart_no +'"/>';
       		html += '	</td>';
       		html += '	<td class="p_img">';
-      		html += '		<a href="#">';
+      		html += '		<a href="detailProduct?product_no=' + item.product_no + '">';
       		html += '			 <img src="data:MIME;base64, '+ item.product_imgFile +'" width="78"/>';
       		html += '		</a>';
       		html += '	</td>';
       		html += '	<td class="product_contents">';
       		html += '		<div class="c_name">';
-      		html += '			<a href="detailProduct?product_no="' + Number(item.product_no) + '>' + item.product_name + '(' + item.productOption_type + ')';		
+      		html += '			<a href="detailProduct?product_no=' + item.product_no + '">' + item.product_name + '(' + item.productOption_type + ')';		
       	    html += '			</a>';		
       		html += '		</div>';
       		html += '		<div class="c_date&c_option d-flex">';
