@@ -5,11 +5,10 @@ function init(){
 	$(".topnav").hide();
 	//상품 메인페이지 광고
 	showSlides();
+	changeImg();
 }
 
 let slideIndex = 0;
-showSlides();
-
 function showSlides() {
   let i;
   let slides = document.getElementsByClassName("mySlides");
@@ -33,9 +32,9 @@ function showSearchBar(){
 	$("#search-icon").width();
 }
 
+//detailView=======================================================================
 //상품의 옵션을 선택하고, 수량을 선택했을 때 가격 변화
 function myOption1(){
-	console.log($(event.target));
 	if($(event.target).val() != "none"){
 		var option = $(event.target).val();
 		$("#select-p-option").html(option);
@@ -45,7 +44,6 @@ function myOption1(){
 	}
 } 
 function myOption2(){
-	console.log($(event.target));
 	if($(event.target).val() != "none"){
 		var qty = $(event.target).val();
 		var no = Number(qty);
@@ -58,6 +56,21 @@ function myOption2(){
 		$(".myOption").hide();
 	}
 }
+
+//주요 상품 이미지와 호버한 이미지의 위치를 바꾸는 함수 
+function changeImg(){
+	const mainImage = document.getElementById('main-image'); // 주요 상품 이미지의 엘리먼트를 가져옵니다.
+	const hoverImages = document.querySelectorAll('.hover-image'); // 호버 이미지들의 엘리먼트를 가져옵니다.
+	
+	hoverImages.forEach(image => {
+		image.addEventListener('mouseover', () => { // 각 호버 이미지에 호버 이벤트 리스너를 추가합니다.
+			const currentMainImage = mainImage.src; // 현재 주요 상품 이미지의 URL을 저장합니다.
+			mainImage.src = image.src; // 주요 상품 이미지의 URL을 호버한 이미지의 URL로 바꿉니다.
+			image.src = currentMainImage; // 호버한 이미지의 URL을 이전 주요 상품 이미지의 URL로 바꿉니다.
+		});
+	});
+}
+
 //리뷰 리스트 보여주기
 function showReview(productNum, pageNo2) {
 	$.ajax({

@@ -7,14 +7,14 @@
 					<c:forEach var="image" items="${images}">				
 						<c:if test="${image.image_fileName != null}">
 							<div class="m-2">
-								<img src="data:MIME;base64, ${image.image_fileName}" width="100"/>
+								<img class="hover-image" src="data:MIME;base64, ${image.image_fileName}" width="100"/>
 							</div>			
 						</c:if>
 					</c:forEach>
 				</div>
 				<c:if test="${product.product_img !=null}">
 					<div class="detail1-image m-4">
-						<img src="data:MIME;base64, ${product.product_img}" width="500px"/> 
+						<img id="main-image" src="data:MIME;base64, ${product.product_img}" width="500px"/> 
 						<!-- submit: product_img (해당 상품 base64로 인코딩 된 이미지) -->
 						<input type="hidden" name="product_img" value="${product.product_img}"/> 
 					</div>

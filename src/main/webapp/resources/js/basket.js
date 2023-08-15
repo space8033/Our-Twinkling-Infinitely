@@ -5,9 +5,12 @@ function init() {
    jsonProduct();
    $("#btn_delete").hide();
 }
+let mainImage = document.getElementById('main-image');
+let hoverImages = document.querySelectorAll('.hover-image');
 
 //detailView에서 필수 옵션을 선택 유효성 검사
 $(document).ready(function() {
+	changeImg();//이미지 호버 효과
 	$("#cartAlert").hide();
 	$("#addCart").submit(function(event) {
 		var selectedOption = $("#option1").val(); // 선택된 옵션 값 가져오기

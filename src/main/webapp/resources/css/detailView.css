@@ -23,6 +23,14 @@
 #detail img{
 	width: 100%;
 }
+
+.hover-image {
+	transition: transform 0.3s ease;
+}
+.hover-image:hover {
+	transform: translate(0, -2px); /* 필요에 따라 값 조절 */
+}
+
 .custom-qty{
 	border-bottom: 1px solid #ececec;
     padding: 12px 0 8px;
