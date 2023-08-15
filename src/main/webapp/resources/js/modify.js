@@ -2,7 +2,11 @@ $(init)
 
 function init() {
 	modifyCheck();
+	
+	radioCheck1();
+	radioCheck2();
 }
+
 const autoHyphen = (target) => {
 	 target.value = target.value
 	   .replace(/[^0-9]/g, '')
@@ -16,6 +20,49 @@ function modifyCheck() {
 		alert(modifyMsg);
 	}
 }
+
+
+function radioCheck1() {
+	var snsYval = $("#snsY").val();
+	if(snsYval === "true") {
+		$("#snsY").prop('checked', true);
+	} else {
+		$("#snsN").prop('checked', true); 
+	}
+}	
+	
+function radioCheck2() {
+	var infoYval = $("#infoY").val();
+	if(infoYval === "true") {
+		$("#infoY").prop('checked', true);
+	} else {
+		$("#infoN").prop('checked', true); 
+	}
+}
+
+$(document).ready(function(){
+	
+	$("#infoY").change(function(){
+		if($("#infoY").prop('checked')) {
+			$("#infoY").val(true);
+			console.log($("#infoY").val()+"infoY의 값");
+		} else {
+			$("#infoY").val(false);
+			console.log($("#infoY").val()+"infoY의 값");
+		}
+	});
+	
+	$("#snsY").change(function(){
+		if($("#snsY").prop('checked')) {
+			$("#snsY").val(true);
+			console.log($("#snsY").val()+"snsY의 값");
+		} else {
+			$("#snsY").val(false);
+			console.log($("#snsY").val()+"snsY의 값");
+		}
+	});
+
+});
 
 function unjoin() {
 	if(window.confirm("탈퇴하시겠습니까?")){
@@ -164,5 +211,4 @@ function checkValidation() {
 			event.preventDefault();
 		}
 	}
-}		
-
+}
