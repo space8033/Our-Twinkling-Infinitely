@@ -23,7 +23,6 @@
 			  <div class="numbertext">3 / 3</div>
 			   <img src="${pageContext.request.contextPath}/resources/yuimg/메인슬라이드3.png" style="width:100%">
 			</div>
-			
 		</div>
 		<br>
 		<div style="text-align:center">

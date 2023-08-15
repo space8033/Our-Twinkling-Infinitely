@@ -3,17 +3,30 @@ body {font-family: Verdana, sans-serif;}
 .mySlides {display: none;}
 img {vertical-align: middle;}
 
+#loginIng{
+	width: 1050px;
+	margin-left: 30px;
+	font-size: 12px;
+}
+/* menu */
 .menu{
+	width: 1050px;
+	margin-left: 30px;
+}
+.menuBar{
 	border-bottom: 1px solid #ececec;
 }
-/* Slideshow container */
+/* slideshow container */
 .slideshow-container {
-  max-width: 1000px;
-  position: relative;
-  margin: auto;
+	max-width: 1050px;
+	position: relative;
+	margin: 10px auto;
 }
 
-
+/* search-icon */
+#search-icon{
+	width: 1050px;
+}
 /* Caption text */
 .text {
   color: #f2f2f2;
@@ -225,6 +238,7 @@ footer .inner {
 .topnav {
   overflow: hidden;
   background-color: white;
+  padding: 0 30px;
 }
 
 .topnav a {
