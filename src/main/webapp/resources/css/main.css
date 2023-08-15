@@ -189,7 +189,10 @@ img {vertical-align: middle;}
 .story {
   position: relative;
 }
-
+.storyImg{
+	width:30%;
+	height: 350px;
+}
 .image {
   display: block;
   width: 100%;
