@@ -29,11 +29,8 @@ function showSlides() {
 
 //검색창 보이기
 function showSearchBar(){
-	$(".topnav").show();
+	$(".topnav").toggle();
 	$("#search-icon").width();
-	$("#hideSearchBar").click(function(){
-		  $(".topnav").hide();
-	});
 }
 
 //상품의 옵션을 선택하고, 수량을 선택했을 때 가격 변화
