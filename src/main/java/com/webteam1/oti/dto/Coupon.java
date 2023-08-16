@@ -7,15 +7,14 @@ import lombok.Data;
 @Data
 public class Coupon {
 	private int coupon_no;
-	private String coupon_code;
 	private CouponType coupon_type;
 	private int coupon_value;
 	private int coupon_condition;
-	private Date coupon_createdDate;
-	private Date coupon_expiredDate;
-	private int users_users_id;
+	private String coupon_createdDate;
+	private String coupon_expiredDate;
+	private String users_users_id;
 	
 	public enum CouponType {
-		PERCENTAGE, PRICE
+		BIRTHDAY_COUPON, DEL_FREE_COUPON, WELCOME_COUPON
 	}
 }
