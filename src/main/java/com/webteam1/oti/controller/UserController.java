@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.util.WebUtils;
 
+import com.webteam1.oti.dao.UserDao;
 import com.webteam1.oti.dto.cart.Cart;
 import com.webteam1.oti.dto.user.Agreement;
 import com.webteam1.oti.dto.user.JoinDto;
@@ -108,6 +109,7 @@ public class UserController {
 			log.info("로그인에 성공하였습니다");
 			LoginDto dbUser = userService.getUser(users.getUsers_id());
 			session.setAttribute("loginIng", dbUser);
+			
 			LoginDto loginDto = (LoginDto) session.getAttribute("loginIng");
 			model.addAttribute("loginIng", loginDto);
 			
