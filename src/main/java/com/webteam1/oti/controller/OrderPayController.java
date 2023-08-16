@@ -244,20 +244,24 @@ public class OrderPayController {
 								  HttpSession session) {
 		LoginDto loginDto = (LoginDto) session.getAttribute("loginIng");
 		String userId = loginDto.getUsers_id();
+		log.info("앙2");
 		
 		if(productCheckBoxes != null ) {			
+			log.info("앙");
 			for (int i = 0; i < selectedProductOptionNos.length; i++) {
 				OrderProduct orderProduct = new OrderProduct();
 				orderProduct.setOrderProduct_qty(Integer.parseInt(selectedQtys[i]));
 				orderProduct.setProductOption_productOption_no(Integer.parseInt(selectedProductOptionNos[i]));
 				orderProduct.setUsers_users_id(userId);
 				productService.addOrderProduct(orderProduct); 
-				cartService.cartDelete(Integer.parseInt(cartNos[i]));
+				log.info("앙" + selectedProductOptionNos);
+				if(cartNos != null) {					
+					cartService.cartDelete(Integer.parseInt(cartNos[i]));
+				}
 			}
 		}
 		
 	    return "orderPay/orderPay";
 	}
 	
-
 }

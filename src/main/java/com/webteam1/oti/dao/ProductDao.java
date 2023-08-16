@@ -19,7 +19,7 @@ public interface ProductDao {
 	public Image selectByImg(Product product);
 	public int count();
 	//상품에 해당하는 옵션타입
-	public List<String>getProductOption(int product_no);
+	public List<ProductOption> getProductOption(int product_no);
 	//상품 상세정보에서 그 상품에 해당하는 상품옵션 객체
 	public List<ProductOption> getPOption (int product_no);
 	public List<Product> search(Map<String, Object> map);

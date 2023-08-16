@@ -68,7 +68,7 @@ public class ProductController {
 		   model.addAttribute("images",  imageList);
 		   
 		   //상품에 해당하는 옵션 리스트 가져오기
-		   List<String> optionList = productService.getOptionList(productNum);
+		   List<ProductOption> optionList = productService.getOptionList(productNum);
 		   model.addAttribute("options", optionList);
 		   //상품에 해당하는 상품상세이미지 가져오기
 		   Image detailImg = imageService.getDetailImg(productNum);

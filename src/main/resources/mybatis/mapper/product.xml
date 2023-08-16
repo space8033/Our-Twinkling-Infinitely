@@ -45,8 +45,8 @@
     </update>
     
     <!-- detail -->
-    <select id="getProductOption" parameterType="int" resultType="String">
-    	select productOption_type
+    <select id="getProductOption" parameterType="int" resultType="ProductOption">
+    	select *
     	from productOption
     	where product_product_no=#{product_no}
     </select>

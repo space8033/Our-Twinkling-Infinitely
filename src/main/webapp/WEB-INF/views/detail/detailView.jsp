@@ -35,7 +35,7 @@
 							<select id="option1" class="option custom-select m-3" name="cart_optionContent" onclick="myOption1()">
 								<option value="none">---[필수]옵션을 선택해 주세요---</option>
 								<c:forEach var="productOption" items="${options}">
-									<option id="p-option" value="${productOption}">${productOption}</option>
+									<option id="${productOption.productOption_no}" value="${productOption.productOption_type}">${productOption.productOption_type}</option>
 								</c:forEach>
 							</select>
 						</div>
@@ -58,34 +58,26 @@
 							</div>
 						</div>
 						<div class="m-2">
-							<c:if test="${loginIng != null}">
-								 <div>
-								 	<a class="dtailButton btn btn-outline-dark btn-block m-4" href="${pageContext.request.contextPath}/orderPay">
-								 		구매하기
-								 	</a>
-								 </div>
-						 	</c:if>
-						 	<c:if test = "${loginIng == null}">
-						 		 <div>
-								 	<a class="dtailButton btn btn-outline-dark btn-block m-4" href="${pageContext.request.contextPath}/loginForm">
-								 		구매하기
-								 	</a>
-								 </div>
-						 	</c:if>
 							<div>
-								<c:if test="${loginIng != null}">
-									<!-- submit: users_users_id (로그인 한 유저 아이디) -->
-									<input type="hidden" name="users_users_id" value="${loginIng.users_id}">
-								</c:if>
-									<button type="submit" class="dtailButton btn btn-outline-dark btn-block m-4">장바구니</button>
+								<!-- submit: users_users_id (로그인 한 유저 아이디) -->
+								<input type="hidden" name="users_users_id" value="${loginIng.users_id}">
+								<button type="submit" class="dtailButton btn btn-outline-dark btn-block m-4">장바구니</button>
 							</div>
 						</div>
-					</div>
+					</form>
+					<form method="post" id="addOrderProduct" name="addOrderProduct" action="addOrderProduct">		
+						<input type="hidden" name="productCheckBox" value="1">			
+						<input id="submitOrderProduct1" type="hidden" name="productOption_productOption_no" value="">			
+						<input id="submitOrderProduct2" type="hidden" name="orderProduct_qty" value="">				
+						<input id="submitOrderProduct3" type="hidden" name="product_product_no" value="${productOption.product_product_no}">			
+						<button type="submit" class="dtailButton btn btn-outline-dark btn-block m-4">구매하기</button>
+					</form>
 				</div>
-			</form>
-			<div class="alert alert-info alert-dismissible" id="cartAlert">
+			</div>
+			<!-- 유효성 검사 -->
+			<div class="alert alert-info alert-dismissible" id="detailAlert">
 			    <button type="button" class="close">&times;</button>
-			    <strong>상품을 장바구니에 담지 못했습니다!</strong> 
+			    <strong>필수 옵션이 선택되지 않았습니다!</strong> 
 			    <div>해당 상품의 필수 옵션을 선택해 주세요.</div>
 		    </div>
 			<!-- 상품 메뉴 탭 -->
