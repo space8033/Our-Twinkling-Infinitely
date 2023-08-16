@@ -21,19 +21,16 @@ public class ReviewServiceImpl implements ReviewService{
 	
 	@Override
 	public List<Review> getReviewListByPno(Map<String, Object> map) {
-		
 		return reviewDao.selectByPno(map);
 	}
 
 	@Override
 	public int countByProductNo(int productNo) {
-		
 		return reviewDao.countByPno(productNo);
 	}
 
 	@Override
 	public Review getReviewByRno(int review_no) {
-		
 		return reviewDao.selectByRno(review_no);
 	}
 
@@ -44,8 +41,17 @@ public class ReviewServiceImpl implements ReviewService{
 
 	@Override
 	public int findByUserId(Map<String , Object> map) {
-		
 		return reviewDao.selectByUserId(map);
+	}
+
+	@Override
+	public int countByUserId(String userId) {
+		return reviewDao.countByUser(userId);
+	}
+
+	@Override
+	public List<Review> getReviewListByUser(Map<String, Object> map) {
+		return reviewDao.selectByUser(map);
 	}
 	
 }

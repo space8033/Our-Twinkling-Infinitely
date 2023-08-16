@@ -137,4 +137,56 @@ public class ReviewController {
 		}
 		return "redirect:/review";
 	}
+	
+	//해당 유저의 리뷰 가져오기
+	@GetMapping("/reviewByUser")
+	public String reviewByUser(String pageNo5, Model model, HttpSession session) {
+		if(pageNo5 == null) {
+		   //세션에 저장되어 있는지 확인
+		   pageNo5 = (String) session.getAttribute("pageNo5");
+		   //저장되어있지 않다면 "1"로 초기화
+		   if(pageNo5 == null) {
+			   pageNo5 = "1";
+		   }
+		}
+		LoginDto user = (LoginDto) session.getAttribute("loginIng");
+		String userId = user.getUsers_id();
+		
+		//문자열을 정수로 변환
+		int intPageNo = Integer.parseInt(pageNo5);
+		//세션에 pageNo를 저장
+		session.setAttribute("pageNo5", String.valueOf(pageNo5));
+		int totalRows = reviewService.countByUserId(userId);
+		Pager pager = new Pager(5, 5, totalRows, intPageNo);
+		
+		Map<String, Object> map = new HashMap<>();
+		map.put("startRowNo", pager.getStartRowNo());
+		map.put("endRowNo", pager.getEndRowNo());
+		map.put("userId", userId);
+		
+		List<Review> list = reviewService.getReviewListByUser(map);
+		
+		model.addAttribute("pager", pager);
+		model.addAttribute("reviews", list);
+
+		return "mypage/orderlist/review";
+	}
+	
+	//마이페이지에서 리뷰 상세보기
+	@GetMapping("/myReviewDetail")
+	public String getMyPageReview(String review_no, Model model, HttpSession session) {
+		Review review = reviewService.getReviewByRno(Integer.parseInt(review_no));
+		model.addAttribute("review", review);
+		List<Image> images = imageService.getReviewImages(Integer.parseInt(review_no));
+		List<String> base64Img = new ArrayList<>();
+		
+		for(Image image : images) {
+			String img = Base64.getEncoder().encodeToString(image.getImage_file());
+			base64Img.add(img);
+		}
+		
+		model.addAttribute("base64Img", base64Img);
+		
+		return "mypage/orderlist/reviewDetail";
+	}
 }

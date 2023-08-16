@@ -17,11 +17,34 @@
 			 where rnum >= #{startRowNo}
 		]]>
 	</select>
+
+	<select id="selectByUser" parameterType="Map" resultType="Review">
+		<![CDATA[
+	       select rnum, review_no, review_name, review_title, review_contents, product_no, review_goodorbad, review_createdDate, review_rating
+			 from (
+			    select rownum as rnum, review_no, review_name, review_title, review_contents, product_no, review_goodorbad, review_createdDate, review_rating
+			    from(
+			        select review_no, review_name, review_title, review_contents, product_no, review_goodorbad, review_createdDate, review_rating
+			        from review
+			        where review_name=#{userId}
+			        order by review_no desc
+			    )
+			    where rownum <= #{endRowNo}
+			 )
+			 where rnum >= #{startRowNo}
+		]]>
+	</select>
 	
 	<select id="countByPno" parameterType="int" resultType="int">
 		select count(*)
   		from review
   		where product_no=#{productNo}
+	</select>
+
+	<select id="countByUser" parameterType="string" resultType="int">
+		select count(*)
+  		from review
+  		where review_name=#{userId}
 	</select>
 	
 	<select id="selectByRno" parameterType="int" resultType="Review">
