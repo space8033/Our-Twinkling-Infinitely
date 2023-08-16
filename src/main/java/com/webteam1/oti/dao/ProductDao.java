@@ -22,6 +22,6 @@ public interface ProductDao {
 	public List<String>getProductOption(int product_no);
 	//상품 상세정보에서 그 상품에 해당하는 상품옵션 객체
 	public List<ProductOption> getPOption (int product_no);
-	public List<Map<String, Object>> search(Map<String, Object> map);
+	public List<Product> search(Map<String, Object> map);
 	public int countResult(Map<String, Object> map);
 }

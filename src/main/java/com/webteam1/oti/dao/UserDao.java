@@ -1,5 +1,7 @@
 package com.webteam1.oti.dao;
 
+import java.util.List;
+
 import org.apache.ibatis.annotations.Mapper;
 
 import com.webteam1.oti.dto.user.JoinDto;
@@ -18,6 +20,7 @@ public interface UserDao {
 	//LoginDto
 	//Login은 Users가 대문자
 	public LoginDto selectByUsersId(String usersId);
+	public int updateLogindate(String usersId);
 	
 	//ModifyDto
 	public int update(ModifyDto user); //users_password, users_name, users_phone, users_email 수정
@@ -25,5 +28,8 @@ public interface UserDao {
 	public ModifyDto modifyByUsersId(String usersId);
 	//JoinDto로부터 회원 탈퇴
 	public int delete(JoinDto user);
+	
+	//생일인 유저조회
+	public List<String> getUsersWithBirthday(String currentDate);
 	
 }

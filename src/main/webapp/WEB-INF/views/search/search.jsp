@@ -26,24 +26,24 @@
 		</div>
 		<!-- 페이지 -->  	
 		<div class="d-flex justify-content-center m-4">
-			<a class="btn btn-sm" href="?pageNo=1">처음</a>
+			<a class="btn btn-sm" href="?search=${search}&pageNo4=1">처음</a>
 			<c:if test="${pager.groupNo>1}">
-				<a class="btn btn-sm" href="?pageNo=${pager.startPageNo-1}">이전</a>
+				<a class="btn btn-sm" href="?search=${search}&pageNo4=${pager.startPageNo-1}">이전</a>
 			</c:if>
 			
 			<c:forEach var="i" begin="${pager.startPageNo}" end="${pager.endPageNo}">
 				<c:if test="${pager.pageNo != i}">
-					<a class="btn btn-sm" href="?pageNo=${i}">${i}</a>
+					<a class="btn btn-sm" href="?search=${search}&pageNo4=${i}">${i}</a>
 				</c:if>
 				<c:if test="${pager.pageNo == i}">
-					<a class="btn btn-sm" href="?pageNo=${i}">${i}</a>
+					<a class="btn btn-sm" href="?search=${search}&pageNo4=${i}">${i}</a>
 				</c:if>
 			</c:forEach>
 			
 			<c:if test="${pager.groupNo<pager.totalGroupNo}">
-				<a class="btn btn-sm" href="?pageNo=${pager.endPageNo+1}">다음</a>
+				<a class="btn btn-sm" href="?search=${search}&pageNo4=${pager.endPageNo+1}">다음</a>
 			</c:if>
-			<a class="btn btn-sm" href="?pageNo=${pager.totalPageNo}">맨끝</a>
+			<a class="btn btn-sm" href="?search=${search}&pageNo4=${pager.totalPageNo}">맨끝</a>
 		</div>
 
 <%-- 

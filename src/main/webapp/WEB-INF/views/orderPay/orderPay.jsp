@@ -24,7 +24,7 @@
 			<section class="d-flex-column mx-auto " style="width: 1250px;">
 				<header class="border-h">
 					<div class="head">
-						<img src="${pageContext.request.contextPath}/resources/yuimg/메인로고.png" alt="OTi로고" style="width: 174px; height: 70px; margin-bottom: 200px;" alt="쿠팡">
+						<a href="${pageContext.request.contextPath}"><img src="${pageContext.request.contextPath}/resources/yuimg/메인로고.png" alt="OTi로고" style="width: 174px; height: 70px; margin-bottom: 200px;" alt="쿠팡"></a>
 					</div>
 				</header>
 			</section>

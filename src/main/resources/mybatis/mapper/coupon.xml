@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.webteam1.oti.dao.CouponDao">
+	<insert id="insert" parameterType="Coupon">
+		<selectKey keyProperty="coupon_no" resultType="int" order="BEFORE">
+	         select address_seq.nextval from dual
+      	</selectKey>
+      	
+		insert into coupon(
+	      	coupon_no, coupon_type, coupon_value, coupon_condition, coupon_createdDate, coupon_expiredDate, users_users_id
+		)
+		values(
+			#{coupon_no}, #{coupon_type}, #{coupon_value}, #{coupon_condition}, #{coupon_createdDate}, #{coupon_expiredDate}, #{users_users_id}
+		)
+	</insert>
+	<!-- 
+	<update id="update" parameterType="Address">
+		update address set address_receiver=#{address_receiver}, address_roadaddress=#{address_roadAddress}, address_jibunaddress=#{address_jibunAddress}, address_extraaddress=#{address_extraAddress},
+						  address_detail=#{address_detail}, address_isdefault=#{address_isdefault}, address_modifieddate=to_char(sysdate,'yyyy.mm.dd hh24:mi:ss'), deliveryrequest=#{deliveryRequest}, users_phone=#{users_phone}
+		where address_no = #{address_no}
+	</update>
+	
+	<select id="selectByAno" parameterType="int" resultType="Address">
+		select address_no, address_receiver, address_roadaddress, address_jibunaddress, address_extraaddress, address_detail, address_isdefault, users_users_id, address_createddate, deliveryrequest, users_phone
+		from address
+		where address_no=#{address_no}
+	</select>
+	
+	<select id="selectByPage" parameterType="Map" resultType="Address">
+   		<![CDATA[
+	       select rnum, address_no, address_receiver, address_roadAddress, address_jibunAddress, address_extraAddress, address_detail, deliveryRequest, address_isdefault, users_users_id, users_phone
+			 from (
+			    select rownum as rnum, address_no, address_receiver, address_roadAddress, address_jibunAddress, address_extraAddress, address_detail, deliveryRequest, address_isdefault, users_users_id, users_phone
+			    from(
+			        select address_no, address_receiver, address_roadAddress, address_jibunAddress, address_extraAddress, address_detail, deliveryRequest, address_isdefault, users_users_id, users_phone
+			        from address
+			        where users_users_id=#{user_id}
+			        order by address_isdefault desc, address_createddate desc
+			    )
+			    where rownum <= #{endRowNo}
+			 )
+			 where rnum >= #{startRowNo}
+		]]>
+  	</select>
+  	
+  	<select id="countByUserId" parameterType="String" resultType="int">
+  		select count(*)
+  		from address
+  		where users_users_id=#{user_id}
+  	</select>
+  	
+  	<select id="selectByDefault" parameterType="String" resultType="Address">
+  		select *
+  		from address
+  		where address_isdefault=1 and users_users_id=#{user_id}
+  	</select> -->
+  	
+</mapper>

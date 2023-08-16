@@ -68,7 +68,7 @@ public class ProductServiceImpl implements ProductService{
 
 	//product search
 	@Override
-	public List<Map<String, Object>> search(Map<String, Object> map) {
+	public List<Product> search(Map<String, Object> map) {
 		return productDao.search(map);
 	}
 

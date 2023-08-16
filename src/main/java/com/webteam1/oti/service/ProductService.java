@@ -20,6 +20,6 @@ public interface ProductService {
 	//orderProdcut Service
 	public void addOrderProduct(OrderProduct orderProduct);
 	//product Search Service
-	public List<Map<String, Object>> search(Map<String, Object> map);
+	public List<Product> search(Map<String, Object> map);
 	public int countResult(Map<String, Object> map);
 }
