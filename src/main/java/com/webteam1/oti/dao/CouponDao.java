@@ -10,6 +10,7 @@ import com.webteam1.oti.dto.Coupon;
 @Mapper
 public interface CouponDao {
 	public int insert(Coupon coupon);
+	public int delete(Coupon coupon);
 	/*public int update(Address address);
 	public List<Address> selectByPage(Map<String, Object> map);
 	public int countByUserId(String user_id);
