@@ -42,62 +42,64 @@
    							<div>
    								<span class="tab1">일반구매</span>
    							</div>
+   							<form>
+								<table id="table" class="table">
+									<colgroup class="col">
+										<col width="50">
+										<col width="80">
+										<col width="*">
+										<col width="90">
+										<col width="90">
+									</colgroup>
+								    <thead>
+								     <tr class="head">
+								       <th scope="col">
+								           <label>	
+											   <input title="모든 상품을 결제상품으로 설정" 
+													type="checkbox" 
+													id="cboxAll_top"
+													class="cboxAll"  
+													value="selectall"
+													name="chk"
+													onclick="checkAll()" />
+				        				   </label>
+	                                   </th>
+								       <th></th>
+								       <th scope="colgroup">상품정보</th>
+								       <th scope="col">상품금액</th>
+								       <th scope="col">배송비</th>
+								       <th scope="col"></th>
+								     </tr>
+								    </thead>
+										   
+								    <tbody id ="basket_tbody">
+										<tbody id ="basket_tbody">
+										<!-- 상품 리스트(json) 불러오는 곳 -->  
+									    </tbody>
+								     </tbody>
+						     	     <tr class="t3" colspan="5">
+								         <td></td>
+								         <td></td>
+								         <td class="t3_td">
+								        	 <div class="t3_td_contents">
+									             <span class="t3_td_contents text-muted">장바구니에서 선택할 옵션을 선택하시고,</span>
+											     <span class="t3_td_contents text-primary">구매하기</span>
+											     <span class="t3_td_contents text-muted">버튼을 눌러보세요!</span>
+								        	 </div>
+								    		<div class="t3_td_contents text-muted">선택한 옵션을 모두 장바구니에 담을 수 있습니다</div>
+								    	    <div class="t3_td_button">
+											    <a href="${pageContext.request.contextPath}">										    	
+										    		<button class="btn btn-primary">오늘의 추천 상품보기 ></button>
+											    </a>
+											</div>    
+								       	</td>
+							     		<td></td>
+							     		<td></td>
+							     		<td></td>
+						    		</tr>
+							    </table>
+   							</form>
    							
-							<table id="table" class="table">
-								<colgroup class="col">
-									<col width="50">
-									<col width="80">
-									<col width="*">
-									<col width="90">
-									<col width="90">
-								</colgroup>
-							    <thead>
-							     <tr class="head">
-							       <th scope="col">
-							           <label>	
-										   <input title="모든 상품을 결제상품으로 설정" 
-												type="checkbox" 
-												id="cboxAll_top"
-												class="cboxAll"  
-												value="selectall"
-												name="chk"
-												onclick="checkAll()" />
-			        				   </label>
-                                   </th>
-							       <th></th>
-							       <th scope="colgroup">상품정보</th>
-							       <th scope="col">상품금액</th>
-							       <th scope="col">배송비</th>
-							       <th scope="col"></th>
-							     </tr>
-							    </thead>
-									   
-							    <tbody id ="basket_tbody">
-									<tbody id ="basket_tbody">
-									<!-- 상품 리스트(json) 불러오는 곳 -->  
-								    </tbody>
-							     </tbody>
-					     	     <tr class="t3" colspan="5">
-							         <td></td>
-							         <td></td>
-							         <td class="t3_td">
-							        	 <div class="t3_td_contents">
-								             <span class="t3_td_contents text-muted">장바구니에서 선택할 옵션을 선택하시고,</span>
-										     <span class="t3_td_contents text-primary">구매하기</span>
-										     <span class="t3_td_contents text-muted">버튼을 눌러보세요!</span>
-							        	 </div>
-							    		<div class="t3_td_contents text-muted">선택한 옵션을 모두 장바구니에 담을 수 있습니다</div>
-							    	    <div class="t3_td_button">
-										    <a href="${pageContext.request.contextPath}">										    	
-									    		<button class="btn btn-primary">오늘의 추천 상품보기 ></button>
-										    </a>
-										</div>    
-							       	</td>
-						     		<td></td>
-						     		<td></td>
-						     		<td></td>
-					    		</tr>
-						    </table>
 							<div id="lastselector" class="lastselector">
 								<label>
 					        		<input title="모든 상품을 결제상품으로 설정" 
@@ -148,7 +150,7 @@
    				    		</a>
    				    		<c:if test="${loginIng == null}">
    				    			<a href="${pageContext.request.contextPath}/loginForm">   				    			
-   				    				<button class="btn2 btn btn-primary m-1">구매하기</button>
+   				    				<button type="submit" class="btn2 btn btn-primary m-1">구매하기</button>
    				    			</a>   				    		
    				    		</c:if>
    				    		<c:if test="${loginIng != null}">

@@ -240,7 +240,7 @@ function jsonProduct() {
         	html += '<tr class="productRow">';	
         	html += '	<td>';
       	    html += '		<input id="chk' + index + '" title="' + item.product_name + ' 상품을 결제상픔으로 결정" type="checkbox" name="chk" class="pchk" value='+ item.product_price*item.cart_qty +' onclick="chkCalculate()"/>';
-      	    html += '		<input type="hidden" name="cart_no" value="'+ item.cart_no +'"/>';
+      	    html += '		<input type="hidden" name="orderProduct_qty" value="'+ item.cart_qty +'"/>';
       		html += '	</td>';
       		html += '	<td class="p_img">';
       		html += '		<a href="detailProduct?product_no=' + item.product_no + '">';
@@ -275,6 +275,7 @@ function jsonProduct() {
       		html += '						<option value="9">9</option>';
       		html += '						<option value="10">10</option>';
       		html += '					</select>';
+      		html += '				<input type="hidden" name="productOption_productOption_no" value="'+ item.productOption_productOption_no +'"/>';
       		html += '				</span>';
       		html += '				<span id="co-price'+ index +'" class="p_price" value="'+ index +'" style="padding-left: 10px;">'+ totalProduct +'</span>';
       		html += '				<span>원</span>';
