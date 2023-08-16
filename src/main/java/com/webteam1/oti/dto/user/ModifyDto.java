@@ -1,6 +1,5 @@
 package com.webteam1.oti.dto.user;
 
-import java.util.Date;
 
 import lombok.Data;
 
@@ -12,6 +11,6 @@ public class ModifyDto {
 	private String users_name;
 	private String users_phone;
 	private String users_email;
-	private Date users_bdate;
+	private String users_bdate;
 	
 }

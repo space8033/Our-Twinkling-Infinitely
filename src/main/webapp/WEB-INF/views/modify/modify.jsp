@@ -193,7 +193,7 @@
 					
 				</div>
 				<div class="d-flex pb-3">
-					<input type="date" id="year" maxlength="4" class="m-1" style="width:100%" value="" name=""> <span style="padding-top: 5px;">
+					<input type="date" id="year" maxlength="4" class="m-1" style="width:100%" value="${userInfo.users_bdate}" name="users_bdate"> 
 					
 				</div>
 			</div>

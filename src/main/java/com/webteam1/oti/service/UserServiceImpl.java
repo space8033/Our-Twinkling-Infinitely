@@ -69,6 +69,7 @@ public class UserServiceImpl implements UserService{
 		PasswordEncoder passwordEncoder = PasswordEncoderFactories.createDelegatingPasswordEncoder();
 		if(passwordEncoder.matches(user.getUsers_password(), dbUser.getUsers_password())) {
 			if(dbUser.getUsers_type().equals("ENABLED")) {
+				userDao.updateLogindate(user.getUsers_id());
 				return LoginResult.SUCCESS;
 			} else {
 				return LoginResult.FAIL_ENABLED;
@@ -104,6 +105,7 @@ public class UserServiceImpl implements UserService{
 	public void modify(ModifyDto user) {
 		PasswordEncoder passwordEncoder = PasswordEncoderFactories.createDelegatingPasswordEncoder();
 		user.setUsers_password(passwordEncoder.encode(user.getUsers_password()));
+		log.info(user.toString()+"수정할 유저의 정보");
 		userDao.update(user);	
 		
 	}
