@@ -14,11 +14,19 @@
 		)
 	</insert>
 	<!-- 쿠폰 삭제 -->
-	<delete id="delete" parameterType="Join">
+	<delete id="delete" parameterType="int">
 	
-		delete from users where users_id=#{users_id}
+		delete from coupon where coupon_no=#{coupon_no}
 		
 	</delete>
+	<!-- 만료된 쿠폰 가져오기 -->
+	<select id="getExpiredCoupons" resultType="Coupon" parameterType="String">
+
+		select *
+   		from coupon
+    	where TO_CHAR(TO_DATE(coupon_expiredDate, 'yyyy-mm-dd'), 'yyyy-mm-dd') = #{nowDate}
+
+	</select>
 	<!-- 
 	<update id="update" parameterType="Address">
 		update address set address_receiver=#{address_receiver}, address_roadaddress=#{address_roadAddress}, address_jibunaddress=#{address_jibunAddress}, address_extraaddress=#{address_extraAddress},

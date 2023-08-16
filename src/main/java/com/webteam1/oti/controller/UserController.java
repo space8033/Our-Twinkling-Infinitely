@@ -155,6 +155,7 @@ public class UserController {
 		Agreement userAgreement = agreementService.getByUsersId(loginUser.getUsers_id());
 		log.info(userAgreement+"userAgreement");
 		model.addAttribute("agreement", userAgreement);
+		log.info(loginUserData.getUsers_bdate()+"=내생일은?");
 		return "modify/modify";
 	}
 	

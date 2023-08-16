@@ -192,10 +192,17 @@
 					<span style="font-size: 11px;">생년월일</span>
 					
 				</div>
-				<div class="d-flex pb-3">
-					<input type="date" id="year" maxlength="4" class="m-1" style="width:100%" value="${userInfo.users_bdate}" name="users_bdate"> 
-					
-				</div>
+				<c:if test="${userInfo.users_bdate == null}">
+					<div class="d-flex pb-3">
+						<input type="date" id="year" maxlength="4" class="m-1" style="width:100%" name="users_bdate"> 
+					</div>
+				</c:if>
+				<c:if test="${userInfo.users_bdate !=null}">
+					<div class="d-flex pb-3">
+						<input type="date" id="year" maxlength="4" class="m-1" style="width:100%" value="${userInfo.users_bdate}" name="users_bdate" readonly="readonly"> 
+					</div>
+				</c:if>
+				
 			</div>
 			<div class="d-flex container py-4" style="border-top: 1px solid #e5e5e5">
 				<div style="width:30%"></div>
