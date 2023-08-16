@@ -13,6 +13,9 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 //github.com/space8033/Our-Twinkling-Infinitely.git
 
@@ -81,6 +84,7 @@ public class ProductController {
 		   session.setAttribute("productNum", productNum);
 		   model.addAttribute("productNum", productNum);
 		   model.addAttribute("pageNo2", pageNo2);
+		   
 		   //----------리뷰 페이징 및 리뷰 리스트 ----------------------------------------------------
 		   if(pageNo2 == null) {
 			   //세션에 저장되어 있는지 확인
@@ -107,6 +111,36 @@ public class ProductController {
 		   model.addAttribute("pager", pager);
 		   
 		   return "detail/detailView";
+	}
+	
+	@GetMapping("searchResult")
+	public String search(String pageNo4, Model model, HttpSession session, @RequestParam("search") String search) {
+		log.info("search값: " + search);
+		Map<String, Object> map = new HashMap<>();
+	    map.put("search", search);
+	    
+		if(pageNo4 == null) {
+		   //세션에 저장되어 있는지 확인
+		   pageNo4 = (String) session.getAttribute("pageNo4");
+		   //저장되어있지 않다면 "1"로 초기화
+		   if(pageNo4 == null) {
+			   pageNo4 = "1";
+		   }
+	   }
+	   //문자열을 정수로 변환
+	   int intPageNo = Integer.parseInt(pageNo4);
+	   //세션에 pageNo를 저장
+	   session.setAttribute("pageNo4", String.valueOf(pageNo4));
+	   
+	   int totalRows = productService.countResult(map);
+	   Pager pager = new Pager(12, 5, totalRows, intPageNo);
+	   
+	   map.put("startRowNo", pager.getStartRowNo());
+	   map.put("endRowNo", pager.getEndRowNo());
+	   
+	   
+	   
+	   return "search/search";
 	}
 	
 }

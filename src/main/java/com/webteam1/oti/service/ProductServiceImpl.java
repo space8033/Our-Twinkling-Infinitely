@@ -1,6 +1,7 @@
 package com.webteam1.oti.service;
 
 import java.util.List;
+import java.util.Map;
 
 import javax.annotation.Resource;
 
@@ -52,6 +53,16 @@ public class ProductServiceImpl implements ProductService{
 	public List<ProductOption> getOptions(int product_no) {
 		List<ProductOption> optionList = productDao.getPOption(product_no);
 		return optionList;
+	}
+
+	@Override
+	public List<Map<String, Object>> search(Map<String, Object> map) {
+		return productDao.search(map);
+	}
+
+	@Override
+	public int countResult(Map<String, Object> map) {
+		return productDao.countResult(map);
 	}
 	
 }
