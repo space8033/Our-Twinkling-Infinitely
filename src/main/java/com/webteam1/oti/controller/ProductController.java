@@ -12,6 +12,7 @@ import javax.servlet.http.HttpSession;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -114,8 +115,7 @@ public class ProductController {
 	}
 	
 	@GetMapping("searchResult")
-	public String search(String pageNo4, Model model, HttpSession session, @RequestParam("search") String search) {
-		log.info("search값: " + search);
+	public String search(String pageNo4, Model model, HttpSession session, String search) {
 		Map<String, Object> map = new HashMap<>();
 	    map.put("search", search);
 	    
@@ -138,7 +138,17 @@ public class ProductController {
 	   map.put("startRowNo", pager.getStartRowNo());
 	   map.put("endRowNo", pager.getEndRowNo());
 	   
-	   
+	   List<Product> list = productService.search(map);
+	   for(Product product: list) {
+		   if(product.getProduct_imgFile() != null) {
+			   //0과 1로 구성된 바이너리 데이터를 base64 문자열로 변환 
+			   String base64Img = Base64.getEncoder().encodeToString(product.getProduct_imgFile());
+			   product.setProduct_img(base64Img);
+		   }
+	   }
+	   model.addAttribute("pager", pager);
+	   model.addAttribute("products", list);
+	   model.addAttribute("search", search);
 	   
 	   return "search/search";
 	}

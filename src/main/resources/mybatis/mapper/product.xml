@@ -57,10 +57,21 @@
     	where product_product_no=#{product_no}
     </select>
     
-    <select id="search" parameterType="map" resultType="map">
-    	select product_no, product_name
-    	from product
-    	where product_name like '%' || #{search} || '%'
+    <select id="search" parameterType="map" resultType="product">
+    	<![CDATA[
+	       select rnum,  product_no, product_name, product_price, product_imgFile, product_img
+			 from (
+			    select rownum as rnum,  product_no, product_name, product_price, product_imgFile, product_img
+			    from(
+			        select  product_no, product_name, product_price, product_imgFile, product_img
+			        from product
+			        where product_name like '%' || #{search} || '%'
+			        order by product_no
+			    )
+			    where rownum <= #{endRowNo}
+			 )
+			 where rnum >= #{startRowNo}
+		]]>
     </select>
     
     <select id="countResult" parameterType="map" resultType="int">

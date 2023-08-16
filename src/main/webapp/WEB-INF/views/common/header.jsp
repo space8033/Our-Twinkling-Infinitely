@@ -50,10 +50,8 @@
 		   		</div>
 			  	<div class="topnav container">
 				  <div class="search-container">
-				  	<form action="searchResult">
-				      <input type="text" placeholder="Search.." name="search" id="search">
-				      <button><i class="fa fa-search"></i></button>
-				  	</form>
+				      <input type="text" placeholder="Search.." name="search" id="search" onkeyup="if(window.event.keyCode==13){searchByEnter()}">
+				      <button><i class="fa fa-search" id="idSearch"></i></button>
 				  </div>
 				</div>
 		   		<div class="menu">		   		
