@@ -47,7 +47,7 @@
 	<!-- login 날짜 기록 -->
 	<update id="updateLogindate" parameterType="String">
 		  
-	   update users set user_logindate=to_char(sysdate,'yyyy.mm.dd hh24:mi:ss')
+	   update users set users_logindate=to_char(sysdate,'yyyy.mm.dd hh24:mi:ss')
 	   where users_id=#{users_id}
 	  
     </update>
