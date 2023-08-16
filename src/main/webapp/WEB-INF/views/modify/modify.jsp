@@ -135,15 +135,15 @@
 			<br>
 			<div class="container d-flex pt-4" style="border-top: 1px solid #e5e5e5">
 				<div class="d-flex pt-2" style="width: 15%">
-					<span style="font-size: 11px;">SMS 수신여부</span>
+					<span style="font-size: 11px;">개인정보 수집 동의여부</span>
 					<img src="https://img.echosting.cafe24.com/skin/base/common/ico_required.gif" width="7" height="7">
 				</div>
 				<div>
 					<div class="d-flex mt-1">
-						<input class="mx-2 mt-1" type="radio" name="receiveSms"> 수신함 
-						<input class="mx-2 mt-1" type="radio" name="receiveSms"> 수신안함
+						<input class="mx-2 mt-1" id="infoY" type="radio" name="agreement_info" value="${agreement.agreement_info}"> 동의함 
+						<input class="mx-2 mt-1" id="infoN" type="radio" name="agreement_info" value="false"> 동의안함
 					</div>
-					<div style="font-size: 11px">쇼핑몰에서 제공하는 유익한 이벤트 소식을 SMS로 받으실 수 있습니다.</div> 				
+					<div style="font-size: 11px">마케팅 목적의 개인정보 수집 및 이용에 동의합니다.</div> 				
 				</div>
 			</div>
 			<br>
@@ -174,13 +174,13 @@
 			<br>
 			<div class="container d-flex pt-4" style="border-top: 1px solid #e5e5e5">
 				<div class="d-flex pt-2" style="width: 15%">
-					<span style="font-size: 11px;">이메일 수신여부</span>
+					<span style="font-size: 11px;">sns,sms 수신여부</span>
 					<img src="https://img.echosting.cafe24.com/skin/base/common/ico_required.gif" width="7" height="7">
 				</div>
 				<div>
 					<div class="d-flex mt-1">
-						<input class="mx-2 mt-1" type="radio" name="receiveEmail"> 수신함 
-						<input class="mx-2 mt-1" type="radio" name="receiveEmail"> 수신안함
+						<input class="mx-2 mt-1" id="snsY" type="radio" name="agreement_sns" value="${agreement.agreement_sns}"> 수신함 
+						<input class="mx-2 mt-1" id="snsN" type="radio" name="agreement_sns" value="false"> 수신안함
 					</div>
 					<div style="font-size: 11px">쇼핑몰에서 제공하는 유익한 이벤트 소식을 SMS로 받으실 수 있습니다.</div> 				
 				</div>

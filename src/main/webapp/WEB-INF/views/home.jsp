@@ -23,7 +23,6 @@
 			  <div class="numbertext">3 / 3</div>
 			   <img src="${pageContext.request.contextPath}/resources/yuimg/메인슬라이드3.png" style="width:100%">
 			</div>
-			
 		</div>
 		<br>
 		<div style="text-align:center">
@@ -90,9 +89,9 @@
 		    	<p class="s-content">작은 빛 하나로 반짝이는 순간을 영원히 간직해보세요!</p>
 		    	<p class="s-content">오티아이는 아득함과 빛을 모티브로 일상의 색체를 바꿔줄 수 있는 소품들을 여러분에게 제안합니다.</p>
 		    	<div class="d-flex justify-content-center m-4">
-			    	<img src="${pageContext.request.contextPath}/resources/yuimg/메인스토리내용1.jpg" width="30%"/>
-			    	<img src="${pageContext.request.contextPath}/resources/yuimg/메인스토리내용2.jpg" width="30%"/>	    	
-			    	<img src="${pageContext.request.contextPath}/resources/yuimg/메인스토리내용3.jpg" width="30%"/>	    	
+			    	<img class="storyImg" src="${pageContext.request.contextPath}/resources/yuimg/메인스토리내용1.jpg"/>
+			    	<img class="storyImg" src="${pageContext.request.contextPath}/resources/yuimg/메인스토리내용2.jpg"/>	    	
+			    	<img class="storyImg" src="${pageContext.request.contextPath}/resources/yuimg/메인스토리내용3.jpg"/>	    	
 		    	</div>
 		    </div>
 		  </div>

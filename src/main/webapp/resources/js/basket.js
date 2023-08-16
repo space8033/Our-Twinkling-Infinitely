@@ -5,6 +5,24 @@ function init() {
    jsonProduct();
    $("#btn_delete").hide();
 }
+let mainImage = document.getElementById('main-image');
+let hoverImages = document.querySelectorAll('.hover-image');
+
+//detailView에서 필수 옵션을 선택 유효성 검사
+$(document).ready(function() {
+	changeImg();//이미지 호버 효과
+	$("#cartAlert").hide();
+	$("#addCart").submit(function(event) {
+		var selectedOption = $("#option1").val(); // 선택된 옵션 값 가져오기
+		if (selectedOption === "none") { // 옵션이 선택되지 않았을 경우
+			event.preventDefault(); // 폼 제출 막기
+			$("#cartAlert").show(); // 경고 메시지 표시
+			$(".close").click(function(){
+				$("#cartAlert").alert("close");
+		    });
+		}
+	});
+});
 //전체선택 체크 및 전체 상품 가격 계산
 function checkAll() {
 	if($(event.target).is(":checked") == true){
@@ -211,6 +229,7 @@ function jsonProduct() {
 			 $("#cboxAll_top").hide();
 			 $("#lastselector").hide();
 			 $(".total_order_price").hide();
+			 $(".btns").hide();
 		 }
          data.forEach((item, index) => {
         	priceArr.push(item.price);
@@ -224,13 +243,13 @@ function jsonProduct() {
       	    html += '		<input type="hidden" name="cart_no" value="'+ item.cart_no +'"/>';
       		html += '	</td>';
       		html += '	<td class="p_img">';
-      		html += '		<a href="#">';
+      		html += '		<a href="detailProduct?product_no=' + item.product_no + '">';
       		html += '			 <img src="data:MIME;base64, '+ item.product_imgFile +'" width="78"/>';
       		html += '		</a>';
       		html += '	</td>';
       		html += '	<td class="product_contents">';
       		html += '		<div class="c_name">';
-      		html += '			<a href="detailProduct?product_no="' + Number(item.product_no) + '>' + item.product_name + '(' + item.productOption_type + ')';		
+      		html += '			<a href="detailProduct?product_no=' + item.product_no + '">' + item.product_name + '(' + item.productOption_type + ')';		
       	    html += '			</a>';		
       		html += '		</div>';
       		html += '		<div class="c_date&c_option d-flex">';
@@ -275,9 +294,8 @@ function jsonProduct() {
       		html += '		</div>';
       		html += '	</td>';
       		html += '	<td class="discount">';
-      		html += '   	<div style="padding-top:20px;"></div>';
+      		html += '   	<div style="padding-top:40px;"></div>';
       		html += '		<div id="toPr' + index + '" class="discounted_price">' +  totalProduct  +'원</div>';
-      		html += '		<img src="//image10.coupangcdn.com/image/badges/rocket/rocket_logo.png" class="delivery-badge-img " style="width: 56px;">';
       		html += '	</td>';
       		html += '	<td class="delivery_fee" style="padding-top: 50px; text-align: center;">무료</td>';
         	html += '</tr>';  

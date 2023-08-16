@@ -145,14 +145,16 @@ public class UserController {
 		LoginDto loginUser = (LoginDto) session.getAttribute("loginIng");
 		ModifyDto loginUserData = userService.getModifyByUsersId(loginUser.getUsers_id());
 		model.addAttribute("userInfo", loginUserData);
-		
+		Agreement userAgreement = agreementService.getByUsersId(loginUser.getUsers_id());
+		log.info(userAgreement+"userAgreement");
+		model.addAttribute("agreement", userAgreement);
 		return "modify/modify";
 	}
 	
 	//개인정보 수정 요청
 	@Login
 	@PostMapping("/modify")
-	public String modify(ModifyDto user, Model model, HttpSession session) {
+	public String modify(ModifyDto user, Agreement agreement, Model model, HttpSession session) {
 		//로그인한 유저의 정보를 불러오기
 		LoginDto loginUser = (LoginDto) session.getAttribute("loginIng");
 		JoinDto dbUserE = (JoinDto) userService.getUsersByUserEmail(user.getUsers_email());
@@ -184,6 +186,9 @@ public class UserController {
 				    	if(dbUserPhone.equals("없음")) {
 				    		//이메일 비어있고 폰도 비어있는 경우
 				    		userService.modify(user);
+				    		log.info(agreement.isAgreement_info()+"동의 인포");
+							log.info(agreement.isAgreement_sns()+"동의sns");
+				    		agreementService.updateAgreement(user, agreement);
 							log.info("이메일 비어있고 폰도 비어있는 경우: 회원 정보 수정 성공");
 				    		model.addAttribute("msg", "회원 정보가 수정되었습니다.");
 				    		session.removeAttribute("loginIng");
@@ -198,6 +203,9 @@ public class UserController {
 				   } else {
 					   //이메일 비어있고 폰의 입력 결과가 같은 경우 -> 성공
 					    userService.modify(user);
+					    log.info(agreement.isAgreement_info()+"동의 인포");
+						log.info(agreement.isAgreement_sns()+"동의sns");
+			    		agreementService.updateAgreement(user, agreement);
 						log.info("이메일은 비어있는데 핸드폰 번호가 기존과 동일 : 회원 정보 수정 성공");
 						model.addAttribute("msg", "회원 정보가 수정되었습니다.");
 			    		session.removeAttribute("loginIng");
@@ -219,6 +227,9 @@ public class UserController {
 			    	if(dbUserPhone.equals("없음")) {
 			    		//폰번호가 비어있는 경우
 			    		userService.modify(user);
+			    		log.info(agreement.isAgreement_info()+"동의 인포");
+						log.info(agreement.isAgreement_sns()+"동의sns");
+			    		agreementService.updateAgreement(user, agreement);
 						log.info("이메일은 기존과 같고 입력한 휴대폰 번호가 db에 없는 경우: 회원 정보 수정 성공");
 						model.addAttribute("msg", "회원 정보가 수정되었습니다.");
 			    		session.removeAttribute("loginIng");
@@ -233,6 +244,9 @@ public class UserController {
 			} else {
 				//폰의 입력 결과가 같은 경우
 				userService.modify(user);
+				log.info(agreement.isAgreement_info()+"동의 인포");
+				log.info(agreement.isAgreement_sns()+"동의sns");
+	    		agreementService.updateAgreement(user, agreement);
 				log.info("이메일이 같고 폰 번호도 기존과 같은 경우: 회원 정보 수정 성공");
 				model.addAttribute("msg", "회원 정보가 수정되었습니다.");
 	    		session.removeAttribute("loginIng");

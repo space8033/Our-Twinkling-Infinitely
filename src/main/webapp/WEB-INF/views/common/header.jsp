@@ -35,25 +35,24 @@
 		   	<div class="logo">		   	
 			   <p style="width: 200px;">Our-Twinkling-Infinitely</p>	   
 			   <c:if test = "${loginIng != null}">
-			  	 <span>현재 ${loginIng.users_id} 아이디로 로그인 중입니다.</span>
+			  	 <div id="loginIng" class="d-flex justify-content-end">현재 ${loginIng.users_id} 아이디로 로그인 중입니다.</div>
 			   </c:if>
 			   <c:if test = "${loginIng == null}">
-			  	 <span></span>
 			   </c:if>
 		   	</div>
 		   </div>
-		   <div class="menuBar" class="d-flex">
-		   		<div id="search-icon" style="width: 40%">		   		
+
+		   	<div class="menuBar" class="d-flex">
+		   		<div id="search-icon" class="d-flex justify-content-end">		   		
 				    <span class="nav-item">
 				       <a href="#"><i class="fa fa-search mt-2" onclick="showSearchBar()"></i></a>
 				    </span>
 		   		</div>
 			  	<div class="topnav container">
-					<div class="search-container">
-					    <input type="text" placeholder="Search.." name="search" id="autoComplete">
-					    <button><i class="fa fa-search"></i></button>
-					</div>
-					<button id="hideSearchBar" class="btn btn-outline-light text-dark">X</button>
+				  <div class="search-container">
+				      <input type="text" placeholder="Search.." name="search">
+				      <button><i class="fa fa-search"></i></button>
+				  </div>
 				</div>
 		   		<div class="menu">		   		
 			   		<ul class="nav justify-content-end">

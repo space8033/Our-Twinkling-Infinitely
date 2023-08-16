@@ -8,7 +8,8 @@ import com.webteam1.oti.dto.user.Agreement;
 @Mapper
 public interface AgreementDao {
 	//Agreement
-	public int insert(Agreement agreement_no);
-	
+	public int insert(Agreement agreement);
+	public int update(Agreement agreement);
+	public Agreement selectByUserId(String users_id);
 	
 }

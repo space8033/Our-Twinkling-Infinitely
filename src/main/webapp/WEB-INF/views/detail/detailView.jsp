@@ -7,14 +7,14 @@
 					<c:forEach var="image" items="${images}">				
 						<c:if test="${image.image_fileName != null}">
 							<div class="m-2">
-								<img src="data:MIME;base64, ${image.image_fileName}" width="100"/>
+								<img class="hover-image" src="data:MIME;base64, ${image.image_fileName}" width="100"/>
 							</div>			
 						</c:if>
 					</c:forEach>
 				</div>
 				<c:if test="${product.product_img !=null}">
 					<div class="detail1-image m-4">
-						<img src="data:MIME;base64, ${product.product_img}" width="500px"/> 
+						<img id="main-image" src="data:MIME;base64, ${product.product_img}" width="500px"/> 
 						<!-- submit: product_img (해당 상품 base64로 인코딩 된 이미지) -->
 						<input type="hidden" name="product_img" value="${product.product_img}"/> 
 					</div>
@@ -32,7 +32,7 @@
 						</h2>
 						<div class="custom-select-box">					
 							옵션
-							<select class="option custom-select m-3" name="cart_optionContent" onclick="myOption1()">
+							<select id="option1" class="option custom-select m-3" name="cart_optionContent" onclick="myOption1()">
 								<option value="none">---[필수]옵션을 선택해 주세요---</option>
 								<c:forEach var="productOption" items="${options}">
 									<option id="p-option" value="${productOption}">${productOption}</option>
@@ -42,7 +42,7 @@
 						<div class="custom-qty">
 							수량
 							<!-- submit: cart_qty(상품 수량) -->
-							<select class="qty custom-select  m-3" name="cart_qty" onclick="myOption2()">
+							<select id="option2" class="qty custom-select  m-3" name="cart_qty" onclick="myOption2()">
 								<option value="none">---[필수]수량을 선택해 주세요---</option>
 								<c:forEach begin="1" end="10" var="i">
 									<option id="p-qty" value="${i}">${i}</option>
@@ -83,6 +83,11 @@
 					</div>
 				</div>
 			</form>
+			<div class="alert alert-info alert-dismissible" id="cartAlert">
+			    <button type="button" class="close">&times;</button>
+			    <strong>상품을 장바구니에 담지 못했습니다!</strong> 
+			     <div>해당 상품의 필수 옵션을 선택해 주세요.</div>
+		    </div>
 			<!-- 상품 메뉴 탭 -->
 			<ul id="menu-tab" class="nav nav-tabs nav-justified m-3">
 			    <li class="t-menu nav-item">

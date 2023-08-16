@@ -15,9 +15,8 @@
       <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.4/dist/jquery.min.js"></script>
       <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
       <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>
+      <!-- loading-overlay를 사용하기 위한 라이브러리 -->
       <script src="https://cdn.jsdelivr.net/npm/gasparesganga-jquery-loading-overlay@2.1.7/dist/loadingoverlay.min.js"></script>
-      <!-- jquery.loadingOverlay.js -->
-	  <script src="path/to/jquery.loadingOverlay.js"></script>
       
       <script src="${pageContext.request.contextPath}/resources/js/basket.js"></script>
       <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/cart.css"/>
@@ -125,6 +124,7 @@
 				    		<div class="d-flex">
 					    		<div class="cbc_details" style="width: 75%">
 						    		<div>모든 상품 결제 시 5%  추가적립</div>
+						    		<div>(oti는 전상품 <span class="text-danger">배송비 포함</span> 상품 입니다)</div>
 					    		</div>
 				    		</div>
   				    	  </div>
@@ -142,7 +142,7 @@
   				    	  	<span class="top_text">원</span>
   				    	  </div>
    				    	</article>
-   				    	<div class="btns d-flex justify-content-center">
+   				    	<div class="btns">
    				    		<a href="${pageContext.request.contextPath}">   				    		
    				    			<button class="btn1 btn btn-outline-primary m-1">계속 쇼핑하기</button>
    				    		</a>
