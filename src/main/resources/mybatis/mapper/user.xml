@@ -76,11 +76,21 @@
 		
 	</delete>
    
+   <!--  오늘 날짜가 생일인 user의 bdate조회 -->
 	<select id="getUsersWithBirthday" resultType="String" parameterType="String">
 
 		select users_id
    		from users 
     	where TO_CHAR(TO_DATE(users_bdate, 'yyyy-mm-dd'), 'MM-DD') = #{currentMonthDay}
+
+	</select>
+	
+	<!--  오늘 날짜가 마지막 로그인일로부터 3개월 후인 유저 조회 -->
+	<select id="getLastLoginDate" resultType="String" parameterType="String">
+
+		select users_id
+   		from users 
+    	where TO_CHAR(TO_DATE(users_logindate, 'yyyy.mm.dd hh24:mi:ss'), 'yyyy-mm-dd') = #{threeMonthsAgoDate}
 
 	</select>
 	

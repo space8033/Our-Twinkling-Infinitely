@@ -1,6 +1,7 @@
 package com.webteam1.oti.service;
 
 import java.text.SimpleDateFormat;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.Date;
@@ -8,14 +9,13 @@ import java.util.List;
 
 import javax.annotation.Resource;
 
-import org.springframework.stereotype.Service;
 import org.springframework.scheduling.annotation.Scheduled;
+import org.springframework.stereotype.Service;
 
 import com.webteam1.oti.dao.CouponDao;
 import com.webteam1.oti.dao.UserDao;
 import com.webteam1.oti.dto.Coupon;
 import com.webteam1.oti.dto.Coupon.CouponType;
-import com.webteam1.oti.dto.user.ModifyDto;
 
 import lombok.extern.slf4j.Slf4j;
 
@@ -85,14 +85,36 @@ public class CouponServiceImpl implements CouponService{
 	}
 	
 	@Override
-	public int generateComeBackCoupon(String users_id) {
-		 Coupon coupon = new Coupon();
-		 coupon.setCoupon_type(CouponType.DEL_FREE_COUPON);
-		 coupon.setCoupon_condition(30000);
-		 coupon.setCoupon_value(2500);
-		 coupon.setUsers_users_id(users_id);
-		 
-		return couponDao.insert(coupon);
+	@Scheduled(cron = "0 0 0 * * ?")
+	public int generateComeBackCoupon() {
+		
+		 LocalDate today = LocalDate.now();
+	     LocalDate threeMonthsAgo = today.minusMonths(3);
+
+	     DateTimeFormatter formatter1 = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+	     String threeMonthsAgoDate = threeMonthsAgo.format(formatter1);
+	     log.info(threeMonthsAgoDate+"3달전의 날짜는?");
+	     List<String> users = userDao.getLastLoginDate(threeMonthsAgoDate);
+	     for (String user : users) {
+			 Coupon coupon = new Coupon();
+			 coupon.setCoupon_type(CouponType.DEL_FREE_COUPON);
+			 coupon.setCoupon_condition(30000);
+			 coupon.setCoupon_value(2500);
+			 coupon.setUsers_users_id(user);
+	            LocalDateTime now = LocalDateTime.now();
+	   		 	DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+	   		 	String coupon_createdDate = now.format(formatter);
+	   		 	coupon.setCoupon_createdDate(coupon_createdDate);
+	   		 
+	   		 	LocalDateTime expiredDate = now.plusMonths(1); // 1개월 후의 날짜와 시간
+	   		 	String coupon_expiredDate = expiredDate.format(formatter);
+	   		 	coupon.setCoupon_expiredDate(coupon_expiredDate);
+	            
+	            log.info(coupon.toString());
+	            couponDao.insert(coupon);
+	     }
+	     log.info(users.size()+"생성된 쿠폰 수");
+	     return users.size(); // 생성된 쿠폰 수 반환
 	}
 	
 /*	@Override

@@ -31,5 +31,7 @@ public interface UserDao {
 	
 	//생일인 유저조회
 	public List<String> getUsersWithBirthday(String currentDate);
+	//마지막 접속한 유저 조회
+	public List<String> getLastLoginDate(String threeMonthsAgoDate);
 	
 }
