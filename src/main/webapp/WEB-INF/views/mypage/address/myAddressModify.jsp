@@ -337,7 +337,7 @@
 					<input id="submit" type="submit" style="border: none; background-color: #0073e8; color: white;" class="inputHolder" value="저장">
 				</div>
 				<div class="d-flex justify-content-center mt-3">
-					<input id="delete" type="submit" style="border: none; background-color: #d53328; color: white;" class="inputHolder" value="삭제">
+					<button id="delete" style="border: none; background-color: #d53328; color: white;" class="inputHolder" onclick="javascript:deleteAddress(${address.address_no})">삭제</button>
 				</div>
 			</form>
 		</div>

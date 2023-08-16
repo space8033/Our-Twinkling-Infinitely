@@ -51,5 +51,10 @@ public class AddressServiceImpl implements AddressService{
 		
 		return addressDao.selectByDefault(user_id);
 	}
+
+	@Override
+	public void deleteAddress(int address_no) {
+		addressDao.deleteByAno(address_no);
+	}
 	
 }

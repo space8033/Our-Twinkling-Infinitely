@@ -229,3 +229,20 @@ function modifyAddress() {
 		}
 	});
 }
+
+function deleteAddress(address_no) {
+	
+	$.ajax({
+		url: "deleteAddress",
+		type: "post",
+		data: {
+			"address_no" : address_no
+		},
+		success: function(data) {
+			$("#addressList").html(data);
+		},
+		error: function(error) {
+			console.log(error);
+		}
+	});
+}

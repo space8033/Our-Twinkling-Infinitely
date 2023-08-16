@@ -115,9 +115,10 @@ public class AddressController {
 		return "redirect:/address";
 	}
 	//주소지 삭제하기
-	@PostMapping("/delete")
+	@PostMapping("/deleteAddress")
 	public String delete(int address_no) {
+		addressService.deleteAddress(address_no);
 		
-		return "redirect:/";
+		return "mypage/address/myAddress";
 	}
 }

@@ -15,4 +15,5 @@ public interface AddressDao {
 	public int countByUserId(String user_id);
 	public Address selectByAno(int address_no);
 	public Address selectByDefault(String user_id);
+	public int deleteByAno(int address_no);
 }

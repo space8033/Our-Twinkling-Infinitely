@@ -12,4 +12,5 @@ public interface AddressService {
 	public int countByUserId(String userId);
 	public Address getByAddressNo(int address_no);
 	public Address getDefault(String user_id);
+	public void deleteAddress(int address_no);
 }
