@@ -2,6 +2,7 @@ package com.webteam1.oti.service;
 
 
 import java.util.List;
+import java.util.Map;
 
 import com.webteam1.oti.dto.Pager;
 import com.webteam1.oti.dto.Product;
@@ -15,4 +16,6 @@ public interface ProductService {
 	public int getTotalProductNum();
 	public List<String>getOptionList(int product_no);
 	public List<ProductOption>getOptions(int product_no);
+	public List<Product> search(Map<String, Object> map);
+	public int countResult(Map<String, Object> map);
 }

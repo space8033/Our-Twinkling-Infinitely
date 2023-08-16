@@ -41,6 +41,7 @@
 			   </c:if>
 		   	</div>
 		   </div>
+
 		   	<div class="menuBar" class="d-flex">
 		   		<div id="search-icon" class="d-flex justify-content-end">		   		
 				    <span class="nav-item">
@@ -49,8 +50,8 @@
 		   		</div>
 			  	<div class="topnav container">
 				  <div class="search-container">
-				      <input type="text" placeholder="Search.." name="search">
-				      <button><i class="fa fa-search"></i></button>
+				      <input type="text" placeholder="Search.." name="search" id="search" onkeyup="if(window.event.keyCode==13){searchByEnter()}">
+				      <button><i class="fa fa-search" id="idSearch"></i></button>
 				  </div>
 				</div>
 		   		<div class="menu">		   		
@@ -83,7 +84,8 @@
 					    </li>
 				  	</ul>
 		   		</div>
-	   		</div>
+   		  </div>
+   		  
    </body>
 </html>
    

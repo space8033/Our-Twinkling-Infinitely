@@ -1,5 +1,6 @@
 $(init)
 function init(){
+	$("#idSearch").click(showSearch);
 	showReview();
 	//header 검색바 숨기기
 	$(".topnav").hide();
@@ -30,6 +31,50 @@ function showSlides() {
 function showSearchBar(){
 	$(".topnav").toggle();
 	$("#search-icon").width();
+}
+
+//검색 기능
+function showSearch() {
+	$.ajax({
+		url: "searchResult",
+		method: "get",
+		data:{
+				"pageNo4": 1,
+				"search": $("#search").val()
+		},
+		success: function(data) {
+			var link = "searchResult?search=";
+			link += $("#search").val();
+			link += "&pageNo4=1";
+			
+			window.location.href=link;
+		},
+		error: function(error) {
+			console.log("아왜");
+		}
+	});
+}
+
+//엔터키로 검색하기
+function searchByEnter() {
+	$.ajax({
+		url: "searchResult",
+		method: "get",
+		data:{
+				"pageNo4": 1,
+				"search": $("#search").val()
+		},
+		success: function(data) {
+			var link = "searchResult?search=";
+			link += $("#search").val();
+			link += "&pageNo4=1";
+			
+			window.location.href=link;
+		},
+		error: function(error) {
+			console.log("아왜");
+		}
+	});
 }
 
 //detailView=======================================================================
