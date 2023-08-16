@@ -5,7 +5,8 @@ package com.webteam1.oti.service;
 public interface CouponService {
 	public int generateWelcomeCoupon(String users_id);
 	public int generateBirthdayCoupon();
-	public int generateComeBackCoupon(String users_id);
+	public int generateComeBackCoupon();
+	public void deleteExpiredCoupons();
 	
 /*	public void updateAddress(Address address);
 	public List<Address> getList(Map<String, Object> map);

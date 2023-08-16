@@ -64,6 +64,9 @@ $(document).ready(function(){
 
 });
 
+
+
+
 function unjoin() {
 	if(window.confirm("탈퇴하시겠습니까?")){
 		location.href="/our-twinkling-infinitely/unjoin";
