@@ -135,7 +135,7 @@
 					      <a class="nav-link" data-toggle="tab" href="#addressList">배송지 관리</a>
 					    </li>
 					    <li class="t-menu nav-item">
-					      <a class="nav-link" data-toggle="tab" href="#menuu2">리뷰 관리</a>
+					      <a class="nav-link" data-toggle="tab" href="#reviewList">리뷰 관리</a>
 					    </li>
 					    <li class="t-menu nav-item">
 					      <a class="nav-link" data-toggle="tab" href="#menuu3">교환/환불/취소 내역</a>
@@ -150,7 +150,7 @@
 						    <div id="addressList" class="container tab-pane fade" style="background-color: white"><br>
 						    
 						    </div>
-						    <div id="menuu2" class="container tab-pane fade" style="background-color: white"><br>
+						    <div id="reviewList" class="container tab-pane fade" style="background-color: white"><br>
 						    
 						    </div>
 						    <div id="menuu3" class="container tab-pane fade" style="background-color: white"><br>

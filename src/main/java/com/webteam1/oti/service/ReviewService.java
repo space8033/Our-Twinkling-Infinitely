@@ -12,4 +12,6 @@ public interface ReviewService {
 	public Review getReviewByRno(int review_no);
 	public void createReview(ReviewReceive review);
 	public int findByUserId(Map<String , Object> map);
+	public int countByUserId(String userId);
+	public List<Review> getReviewListByUser(Map<String, Object> map);
 }
