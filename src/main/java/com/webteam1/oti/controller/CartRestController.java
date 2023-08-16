@@ -1,7 +1,6 @@
 package com.webteam1.oti.controller;
 
 import java.util.ArrayList;
-import java.util.Base64;
 import java.util.List;
 
 import javax.annotation.Resource;
@@ -20,10 +19,13 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.util.WebUtils;
 
+import com.webteam1.oti.dto.OrderProduct;
 import com.webteam1.oti.dto.cart.Cart;
 import com.webteam1.oti.dto.cart.CartDto;
 import com.webteam1.oti.dto.user.LoginDto;
+import com.webteam1.oti.interceptor.Login;
 import com.webteam1.oti.service.CartService;
+import com.webteam1.oti.service.ProductService;
 
 import lombok.extern.slf4j.Slf4j;
 
@@ -34,6 +36,9 @@ import lombok.extern.slf4j.Slf4j;
 public class CartRestController {
 	@Resource
 	private CartService cartService;
+	@Resource
+	private ProductService productService;
+	
 	//비동기로 장바구니에 담은 상품 리스트 불러오기
 	@ResponseBody
 	@GetMapping("/addCart")
@@ -57,11 +62,13 @@ public class CartRestController {
 	    model.addAttribute("list", list);
 	    return list;
 	}
+	
 	@ResponseBody
 	@PostMapping("/cartDelete")
 	public void cartDelete(HttpSession session, HttpServletRequest request, HttpServletResponse response, @RequestParam int cart_no, Model model) throws Exception{
 		cartService.cartDelete(cart_no);
 	}
+	
 	@ResponseBody
 	@PostMapping("/qtyUpdate")
 	public void qtyUpdate(HttpSession session, HttpServletRequest request, HttpServletResponse response,Cart cart, @RequestParam int cart_no,  @RequestParam int cart_qty, Model model) throws Exception{
@@ -69,5 +76,5 @@ public class CartRestController {
 		cart.setCart_no(cart_no);
 		cartService.qtyUpdate(cart);
 	}
-
+	
 }

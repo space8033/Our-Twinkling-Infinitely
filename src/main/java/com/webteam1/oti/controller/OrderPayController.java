@@ -16,11 +16,14 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.webteam1.oti.dto.Address;
+import com.webteam1.oti.dto.OrderProduct;
 import com.webteam1.oti.dto.Pager;
+import com.webteam1.oti.dto.cart.CartDto;
 import com.webteam1.oti.dto.user.LoginDto;
 import com.webteam1.oti.dto.user.ModifyDto;
 import com.webteam1.oti.interceptor.Login;
 import com.webteam1.oti.service.AddressService;
+import com.webteam1.oti.service.CartService;
 import com.webteam1.oti.service.ProductService;
 import com.webteam1.oti.service.UserService;
 
@@ -37,6 +40,8 @@ public class OrderPayController {
 	private UserService userService;
 	@Resource
 	private AddressService addressService;
+	@Resource
+	private CartService cartService;
 	
 	//http://localhost:8080/our-twinkling-infinitely/ 요청하면 HomeController.index() 실행
 	//홈 페이지 불러오기
@@ -224,6 +229,35 @@ public class OrderPayController {
 		return "redirect:/";
 	}
 	
+	@Login
+	@GetMapping("/addOrderProduct")
+	public String goOrderPay() {
+		return "orderPay/orderPay";
+	}
+	
+	@Login
+	@PostMapping("/addOrderProduct")
+	public String addOrderProduct(@RequestParam(name="productOption_productOption_no", required=false) String[] selectedProductOptionNos,
+								  @RequestParam(name="orderProduct_qty", required=false) String[] selectedQtys,
+								  @RequestParam(name="productCheckBox", required=false)String[] productCheckBoxes,
+								  @RequestParam(name="cart_no", required=false)String[] cartNos,
+								  HttpSession session) {
+		LoginDto loginDto = (LoginDto) session.getAttribute("loginIng");
+		String userId = loginDto.getUsers_id();
+		
+		if(productCheckBoxes != null ) {			
+			for (int i = 0; i < selectedProductOptionNos.length; i++) {
+				OrderProduct orderProduct = new OrderProduct();
+				orderProduct.setOrderProduct_qty(Integer.parseInt(selectedQtys[i]));
+				orderProduct.setProductOption_productOption_no(Integer.parseInt(selectedProductOptionNos[i]));
+				orderProduct.setUsers_users_id(userId);
+				productService.addOrderProduct(orderProduct); 
+				cartService.cartDelete(Integer.parseInt(cartNos[i]));
+			}
+		}
+		
+	    return "orderPay/orderPay";
+	}
 	
 
 }

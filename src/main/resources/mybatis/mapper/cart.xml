@@ -73,7 +73,7 @@
 	</select>
 	
 	<!-- 장바구니삭제 -->
-	<delete id="cartDelete" parameterType="CartDto">
+	<delete id="cartDelete" parameterType="int">
 		delete from cart where cart_no = #{cart_no}
 	</delete>
 	
