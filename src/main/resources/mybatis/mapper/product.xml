@@ -56,4 +56,11 @@
     	from productOption
     	where product_product_no=#{product_no}
     </select>
+    
+    <select id="autoComplete" parameterType="map" resultType="map">
+    	select product_no, product_name
+    	from product
+    	where product_name like '%' || #{value} || '%'
+    </select>
+    
 </mapper>

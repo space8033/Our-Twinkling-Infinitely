@@ -42,18 +42,18 @@
 			   </c:if>
 		   	</div>
 		   </div>
-		   	<div class="menuBar" class="d-flex">
+		   <div class="menuBar" class="d-flex">
 		   		<div id="search-icon" style="width: 40%">		   		
 				    <span class="nav-item">
 				       <a href="#"><i class="fa fa-search mt-2" onclick="showSearchBar()"></i></a>
 				    </span>
 		   		</div>
 			  	<div class="topnav container">
-				  <div class="search-container">
-				      <input type="text" placeholder="Search.." name="search">
-				      <button><i class="fa fa-search"></i></button>
-				  </div>
-				<button id="hideSearchBar" class="btn btn-outline-light text-dark">X</button>
+					<div class="search-container">
+					    <input type="text" placeholder="Search.." name="search" id="autoComplete">
+					    <button><i class="fa fa-search"></i></button>
+					</div>
+					<button id="hideSearchBar" class="btn btn-outline-light text-dark">X</button>
 				</div>
 		   		<div class="menu">		   		
 			   		<ul class="nav justify-content-end">
@@ -85,7 +85,8 @@
 					    </li>
 				  	</ul>
 		   		</div>
-	   		</div>
+   		  </div>
+   		  
    </body>
 </html>
    

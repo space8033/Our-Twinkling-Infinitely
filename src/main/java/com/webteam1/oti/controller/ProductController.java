@@ -12,7 +12,10 @@ import javax.servlet.http.HttpSession;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 //github.com/space8033/Our-Twinkling-Infinitely.git
 
@@ -81,6 +84,7 @@ public class ProductController {
 		   session.setAttribute("productNum", productNum);
 		   model.addAttribute("productNum", productNum);
 		   model.addAttribute("pageNo2", pageNo2);
+		   
 		   //----------리뷰 페이징 및 리뷰 리스트 ----------------------------------------------------
 		   if(pageNo2 == null) {
 			   //세션에 저장되어 있는지 확인
