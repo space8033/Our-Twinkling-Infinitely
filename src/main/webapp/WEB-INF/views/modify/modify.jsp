@@ -172,7 +172,7 @@
 				</div>
 			</div>	
 			<br>
-			<div class="container d-flex pt-4" style="border-top: 1px solid #e5e5e5">
+			<div class="container d-flex pt-4 mb-2" style="border-top: 1px solid #e5e5e5">
 				<div class="d-flex pt-2" style="width: 15%">
 					<span style="font-size: 11px;">sns,sms 수신여부</span>
 					<img src="https://img.echosting.cafe24.com/skin/base/common/ico_required.gif" width="7" height="7">
@@ -186,7 +186,18 @@
 				</div>
 			</div>		
 			<br>
-			<div class="d-flex container pt-4" style="border-top: 1px solid #e5e5e5">
+			<span>추가 정보</span>
+			<div class="container d-flex mt-2 pt-4 pb-2" style="border-top: 1px solid #e5e5e5">
+				<div class="d-flex pt-2" style="width: 15%">
+					<span style="font-size: 11px;">생년월일</span>
+					
+				</div>
+				<div class="d-flex pb-3">
+					<input type="date" id="year" maxlength="4" class="m-1" style="width:100%" value="" name=""> <span style="padding-top: 5px;">
+					
+				</div>
+			</div>
+			<div class="d-flex container py-4" style="border-top: 1px solid #e5e5e5">
 				<div style="width:30%"></div>
 				<button type="submit" class="mx-2 p-2" style="width:15%">회원정보수정</button>
 				<button class="mx-2 p-2" style="width:15%">취소</button>
@@ -195,6 +206,5 @@
 			</div>
 		</form>
 		
-		<hr>
 		<div>
 <%@ include file="/WEB-INF/views/common/footer.jsp" %> 

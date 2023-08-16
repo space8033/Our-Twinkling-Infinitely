@@ -47,7 +47,7 @@
 	<!-- ModifyDto로부터 아이디 같은 것을 검색해서 회원정보 수정하기 -->
 	<update id="update" parameterType="Modify">
 	  
-	   update users set users_password=#{users_password}, users_email=#{users_email}, users_phone=#{users_phone}, users_name=#{users_name}
+	   update users set users_password=#{users_password}, users_email=#{users_email}, users_phone=#{users_phone}, users_name=#{users_name}, users_bdate=#{users_bdate}
 	   where users_id=#{users_id}
 	  
     </update>

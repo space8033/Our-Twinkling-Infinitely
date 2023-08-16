@@ -18,6 +18,7 @@
 		<typeAlias alias="Address" type="com.webteam1.oti.dto.Address"/>
 		<typeAlias alias="Review" type="com.webteam1.oti.dto.review.Review"/>
 		<typeAlias alias="ReviewReceive" type="com.webteam1.oti.dto.review.ReviewReceive"/>
+		<typeAlias alias="Coupon" type="com.webteam1.oti.dto.Coupon"/>
 	</typeAliases>
 </configuration>
 

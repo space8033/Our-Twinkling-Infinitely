@@ -25,6 +25,7 @@ import com.webteam1.oti.dto.user.ModifyDto;
 import com.webteam1.oti.interceptor.Login;
 import com.webteam1.oti.service.AgreementService;
 import com.webteam1.oti.service.CartService;
+import com.webteam1.oti.service.CouponService;
 import com.webteam1.oti.service.UserService;
 import com.webteam1.oti.service.UserService.JoinResult;
 import com.webteam1.oti.service.UserService.LoginResult;
@@ -43,6 +44,8 @@ public class UserController {
 	private CartService cartService;
 	@Resource
 	private AgreementService agreementService;
+	@Resource
+	private CouponService couponService;
 	
 	//회원가입 폼 불러오기
 	@GetMapping("/joinForm")
@@ -74,6 +77,8 @@ public class UserController {
 			log.info(agreement.isAgreement_required()+"동의 이용약관");
 			log.info(agreement.isAgreement_sns()+"동의sns");
 			agreementService.insertAgreement(users, agreement);
+			couponService.generateWelcomeCoupon(users.getUsers_id());
+			
 			return "redirect:/loginForm";
 		}
 	}
