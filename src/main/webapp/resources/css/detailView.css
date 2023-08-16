@@ -44,3 +44,31 @@
 	margin: 10px;
 	padding-left: 20px;
 }
+.active {
+    background-color: white;
+}
+/* 구매정보 */
+
+.cont_inner {
+    border: 1px solid #eaeaea;
+    padding: 40px;
+    font-size: 13px;
+}
+.cont_inner h3{
+	border-bottom: 1px solid #eaeaea;
+	font-size: 16px;
+	font-weight: bold;
+	padding-bottom: 2px;
+}
+.xans-product-additional #prdInfo .cont_all li.cont {
+    padding: 0;
+    font-weight: 300 !important;
+    text-align: left;
+    width: 50%;
+    color: #777;
+    line-height: 23px;
+    margin: 0 0 -1px -1px;
+    font-size: 14px;
+    vertical-align: top;
+    display: inline-block;
+}

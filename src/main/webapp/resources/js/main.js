@@ -104,14 +104,14 @@ function myOption2(){
 
 //주요 상품 이미지와 호버한 이미지의 위치를 바꾸는 함수 
 function changeImg(){
-	const mainImage = document.getElementById('main-image'); // 주요 상품 이미지의 엘리먼트를 가져옵니다.
-	const hoverImages = document.querySelectorAll('.hover-image'); // 호버 이미지들의 엘리먼트를 가져옵니다.
+	const mainImage = document.getElementById('main-image'); // 주요 상품 이미지의 엘리먼트를 가져옴
+	const hoverImages = document.querySelectorAll('.hover-image'); // 호버 이미지들의 엘리먼트를 가져옴
 	
 	hoverImages.forEach(image => {
-		image.addEventListener('mouseover', () => { // 각 호버 이미지에 호버 이벤트 리스너를 추가합니다.
-			const currentMainImage = mainImage.src; // 현재 주요 상품 이미지의 URL을 저장합니다.
-			mainImage.src = image.src; // 주요 상품 이미지의 URL을 호버한 이미지의 URL로 바꿉니다.
-			image.src = currentMainImage; // 호버한 이미지의 URL을 이전 주요 상품 이미지의 URL로 바꿉니다.
+		image.addEventListener('mouseover', () => { // 각 호버 이미지에 호버 이벤트 리스너를 추가
+			const currentMainImage = mainImage.src; // 현재 주요 상품 이미지의 URL을 저장
+			mainImage.src = image.src; // 주요 상품 이미지의 URL을 호버한 이미지의 URL로 바꿈
+			image.src = currentMainImage; // 호버한 이미지의 URL을 이전 주요 상품 이미지의 URL로 바꿈
 		});
 	});
 }

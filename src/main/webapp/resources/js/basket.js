@@ -65,6 +65,7 @@ function checkAll() {
 var totalCheckedPrice = 0;
 function chkCalculate(){
 	if($(event.target).is(":checked")==true){
+		changeStatus();
 		var checkedPrice = 0;
 		//체크한 상품 가격
 		var checkedPrice = Number($(event.target).val());
@@ -96,6 +97,21 @@ function chkCalculate(){
 	}
 }
 
+function changeStatus(){
+	$(event.target).change(function(){
+		var td = $(this).parent();
+		var input = td.children("input:hidden");
+		console.log(input);
+		if($(event.target).is(":checked") == true){
+			input.prop("disabled", false);
+			console.log("Disabled여부 :" + $(".changeDis").is(":disabled"));
+		}else if($(event.target).is(":checked") == false){
+			console.log("dmdkmdjdkjfkfdsa으ㅏㅇ아");
+			input.prop("disabled", true);
+			console.log("Disabled여부 :" + $(".changeDis").is(":disabled"));
+		}
+	});
+} 
 
 //전체선택 버튼
 function deleteButton1(){
@@ -239,8 +255,11 @@ function jsonProduct() {
         	
         	html += '<tr class="productRow">';	
         	html += '	<td>';
-      	    html += '		<input id="chk' + index + '" title="' + item.product_name + ' 상품을 결제상픔으로 결정" type="checkbox" name="chk" class="pchk" value='+ item.product_price*item.cart_qty +' onclick="chkCalculate()"/>';
-      	    html += '		<input type="hidden" name="cart_no" value="'+ item.cart_no +'"/>';
+      	    html += '		<input id="chk' + index + '" title="' + item.product_name + ' 상품을 결제상픔으로 결정" type="checkbox" name="productCheckBox" class="pchk" value='+ item.product_price*item.cart_qty +' onclick="chkCalculate()" />';
+      	    html += '		<input class="changeDis" type="hidden" name="orderProduct_qty" value="'+ item.cart_qty +'" disabled/>';
+      	    html += '		<input class="changeDis" type="hidden" name="users_users_id" value="'+ item.users_users_id +'" disabled/>';
+      	    html += '		<input class="changeDis" type="hidden" name="productOption_productOption_no" value="'+ item.productOption_productOption_no +'" disabled/>';
+      	    html += '		<input class="changeDis" type="hidden" name="cart_no" value="'+ item.cart_no +'" disabled/>';
       		html += '	</td>';
       		html += '	<td class="p_img">';
       		html += '		<a href="detailProduct?product_no=' + item.product_no + '">';
@@ -309,6 +328,7 @@ function jsonProduct() {
 	     	$("#s_t_choice").html($numberOfProducts);
 	     	//선택했던 수량
 	     	setSelectBox();
+
 	 },
 	 error: function(error){
 		 console.log(error.status);

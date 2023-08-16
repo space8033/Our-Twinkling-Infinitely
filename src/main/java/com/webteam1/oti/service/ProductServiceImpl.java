@@ -7,7 +7,9 @@ import javax.annotation.Resource;
 
 import org.springframework.stereotype.Service;
 
+import com.webteam1.oti.dao.OrderProductDao;
 import com.webteam1.oti.dao.ProductDao;
+import com.webteam1.oti.dto.OrderProduct;
 import com.webteam1.oti.dto.Pager;
 import com.webteam1.oti.dto.Product;
 import com.webteam1.oti.dto.ProductOption;
@@ -16,7 +18,10 @@ import com.webteam1.oti.dto.ProductOption;
 public class ProductServiceImpl implements ProductService{
 	@Resource
 	private ProductDao productDao;
+	@Resource
+	private OrderProductDao orderProductDao;
 	
+	//product list
 	@Override
 	public List<Product> getList(Pager pager) {
 		List<Product> productList = productDao.selectByPage(pager);
@@ -48,13 +53,20 @@ public class ProductServiceImpl implements ProductService{
 		List<String> productOptionType = productDao.getProductOption(product_no);
 		return productOptionType;
 	}
-
+	
 	@Override
 	public List<ProductOption> getOptions(int product_no) {
 		List<ProductOption> optionList = productDao.getPOption(product_no);
 		return optionList;
 	}
+	
+	//orderProduct
+	@Override
+	public void addOrderProduct(OrderProduct orderProduct) {
+		orderProductDao.InsertOrderProducts(orderProduct);
+	}
 
+	//product search
 	@Override
 	public List<Product> search(Map<String, Object> map) {
 		return productDao.search(map);
@@ -64,5 +76,7 @@ public class ProductServiceImpl implements ProductService{
 	public int countResult(Map<String, Object> map) {
 		return productDao.countResult(map);
 	}
+
+
 	
 }
