@@ -57,10 +57,16 @@
     	where product_product_no=#{product_no}
     </select>
     
-    <select id="autoComplete" parameterType="map" resultType="map">
+    <select id="search" parameterType="map" resultType="map">
     	select product_no, product_name
     	from product
-    	where product_name like '%' || #{value} || '%'
+    	where product_name like '%' || #{search} || '%'
+    </select>
+    
+    <select id="countResult" parameterType="map" resultType="int">
+    	select count(*) 
+    	from product
+    	where product_name like '%' || #{search} || '%'
     </select>
     
 </mapper>

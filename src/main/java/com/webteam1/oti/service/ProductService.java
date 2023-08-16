@@ -16,5 +16,6 @@ public interface ProductService {
 	public int getTotalProductNum();
 	public List<String>getOptionList(int product_no);
 	public List<ProductOption>getOptions(int product_no);
-	public List<Map<String, Object>> autoComplete(Map<String, Object> map);
+	public List<Map<String, Object>> search(Map<String, Object> map);
+	public int countResult(Map<String, Object> map);
 }

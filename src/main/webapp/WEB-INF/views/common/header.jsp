@@ -50,8 +50,10 @@
 		   		</div>
 			  	<div class="topnav container">
 				  <div class="search-container">
-				      <input type="text" placeholder="Search.." name="search">
+				  	<form action="searchResult">
+				      <input type="text" placeholder="Search.." name="search" id="search">
 				      <button><i class="fa fa-search"></i></button>
+				  	</form>
 				  </div>
 				</div>
 		   		<div class="menu">		   		

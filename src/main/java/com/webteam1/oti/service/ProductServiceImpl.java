@@ -56,8 +56,13 @@ public class ProductServiceImpl implements ProductService{
 	}
 
 	@Override
-	public List<Map<String, Object>> autoComplete(Map<String, Object> map) {
-		return productDao.autoComplete(map);
+	public List<Map<String, Object>> search(Map<String, Object> map) {
+		return productDao.search(map);
+	}
+
+	@Override
+	public int countResult(Map<String, Object> map) {
+		return productDao.countResult(map);
 	}
 	
 }

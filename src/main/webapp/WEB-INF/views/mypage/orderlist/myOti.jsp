@@ -145,7 +145,7 @@
 					<div class="container mt-3">
 						<div class="tab-content">
 						    <div id="orderList" class="container tab-pane active" style="background-color: white"><br>
-							      <img src="data:MIME;base64, ${detailImg.image_fileName}"/>
+						    
 						    </div>
 						    <div id="addressList" class="container tab-pane fade" style="background-color: white"><br>
 						    
