@@ -86,7 +86,7 @@
 			<div class="alert alert-info alert-dismissible" id="cartAlert">
 			    <button type="button" class="close">&times;</button>
 			    <strong>상품을 장바구니에 담지 못했습니다!</strong> 
-			     <div>해당 상품의 필수 옵션을 선택해 주세요.</div>
+			    <div>해당 상품의 필수 옵션을 선택해 주세요.</div>
 		    </div>
 			<!-- 상품 메뉴 탭 -->
 			<ul id="menu-tab" class="nav nav-tabs nav-justified m-3">
