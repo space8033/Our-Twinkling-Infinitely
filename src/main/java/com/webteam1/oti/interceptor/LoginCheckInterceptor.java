@@ -20,7 +20,6 @@ public class LoginCheckInterceptor implements HandlerInterceptor {
 	public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
 		HandlerMethod handlerMethod = (HandlerMethod) handler;
 		Login login = handlerMethod.getMethodAnnotation(Login.class);
-		
 		if(login != null) {
 
 			//@Login 붙어 있을 경우
@@ -30,9 +29,6 @@ public class LoginCheckInterceptor implements HandlerInterceptor {
 			if(user != null) {
 				return true;
 			} else {
-				if(session.getAttribute("redirectUrl") == null) {
-					session.setAttribute("redirectUrl", "");
-				}
 				session.setAttribute("redirectUrl", request.getRequestURL().toString());
 				response.sendRedirect(request.getContextPath() + "/loginForm");
 				return false;
