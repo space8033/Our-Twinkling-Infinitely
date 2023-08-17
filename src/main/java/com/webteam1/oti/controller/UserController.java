@@ -135,7 +135,8 @@ public class UserController {
 				cookie.setMaxAge(0);
 				response.addCookie(cookie);
 			}
-			return "redirect:" + redirectUrl;
+			return "redirect:/";
+//			return "redirect:" + redirectUrl;
 		}
 		return "login/loginForm";
 	}

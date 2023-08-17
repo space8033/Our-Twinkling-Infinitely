@@ -229,12 +229,7 @@ public class OrderPayController {
 		return "redirect:/";
 	}
 	
-	@Login
-	@GetMapping("/addOrderProduct")
-	public String goOrderPay() {
-		return "orderPay/orderPay";
-	}
-	
+
 	@Login
 	@PostMapping("/addOrderProduct")
 	public String addOrderProduct(@RequestParam(name="productOption_productOption_no", required=false) String[] selectedProductOptionNos,
@@ -244,10 +239,8 @@ public class OrderPayController {
 								  HttpSession session) {
 		LoginDto loginDto = (LoginDto) session.getAttribute("loginIng");
 		String userId = loginDto.getUsers_id();
-		log.info("앙2");
 		
 		if(productCheckBoxes != null ) {			
-			log.info("앙");
 			for (int i = 0; i < selectedProductOptionNos.length; i++) {
 				OrderProduct orderProduct = new OrderProduct();
 				orderProduct.setOrderProduct_qty(Integer.parseInt(selectedQtys[i]));
@@ -261,7 +254,7 @@ public class OrderPayController {
 			}
 		}
 		
-	    return "orderPay/orderPay";
+	    return "redirect:/orderPay";
 	}
 	
 }
