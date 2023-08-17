@@ -41,6 +41,8 @@ public interface UserService {
 	//회원 탈퇴
 	public void unjoin(String uid);
 	
+	//마이페이지 이미지 추가
+	public void addMyImg(LoginDto user);
 	
 	
 }

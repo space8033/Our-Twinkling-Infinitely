@@ -6,30 +6,49 @@
 	
 	<body class="container">
 		<div class="header">
-			 <img id="avatar" src="" alt="Avatar" onclick="changeAvatar()">
-			<div>
-				<h2>${loginIng.users_id}</h2>
+			<div class="d-flex">			
+				<div class="profileImg">			
+					<img id="avatar" class="rounded-circle" src="" alt="Avatar" width="150" onclick="changeAvatar()">
+					<div>
+						<form id="addMyImg" method="post" enctype="multipart/form-data" action="mypage">
+							<label id="label" for="fileInput" class="text-primary">					
+								사진 수정하기
+								<input type="file" id="fileInput" name="users_mattach" style="display: none">						
+								<input type="hidden" name="users_imgFile" value="${loginIng.users_imgFile}">						
+							</label>					
+							<button class="btn" onclick="addmyImg(${loginIng.users_imgFile})">확인</button>
+						</form>					
+					</div>
+				</div>
+				<div class="myInfo">
+					<div class="d-flex">					
+						<h2>${loginIng.users_name}</h2>
+						<a href="${pageContext.request.contextPath}/modify">회원 정보 변경</a>
+					</div>
+					<p>가입일: ${loginIng.users_createdDate}</p>
+				</div>
+				<div>
+				</div>
 			</div>
-		  <p>Scroll down to see the sticky effect.</p>
 		</div>
-	
 		<div id="wrapper">
-				<div id="myCoupangContent" class="container">
-					<ul id="menu-tab" class="nav nav-tabs nav-justified m-3">
-					    <li class="t-menu nav-item">
-					      <a class="nav-link active" data-toggle="tab" href="#detail">주문 내역</a>
-					    </li>
-					    <li class="t-menu nav-item">
-					      <a class="nav-link" data-toggle="tab" href="#addressList">배송지 관리</a>
-					    </li>
-					    <li class="t-menu nav-item">
-					      <a class="nav-link" data-toggle="tab" href="#reviewList">리뷰 관리</a>
-					    </li>
-					    <li class="t-menu nav-item">
-					      <a class="nav-link" data-toggle="tab" href="#menuu3">교환/환불/취소 내역</a>
-					    </li>
-					</ul>
-					
+			<h6>나의 쇼핑 활동</h6>
+			<div id="myCoupangContent" class="container">
+				<ul id="menu-tab" class="nav nav-tabs nav-justified m-3">
+				    <li class="t-menu nav-item">
+				      <a class="nav-link active" data-toggle="tab" href="#detail">주문 내역</a>
+				    </li>
+				    <li class="t-menu nav-item">
+				      <a class="nav-link" data-toggle="tab" href="#addressList">배송지 관리</a>
+				    </li>
+				    <li class="t-menu nav-item">
+				      <a class="nav-link" data-toggle="tab" href="#reviewList">리뷰 관리</a>
+				    </li>
+				    <li class="t-menu nav-item">
+				      <a class="nav-link" data-toggle="tab" href="#menuu3">교환/환불/취소 내역</a>
+				    </li>
+				</ul>
+				
 					<div class="container mt-3">
 						<div class="tab-content">
 						    <div id="orderList" class="container tab-pane active" style="background-color: white"><br>
@@ -47,5 +66,4 @@
 					  	</div>
 					</div>
 				</div>
-			</div>
 	<%@ include file="/WEB-INF/views/common/footer.jsp" %> 

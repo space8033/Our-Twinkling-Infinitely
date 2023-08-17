@@ -34,4 +34,7 @@ public interface UserDao {
 	//마지막 접속한 유저 조회
 	public List<String> getLastLoginDate(String threeMonthsAgoDate);
 	
+	//마이페이지 사진 추가
+	public void updateMyImage(LoginDto login);
+	
 }
