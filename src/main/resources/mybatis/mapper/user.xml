@@ -6,7 +6,7 @@
 	<!-- JoinDto 회원 정보 삽입 -->
 	<insert id="insert" parameterType="Join">
 		insert into users(users_id, users_email, users_password, users_name, users_phone, users_type, users_opoint, users_createddate)
-		values(#{users_id}, #{users_email}, #{users_password}, #{users_name}, #{users_phone}, 'ENABLED', 0, to_char(sysdate,'yyyy.mm.dd hh24:mi:ss'))
+		values(#{users_id}, #{users_email}, #{users_password}, #{users_name}, #{users_phone}, 'ENABLED', 0, to_char(sysdate,'yyyy.mm.dd'))
 	</insert>
 	
 	<!-- JoinDto 아이디가 동일한 것으로부터 JoinDto 가져오기 -->
@@ -38,7 +38,7 @@
 	
 	<!-- LoginDto 아이디 같은 것으로부터 LoginDto에 담아오기-->
 	<select id="selectByUsersId" resultType="Login" parameterType="String">
-		select users_id, users_password, users_type
+		select users_id, users_password, users_type, users_name, users_createdDate
 		from users 
 		where users_id=#{users_id}
 
@@ -87,14 +87,18 @@
 	
 	<!--  오늘 날짜가 마지막 로그인일로부터 3개월 후인 유저 조회 -->
 	<select id="getLastLoginDate" resultType="String" parameterType="String">
-
+		
 		select users_id
    		from users 
     	where TO_CHAR(TO_DATE(users_logindate, 'yyyy.mm.dd hh24:mi:ss'), 'yyyy-mm-dd') = #{threeMonthsAgoDate}
 
 	</select>
 	
-	
-
+	<!-- 마이페이지 이미지 변경하기 -->
+	<update id="updateMyImage" parameterType="Login">
+		update users set 
+		users_imgFile=#{users_imgFile, jdbcType=VARCHAR}
+		where users_id=#{users_id}
+	</update>
    
 </mapper>

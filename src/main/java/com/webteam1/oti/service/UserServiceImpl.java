@@ -116,6 +116,12 @@ public class UserServiceImpl implements UserService{
 		JoinDto user = userDao.selectByusersId(uid);
 		userDao.delete(user);
 	}
+	
+	//마이페이지 사진 추가(변경)
+	@Override
+	public void addMyImg(LoginDto user) {
+		userDao.updateMyImage(user);
+	}
 }	
 	
 	

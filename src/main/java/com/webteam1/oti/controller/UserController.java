@@ -15,9 +15,9 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.util.WebUtils;
 
-import com.webteam1.oti.dao.UserDao;
 import com.webteam1.oti.dto.cart.Cart;
 import com.webteam1.oti.dto.user.Agreement;
 import com.webteam1.oti.dto.user.JoinDto;
@@ -127,7 +127,6 @@ public class UserController {
 				for(Cart cart: list) {
 					cart.setUsers_users_id(loginDto.getUsers_id());
 					cartService.cartUpdate(cart);
-					log.info("앙 바껴랏" + cart);
 				}
 				//쿠키 삭제
 				cookie.setPath("/");
@@ -287,12 +286,27 @@ public class UserController {
 		return "home";
 	}
 	
-	//로그인 기능 테스트용
 	@Login
-	@RequestMapping("mypage")
-	public String mypage() {
-		log.info("실행");
+	@GetMapping("/mypage")
+	public String myPage() {
 		return "mypage/orderlist/myOti";
 	}
+	
+	//마이페이지 이미지 추가
+	@Login
+	@PostMapping("/mypage")
+	public String addMyImg(MultipartFile users_mattach, HttpSession session, Model model) throws Exception{
+		
+		LoginDto loginDto = (LoginDto)session.getAttribute("loginIng");
+		loginDto.setUsers_mattach(users_mattach);
+	
+		if(users_mattach != null) {			
+			loginDto.setUsers_imgFile(users_mattach.getBytes());
+		}
+		userService.addMyImg(loginDto);
+
+		return "redirect:/mypage";
+	}
+	
 
 }

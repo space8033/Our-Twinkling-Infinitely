@@ -37,7 +37,7 @@
 					<span class="align-self-center"> <span style="color: #346AFF">주문결제></span>주문완료
 					</span>
 				</div>
-				<form onsubmit="return false;">
+				<form name="porder" action="orderPay" onsubmit="checkValidation()" method="post">
 					<!-- 구매자 정보 -->
 					<div class="">
 						<h2>구매자정보</h2>
@@ -45,7 +45,7 @@
 							<tr>
 								<th>이름</th>
 								<td>
-									 ${orderUser.users_name} 
+									${orderUser.users_name} 
 									
 								</td>
 							</tr>
@@ -77,15 +77,17 @@
 					<div>
 						<div class="d-flex">
 							<h2>받는사람정보</h2> 
-							<span style="margin-left: 10px;"><button id="transAddress" onclick="openAdress()"> 배송지변경</button></span>
+							<span style="margin-left: 10px;"><button type="button" id="transAddress" onclick="openAdress()"> 배송지변경</button></span>
 						</div>
 						<table class="receiverInfo">
 								<tr>
 									<th>이름</th>
+									
 									<td>${address.address_receiver}
 									<c:if test="${address.address_isdefault == true}">
 									<span id="border1">기본배송지</span>
 									</c:if>
+									<input type="hidden" name="address_no" value="${address.address_no}">
 									</td>
 								</tr>
 								<tr>
@@ -101,12 +103,15 @@
 									
 									<c:if test = "${selectedValue == null}">
 									<td> ${address.deliveryRequest}
-										<button onclick="openRequest()">변경</button>
+										<input type="hidden" name="address_request" value="${address.deliveryRequest}">
+										<button type="button" onclick="openRequest()">변경</button>
 									</td>
 									</c:if>
 									 <c:if test = "${selectedValue != null}">
 									<td> ${selectedValue}  ${selectedPwdValue}
-										<button onclick="openRequest()">변경</button>
+										<input type="hidden" name="address_request" value="${selectedValue}">
+										<input type="hidden" name="address_request" value="${selectedPwdValue}">
+										<button type="button" onclick="openRequest()">변경</button>
 									</td>
 									 </c:if>
 									
@@ -123,27 +128,37 @@
 								<tr>
 									<th colspan='3' class="text-left" style="font-size: 16px; color: #00891A;">
 										내일(화)7/12 도착 보장
+										
 									</th>
 								</tr>
-								<tr>
-									<td style="border-right: white;">
-										<span class="nofnc" style="font-size: 16px;">
-											LEXON MINA 렉슨 미나 S 미니 무드등 인테리어 조명
-												- LH60, 실버 - LH60MAP
-										</span>
-									</td>
-									<td style="border-left: white; border-right: white;">	
-										<span>수량 1개/무료배송</span>
-									</td>		 
-									<td style="border-left: white;">		
-										<img
-											data-bundle-info--rocket-img=""
-											class="bundle-info__delivery-type__icon bundle-info__retail__icon__pc"
-											src="//img1a.coupangcdn.com/image/cmg/icon/ios/logo_rocket_large@3x.png"
-											height="16" alt="로켓배송 상품"
-										/>	
-									</td>
-								</tr>
+								<c:set var="totalPrice" value="0" />
+								<c:forEach var="product" items="${productList}" varStatus="a">
+								    <c:forEach var="optionProduct" items="${optionList}" varStatus="b">
+								        <c:if test="${a.index == b.index}">
+								            <c:forEach var="orderProduct" items="${orderProductList}" varStatus="c">
+								                <c:if test="${a.index == c.index}">
+								                    <c:set var="subtotal" value="${product.product_price * orderProduct.orderProduct_qty}" />
+								                    <c:set var="totalPrice" value="${totalPrice + subtotal}" />
+								                    
+								                    <tr>
+								                        <td style="border-right: white;">
+								                            <span class="nofnc" style="font-size: 16px;">${product.product_name}</span>
+								                            <span>${optionProduct.productOption_type}</span>
+								                        </td>
+								                        <td style="border-left: white; border-right: white;">	
+								                            <img src="${pageContext.request.contextPath}/resources/image/sion/won.png" style="height:16px; width:16px;"/>
+								                            <span class="productPrice">${product.product_price}</span>
+								                        </td>
+								                        <td style="border-left: white; border-right: white;">	
+								                            <span class="productQty">${orderProduct.orderProduct_qty}</span>
+								                            <span style="margin-left:70px;">개</span>	
+								                        </td>
+								                    </tr>
+								                </c:if>
+								            </c:forEach>		
+								        </c:if>		 
+								    </c:forEach>
+								</c:forEach>
 							</table> 
 						</div>
 					</div>
@@ -153,7 +168,9 @@
 						<table class="payInfomation">
 							<tr>
 								<th>총상품가격</th>
-								<td><span id="totalPrice">39,900</span>원</td>
+								<td> 
+									<span class="totalPrice">${totalPrice}</span>
+								</td> 
 							</tr>
 							<tr>
 								<th>할인쿠폰</th>
@@ -162,21 +179,54 @@
 										<span style= "width:155px; display:inline-block;">
 											-<span id="discount">0</span>원
 										</span>
-										<button id="couponSelect" >할인쿠폰선택</button>
+										<button type="button" id="couponSelect" >할인쿠폰선택</button>
 									</div>
 									<div id="dicountRow" style="background-color: #f8f8f8; padding-bottom:16px; padding-top:10px;">
-										<input id="couponUse" type="checkbox" name="Use"  style="margin-left: 170px;"/> 
-										<span id="couponDiscount"> 2,000</span>원
-										<span style="margin-left: 20px;">30000원 이상  장바구니</span>
-									</div> 
+										<c:forEach var="coupon" items="${couponList}">
+										    <div>
+										        <input class="couponUse" type="radio" name="coupon" value= "${coupon.coupon_value}" style="margin-left: 170px;"/>
+										        <input type="hidden" name="coupon_no" value="${coupon.coupon_no}">
+										        <span class="couponDiscount">${coupon.coupon_value}
+										            <c:if test="${coupon.coupon_value >= 100}">원
+										            </c:if>
+										            <c:if test="${coupon.coupon_value <= 100}">% 할인
+										            </c:if>
+										        </span>
+										        
+										        <span style="margin-left: 20px; font-weight: bold;">${coupon.coupon_condition}</span>원 이상 주문 결제 시 사용가능 
+										
+										        <c:if test="${coupon.coupon_type == 'BIRTHDAY_COUPON'}">
+										            <span style="display:none">${coupon.coupon_type}</span>
+										            <span style="font-size: 10px;"> <img src="${pageContext.request.contextPath}/resources/image/sion/confetti.png" style="height:20px; width:20px; margin-bottom: 5px;"/>생일 축하 쿠폰</span>
+										        </c:if>
+										        <c:if test="${coupon.coupon_type == 'DEL_FREE_COUPON'}">
+										            <span style="display:none">${coupon.coupon_type}</span>
+										            <span style="font-size: 10px;"> <img src="${pageContext.request.contextPath}/resources/image/sion/free-delivery.png" style="height:17px; width:17px; margin-bottom: 5px;"/> 배송비 무료 쿠폰</span>
+										        </c:if>
+										        <c:if test="${coupon.coupon_type == 'WELCOME_COUPON'}">
+										            <span style="display:none">${coupon.coupon_type}</span>
+										            <span style="font-size: 10px;"> <img src="${pageContext.request.contextPath}/resources/image/sion/confetti.png" style="height:20px; width:20px; margin-bottom: 5px;"/>가입 축하 쿠폰</span>
+										        </c:if>
+										    </div>
+										</c:forEach>
+									</div>
 								</td>
 							</tr>
 							<tr>
 								<th>배송비</th>
-								<td><span id="delFee">0</span>원</td>
+								<td>
+								<c:if test="${totalPrice >= 50000}">
+									<span id="delFee">0</span>원
+									<input type="hidden" name="order_del_fee" value="0">
+								</c:if>
+								<c:if test="${totalPrice <= 50000}">
+									<span id="delFee">2500</span>원
+									<input type="hidden" name="order_del_fee" value="2500">
+								</c:if>
+								</td>
 							</tr>
 							<tr>
-								<th>쿠팡캐시</th>
+								<th>적립금</th>
 								<td style="margin:0px; padding:0px;">
 									<div style=" padding-top:10px; padding-left:16px; padding-bottom:10px;">
 										<span style="display:inline-block; width:155px;">
@@ -186,7 +236,7 @@
 										<span style="padding-top:20px;">
 											보유 : <span id="cuBal">302</span>원
 										</span>
-										<button id="cuCashInput">쿠팡캐시입력</button>
+										<button type="button" id="cuCashInput">적립금 입력</button>
 									</div>
 								
 									<div id="cuCashrow" style="background-color: #f8f8f8; padding-bottom:16px; padding-top:10px;">
@@ -194,7 +244,7 @@
 										<input id="cuCash" type="number" value="0" placeholder="0" name="cuCash" style="margin-left: 170px;"/>원 | 
 										<input id="allUse" type="checkbox" name="allUse"/> 모두사용
 										<div>
-											<button id="cuCashApply" style="margin-left: 170px; margin-top:10px;">쿠팡캐시적용</button>
+											<button type="button" id="cuCashApply" style="margin-left: 170px; margin-top:10px;">적립금 적용</button>
 										</div>
 										<div id="cashOver" class="choice-error" style="color: red; padding-left: 17px; margin-left: 170px; display: none;">
 											사용가능한 캐시를 초과 입력하였습니다.
@@ -206,9 +256,9 @@
 							<tr>
 								<th>총결제금액</th>
 								<td>
-									<span id="price">34,900</span>원
+									<span id="price"> </span>원
 									<span id="expectPoint" style="margin-left: 100px; display=none;">
-										캐시적립 예정 : <span id="point">399</span>원
+										캐시적립 예정 : <span id="point"> </span>원
 									</span>		
 								</td>
 							</tr>
@@ -436,7 +486,7 @@
 						<div id="cash-border">
 							<div>
 								<label>
-									<input id="cash-receipt-application" type="checkbox" style="height: 17px; width: 17px;"> 
+									<input id="cash-receipt-application" type="checkbox" name="order_cashReceipt" style="height: 17px; width: 17px;"> 
 									현금 영수증 신청
 								</label>
 							</div>
@@ -507,7 +557,7 @@
 						위 주문 내용을 확인 하였으며, 회원 본인은 개인정보 이용 및 제공(해외직구의 경우 국외제공) 및 결제에 동의합니다.
 					</div>
 					<div class="text-center" id="payButton">
-						<button class="payb" style="border: none; box-shadow: 0 0 0">
+						<button type="button" class="payb" style="border: none; box-shadow: 0 0 0">
 								<div>
 									<img id = "maxCash"
 									style="cursor: pointer; font-size: 11px; width: 96px;"
@@ -521,7 +571,7 @@
 									width="250" height="60" alt="쿠페이 머니 결제"/>
 								</div>
 						</button>
-						<button class="payb" style=" border: none; box-shadow: 0 0 0">
+						<button type="submit" onclick="payNow()" class="payb" style=" border: none;  box-shadow: 0 0 0">
 							<img
 								src="//image7.coupangcdn.com/image/rocketpay-order-image/pc/btn_payment.gif"
 								width="260" height="60" alt="결제하기"/>

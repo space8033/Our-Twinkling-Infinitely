@@ -10,4 +10,14 @@
 		        #{users_users_id}
 	    	)
 	</insert>
+	<select id="getOrderProductByUsersId" resultType="OrderProduct" parameterType="String">
+
+		select *
+   		from orderproduct
+    	where users_users_id = #{users_id}
+
+	</select>
+	
+	
+	
 </mapper>
