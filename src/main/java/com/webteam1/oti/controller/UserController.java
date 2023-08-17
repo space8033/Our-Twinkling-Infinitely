@@ -94,6 +94,7 @@ public class UserController {
 	//로그인 요청
 	@PostMapping("/loginForm")
 	public String login(LoginDto users, Model model, HttpSession session, HttpServletRequest request, HttpServletResponse response) {
+		String redirectUrl = (String) session.getAttribute("redirectUrl");
 		LoginResult result = userService.login(users);
 		log.info(result+"로그인 상태");
 		if(result == LoginResult.FAIL_UID) {
@@ -106,6 +107,7 @@ public class UserController {
 			String error3 = "비밀번호가 틀립니다";
 			model.addAttribute("error3", error3);
 		} else {
+			session.removeAttribute("redirectUrl");
 			log.info("로그인에 성공하였습니다");
 			LoginDto dbUser = userService.getUser(users.getUsers_id());
 			session.setAttribute("loginIng", dbUser);
@@ -133,7 +135,7 @@ public class UserController {
 				cookie.setMaxAge(0);
 				response.addCookie(cookie);
 			}
-			return "redirect:/";
+			return "redirect:" + redirectUrl;
 		}
 		return "login/loginForm";
 	}

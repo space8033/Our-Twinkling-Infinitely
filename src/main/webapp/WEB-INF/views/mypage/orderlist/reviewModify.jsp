@@ -9,23 +9,66 @@
 	      <form id="reviewWrite" method="post" action="javascript:submitForm()" enctype="multipart/form-data">
 	         <div class="input-group">
 	            <div class="input-group-prepend"><span class="input-group-text">한줄평</span></div>
-	            <input id="btitle" type="text" name="reviewTitle" class="form-control" value="">
+	            <input id="btitle" type="text" name="reviewTitle" class="form-control" value="${review.review_title}">
 	         </div>
 	         
 	         <div class="input-group">
 	            <div class="input-group-prepend"><span class="input-group-text">별점</span></div>
-			         <div class="rate">
-			         	 <input type="radio" id="rating5" name="reviewRating" value="5"><label for="rating5" title="5점"></label>
-		                 <input type="radio" id="rating4" name="reviewRating" value="4"><label for="rating4" title="4점"></label>
-		                 <input type="radio" id="rating3" name="reviewRating" value="3"><label for="rating3" title="3점"></label>
-		                 <input type="radio" id="rating2" name="reviewRating" value="2"><label for="rating2" title="2점"></label>
-		                 <input type="radio" id="rating1" name="reviewRating" value="1"><label for="rating1" title="1점"></label>
-			         </div>
+					 <c:if test="${review.review_rating == 1}">
+				         <div class="rate">
+				         	 <input type="radio" id="rating5" name="reviewRating" value="5"><label for="rating5" title="5점"></label>
+			                 <input type="radio" id="rating4" name="reviewRating" value="4"><label for="rating4" title="4점"></label>
+			                 <input type="radio" id="rating3" name="reviewRating" value="3"><label for="rating3" title="3점"></label>
+			                 <input type="radio" id="rating2" name="reviewRating" value="2"><label for="rating2" title="2점"></label>
+			                 <input type="radio" id="rating1" name="reviewRating" value="1" checked="checked"><label for="rating1" title="1점"></label>
+				         </div>
+						
+					 </c:if>
+					 <c:if test="${review.review_rating == 2}">
+				         <div class="rate">
+				         	 <input type="radio" id="rating5" name="reviewRating" value="5"><label for="rating5" title="5점"></label>
+			                 <input type="radio" id="rating4" name="reviewRating" value="4"><label for="rating4" title="4점"></label>
+			                 <input type="radio" id="rating3" name="reviewRating" value="3"><label for="rating3" title="3점"></label>
+			                 <input type="radio" id="rating2" name="reviewRating" value="2" checked="checked"><label for="rating2" title="2점"></label>
+			                 <input type="radio" id="rating1" name="reviewRating" value="1"><label for="rating1" title="1점"></label>
+				         </div>
+						
+					 </c:if>
+					 <c:if test="${review.review_rating == 3}">
+				         <div class="rate">
+				         	 <input type="radio" id="rating5" name="reviewRating" value="5"><label for="rating5" title="5점"></label>
+			                 <input type="radio" id="rating4" name="reviewRating" value="4"><label for="rating4" title="4점"></label>
+			                 <input type="radio" id="rating3" name="reviewRating" value="3" checked="checked"><label for="rating3" title="3점"></label>
+			                 <input type="radio" id="rating2" name="reviewRating" value="2"><label for="rating2" title="2점"></label>
+			                 <input type="radio" id="rating1" name="reviewRating" value="1"><label for="rating1" title="1점"></label>
+				         </div>
+						
+					 </c:if>
+					 <c:if test="${review.review_rating == 4}">
+				         <div class="rate">
+				         	 <input type="radio" id="rating5" name="reviewRating" value="5"><label for="rating5" title="5점"></label>
+			                 <input type="radio" id="rating4" name="reviewRating" value="4" checked="checked"><label for="rating4" title="4점"></label>
+			                 <input type="radio" id="rating3" name="reviewRating" value="3"><label for="rating3" title="3점"></label>
+			                 <input type="radio" id="rating2" name="reviewRating" value="2"><label for="rating2" title="2점"></label>
+			                 <input type="radio" id="rating1" name="reviewRating" value="1"><label for="rating1" title="1점"></label>
+				         </div>
+						
+					 </c:if>
+					 <c:if test="${review.review_rating == 5}">
+				         <div class="rate">
+				         	 <input type="radio" id="rating5" name="reviewRating" value="5" checked="checked"><label for="rating5" title="5점"></label>
+			                 <input type="radio" id="rating4" name="reviewRating" value="4"><label for="rating4" title="4점"></label>
+			                 <input type="radio" id="rating3" name="reviewRating" value="3"><label for="rating3" title="3점"></label>
+			                 <input type="radio" id="rating2" name="reviewRating" value="2"><label for="rating2" title="2점"></label>
+			                 <input type="radio" id="rating1" name="reviewRating" value="1"><label for="rating1" title="1점"></label>
+				         </div>
+						
+					 </c:if>
 	         </div>
 	         
 	         <div class="input-group">
 	            <div class="input-group-prepend"><span class="input-group-text">리뷰 상세</span></div>
-	            <textarea id="bcontent" name="reviewContents" class="form-control"></textarea>
+	            <textarea id="bcontent" name="reviewContents" class="form-control"> ${review.review_contents} </textarea>
 	         </div>
 	         
 	         <div class="input-group">

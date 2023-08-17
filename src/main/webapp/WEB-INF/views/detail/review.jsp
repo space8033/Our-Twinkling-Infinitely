@@ -55,6 +55,8 @@
 				${review.review_name}<br>
 				${review.review_createdDate}<br>
 				<br>
+				
+				<hr style="color: #e8e9eb">
 			</c:forEach>
 			<tr>
 				<td colspan="4" class="text-center">

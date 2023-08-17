@@ -116,6 +116,7 @@ function changeImg(){
 	});
 }
 
+//===================================리뷰
 //리뷰 리스트 보여주기
 function showReview(productNum, pageNo2) {
 	$.ajax({
