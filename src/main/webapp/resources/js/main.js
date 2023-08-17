@@ -80,16 +80,22 @@ function searchByEnter() {
 //detailView=======================================================================
 //상품의 옵션을 선택하고, 수량을 선택했을 때 가격 변화
 function myOption1(){
+	//선택된 옵션 id
+	var selectedOptionId = $(event.target).find('option:selected').attr('id');
 	if($(event.target).val() != "none"){
 		var option = $(event.target).val();
+		//선택된 옵션 값 표시
 		$("#select-p-option").html(option);
 		$(".myOption").show();
+		//폼에 value 값 넣어주기
+		$("#submitOrderProduct1").prop("value", selectedOptionId);
 	}else{
 		$(".myOption").hide();
 	}
 } 
 function myOption2(){
 	if($(event.target).val() != "none"){
+		//선택된 옵션 값 표시
 		var qty = $(event.target).val();
 		var no = Number(qty);
 		var price = Number($("#product_price").val());
@@ -97,6 +103,8 @@ function myOption2(){
 		$("#select-p-qty").html(": " + qty + " 개");	
 		$("#total-price").html(totalPrice.toLocaleString("ko-Kr") + "원");
 		$(".myOption").show();
+		//폼에 value 값 넣어주기
+		$("#submitOrderProduct2").prop("value", qty);
 	}else{
 		$(".myOption").hide();
 	}

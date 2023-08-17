@@ -47,7 +47,7 @@ function select(addressNo) {
 	$.ajax({
 		url: "/our-twinkling-infinitely/addressSelect", 
 		type: "POST",
-		data: postData,
+		data: postData, 
 		success: function(response) {
 			alert("배송지가 변경되었습니다.");
 			opener.location.reload();

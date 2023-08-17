@@ -11,18 +11,33 @@ let hoverImages = document.querySelectorAll('.hover-image');
 //detailView에서 필수 옵션을 선택 유효성 검사
 $(document).ready(function() {
 	changeImg();//이미지 호버 효과
-	$("#cartAlert").hide();
+	$("#detailAlert").hide();//경고 창 숨기기
+	//필수 옵션을 선택 안했을 때 유효성 검사
 	$("#addCart").submit(function(event) {
-		var selectedOption = $("#option1").val(); // 선택된 옵션 값 가져오기
-		if (selectedOption === "none") { // 옵션이 선택되지 않았을 경우
+		var selectedOption1 = $("#option1").val(); // 선택된 옵션 값 가져오기
+		var selectedOption2 = $("#option2").val(); // 선택된 옵션 값 가져오기
+		if (selectedOption1 == "none" || selectedOption2 == "none") { // 옵션이 선택되지 않았을 경우
 			event.preventDefault(); // 폼 제출 막기
-			$("#cartAlert").show(); // 경고 메시지 표시
+			$("#detailAlert").show(); // 경고 메시지 표시
 			$(".close").click(function(){
-				$("#cartAlert").alert("close");
+				$("#detailAlert").alert("close");
 		    });
 		}
 	});
+	$("#addOrderProduct").submit(function(event) {
+		var selectedOption1 = $("#option1").val(); // 선택된 옵션 값 가져오기
+		var selectedOption2 = $("#option2").val(); // 선택된 옵션 값 가져오기
+		if (selectedOption1 == "none" || selectedOption2 == "none") { // 옵션이 선택되지 않았을 경우
+			event.preventDefault(); // 폼 제출 막기
+			$("#detailAlert").show(); // 경고 메시지 표시
+			$(".close").click(function(){
+				$("#detailAlert").alert("close");
+			});
+		}
+	});
 });
+
+
 //전체선택 체크 및 전체 상품 가격 계산
 function checkAll() {
 	if($(event.target).is(":checked") == true){
@@ -375,4 +390,22 @@ function qtyUpdate(cartNo, newQty) {
             console.log(error);
         }
     });
+}
+
+function qtyUpdate(cartNo, newQty) {
+	$.ajax({
+		url: "qtyUpdate", 
+		method: "post",
+		data: {
+			"cart_no": cartNo,
+			"cart_qty": newQty
+		},
+		success: function(response) {
+			jsonProduct();
+			setSelectBox();
+		},
+		error: function(error) {
+			console.log(error);
+		}
+	});
 }

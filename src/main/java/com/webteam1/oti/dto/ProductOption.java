@@ -6,5 +6,5 @@ import lombok.Data;
 public class ProductOption {
 	private int productOption_no;
 	private int product_product_no;
-	private String productOtion_type;
+	private String productOption_type;
 }
