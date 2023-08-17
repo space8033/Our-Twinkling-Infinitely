@@ -205,7 +205,7 @@ function addFile() {
 	if(count >= 5) {
 		$("#showAlert").show();
 	}else {
-		var str = '<div class="file-group mt-2"><input type="file" name="file" style="width:80%; border: solid 1px #f0f0f0"> <a href="#this" name="file-delete" class="btn btn-danger m-1">삭제</a></div>';
+		var str = '<div class="file-group mt-2"><input type="file" name="file" style="width:60%; border: solid 1px #f0f0f0;"> <a href="#this" name="file-delete" class="btn btn-danger m-1">삭제</a></div>';
 		$("#file-list").append(str);
 		$('a[name="file-delete"]').on("click", function(e) {
 			e.preventDefault();

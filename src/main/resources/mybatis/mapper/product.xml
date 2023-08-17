@@ -51,12 +51,6 @@
     	where product_product_no=#{product_no}
     </select>
     
-    <select id="getPOption" parameterType="int" resultType="ProductOption">
-    	select *
-    	from productOption
-    	where product_product_no=#{product_no}
-    </select>
-    
     <select id="search" parameterType="map" resultType="product">
     	<![CDATA[
 	       select rnum,  product_no, product_name, product_price, product_imgFile, product_img
