@@ -38,7 +38,7 @@
 	
 	<!-- LoginDto 아이디 같은 것으로부터 LoginDto에 담아오기-->
 	<select id="selectByUsersId" resultType="Login" parameterType="String">
-		select users_id, users_password, users_type
+		select users_id, users_password, users_type, users_img
 		from users 
 		where users_id=#{users_id}
 

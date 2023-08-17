@@ -128,7 +128,6 @@ public class UserController {
 				for(Cart cart: list) {
 					cart.setUsers_users_id(loginDto.getUsers_id());
 					cartService.cartUpdate(cart);
-					log.info("앙 바껴랏" + cart);
 				}
 				//쿠키 삭제
 				cookie.setPath("/");
@@ -136,7 +135,7 @@ public class UserController {
 				response.addCookie(cookie);
 			}
 			return "redirect:/";
-//			return "redirect:" + redirectUrl;
+			return "redirect:" + redirectUrl;
 		}
 		return "login/loginForm";
 	}

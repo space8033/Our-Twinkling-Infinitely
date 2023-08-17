@@ -49,7 +49,6 @@
 											<col width="80">
 											<col width="*">
 											<col width="90">
-											<col width="90">
 										</colgroup>
 									    <thead>
 									     <tr class="head">
@@ -64,11 +63,9 @@
 														onclick="checkAll()" />
 					        				   </label>
 		                                   </th>
-									       <th></th>
-									       <th scope="colgroup">상품정보</th>
-									       <th scope="col">상품금액</th>
-									       <th scope="col">배송비</th>
 									       <th scope="col"></th>
+									       <th scope="col">상품정보</th>
+									       <th scope="col">상품금액</th>
 									     </tr>
 									    </thead>
 											   
@@ -77,7 +74,7 @@
 											<!-- 상품 리스트(json) 불러오는 곳 -->  
 										    </tbody>
 									     </tbody>
-							     	     <tr class="t3" colspan="5">
+							     	     <tr class="t3" colspan="4">
 									         <td></td>
 									         <td></td>
 									         <td class="t3_td">
@@ -93,8 +90,6 @@
 												    </a>
 												</div>    
 									       	</td>
-								     		<td></td>
-								     		<td></td>
 								     		<td></td>
 							    		</tr>
 								    </table>
@@ -125,7 +120,10 @@
 					    		<div class="d-flex">
 						    		<div class="cbc_details" style="width: 75%">
 							    		<div>모든 상품 결제 시 5%  추가적립</div>
-							    		<div>(oti는 전상품 <span class="text-danger">배송비 포함</span> 상품 입니다)</div>
+							    		<div>전 상품 
+							    			<span class="text-danger">50,000</span>원 이상 결제 시 
+							    			<span class="text-primary">무료배송</span>!
+							    		</div>
 						    		</div>
 					    		</div>
 	  				    	  </div>
