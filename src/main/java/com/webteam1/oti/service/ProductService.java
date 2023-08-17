@@ -16,7 +16,6 @@ public interface ProductService {
 	public void addHitcount(int product_no);
 	public int getTotalProductNum();
 	public List<ProductOption>getOptionList(int product_no);
-	public List<ProductOption>getOptions(int product_no);
 	//orderProdcut Service
 	public void addOrderProduct(OrderProduct orderProduct);
 	//product Search Service

@@ -142,7 +142,24 @@ function showReview(productNum, pageNo2) {
 		}
 	});
 }
-
+//포토리뷰만 보여주기
+function showReview(productNum, pageNo2, filter) {
+	$.ajax({
+		url: "review",
+		method: "get",
+		data:{
+			"productNum": productNum,
+			"pageNo2": pageNo2,
+			"filter": filter
+		},
+		success: function(data) {
+			$("#menu3").html(data);
+		},
+		error: function(error) {
+			console.log("아왜");
+		}
+	});
+}
 //폼 데이터를 비동기화로 넘기기 위한 스크립트.
 //그림파일도 넘기기 위해 formData로 form을 받고 cache, contentType, processData를 false로 해줌 
 function submitForm() {
@@ -205,7 +222,7 @@ function addFile() {
 	if(count >= 5) {
 		$("#showAlert").show();
 	}else {
-		var str = '<div class="file-group mt-2"><input type="file" name="file" style="width:80%; border: solid 1px #f0f0f0"> <a href="#this" name="file-delete" class="btn btn-danger m-1">삭제</a></div>';
+		var str = '<div class="file-group mt-2"><input type="file" name="file" style="width:45%; border: solid 1px #f0f0f0;"> <a href="#this" name="file-delete" class="btn btn-danger m-1">삭제</a></div>';
 		$("#file-list").append(str);
 		$('a[name="file-delete"]').on("click", function(e) {
 			e.preventDefault();

@@ -18,6 +18,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import com.webteam1.oti.dto.Image;
 import com.webteam1.oti.dto.Pager;
+import com.webteam1.oti.dto.review.ImageReview;
 import com.webteam1.oti.dto.review.Review;
 import com.webteam1.oti.dto.review.ReviewReceive;
 import com.webteam1.oti.dto.user.LoginDto;
@@ -43,7 +44,7 @@ public class ReviewController {
 	
 	//해당 상품의 전체 리뷰 가져오기
 	@GetMapping("/review")
-	public String review(String pageNo2, Model model, HttpSession session) {
+	public String review(String pageNo2, String filter, Model model, HttpSession session) {
 		if(pageNo2 == null) {
 		   //세션에 저장되어 있는지 확인
 		   pageNo2 = (String) session.getAttribute("pageNo2");
@@ -68,7 +69,28 @@ public class ReviewController {
 		map.put("endRowNo", pager.getEndRowNo());
 		map.put("productNo", productNo);
 		
-		List<Review> list = reviewService.getReviewListByPno(map);
+		List<Review> reviewList = reviewService.getReviewListByPno(map);
+		List<ImageReview> list = new ArrayList<>();
+		for(Review review: reviewList) {
+			ImageReview imageReview = new ImageReview();
+			imageReview.setReview_no(review.getReview_no());
+			imageReview.setReview_name(review.getReview_name());
+			imageReview.setReview_rating(review.getReview_rating());
+			imageReview.setReview_title(review.getReview_title());
+			imageReview.setReview_contents(review.getReview_contents());
+			imageReview.setReview_createdDate(review.getReview_createdDate());
+			imageReview.setReview_images(imageService.getReviewImages(review.getReview_no()).size());
+			
+			if(filter != null) {
+				model.addAttribute("bold", 1);
+				if(imageReview.getReview_images() != 0) {
+					list.add(imageReview);
+				}
+			}else {
+				model.addAttribute("bold", 0);
+				list.add(imageReview);								
+			}
+		}
 		
 		model.addAttribute("pager", pager);
 		model.addAttribute("reviews", list);
@@ -164,7 +186,20 @@ public class ReviewController {
 		map.put("endRowNo", pager.getEndRowNo());
 		map.put("userId", userId);
 		
-		List<Review> list = reviewService.getReviewListByUser(map);
+		List<Review> reviewList = reviewService.getReviewListByUser(map);
+		List<ImageReview> list = new ArrayList<>();
+		for(Review review: reviewList) {
+			ImageReview imageReview = new ImageReview();
+			imageReview.setReview_no(review.getReview_no());
+			imageReview.setReview_name(review.getReview_name());
+			imageReview.setReview_rating(review.getReview_rating());
+			imageReview.setReview_title(review.getReview_title());
+			imageReview.setReview_contents(review.getReview_contents());
+			imageReview.setReview_createdDate(review.getReview_createdDate());
+			imageReview.setReview_images(imageService.getReviewImages(review.getReview_no()).size());
+			
+			list.add(imageReview);
+		}
 		
 		model.addAttribute("pager", pager);
 		model.addAttribute("reviews", list);

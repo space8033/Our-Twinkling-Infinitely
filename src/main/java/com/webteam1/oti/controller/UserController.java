@@ -107,7 +107,6 @@ public class UserController {
 			String error3 = "비밀번호가 틀립니다";
 			model.addAttribute("error3", error3);
 		} else {
-			session.removeAttribute("redirectUrl");
 			log.info("로그인에 성공하였습니다");
 			LoginDto dbUser = userService.getUser(users.getUsers_id());
 			session.setAttribute("loginIng", dbUser);
@@ -135,8 +134,17 @@ public class UserController {
 				cookie.setMaxAge(0);
 				response.addCookie(cookie);
 			}
-			return "redirect:/";
-//			return "redirect:" + redirectUrl;
+			
+			if(session.getAttribute("redirectUrl") == null) {
+				session.removeAttribute("redirectUrl");
+				return "redirect:/";
+			}else {
+				if(redirectUrl.contains("addOrderProduct")) {
+					redirectUrl = "/orderPay";
+				}
+				session.removeAttribute("redirectUrl");
+				return "redirect:" + redirectUrl;				
+			}
 		}
 		return "login/loginForm";
 	}

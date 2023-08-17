@@ -77,7 +77,7 @@ public class ProductController {
 			   detailImg.setImage_fileName(base64Img);
 		   }
 		   model.addAttribute("detailImg", detailImg);
-		   List<ProductOption> options = productService.getOptions(productNum);
+		   List<ProductOption> options = productService.getOptionList(productNum);
 		   model.addAttribute("optionsList", options);
 		   
 		   session.setAttribute("productNum", productNum);
