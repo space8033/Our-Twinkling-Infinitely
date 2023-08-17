@@ -18,4 +18,5 @@ public interface ReviewDao {
 	public int countByUser(String userId);
 	public List<Review> selectByUser(Map<String, Object> map);
 	public void updateReview(ReviewReceive review);
+	public void deleteReview(int review_no);
 }

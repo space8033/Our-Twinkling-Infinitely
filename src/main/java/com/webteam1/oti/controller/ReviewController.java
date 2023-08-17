@@ -239,9 +239,6 @@ public class ReviewController {
 	@Login
 	@PostMapping("/modifyReview")
 	public String modifyReviewPost(ReviewReceive review, HttpSession session) throws Exception{
-		log.info(review.getReviewWriter() + "작성자스");
-		log.info(review.getReview_no() + "리뷰번호");
-		
 		reviewService.updateReview(review);
 		imageService.deleteImages(review.getReview_no());
 		
@@ -259,6 +256,13 @@ public class ReviewController {
 			}
 		}
 		
+		return "redirect:/review";
+	}
+	
+	@Login
+	@PostMapping("deleteReview")
+	public String deleteReview(String review_no, Model model) {
+		reviewService.deleteReview(Integer.parseInt(review_no));
 		return "redirect:/review";
 	}
 }

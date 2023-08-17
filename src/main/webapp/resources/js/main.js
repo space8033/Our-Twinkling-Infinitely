@@ -243,6 +243,21 @@ function showReviewModify(review_no) {
 		}
 	});
 }
+//리뷰 삭제하기
+function deleteReview(review_no) {
+	$.ajax({
+		url: "deleteReview",
+		method: "post",
+		data:{"review_no": review_no},
+		success: function(data) {
+			$("#menu3").html(data);
+			$("#showAlert").hide();
+		},
+		error: function(error) {
+			console.log("아왜");
+		}
+	});
+}
 
 //파일 업로드 칸 삭제
 $(document).ready(function() {

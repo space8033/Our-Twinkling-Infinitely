@@ -4,12 +4,12 @@
 	<div class="card-body">
 		<table class="table table-sm table-bordered">
 			<div class="d-flex">
-				<c:if test="${bold == 1}">
+				<c:if test="${bold == 0}">
 					<a id="allFilter" class="mx-1 filterP" style="font-size: 12px; color:black;" href="javascript:showReview(${productNum}, 1)">전체 리뷰 보기</a>
 					<a style="font-size: 12px;">|</a>
 					<a id="photoFilter"class="mx-1 filterP" style="font-size: 12px; font-weight: bold; color:black;" href="javascript:showReview(${productNum}, 1, 1)">포토 리뷰만 보기</a>					
 				</c:if>
-				<c:if test="${bold == 0}">
+				<c:if test="${bold == 1}">
 					<a id="allFilter" class="mx-1 filterP" style="font-size: 12px; font-weight: bold; color:black;" href="javascript:showReview(${productNum}, 1)">전체 리뷰 보기</a>
 					<a style="font-size: 12px;">|</a>
 					<a id="photoFilter"class="mx-1 filterP" style="font-size: 12px; color:black;" href="javascript:showReview(${productNum}, 1, 1)">포토 리뷰만 보기</a>					

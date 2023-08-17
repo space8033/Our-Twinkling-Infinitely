@@ -101,3 +101,19 @@ function modifyForm() {
 		processData: false
 	});
 }
+
+function deleteReview(review_no) {
+	$.ajax({
+		url: "deleteReview",
+		method: "post",
+		data:{"review_no": review_no},
+		success: function(data) {
+			$("#reviewList").html(data);
+			$("#showAlert").hide();
+		},
+		error: function(error) {
+			console.log("아왜");
+		}
+	});
+}
+

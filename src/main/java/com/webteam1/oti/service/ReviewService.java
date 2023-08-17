@@ -15,4 +15,5 @@ public interface ReviewService {
 	public int countByUserId(String userId);
 	public List<Review> getReviewListByUser(Map<String, Object> map);
 	public void updateReview(ReviewReceive review);
+	public void deleteReview(int review_no);
 }
