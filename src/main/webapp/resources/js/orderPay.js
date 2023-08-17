@@ -6,63 +6,12 @@ function init(){
 	priceCalculate();
 }
 
-//주문 json
-/*function order() {
-	$.ajax({
-		url: "../WEB-INF/views/orderPay/orderPay_content.jsp",
-		method: "get",
-		success: function(data) {
-			console.log(data);
-			let html = "";
-	   	  	data.forEach(function(item, index) {
-		   		 if(index == 0) {
-		   			html +=' <table class="nofn" style="font-family: Dotum, sans-serif;">';
-		   			html +='<tr>';
-		   			html +='	<th colspan="3" class="text-left" style="font-size: 16px; color: #00891A;">내일(화)';
-		   			html +='		7/12 도착 보장</th>';
-		   			html +='</tr>';
-		   		}
-		   		 
-		   		html +='<tr>'; 
-		   		html +='	<td style="border-right: white;">';
-		   		html +='	<span class="nofnc" style="font-size: 16px;">';
-		   		html +=item.ordername + '</span>';
-		   		html +='	</td>';
-		   		html +='	<td style="border-left: white; border-right: white;">';	
-		   		html +='		 <span>'+ item.nb +'</span>';
-		   		html +='	</td>';
-		   		html +='	<td style="border-left: white;">';		
-		   		html +='			 <img';
-		   		html +='			data-bundle-info--rocket-img=""';
-		   		html +='			class="bundle-info__delivery-type__icon bundle-info__retail__icon__pc"';
-		   		html +='			src="//img1a.coupangcdn.com/image/cmg/icon/ios/logo_rocket_large@3x.png"';
-		   		html +='			height="16" alt="로켓배송 상품">';
-		   		html +='	</td>	';
-		   		html +='</tr>	';
-	   			
-		   		if(index === (data.length-1)) {
-		   			html += '	</table>';
-		   		}
-		   });
-	  $("#orderplus").html(html);
-		},
-		
-		error: function(error) {
-			console.log(error.status);
-		}
-	
-	});
-} */
-function receiveUpdatedUrl(url) {
-    // Handle the received updated URL in the parent window
-    console.log("Received updated URL:", url);
-    
-    // You can use the received URL to update the parent page as needed
-    // For example, you can update an iframe src or perform other actions
-}
+
 //결제 금액 계산
 function priceCalculate() {
-	var totalPrice = parseInt($('#totalPrice').text().replace(/,/gi, ""));
+	
+	
+	var totalPrice = parseInt($('.totalPrice').text().replace(/,/gi, ""));
 	console.log("totalPrice : "+ totalPrice);
 	var discount =parseInt($('#discount').text().replace(/,/gi, ""));	
 	console.log("discount : "+ discount);
@@ -441,17 +390,25 @@ $(document).ready(function(){
 			
 		});
 		
-		$('#couponUse').click(function(){
-			if($("#couponUse").is(":checked")){
-	            var couponPrice = parseInt($('#couponDiscount').text().replace(/,/gi, ""));	
-	            
-	            $('#discount').text(couponPrice);
+		$('.couponUse').change(function(){
+		    var selectedCouponValue = parseFloat($('input[name=coupon]:checked').val());
 
-	            priceCalculate();
-	        }else if(!$("#couponUse").is(":checked")){
-	        	$('#discount').text(0);
-	        	priceCalculate();
-	        }
+		    if (selectedCouponValue !== 0) {
+		        var totalPrice = parseFloat($('.totalPrice').text());
+		        var couponPrice;
+
+		        if (selectedCouponValue >= 100) {
+		            couponPrice = selectedCouponValue;
+		        } else {
+		            couponPrice = Math.floor(totalPrice * (selectedCouponValue / 100));
+		        }
+
+		        $('#discount').text(couponPrice);
+		        priceCalculate();
+		    } else {
+		        $('#discount').text('0');
+		        priceCalculate();
+		    }
 		});
 		
 		
@@ -532,6 +489,7 @@ $(document).ready(function(){
 		if(select === "pay-in-full") {
 			$('#interest-free-note').hide();
 			$('#pay-in-full-note').show();
+			
 		} else if(select !== "pay-in-full"){
 			$('#interest-free-note').show();
 			$('#pay-in-full-note').hide();
@@ -700,13 +658,46 @@ $(document).ready(function(){
 					
 						}
 		
-			}
-					
+				}
 			})
+			
+			
+			
 		
-				
-				
-		
-	});
+			
+});
+
+function payNow() {
+    // 선택된 라디오 버튼의 data-coupon-no 값 가져오기
+    //var coupon_no = $('input[name=coupon]:checked').next('input[name=coupon_no]').val();
+	var coupon = $('input[name=coupon]:checked').nextAll('input[name=coupon_no]').first().val();
+	var coupon_no = parseInt(coupon);
+    console.log(coupon_no);
+    if(coupon_no === null) {
+    	coupon_no = parseInt(0);
+    }
+    
+    // 서버로 전송할 데이터 생성
+    var postData = {
+    	coupon_no: coupon_no
+    };
+    
+    // AJAX 요청으로 데이터 전송
+    $.ajax({
+        type: "POST",
+        url: "/our-twinkling-infinitely/orderPay", // 보낼 곳의 URL
+        data: postData,
+        success: function(response) {
+            // 서버 응답 처리 (예: 성공 메시지 표시)
+            alert("데이터가 성공적으로 전달 완료되었습니다.");
+        },
+        error: function() {
+            // 오류 처리
+            alert("데이터 전송 중 오류가 발생했습니다.");
+        }
+    });
+}
+
+
 
 

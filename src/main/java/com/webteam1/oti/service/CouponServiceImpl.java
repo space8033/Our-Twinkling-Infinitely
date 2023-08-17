@@ -131,6 +131,12 @@ public class CouponServiceImpl implements CouponService{
 	        }    
 	}
 	
+	@Override
+	public List<Coupon> getCouponByUsersId(String usersId) {
+		List<Coupon> userCouponList = couponDao.selectCouponByUsersId(usersId);
+		return userCouponList;
+	}
+	
 /*	@Override
 	public void registerAddress(Address address) {
 		

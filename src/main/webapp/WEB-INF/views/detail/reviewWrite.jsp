@@ -8,12 +8,12 @@
 	   <div class="card-body">
 	      <form id="reviewWrite" method="post" action="javascript:submitForm()" enctype="multipart/form-data">
 	         <div class="input-group">
-	            <div class="input-group-prepend"><span class="input-group-text">한줄평</span></div>
+	            <div class="input-group-prepend"><span class="input-group-text" style="width:95px">한줄평</span></div>
 	            <input id="btitle" type="text" name="reviewTitle" class="form-control">
 	         </div>
 	         
 	         <div class="input-group">
-	            <div class="input-group-prepend"><span class="input-group-text">별점</span></div>
+	            <div class="input-group-prepend"><span class="input-group-text" style="width:95px">별점</span></div>
 		         <div class="rate">
 		         	 <input type="radio" id="rating5" name="reviewRating" value="5"><label for="rating5" title="5점"></label>
 	                 <input type="radio" id="rating4" name="reviewRating" value="4"><label for="rating4" title="4점"></label>
@@ -24,12 +24,12 @@
 	         </div>
 	         
 	         <div class="input-group">
-	            <div class="input-group-prepend"><span class="input-group-text">리뷰 상세</span></div>
+	            <div class="input-group-prepend"><span class="input-group-text" style="width:95px">리뷰 상세</span></div>
 	            <textarea id="bcontent" name="reviewContents" class="form-control"></textarea>
 	         </div>
 	         
 	         <div class="input-group">
-	            <div class="input-group-prepend"><span class="input-group-text">작성자</span></div>
+	            <div class="input-group-prepend"><span class="input-group-text" style="width:95px">작성자</span></div>
 	            <input id="bwriter" type="text" name="reviewWriter" class="form-control" value="${user}" readonly>
 	         </div>
 	         
@@ -43,7 +43,7 @@
 	         	</div>
 		        <br>
 		        <div class="file-group mt-2">
-		            <input type="file" name="file" style="width:80%; border: solid 1px #f0f0f0">
+		            <input type="file" name="file" style="width:45%; border: solid 1px #f0f0f0">
 		        </div>
 		    </div>
 	            

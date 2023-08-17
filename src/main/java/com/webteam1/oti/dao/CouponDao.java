@@ -11,5 +11,5 @@ public interface CouponDao {
 	public int insert(Coupon coupon);
 	public int delete(Coupon coupon);
 	public List<Coupon> getExpiredCoupons(String nowDate);
-	
+	public List<Coupon> selectCouponByUsersId(String usersId);
 }

@@ -58,6 +58,7 @@ public class AddressController {
 		
 		List<Address> list = addressService.getList(map);
 		
+		
 		model.addAttribute("pager", pager);
 		model.addAttribute("list", list);
 		

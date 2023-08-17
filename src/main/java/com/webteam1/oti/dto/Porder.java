@@ -8,9 +8,12 @@ import lombok.Data;
 public class Porder {
 	private int order_no;
 	private String users_users_id;
+	private int address_no;
+	private String address_request;
 	private boolean order_cashReceipt;
 	private Date order_createdDate;
 	private Date order_modifiedDate;
 	private Date order_deletedDate;
-	private int order_del_fee;
+	private String order_del_fee;
+	private int coupon_no;
 }

@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.webteam1.oti.dao.OrderDao">
+	<insert id="InsertOrder" parameterType="Porder">
+		<selectKey keyProperty="order_no" resultType="int" order="BEFORE">
+	         select porder_seq.nextval from dual
+      	</selectKey>
+      	
+		insert into porder(
+	      	order_no, users_users_id, order_cashReceipt, order_createdDate, order_del_fee, coupon_coupon_no, address_no, address_request
+		)
+		values(
+			#{order_no}, #{users_users_id}, #{order_cashReceipt}, to_char(sysdate,'yyyy.mm.dd hh24:mi:ss'), #{order_del_fee}, #{coupon_no}, #{address_no}, #{address_request}
+		)
+		
+	</insert>
+
+	
+	
+	
+</mapper>
