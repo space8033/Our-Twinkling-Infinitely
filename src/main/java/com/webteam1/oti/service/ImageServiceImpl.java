@@ -37,4 +37,9 @@ public class ImageServiceImpl implements ImageService{
 		return imageDao.selectByRno(review_no);
 	}
 
+	@Override
+	public void deleteImages(int review_no) {
+		imageDao.deleteByRno(review_no);
+	}
+
 }

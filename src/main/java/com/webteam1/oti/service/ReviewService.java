@@ -14,4 +14,5 @@ public interface ReviewService {
 	public int findByUserId(Map<String , Object> map);
 	public int countByUserId(String userId);
 	public List<Review> getReviewListByUser(Map<String, Object> map);
+	public void updateReview(ReviewReceive review);
 }

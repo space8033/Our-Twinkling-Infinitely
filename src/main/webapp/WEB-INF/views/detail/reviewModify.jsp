@@ -7,7 +7,6 @@
 	   </div>
 	   <div class="card-body">
 	      <form id="modifyReview" method="post" action="javascript:modifyForm()" enctype="multipart/form-data">
-	         <input type="hidden" name="review_no" value="${review.review_no}">
 	         <div class="input-group">
 	            <div class="input-group-prepend"><span class="input-group-text">한줄평</span></div>
 	            <input id="btitle" type="text" name="reviewTitle" class="form-control" value="${review.review_title}">

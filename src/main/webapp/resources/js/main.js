@@ -180,6 +180,25 @@ function submitForm() {
         processData: false
 	});
 }
+//리뷰 수정 요청하기
+function modifyForm() {
+	var form = $("#modifyReview")[0];
+	var formData = new FormData(form);
+	$.ajax({
+		url: "modifyReview",
+		method: "post",
+		data: formData,
+		success: function(data) {
+			$("#menu3").html(data);
+		},
+		error: function(error) {
+			console.log("아왜");
+		},
+		cache: false,
+		contentType: false,
+		processData: false
+	});
+}
 //리뷰번호로 리뷰 상세정보 찾기
 function reviewDetail(review_no) {
 	$.ajax({
@@ -209,6 +228,22 @@ function writeReview(productNum) {
 		}
 	});
 }
+//리뷰 수정하기
+function showReviewModify(review_no) {
+	$.ajax({
+		url: "modifyReview",
+		method: "get",
+		data:{"review_no": review_no},
+		success: function(data) {
+			$("#menu3").html(data);
+			$("#showAlert").hide();
+		},
+		error: function(error) {
+			console.log("아왜");
+		}
+	});
+}
+
 //파일 업로드 칸 삭제
 $(document).ready(function() {
     $("a[name='file-delete']").on("click", function(e) {

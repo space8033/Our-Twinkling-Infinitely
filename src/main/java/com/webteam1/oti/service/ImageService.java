@@ -10,4 +10,5 @@ public interface ImageService {
 	public Image getDetailImg(int product_no);
 	public void registerImg(Image image);
 	public List<Image> getReviewImages(int review_no);
+	public void deleteImages(int review_no);
 }

@@ -103,6 +103,7 @@ public class ReviewController {
 	public String getReview(String review_no, Model model, HttpSession session) {
 		Review review = reviewService.getReviewByRno(Integer.parseInt(review_no));
 		model.addAttribute("review", review);
+		log.info("review_no:" + review.getReview_no());
 		List<Image> images = imageService.getReviewImages(Integer.parseInt(review_no));
 		List<String> base64Img = new ArrayList<>();
 		
@@ -127,6 +128,7 @@ public class ReviewController {
 	}
 	
 	//리뷰 작성하기
+	@Login
 	@PostMapping("/reviewWrite")
 	public String writeReview(ReviewReceive review, HttpSession session) throws IOException {
 		int productNo = -1;
@@ -223,5 +225,40 @@ public class ReviewController {
 		model.addAttribute("base64Img", base64Img);
 		
 		return "mypage/orderlist/reviewDetail";
+	}
+	//리뷰 수정하기
+	@GetMapping("/modifyReview")
+	public String modifyReview(String review_no, Model model, HttpSession session) {
+		log.info("여긴옴?");
+		Review review = reviewService.getReviewByRno(Integer.parseInt(review_no));
+		model.addAttribute("review", review);
+		log.info("여긴옴?");
+		return "mypage/orderlist/reviewModify";
+	}
+	
+	@Login
+	@PostMapping("/modifyReview")
+	public String modifyReviewPost(ReviewReceive review, HttpSession session) throws Exception{
+		log.info(review.getReviewWriter() + "작성자스");
+		log.info(review.getReview_no() + "리뷰번호");
+		
+		reviewService.updateReview(review);
+		imageService.deleteImages(review.getReview_no());
+		
+		MultipartFile[] files = review.getFile();
+		
+		for(MultipartFile file : files) {
+			Image image = new Image();
+			if(!file.isEmpty()) {
+				image.setImage_name(file.getOriginalFilename());
+				image.setImage_fileName(file.getContentType());
+				image.setImage_file(file.getBytes());
+				image.setReview_review_no(review.getReview_no());
+				
+				imageService.registerImg(image);
+			}
+		}
+		
+		return "redirect:/review";
 	}
 }

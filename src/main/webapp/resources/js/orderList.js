@@ -68,3 +68,36 @@ function myReviewDetail(review_no) {
 		}
 	});
 }
+
+function showReviewModify(review_no) {
+	$.ajax({
+		url: "modifyReview",
+		method: "get",
+		data:{"review_no": review_no},
+		success: function(data) {
+			$("#reviewList").html(data);
+		},
+		error: function(error) {
+			console.log("아왜");
+		}
+	});
+}
+
+function modifyForm() {
+	var form = $("#modifyReview")[0];
+	var formData = new FormData(form);
+	$.ajax({
+		url: "modifyReview",
+		method: "post",
+		data: formData,
+		success: function(data) {
+			$("#reviewList").html(data);
+		},
+		error: function(error) {
+			console.log("아왜");
+		},
+		cache: false,
+		contentType: false,
+		processData: false
+	});
+}
