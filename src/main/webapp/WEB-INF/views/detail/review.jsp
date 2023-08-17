@@ -3,10 +3,26 @@
 	
 	<div class="card-body">
 		<table class="table table-sm table-bordered">
-			
-			
-			<c:forEach var="review" items="${reviews}" varStatus="i">
-				<a href="javascript:reviewDetail(${review.review_no})">${review.review_title}</a>
+			<div class="d-flex">
+				<c:if test="${bold == 1}">
+					<a id="allFilter" class="mx-1 filterP" style="font-size: 12px; color:black;" href="javascript:showReview(${productNum}, 1)">전체 리뷰 보기</a>
+					<a style="font-size: 12px;">|</a>
+					<a id="photoFilter"class="mx-1 filterP" style="font-size: 12px; font-weight: bold; color:black;" href="javascript:showReview(${productNum}, 1, 1)">포토 리뷰만 보기</a>					
+				</c:if>
+				<c:if test="${bold == 0}">
+					<a id="allFilter" class="mx-1 filterP" style="font-size: 12px; font-weight: bold; color:black;" href="javascript:showReview(${productNum}, 1)">전체 리뷰 보기</a>
+					<a style="font-size: 12px;">|</a>
+					<a id="photoFilter"class="mx-1 filterP" style="font-size: 12px; color:black;" href="javascript:showReview(${productNum}, 1, 1)">포토 리뷰만 보기</a>					
+				</c:if>
+			</div>
+			<hr/>
+			<c:forEach var="review" items="${reviews}">
+				<div class="d-flex">
+					<a href="javascript:reviewDetail(${review.review_no})">${review.review_title}</a>
+					<c:if test="${review.review_images != 0}">
+						<img src="${pageContext.request.contextPath}/resources/oimg/camera.png" width="25" height="25" class="ml-2">
+					</c:if>
+				</div>
 				<br>
 				<c:if test="${review.review_rating == 0}">
 					<span class="fa fa-star"></span>

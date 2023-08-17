@@ -43,7 +43,7 @@
 	         	</div>
 		        <br>
 		        <div class="file-group mt-2">
-		            <input type="file" name="file" style="width:60%; border: solid 1px #f0f0f0">
+		            <input type="file" name="file" style="width:45%; border: solid 1px #f0f0f0">
 		        </div>
 		    </div>
 	            

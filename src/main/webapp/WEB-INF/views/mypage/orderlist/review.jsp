@@ -6,7 +6,12 @@
 			
 			
 			<c:forEach var="review" items="${reviews}" varStatus="i">
-				<a href="javascript:myReviewDetail(${review.review_no})">${review.review_title}</a>
+				<div class="d-flex">
+					<a href="javascript:myReviewDetail(${review.review_no})">${review.review_title}</a>
+					<c:if test="${review.review_images != 0}">
+						<img src="${pageContext.request.contextPath}/resources/oimg/camera.png" width="25" height="25" class="ml-2">
+					</c:if>
+				</div>
 				<br>
 				<c:if test="${review.review_rating == 0}">
 					<span class="fa fa-star"></span>
