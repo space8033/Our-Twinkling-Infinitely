@@ -103,7 +103,6 @@ public class ReviewController {
 	public String getReview(String review_no, Model model, HttpSession session) {
 		Review review = reviewService.getReviewByRno(Integer.parseInt(review_no));
 		model.addAttribute("review", review);
-		log.info("review_no:" + review.getReview_no());
 		List<Image> images = imageService.getReviewImages(Integer.parseInt(review_no));
 		List<String> base64Img = new ArrayList<>();
 		
@@ -229,10 +228,8 @@ public class ReviewController {
 	//리뷰 수정하기
 	@GetMapping("/modifyReview")
 	public String modifyReview(String review_no, Model model, HttpSession session) {
-		log.info("여긴옴?");
 		Review review = reviewService.getReviewByRno(Integer.parseInt(review_no));
 		model.addAttribute("review", review);
-		log.info("여긴옴?");
 		return "mypage/orderlist/reviewModify";
 	}
 	
@@ -260,9 +257,9 @@ public class ReviewController {
 	}
 	
 	@Login
-	@PostMapping("deleteReview")
+	@PostMapping("/deleteReview")
 	public String deleteReview(String review_no, Model model) {
 		reviewService.deleteReview(Integer.parseInt(review_no));
-		return "redirect:/review";
+		return "redirect:/reviewByUser";
 	}
 }

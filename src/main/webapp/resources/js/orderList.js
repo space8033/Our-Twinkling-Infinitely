@@ -76,6 +76,7 @@ function showReviewModify(review_no) {
 		data:{"review_no": review_no},
 		success: function(data) {
 			$("#reviewList").html(data);
+			$("#showAlert").hide();
 		},
 		error: function(error) {
 			console.log("아왜");
@@ -109,7 +110,6 @@ function deleteReview(review_no) {
 		data:{"review_no": review_no},
 		success: function(data) {
 			$("#reviewList").html(data);
-			$("#showAlert").hide();
 		},
 		error: function(error) {
 			console.log("아왜");

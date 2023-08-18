@@ -251,7 +251,6 @@ function deleteReview(review_no) {
 		data:{"review_no": review_no},
 		success: function(data) {
 			$("#menu3").html(data);
-			$("#showAlert").hide();
 		},
 		error: function(error) {
 			console.log("아왜");
@@ -285,21 +284,3 @@ function deleteFile(obj) {
 	$("#showAlert").hide();
     obj.parent().remove();
 }
-
-/*//마이페이지====================================================================
-//마이페이지 이미지 업로드
-function addMyImg(users_imgFile) {
-	console.log("실행은 함 ㅎㅎ")
-	$.ajax({
-		url: "mypage",
-		method: "post",
-		data: { users_imgFile: users_imgFile },
-		success: function(data) {
-			console.log("나 완료 !!!!!");
-		},
-		error: function(error) {
-			console.log("야 안돼써;;;;");
-			console.log(error.staus);
-		}
-	});
-}*/
