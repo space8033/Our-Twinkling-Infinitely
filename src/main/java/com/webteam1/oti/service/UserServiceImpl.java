@@ -1,5 +1,7 @@
 package com.webteam1.oti.service;
 
+import java.util.Base64;
+
 import javax.annotation.Resource;
 
 import org.springframework.security.crypto.factory.PasswordEncoderFactories;
@@ -84,6 +86,7 @@ public class UserServiceImpl implements UserService{
 	@Override
 	public LoginDto getUser(String uid) {
 		LoginDto user = userDao.selectByUsersId(uid);
+
 		return user;
 	}
 	
