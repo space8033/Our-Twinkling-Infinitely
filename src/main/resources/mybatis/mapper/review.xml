@@ -67,4 +67,15 @@
 		from review
 		where review_name = #{user_id} and product_no=#{productNo} and review_title = #{title}
 	</select>
+	
+	<update id="updateReview" parameterType="ReviewReceive">
+		update review set review_rating=#{reviewRating}, review_title=#{reviewTitle}, review_contents=#{reviewContents}, review_modifieddate=to_char(sysdate,'yyyy.mm.dd hh24:mi:ss')
+		where review_no=#{review_no}
+	</update>
+	
+	<delete id="deleteReview" parameterType="int">
+		delete from review where review_no=#{review_no}
+		
+	</delete>
+	
 </mapper>

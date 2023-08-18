@@ -12,4 +12,5 @@ public interface ImageDao {
 	public Image getDetail(int pno); 
 	public int insertReviewImage(Image image);
 	public List<Image> selectByRno(int rno);
+	public void deleteByRno(int review_no);
 }

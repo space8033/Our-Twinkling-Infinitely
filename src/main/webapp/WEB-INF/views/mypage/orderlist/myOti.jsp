@@ -7,8 +7,13 @@
 	<body class="container">
 		<div class="header">
 			<div class="d-flex">			
-				<div class="profileImg">			
-					<img id="avatar" class="rounded-circle" src="" alt="Avatar" width="150" onclick="changeAvatar()">
+				<div class="profileImg">
+					<c:if test="${loginIng.users_img !=null}">
+						<img id="avatar" class="rounded-circle" src="data:MIME;base64, ${loginIng.users_img}" alt="Avatar" width="150">					
+					</c:if>	
+					<c:if test="${loginIng.users_img == null}">		
+						<img id="avatar" class="rounded-circle" src="${pageContext.request.contextPath}/resources/yuimg/기본프로필.jpg" alt="Avatar" width="150" onclick="changeAvatar()">
+					</c:if>
 					<div>
 						<form id="addMyImg" method="post" enctype="multipart/form-data" action="mypage">
 							<label id="label" for="fileInput" class="text-primary">					

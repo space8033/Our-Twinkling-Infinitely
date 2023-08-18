@@ -180,6 +180,25 @@ function submitForm() {
         processData: false
 	});
 }
+//리뷰 수정 요청하기
+function modifyForm() {
+	var form = $("#modifyReview")[0];
+	var formData = new FormData(form);
+	$.ajax({
+		url: "modifyReview",
+		method: "post",
+		data: formData,
+		success: function(data) {
+			$("#menu3").html(data);
+		},
+		error: function(error) {
+			console.log("아왜");
+		},
+		cache: false,
+		contentType: false,
+		processData: false
+	});
+}
 //리뷰번호로 리뷰 상세정보 찾기
 function reviewDetail(review_no) {
 	$.ajax({
@@ -209,6 +228,36 @@ function writeReview(productNum) {
 		}
 	});
 }
+//리뷰 수정하기
+function showReviewModify(review_no) {
+	$.ajax({
+		url: "modifyReview",
+		method: "get",
+		data:{"review_no": review_no},
+		success: function(data) {
+			$("#menu3").html(data);
+			$("#showAlert").hide();
+		},
+		error: function(error) {
+			console.log("아왜");
+		}
+	});
+}
+//리뷰 삭제하기
+function deleteReview(review_no) {
+	$.ajax({
+		url: "deleteReview",
+		method: "post",
+		data:{"review_no": review_no},
+		success: function(data) {
+			$("#menu3").html(data);
+		},
+		error: function(error) {
+			console.log("아왜");
+		}
+	});
+}
+
 //파일 업로드 칸 삭제
 $(document).ready(function() {
     $("a[name='file-delete']").on("click", function(e) {
@@ -235,21 +284,3 @@ function deleteFile(obj) {
 	$("#showAlert").hide();
     obj.parent().remove();
 }
-
-/*//마이페이지====================================================================
-//마이페이지 이미지 업로드
-function addMyImg(users_imgFile) {
-	console.log("실행은 함 ㅎㅎ")
-	$.ajax({
-		url: "mypage",
-		method: "post",
-		data: { users_imgFile: users_imgFile },
-		success: function(data) {
-			console.log("나 완료 !!!!!");
-		},
-		error: function(error) {
-			console.log("야 안돼써;;;;");
-			console.log(error.staus);
-		}
-	});
-}*/

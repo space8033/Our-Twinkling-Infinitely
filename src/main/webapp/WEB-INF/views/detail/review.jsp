@@ -15,7 +15,7 @@
 					<a id="photoFilter"class="mx-1 filterP" style="font-size: 12px; color:black;" href="javascript:showReview(${productNum}, 1, 1)">포토 리뷰만 보기</a>					
 				</c:if>
 			</div>
-			<hr/>
+			<hr>
 			<c:forEach var="review" items="${reviews}">
 				<div class="d-flex">
 					<a href="javascript:reviewDetail(${review.review_no})">${review.review_title}</a>

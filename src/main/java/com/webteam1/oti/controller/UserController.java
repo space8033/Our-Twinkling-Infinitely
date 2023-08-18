@@ -1,5 +1,6 @@
 package com.webteam1.oti.controller;
 
+import java.util.Base64;
 import java.util.List;
 
 //github.com/space8033/Our-Twinkling-Infinitely.git
@@ -288,7 +289,8 @@ public class UserController {
 	
 	@Login
 	@GetMapping("/mypage")
-	public String myPage() {
+	public String myPage(HttpSession session, Model model) {
+		
 		return "mypage/orderlist/myOti";
 	}
 	
@@ -299,12 +301,19 @@ public class UserController {
 		
 		LoginDto loginDto = (LoginDto)session.getAttribute("loginIng");
 		loginDto.setUsers_mattach(users_mattach);
-	
+		
+		//MultipartFile타입의 파일을 바이트 타입으로 변경
 		if(users_mattach != null) {			
 			loginDto.setUsers_imgFile(users_mattach.getBytes());
 		}
+		//변경된 이미지 파일을 업데이트 
 		userService.addMyImg(loginDto);
-
+		
+		//마이페이지에 등록한 이미지가 있다면 base64로 인코딩
+		if(loginDto.getUsers_imgFile() != null) {
+			String base64Img = Base64.getEncoder().encodeToString(loginDto.getUsers_imgFile());
+			loginDto.setUsers_img(base64Img);
+		}
 		return "redirect:/mypage";
 	}
 	
