@@ -78,8 +78,8 @@
 					<a class="btn btn-info btn-sm mt-2" href="javascript:showReview(${productNum}, 1)">목록</a>
 					
 					<c:if test="${review.review_name == loginIng.users_id}">
-						<a class="btn btn-info btn-sm mt-2" href="updateReview?review_no=${review.review_no}">수정</a>
-						<a class="btn btn-info btn-sm mt-2" href="deleteReview?review_no=${review.review_no}">삭제</a>				
+						<a class="btn btn-info btn-sm mt-2" href="javascript:showReviewModify(${review.review_no})">수정</a>
+						<a class="btn btn-info btn-sm mt-2" href="javascript:deleteReview(${review.review_no})">삭제</a>				
 					</c:if>
 				</div>
 			</div>

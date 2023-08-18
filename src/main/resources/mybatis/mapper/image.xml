@@ -25,4 +25,9 @@
 		from image
 		where review_review_no=#{review_review_no}
 	</select>
+	
+	<delete id="deleteByRno" parameterType="int">
+		delete from image where review_review_no=#{review_no}
+		
+	</delete>
 </mapper>
