@@ -8,13 +8,12 @@ import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.webteam1.oti.dto.Pager;
 import com.webteam1.oti.dto.Product;
+import com.webteam1.oti.dto.user.LoginDto;
+import com.webteam1.oti.service.OrderProductService;
 import com.webteam1.oti.service.ProductService;
 
 import lombok.extern.slf4j.Slf4j;
@@ -24,7 +23,8 @@ import lombok.extern.slf4j.Slf4j;
 public class HomeController {
 	@Resource
 	private ProductService productService;
-	
+	@Resource
+	private OrderProductService orderProductService;
 	//http://localhost:8080/our-twinkling-infinitely/ 요청하면 HomeController.index() 실행
 	//홈 페이지 불러오기
 	@RequestMapping("/")

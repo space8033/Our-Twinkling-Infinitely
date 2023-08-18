@@ -17,34 +17,53 @@ function couponList() {
 	        }
 	    });
 }
-
-window.addEventListener("beforeunload", function(event) {
-    event.preventDefault(); // 필요한 경우 이벤트를 취소하여 브라우저가 페이지를 떠나는 것을 막습니다.
-    var addressNo = $('#addressNo').val();
-    // 서버로 전송할 데이터 생성
-    var postData = {
-        addressNo: addressNo
-    };
-
-    // AJAX 요청으로 데이터 전송
-    $.ajax({
-        type: "POST",
-        url: "/our-twinkling-infinitely/delete-data", // 보낼 곳의 URL
-        data: postData,
-        success: function(response) {
-            // 서버 응답 처리 (예: 성공 메시지 표시)
-            alert("데이터가 성공적으로 전달 완료되었습니다.");
-        },
-        error: function() {
-            // 오류 처리
-            alert("데이터 전송 중 오류가 발생했습니다.");
-        }
-    });
-
-    // 변경사항 저장 여부 메시지
-    event.returnValue = "변경사항을 저장하지 않으셨습니다. 페이지를 떠나시겠습니까?";
+/*var isRefreshButtonClicked = false;
+window.addEventListener("keydown", function(event) {
+    // F5 키를 누를 경우에 isRefreshButtonClicked를 true로 설정
+    if (event.keyCode === 116) {
+        isRefreshButtonClicked = true;
+    }
 });
+
+window.reload = function() {
+    isRefreshButtonClicked = true;
+    location.reload();
+};*/
+/*
+window.addEventListener("beforeunload", function(event) {
+
+	    // 페이지를 벗어난 경우 처리
 	
+	        event.preventDefault();
+	        var addressNo = $('#addressNo').val();
+	        // 서버로 전송할 데이터 생성
+	        var postData = {
+	            addressNo: addressNo
+	        };
+
+	        // AJAX 요청 등의 작업 수행
+	        $.ajax({
+	            type: "POST",
+	            url: "/our-twinkling-infinitely/delete-data", // 보낼 곳의 URL
+	            data: postData,
+	            success: function(response) {
+	                // 서버 응답 처리 (예: 성공 메시지 표시)
+	                alert("데이터가 성공적으로 전달 완료되었습니다.");
+	            },
+	            error: function() {
+	                // 오류 처리
+	                alert("데이터 전송 중 오류가 발생했습니다.");
+	            }
+	        });
+
+	        // 변경사항 저장 여부 메시지
+	        event.returnValue = "변경사항을 저장하지 않으셨습니다. 페이지를 떠나시겠습니까?";
+	    
+	
+});
+
+*/
+
 
 //결제 금액 계산
 function priceCalculate() {
@@ -598,43 +617,54 @@ $(document).ready(function(){
 function checkValidation() {
 	
     var isValidation = true;
-   	var errorMsgs = $(".errorMsg");
-   	console.log(errorMsgs);
-   	errorMsgs.each(function(index, item) {
-   		$(item).addClass("d-none");
-   	});
    	
    	var addressNo = $('#addressNo').val();
    	if(addressNo == null) {
    		isValidation = false;
    	}
-   	
-	//계좌이체  
-   	var nonselect = $("#account-transfer-choice-bank option:selected").val();
-	if(nonselect === "none") {
-		isValidation = false;
-	} 
+	console.log(isValidation+"결제성공?");
+	//계좌이체
+	if($("input[name='pay-method']:checked").val() == '계좌이체'){
+	   	var nonselect1 = $("#account-transfer-choice-bank option:selected").val();
+		if(nonselect1 === "none") {
+			isValidation = false;
+		} 
+	}	
+	
+	//신용/체크카드
+	if($("input[name='pay-method']:checked").val() == '신용체크'){
+		var nonselect2 = $("#credit-card-option option:selected").val();
+		if(nonselect2 === "none") {
+			isValidation = false;
+		} 
+	}
 	
 	//법인카드
-	var nonselect = $("#coporation-card-choice option:selected").val();
-	if(nonselect === "none") {
-		isValidation = false;
-	} 
+	if($("input[name='pay-method']:checked").val() == '법인카드'){
+		var nonselect3 = $("#coporation-card-choice option:selected").val();
+		if(nonselect3 === "none") {
+			isValidation = false;
+		} 
+	}	
 	
-	//통신사
-	var nonselect = $("#coporation-card-choice option:selected").val();
-	if(nonselect === "none") {
-		isValidation = false;
-	} 
+	//휴대폰
+	if($("input[name='pay-method']:checked").val() == '휴대폰'){
+		var nonselect3 = $("#mobile-corp option:selected").val();
+		if(nonselect3 === "none") {
+			isValidation = false;
+		} 
+	}	
 	
 	//무통장
-	var nonselect = $("#bank-choice option:selected").val();
-	if(nonselect === "none") {
-		$('#bank-no-choice').show();
-	} 
+	if($("input[name='pay-method']:checked").val() == '무통장입금'){
+		var nonselect4 = $("#bank-choice option:selected").val();
+		if(nonselect4 === "none") {
+			isValidation = false;
+		}
+	}	
    	
    //현금 영수증 체크박스 유효성검사
-
+	console.log(isValidation+"결제성공?");
 	var checked = $('#cash-receipt-application').prop('checked');
 	if (checked) {
 		var check1 = $("#income-deduction-option option:selected").val();
@@ -663,18 +693,17 @@ function checkValidation() {
 			}
 		}
 	}
-	
+	console.log(isValidation+"결제성공?");
 	if(!isValidation) {
 		event.preventDefault();
 		window.alert('결제에 실패하였습니다.');
 	} else {
-	
-		var coupon = $('input[name=coupon]:checked').nextAll('input[name=coupon_no]').first().val();
-		var coupon_no = parseInt(coupon);
-	    console.log(coupon_no);
-	    if(coupon_no === null) {
-	    	coupon_no = parseInt(0);
-	    }
+		var coupon_no = $('input[name=coupon]:checked').next().first().val();
+		
+		if(coupon_no === 'undefined') {
+			coupon_no === 0;
+		} 
+		coupon_no = String(coupon_no);
 	    
 	    // 서버로 전송할 데이터 생성
 	    var postData = {

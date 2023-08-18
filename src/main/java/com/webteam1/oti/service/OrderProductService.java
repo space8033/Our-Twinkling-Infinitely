@@ -13,4 +13,5 @@ public interface OrderProductService {
 	public List<ProductOption> getOrderProductOption(String userId); 
 	public List<OrderProduct> getOrderProduct(String userId); 
 	public void addOrderNo(Map<String, Object> map);
+	public void deleteOrderProduct(String usersId);
 }

@@ -84,5 +84,9 @@ public class OrderProductServiceImpl implements OrderProductService {
 		orderProductDao.addOrderNumber(map);
 		
 	}
+	@Override
+	public void deleteOrderProduct(String usersId) {
+		orderProductDao.pageOutDelete(usersId);
+	}
 	
 }
