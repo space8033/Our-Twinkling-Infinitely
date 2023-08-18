@@ -18,6 +18,34 @@ function couponList() {
 	    });
 }
 
+window.addEventListener("beforeunload", function(event) {
+    event.preventDefault(); // 필요한 경우 이벤트를 취소하여 브라우저가 페이지를 떠나는 것을 막습니다.
+    var addressNo = $('#addressNo').val();
+    // 서버로 전송할 데이터 생성
+    var postData = {
+        addressNo: addressNo
+    };
+
+    // AJAX 요청으로 데이터 전송
+    $.ajax({
+        type: "POST",
+        url: "/our-twinkling-infinitely/delete-data", // 보낼 곳의 URL
+        data: postData,
+        success: function(response) {
+            // 서버 응답 처리 (예: 성공 메시지 표시)
+            alert("데이터가 성공적으로 전달 완료되었습니다.");
+        },
+        error: function() {
+            // 오류 처리
+            alert("데이터 전송 중 오류가 발생했습니다.");
+        }
+    });
+
+    // 변경사항 저장 여부 메시지
+    event.returnValue = "변경사항을 저장하지 않으셨습니다. 페이지를 떠나시겠습니까?";
+});
+	
+
 //결제 금액 계산
 function priceCalculate() {
 	
@@ -641,32 +669,32 @@ function checkValidation() {
 		window.alert('결제에 실패하였습니다.');
 	} else {
 	
-	var coupon = $('input[name=coupon]:checked').nextAll('input[name=coupon_no]').first().val();
-	var coupon_no = parseInt(coupon);
-    console.log(coupon_no);
-    if(coupon_no === null) {
-    	coupon_no = parseInt(0);
-    }
-    
-    // 서버로 전송할 데이터 생성
-    var postData = {
-    	coupon_no: coupon_no
-    };
-    
-    // AJAX 요청으로 데이터 전송
-    $.ajax({
-        type: "POST",
-        url: "/our-twinkling-infinitely/orderPay", // 보낼 곳의 URL
-        data: postData,
-        success: function(response) {
-            // 서버 응답 처리 (예: 성공 메시지 표시)
-            alert("데이터가 성공적으로 전달 완료되었습니다.");
-        },
-        error: function() {
-            // 오류 처리
-            alert("데이터 전송 중 오류가 발생했습니다.");
-        }
-    });
+		var coupon = $('input[name=coupon]:checked').nextAll('input[name=coupon_no]').first().val();
+		var coupon_no = parseInt(coupon);
+	    console.log(coupon_no);
+	    if(coupon_no === null) {
+	    	coupon_no = parseInt(0);
+	    }
+	    
+	    // 서버로 전송할 데이터 생성
+	    var postData = {
+	    	coupon_no: coupon_no
+	    };
+	    
+	    // AJAX 요청으로 데이터 전송
+	    $.ajax({
+	        type: "POST",
+	        url: "/our-twinkling-infinitely/orderPay", // 보낼 곳의 URL
+	        data: postData,
+	        success: function(response) {
+	            // 서버 응답 처리 (예: 성공 메시지 표시)
+	            alert("데이터가 성공적으로 전달 완료되었습니다.");
+	        },
+	        error: function() {
+	            // 오류 처리
+	            alert("데이터 전송 중 오류가 발생했습니다.");
+	        }
+	    });
     
 	}
 }

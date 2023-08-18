@@ -7,10 +7,12 @@ import java.util.Map;
 import javax.annotation.Resource;
 import javax.servlet.http.HttpSession;
 
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -134,6 +136,21 @@ public class OrderPayController {
 		
         return "orderPay/orderPay";
 	}
+	
+	@Login
+	@PostMapping("/delete-data")
+	 public ResponseEntity<String> deleteData(@RequestBody String addressNo, HttpSession session) {
+		
+		LoginDto loginUser = (LoginDto) session.getAttribute("loginIng");
+		log.info(loginUser+"로그인유정");
+		orderProductService.getOrderProduct(loginUser.getUsers_id());
+		log.info("실행됐니?");
+		
+        return ResponseEntity.ok("Data deleted successfully");
+    }
+	
+	
+	
 	
 	@Login
 	@GetMapping("/addressSelect")
