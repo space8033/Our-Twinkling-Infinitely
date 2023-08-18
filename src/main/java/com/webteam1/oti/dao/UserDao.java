@@ -36,5 +36,7 @@ public interface UserDao {
 	
 	//마이페이지 사진 추가
 	public void updateMyImage(LoginDto login);
+	//기본이미지로 변경(기존에 등록했던 이미지가 있다면 null로 변경)
+    public void updateBasic(String usersId);
 	
 }

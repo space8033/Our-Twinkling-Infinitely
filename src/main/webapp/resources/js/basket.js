@@ -391,6 +391,7 @@ function setSelectQty(){
     });
 }
 
+//카트 번호로 카트 수량 변경
 function qtyUpdate(cartNo, newQty) {
     $.ajax({
         url: "qtyUpdate", 
@@ -409,20 +410,3 @@ function qtyUpdate(cartNo, newQty) {
     });
 }
 
-function qtyUpdate(cartNo, newQty) {
-	$.ajax({
-		url: "qtyUpdate", 
-		method: "post",
-		data: {
-			"cart_no": cartNo,
-			"cart_qty": newQty
-		},
-		success: function(response) {
-			jsonProduct();
-			setSelectBox();
-		},
-		error: function(error) {
-			console.log(error);
-		}
-	});
-}

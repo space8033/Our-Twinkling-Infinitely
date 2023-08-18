@@ -37,5 +37,13 @@
 
 	</select>
 	
+	<!-- 쿠폰 수량 -->
+	<select id="countMyCoupon" resultType="int" parameterType="String">
+
+		select count(*)
+   		from coupon
+    	where users_users_id = #{usersId}
+
+	</select>
   	
 </mapper>
