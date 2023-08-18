@@ -84,7 +84,6 @@ function checkValidation() {
 	var pwd = $("#pwd").val();
 	var pwdErr1 = $("#pwdErr1");
 	var pwdErr2 = $("#pwdErr2");
-	console.log("pwd: " + pwd);
 		if(pwd ==="") {
 			isValidation = false;
 			pwdErr2.addClass("d-none");
@@ -147,7 +146,6 @@ $(document).ready(function(){
     		var uid = $("#uid").val();
 	    	var uidErr1 = $("#uidErr1");
 	    	var uidErr2 = $("#uidErr2");
-	    	console.log("uid: " + uid);
 	    		if(uid ==="") {
 	    			isValidation = false;
 	    			uidErr2.addClass("d-none");
@@ -184,7 +182,6 @@ $(document).ready(function(){
 	    	var pwd = $("#pwd").val();
 	    	var pwdErr1 = $("#pwdErr1");
 	    	var pwdErr2 = $("#pwdErr2");
-	    	console.log("pwd: " + pwd);
 	    		if(pwd ==="") {
 	    			isValidation = false;
 	    			pwdErr2.addClass("d-none");
