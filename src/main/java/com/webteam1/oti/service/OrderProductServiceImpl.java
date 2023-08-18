@@ -2,6 +2,7 @@ package com.webteam1.oti.service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 import javax.annotation.Resource;
 
@@ -77,10 +78,11 @@ public class OrderProductServiceImpl implements OrderProductService {
 		List<OrderProduct> productList = orderProductDao.getOrderProductByUsersId(userId);
 		return productList;
 	}
-	
 
-	
-	
-	
+	@Override
+	public void addOrderNo(Map<String, Object> map) {
+		orderProductDao.addOrderNumber(map);
+		
+	}
 	
 }

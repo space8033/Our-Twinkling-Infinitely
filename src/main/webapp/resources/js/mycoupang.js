@@ -216,7 +216,8 @@ function noContent() {
 }
 
 function makeDate(date) {
-	let d = date.split(".");
+	let res = date.substr(0,10);
+	let d = res.split(".");
 	
 	let result= "";
 	
