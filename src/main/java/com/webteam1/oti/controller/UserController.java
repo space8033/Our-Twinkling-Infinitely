@@ -28,6 +28,7 @@ import com.webteam1.oti.interceptor.Login;
 import com.webteam1.oti.service.AgreementService;
 import com.webteam1.oti.service.CartService;
 import com.webteam1.oti.service.CouponService;
+import com.webteam1.oti.service.ReviewService;
 import com.webteam1.oti.service.UserService;
 import com.webteam1.oti.service.UserService.JoinResult;
 import com.webteam1.oti.service.UserService.LoginResult;
@@ -44,6 +45,8 @@ public class UserController {
 	private UserService userService;
 	@Resource
 	private CartService cartService;
+	@Resource
+	private ReviewService reviewService;
 	@Resource
 	private AgreementService agreementService;
 	@Resource
@@ -287,13 +290,32 @@ public class UserController {
 		return "home";
 	}
 	
+	//작성자: 성유진
+	//마이페이지
 	@Login
 	@GetMapping("/mypage")
 	public String myPage(HttpSession session, Model model) {
-		
+		LoginDto user = (LoginDto)session.getAttribute("loginIng");
+		//리뷰 수
+		int totalReviews = reviewService.countByUserId(user.getUsers_id());
+		model.addAttribute("totalReviews", totalReviews);
+		//쿠폰 수
+		int totalCoupons = couponService.numberOfCoupon(user.getUsers_id());
+		model.addAttribute("totalCoupons", totalCoupons);
 		return "mypage/orderlist/myOti";
 	}
-	
+	//마이페이지 기본 이미지로 변경(기존에 이미지 파일이 있다면 null로 업데이트)
+	@Login
+	@GetMapping("/basic")
+	public String basicImg(HttpSession session) {
+		LoginDto user = (LoginDto)session.getAttribute("loginIng");
+		//기존에 있던 이미지 삭제
+		userService.changeBasic(user.getUsers_id());
+		user.setUsers_imgFile(null);
+		user.setUsers_img(null);
+
+		return "redirect:/mypage";
+	}
 	//마이페이지 이미지 추가
 	@Login
 	@PostMapping("/mypage")

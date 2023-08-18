@@ -3,6 +3,8 @@ $(init);
 function init() {
 	showAddress();
 	showReviewByUser();
+	//마이페이지 이미지 변경 확인버튼 숨기기
+	$("#imgSubmit").hide();
 }
 
 function showAddress(pageNo3) {
@@ -117,3 +119,18 @@ function deleteReview(review_no) {
 	});
 }
 
+//마이페이지==============================================================
+//마이페이지 이미지추가 확인버튼
+function showSubmitBtn(){
+	$("#imgSubmit").show();
+}
+//이미지 변경시 유효성 검사
+$(document).ready(function() {	
+	console.log("앙앙");
+	$("#addMyImg").submit(function(event) {
+		if ($("#fileInput")[0].files.length === 0) { //이미지 파일을 추가하지 않았을 경우 
+			alert("변경할 이미지를 선택해주세요.")
+			event.preventDefault(); // 폼 제출 막기
+		}
+	});
+});

@@ -86,7 +86,11 @@ public class UserServiceImpl implements UserService{
 	@Override
 	public LoginDto getUser(String uid) {
 		LoginDto user = userDao.selectByUsersId(uid);
-
+		//마이페이지에 등록한 이미지가 있다면 base64로 인코딩
+		if(user.getUsers_imgFile() != null) {
+			String base64Img = Base64.getEncoder().encodeToString(user.getUsers_imgFile());
+			user.setUsers_img(base64Img);
+		}
 		return user;
 	}
 	
@@ -120,10 +124,17 @@ public class UserServiceImpl implements UserService{
 		userDao.delete(user);
 	}
 	
+	//작성자: 성유진
 	//마이페이지 사진 추가(변경)
 	@Override
 	public void addMyImg(LoginDto user) {
 		userDao.updateMyImage(user);
+	}
+	
+	//마이페이지 기본이미지로 사진 변경
+	@Override
+	public void changeBasic(String usersId) {
+		userDao.updateBasic(usersId);
 	}
 }	
 	

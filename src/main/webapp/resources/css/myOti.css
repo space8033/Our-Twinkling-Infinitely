@@ -113,12 +113,18 @@
 }
 /* 마이페이지 헤더 */
 .header {
-  background-color: #f1f1f1;
   padding: 40px;
+  padding-bottom: 0px;
   text-align: center;
+}
+#myPlaying{
+	padding-left: 5%;
 }
 .myInfo{
 	margin-left: 30px;
+}
+.myInfo p{
+	margin-bottom: 0px;
 }
 .myInfo h2{
 	padding-top: 30px;
@@ -126,8 +132,7 @@
 	font-weight: bold;
 }
 .myInfo a{
-	font-size: 5px;
-	padding-top: 70px;
+	font-size: 7px;
 }
 .profileImg{
 	font-size: 12px;
@@ -143,4 +148,29 @@
 	margin-top: 20px;
 	padding-left: 20px;
 	font-weight: bold;
+}
+#Cash{
+	margin-left: 8%;
+	padding-top: 3%;
+}
+
+.mine{
+	margin-left: 5%;
+	padding-top: 3%;
+}
+
+.mine div{
+	font-size: 13px;
+}
+
+.mine p{
+	font-size: 25px;
+	font-weight: bold;
+}
+
+.icon{
+	margin-bottom: 7px;
+}
+.basic{
+	font-size: 7px; 
 }
