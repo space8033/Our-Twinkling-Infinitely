@@ -301,10 +301,12 @@ public class UserController {
 		
 		LoginDto loginDto = (LoginDto)session.getAttribute("loginIng");
 		loginDto.setUsers_mattach(users_mattach);
-	
+		
+		//MultipartFile타입의 파일을 바이트 타입으로 변경
 		if(users_mattach != null) {			
 			loginDto.setUsers_imgFile(users_mattach.getBytes());
 		}
+		//변경된 이미지 파일을 업데이트 
 		userService.addMyImg(loginDto);
 		
 		//마이페이지에 등록한 이미지가 있다면 base64로 인코딩

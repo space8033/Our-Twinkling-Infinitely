@@ -11,7 +11,7 @@
 					<c:if test="${loginIng.users_img !=null}">
 						<img id="avatar" class="rounded-circle" src="data:MIME;base64, ${loginIng.users_img}" alt="Avatar" width="150">					
 					</c:if>	
-					<c:if test="${loginIng.users_img = null}">		
+					<c:if test="${loginIng.users_img == null}">		
 						<img id="avatar" class="rounded-circle" src="${pageContext.request.contextPath}/resources/yuimg/기본프로필.jpg" alt="Avatar" width="150" onclick="changeAvatar()">
 					</c:if>
 					<div>
