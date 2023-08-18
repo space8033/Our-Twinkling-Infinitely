@@ -6,6 +6,6 @@ import com.webteam1.oti.dto.Porder;
 
 @Mapper
 public interface OrderDao {
-	public int InsertOrder(Porder order);
-	
+	public int insertOrder(Porder order);
+	public int selectOneByUserId(String userId);
 }
