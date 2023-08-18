@@ -2,21 +2,61 @@ $(init)
 
 //결제 페이지 실행시 불러들이는 값
 function init(){
-	
 	priceCalculate();
+	couponList();
 }
 
+function couponList() {
+	 var totalPrice = parseFloat($('.totalPrice').text().replace(/,/g, ""));
+	    
+	    $('.couponUse').each(function() {
+	        var couponCondition = parseFloat($(this).nextAll('.couponCondition').first().text());
+	      
+	        if (totalPrice < couponCondition) {
+	            $(this).prop('disabled', true);
+	        }
+	    });
+}
+
+window.addEventListener("beforeunload", function(event) {
+    event.preventDefault(); // 필요한 경우 이벤트를 취소하여 브라우저가 페이지를 떠나는 것을 막습니다.
+    var addressNo = $('#addressNo').val();
+    // 서버로 전송할 데이터 생성
+    var postData = {
+        addressNo: addressNo
+    };
+
+    // AJAX 요청으로 데이터 전송
+    $.ajax({
+        type: "POST",
+        url: "/our-twinkling-infinitely/delete-data", // 보낼 곳의 URL
+        data: postData,
+        success: function(response) {
+            // 서버 응답 처리 (예: 성공 메시지 표시)
+            alert("데이터가 성공적으로 전달 완료되었습니다.");
+        },
+        error: function() {
+            // 오류 처리
+            alert("데이터 전송 중 오류가 발생했습니다.");
+        }
+    });
+
+    // 변경사항 저장 여부 메시지
+    event.returnValue = "변경사항을 저장하지 않으셨습니다. 페이지를 떠나시겠습니까?";
+});
+	
 
 //결제 금액 계산
 function priceCalculate() {
-	
 	
 	var totalPrice = parseInt($('.totalPrice').text().replace(/,/gi, ""));
 	console.log("totalPrice : "+ totalPrice);
 	var discount =parseInt($('#discount').text().replace(/,/gi, ""));	
 	console.log("discount : "+ discount);
+
 	var delFee =parseInt($('#delFee').text().replace(/,/gi, ""));
 	console.log("delFee : "+ delFee);
+	
 	var balance =parseInt($('#balance').text().replace(/,/gi, ""));
 	console.log("balance : "+ balance);
 	if(isNaN(balance)){
@@ -26,18 +66,22 @@ function priceCalculate() {
 	var price = parseInt($('#price').text().replace(/,/gi, ""));
 	console.log("price : "+price);
 	
-	price = totalPrice - discount + delFee + balance
-	
+	var selectedCouponValue = parseFloat($('input[name=coupon]:checked').val());
+	if(selectedCouponValue == "2500") {
+		price = totalPrice + delFee + balance;
+		
+	} else {
 
+		price = totalPrice - discount + delFee + balance;
+	
+	}
 	point = parseInt(price*0.01);
 	$('#price').text(price);
 	$('#point').text(point);
 	
-	
 }
 
 function openAdress() {
-
    	window.open("/our-twinkling-infinitely/addressSelect", "winLogin", "left=350, top=300, width=500, height=650");
 }
 
@@ -46,6 +90,9 @@ function openRequest() {
 }
 
 $(document).ready(function(){
+	
+	
+	
 	
    	// 초깃값 설정
     $('#credit-card-option').hide();
@@ -82,9 +129,8 @@ $(document).ready(function(){
 			$("#L_corporation-card").removeClass("payMethod-arrow");
 			$("#L_phone").removeClass("payMethod-arrow");
 			$("#L_deposit-without-bankbook").removeClass("payMethod-arrow");
-		
-			
 		}	
+		
 		// 쿠페이머니 선택 시.
 		else if($("input[name='pay-method']:checked").val() == '쿠페이머니'){
 			$('#credit-card-option').hide();
@@ -100,16 +146,14 @@ $(document).ready(function(){
 			$('#discount-info').hide();
 			$('#expectPoint').css('display', 'inline-block');
 			
-			
 			$("#L_coupay-money").addClass("payMethod-arrow");
 			$('#L_account-transfer').removeClass("payMethod-arrow");
 			$("#L_credit-card").removeClass("payMethod-arrow");
 			$("#L_corporation-card").removeClass("payMethod-arrow");
 			$("#L_phone").removeClass("payMethod-arrow");
 			$("#L_deposit-without-bankbook").removeClass("payMethod-arrow");
-		
-			
 		}
+		
 		// 신용/체크카드 결제 선택 시.
 		else if($("input[name='pay-method']:checked").val() == '신용/체크카드'){
 			$('#credit-card-option').show();
@@ -131,6 +175,7 @@ $(document).ready(function(){
 			$("#L_phone").removeClass("payMethod-arrow");
 			$("#L_deposit-without-bankbook").removeClass("payMethod-arrow");
 		}
+		
 		// 법인카드 선택 결제 시
 		else if($("input[name='pay-method']:checked").val() == '법인카드'){
 			$('#credit-card-option').hide();
@@ -152,6 +197,7 @@ $(document).ready(function(){
 			$("#L_phone").removeClass("payMethod-arrow");
 			$("#L_deposit-without-bankbook").removeClass("payMethod-arrow");
 		}
+		
 		// 휴대폰 선택 결제 시
 		else if($("input[name='pay-method']:checked").val() == '휴대폰'){
 			$('#credit-card-option').hide();
@@ -165,7 +211,6 @@ $(document).ready(function(){
 			$('#selectPay').show();
 			$('#basicPay').hide();
 			$('#discount-info').hide();
-			
 			$("#L_phone").addClass("payMethod-arrow");
 			
 			$("#L_credit-card").removeClass("payMethod-arrow");
@@ -175,6 +220,7 @@ $(document).ready(function(){
 			$("#L_corporation-card").removeClass("payMethod-arrow");
 			$("#L_deposit-without-bankbook").removeClass("payMethod-arrow");
 		}
+		
 		// 무통장입금 선택 결제 시
 		else if($("input[name='pay-method']:checked").val() == '무통장입금'){
 			$('#credit-card-option').hide();
@@ -217,7 +263,6 @@ $(document).ready(function(){
 	
 	//현금 영수증 라디오박스에 따라 요소 바꾸기
 	$('#proof-of-expenditure-option').hide();
-	
 	$("input[name='cash-receipt-type']").change(function(){
 		// 계좌이체 선택 시.
 		if($("input[name='cash-receipt-type']:checked").val() == 'income-deduction'){
@@ -271,11 +316,9 @@ $(document).ready(function(){
 			$('#numErr2').show();
 			$('#numErr3').hide();
 		}
-		
 	});
 
 	$('#proof-of-expenditure-option').change(function(){
-		
 		$('#numErr1').hide();
 		$('#numErr2').show();
 		$('#numErr3').hide();
@@ -289,194 +332,101 @@ $(document).ready(function(){
 			$('#numErr2').hide();
 			$('#numErr3').show();
 		}
-		
 	});
 	
-	
-	//전화번호 수정 유효성 검사
-	$('#telErr1').hide();
-	$('#telErr2').hide();
-	$('#certiNote').hide();
-	$('#certiNum').hide();
-	$('#certiBtn').hide();
-	
-	$('#telBtn').click(function(){
-		
-		var isValidation = true;
-		$('#telBtn').html('수정');
-		$('#telErr1').hide();
-		$('#telErr2').hide();
-		$("#tel").css("border", "1px solid #9A9A9A");
-		//전화번호 수정 유효성 검사
-		var tel = $("#tel").val();
-			if(tel ==="") {
-				isValidation = false;
-				var telErr1 = $("#telErr1");
-				$('#telErr1').show();
-				$("#tel").css("border", "1px solid red");
-				$('#telErr2').hide();
-				$('#certiNote').hide();
-				$('#certiNum').hide();
-				$('#certiBtn').hide();
-				
-				
-			} else if(tel === $("#tel").prop("defaultValue")) {
-				$('#telErr1').hide();
-				$('#telErr2').show();
-				$("#tel").css("border", "1px solid red");
-				$('#certiNote').hide();
-				$('#certiNum').hide();
-				$('#certiBtn').hide();
-				
-				
-			} 
-			
-			else {
-				var pattern = /^(01[016789]{1})-?[0-9]{3,4}-?[0-9]{4}$/;
-				var result = pattern.test(tel);
-				if(!result) {
-   				isValidation = false;
-   				$("#tel").css("border", "1px solid red");
-   				$('#telErr1').show();
-   				$('#telErr2').hide();
-   				$('#certiNote').hide();
-   				$('#certiNum').hide();
-   				$('#certiBtn').hide();
-   			}
-				if(result) {
-					$('#certiNote').show();
-					$('#certiNum').show();
-					$('#certiBtn').show();
-					$('#telBtn').html('재발송');
-				}
-				
-			}
-			
-			$("#tel").val($("#tel").val().replace(/[^0-9]/g, "").replace(/(^02|^0505|^1[0-9]{3}|^0[0-9]{2})([0-9]+)?([0-9]{4})$/,"$1-$2-$3").replace("--", "-") );
-		
-			if(!isValidation) {
-	  			event.preventDefault();
-	  		}
-	});
-	
-		//인증번호 클릭 이벤트
-		$('#certiBtn').click(function(){
-			var num = $("#certiNum").val();
-			
-			if(num==="") {
-				$('#certiNote').text("알 수 없는 에러입니다.");
-				$('#certiNote').css("color", "red");
-				$("#certiNum").css("border", "1px solid red");
-				
-			}
-			else if(num.length === 6) {
-				$('#certiNote').hide();
-				$('#certiNum').hide();
-				$('#certiBtn').hide();
-				$('#telBtn').html('수정');
-			} else {
-				$('#certiNote').text("인증번호를 잘못 입력하셨습니다.");
-				$('#certiNote').css("color", "red");
-				$("#certiNum").css("border", "1px solid red");
-			}
-			
-		});
-		
-		
-		//할인쿠폰 입력 클릭 이벤트
-		$('#dicountRow').hide();
-		$('#couponSelect').click(function(){
-			$('#dicountRow').toggle();
-			
-		});
-		
-		$('.couponUse').change(function(){
-		    var selectedCouponValue = parseFloat($('input[name=coupon]:checked').val());
 
-		    if (selectedCouponValue !== 0) {
+	//할인쿠폰 입력 클릭 이벤트
+	$('#dicountRow').hide();
+	$('#couponSelect').click(function(){
+		  $('#dicountRow').toggle();
+		  
+	});
+	
+	
+    
+
+	$('.couponUse').change(function(){
+		  var selectedCouponValue = parseFloat($('input[name=coupon]:checked').val());
+
+		  if (selectedCouponValue !== 0) {
 		        var totalPrice = parseFloat($('.totalPrice').text());
 		        var couponPrice;
 
 		        if (selectedCouponValue >= 100) {
-		            couponPrice = selectedCouponValue;
+		            if(selectedCouponValue == 2500) {
+		            	 var delFee = $('#delFee').text(0);
+		            	 couponPrice = selectedCouponValue;
+		            } else {
+		            	couponPrice = selectedCouponValue;
+		        		var delFee = $('#delFee').text(2500);
+		            }
 		        } else {
 		            couponPrice = Math.floor(totalPrice * (selectedCouponValue / 100));
 		        }
 
 		        $('#discount').text(couponPrice);
 		        priceCalculate();
-		    } else {
+		  } else {
 		        $('#discount').text('0');
 		        priceCalculate();
-		    }
-		});
+		  }
+	});
+		
+	//쿠팡캐시 입력 클릭 이벤트
+	$('#cuCashrow').hide();
+	$('#cuCashInput').click(function(){
+		$('#cuCashrow').toggle();
+		
+	});
 		
 		
-		
-		
-		
-		//쿠팡캐시 입력 클릭 이벤트
-		$('#cuCashrow').hide();
-		$('#cuCashInput').click(function(){
-			$('#cuCashrow').toggle();
-			
-		});
-		
-		
-		//쿠팡캐시 모두사용 체크 이벤트
-		$('#allUse').click(function(){
-			if($("#allUse").is(":checked")){
-	            var allCash = parseInt($('#cuBal').text());
-	            //$('#cuCash').attr('value', allCash);
-	           
-	            $('#cuCash').val(allCash);
+	//쿠팡캐시 모두사용 체크 이벤트
+	$('#allUse').click(function(){
+		  if($("#allUse").is(":checked")){
+	      var allCash = parseInt($('#cuBal').text());
+	        //$('#cuCash').attr('value', allCash);
+	      $('#cuCash').val(allCash);
 	            console.log(allCash);
 	            console.log(cuCash);
-	        }else if(!$("#allUse").is(":checked")){
+	      } else if(!$("#allUse").is(":checked")){
 	        	$('#cuCash').val(0);
-	        }
-		});
+	      }
+	});
 		
-		//쿠팡캐시 적용 클릭 이벤트
-		$('#cuCashApply').click(function(){
-			$("#cashOver").css("display", "none"); 	
-			var balance = parseInt( $('#cuBal').text())
+	//쿠팡캐시 적용 클릭 이벤트
+	$('#cuCashApply').click(function(){
+		  $("#cashOver").css("display", "none"); 	
+		  var balance = parseInt( $('#cuBal').text())
 			 	
-			if(($("#cuCash").val())>balance){
+		  if(($("#cuCash").val())>balance){
 				console.log($("#cuCash").val());
 				$("#cashOver").css("display", "block");
 				
-			} else if(($("#cuCash").val())<=balance) {
+		  } else if(($("#cuCash").val())<=balance) {
 				$("#balance").text('-' + $('#cuCash').val()); 
 				$('#cuCashrow').hide();
 				priceCalculate();
 				
-			} else {
+		  } else {
 				console.log($("#cuCash").val());
 				$('#cuCash').val(0);
 				priceCalculate();
 				$("#balance").text($('#cuCash').val()); 
-			}
-		});
+		  }
+	});
 		
-		
-		
-		
-	
 	//계좌이체 선택 유효성 검사
 	$('#account-transfer-no-choice').hide();
 	$('#account-transfer-choice-bank').change(function(){
 
-		$('#account-transfer-no-choice').hide();
-		var nonselect = $("#account-transfer-choice-bank option:selected").val();
+		  $('#account-transfer-no-choice').hide();
+		  var nonselect = $("#account-transfer-choice-bank option:selected").val();
 		
-		if(nonselect === "none") {
+		  if(nonselect === "none") {
 				$('#account-transfer-no-choice').show();
-			} else {
+		  } else {
 				$('#account-transfer-no-choice').hide();
-			}
-		
-		
+		  }
 	});
 	
 	//할부기간 알림 메세지
@@ -494,8 +444,6 @@ $(document).ready(function(){
 			$('#interest-free-note').show();
 			$('#pay-in-full-note').hide();
 		}
-		
-		
 	});
 	//법인카드 선택 유효성 검사
 	$('#coporation-card-no-choice').hide();
@@ -509,8 +457,6 @@ $(document).ready(function(){
 		} else {
 			$('#coporation-card-no-choice').hide();
 		}
-		
-		
 	});
 	
 	//통신사 선택 유효성 검사
@@ -526,8 +472,6 @@ $(document).ready(function(){
 		} else {
 			$('#mobile-corp-no-choice').hide();
 		}
-		
-		
 	});
 	
 	//무통장입금 계좌 선택 유효성 검사
@@ -542,8 +486,6 @@ $(document).ready(function(){
 		} else {
 			$('#bank-no-choice').hide();
 		}
-		
-		
 	});
 	
 	//무통장입금 계좌 선택 유효성 검사
@@ -558,8 +500,6 @@ $(document).ready(function(){
 		} else {
 			$('#bank-no-choice').hide();
 		}
-		
-		
 	});
 	
 	//현금영수증 선택 유효성 검사
@@ -587,9 +527,9 @@ $(document).ready(function(){
 						var pattern = /^(01[016789]{1})-?[0-9]{3,4}-?[0-9]{4}$/;
 						var result = pattern.test(tel);
 						if(!result) {
-			   			$('#biznumErr').hide();
-			   			$('#cashnumErr').hide();
-			   			$('#telnumErr').show();
+				   			$('#biznumErr').hide();
+				   			$('#cashnumErr').hide();
+				   			$('#telnumErr').show();
 						}
 				}
 				
@@ -599,18 +539,16 @@ $(document).ready(function(){
 						$('#biznumErr').hide();
 						$('#telnumErr').hide();
 						$('#cashnumErr').show();
-						} else {
-							var pattern = /^(01[016789]{1})-?[0-9]{3,4}-?[0-9]{4}$/;
-							var result = pattern.test(cashnum);
-							if(!result) {
-			   				$('#biznumErr').hide();
-			   				$('#telnumErr').hide();
-			   				$('#cashnumErr').show();
-							}
+					} else {
+						var pattern = /^(01[016789]{1})-?[0-9]{3,4}-?[0-9]{4}$/;
+						var result = pattern.test(cashnum);
+						if(!result) {
+				   			$('#biznumErr').hide();
+				   			$('#telnumErr').hide();
+				   			$('#cashnumErr').show();
+						}
 					}
 				}
-				
-				
 			} else {
 				
 				$('#biznumErr').hide();
@@ -630,13 +568,11 @@ $(document).ready(function(){
 							var pattern = /^(01[016789]{1})-?[0-9]{3,4}-?[0-9]{4}$/;
 							var result = pattern.test(cashnum);
 							if(!result) {
-			   				
-			   				$('#biznumErr').hide();
-			   				$('#telnumErr').hide();
-			   				$('#cashnumErr').show();
+				   				$('#biznumErr').hide();
+				   				$('#telnumErr').hide();
+				   				$('#cashnumErr').show();
 							}
 						}
-						
 					} else if(select === "biznum"){
 						//사업자번호 수정 유효성 검사
 						var biznum = $("#numErr3").val();	
@@ -648,56 +584,118 @@ $(document).ready(function(){
 								var pattern = /^(01[016789]{1})-?[0-9]{3,4}-?[0-9]{4}$/;
 								var result = pattern.test(biznum);
 								if(!result) {
-				   				
-				   				$('#telnumErr').hide();
-				   				$('#cashnumErr').hide();
-				   				$('#biznumErr').show();
+					   				$('#telnumErr').hide();
+					   				$('#cashnumErr').hide();
+					   				$('#biznumErr').show();
 								}
 							}
-					
-					
 						}
-		
 				}
 			})
-			
-			
-			
-		
-			
 });
 
-function payNow() {
-    // 선택된 라디오 버튼의 data-coupon-no 값 가져오기
-    //var coupon_no = $('input[name=coupon]:checked').next('input[name=coupon_no]').val();
-	var coupon = $('input[name=coupon]:checked').nextAll('input[name=coupon_no]').first().val();
-	var coupon_no = parseInt(coupon);
-    console.log(coupon_no);
-    if(coupon_no === null) {
-    	coupon_no = parseInt(0);
-    }
+
+function checkValidation() {
+	
+    var isValidation = true;
+   	var errorMsgs = $(".errorMsg");
+   	console.log(errorMsgs);
+   	errorMsgs.each(function(index, item) {
+   		$(item).addClass("d-none");
+   	});
+   	
+   	var addressNo = $('#addressNo').val();
+   	if(addressNo == null) {
+   		isValidation = false;
+   	}
+   	
+	//계좌이체  
+   	var nonselect = $("#account-transfer-choice-bank option:selected").val();
+	if(nonselect === "none") {
+		isValidation = false;
+	} 
+	
+	//법인카드
+	var nonselect = $("#coporation-card-choice option:selected").val();
+	if(nonselect === "none") {
+		isValidation = false;
+	} 
+	
+	//통신사
+	var nonselect = $("#coporation-card-choice option:selected").val();
+	if(nonselect === "none") {
+		isValidation = false;
+	} 
+	
+	//무통장
+	var nonselect = $("#bank-choice option:selected").val();
+	if(nonselect === "none") {
+		$('#bank-no-choice').show();
+	} 
+   	
+   //현금 영수증 체크박스 유효성검사
+
+	var checked = $('#cash-receipt-application').prop('checked');
+	if (checked) {
+		var check1 = $("#income-deduction-option option:selected").val();
+		if(check1 === "pnum") {
+			var numErr1 = $("#numErr1").val();
+			if(numErr1 === null) {
+				isValidation = false;
+			}
+		} else if(check2 === "cash-card") {
+			var numErr2 = $("#numErr2").val();
+			if(numErr2 === null) {
+				isValidation = false;
+			}
+		}
+		
+		var check3 = $("#proof-of-expenditure-option option:selected").val();
+		if(check3 === "cash-card") {
+			var numErr2 = $("#numErr2").val();
+			if(numErr1 === null) {
+				isValidation = false;
+			}
+		} else if(check4 === "biznum") {
+			var numErr3 = $("#numErr3").val();
+			if(numErr3 === null) {
+				isValidation = false;
+			}
+		}
+	}
+	
+	if(!isValidation) {
+		event.preventDefault();
+		window.alert('결제에 실패하였습니다.');
+	} else {
+	
+		var coupon = $('input[name=coupon]:checked').nextAll('input[name=coupon_no]').first().val();
+		var coupon_no = parseInt(coupon);
+	    console.log(coupon_no);
+	    if(coupon_no === null) {
+	    	coupon_no = parseInt(0);
+	    }
+	    
+	    // 서버로 전송할 데이터 생성
+	    var postData = {
+	    	coupon_no: coupon_no
+	    };
+	    
+	    // AJAX 요청으로 데이터 전송
+	    $.ajax({
+	        type: "POST",
+	        url: "/our-twinkling-infinitely/orderPay", // 보낼 곳의 URL
+	        data: postData,
+	        success: function(response) {
+	            // 서버 응답 처리 (예: 성공 메시지 표시)
+	            alert("데이터가 성공적으로 전달 완료되었습니다.");
+	        },
+	        error: function() {
+	            // 오류 처리
+	            alert("데이터 전송 중 오류가 발생했습니다.");
+	        }
+	    });
     
-    // 서버로 전송할 데이터 생성
-    var postData = {
-    	coupon_no: coupon_no
-    };
-    
-    // AJAX 요청으로 데이터 전송
-    $.ajax({
-        type: "POST",
-        url: "/our-twinkling-infinitely/orderPay", // 보낼 곳의 URL
-        data: postData,
-        success: function(response) {
-            // 서버 응답 처리 (예: 성공 메시지 표시)
-            alert("데이터가 성공적으로 전달 완료되었습니다.");
-        },
-        error: function() {
-            // 오류 처리
-            alert("데이터 전송 중 오류가 발생했습니다.");
-        }
-    });
+	}
 }
-
-
-
 

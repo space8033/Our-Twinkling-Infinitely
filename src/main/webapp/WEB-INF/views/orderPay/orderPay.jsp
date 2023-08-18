@@ -46,7 +46,6 @@
 								<th>이름</th>
 								<td>
 									${orderUser.users_name} 
-									
 								</td>
 							</tr>
 							<tr>
@@ -55,18 +54,8 @@
 							</tr>
 							<tr>
 								<th>휴대폰 번호</th>
-								<td><input id="tel" type="tel" name="tel"
-									value="${orderUser.users_phone}" style="height:28px; margin-top:10px;">
-									<button id="telBtn" type="button" style="height:28px;">수정</button>
+								<td>${orderUser.users_phone}
 									<span class="mx-3" style="color:#9A9A9A;">쿠폰/티켓 정보는 구매한 분의 번호로 전송됩니다.</span>
-									<div id="telErr1" class="errMsg" style="color: red;">전화번호
-										형식이 올바르지 않습니다.</div>
-									<div id="telErr2" class="errMsg" style="color: red;">새로운 번호를 입력해 주세요.</div>
-									<p style="margin-top:10px;">* 인증 번호를 못 받았다면, 1577-7011 번호 차단 및 스팸 설정을 확인해 주세요.</p>
-									
-									<p id="certiNote" style="color: #219b3a;">입력하신 휴대폰 번호로 인증번호가 발송 되었습니다.</p>
-									<input id="certiNum" style="border: 1px solid #219b3a;" type="number" name="certiNum">
-									<button id="certiBtn" type="button">인증완료</button>
 								</td>
 							</tr>
 						</table>
@@ -85,9 +74,9 @@
 									
 									<td>${address.address_receiver}
 									<c:if test="${address.address_isdefault == true}">
-									<span id="border1">기본배송지</span>
+										<span id="border1">기본배송지</span>
 									</c:if>
-									<input type="hidden" name="address_no" value="${address.address_no}">
+										<input id="addressNo" type="hidden" name="address_no" value="${address.address_no}">
 									</td>
 								</tr>
 								<tr>
@@ -102,20 +91,19 @@
 									<th><img src="//img1a.coupangcdn.com/image/www/common/icon_arrow.gif"> 배송 요청사항</th>
 									
 									<c:if test = "${selectedValue == null}">
-									<td> ${address.deliveryRequest}
-										<input type="hidden" name="address_request" value="${address.deliveryRequest}">
-										<button type="button" onclick="openRequest()">변경</button>
-									</td>
+										<td> ${address.deliveryRequest}
+											<input type="hidden" name="address_request" value="${address.deliveryRequest}">
+											<button type="button" onclick="openRequest()">변경</button>
+										</td>
 									</c:if>
 									 <c:if test = "${selectedValue != null}">
-									<td> ${selectedValue}  ${selectedPwdValue}
-										<input type="hidden" name="address_request" value="${selectedValue}">
-										<input type="hidden" name="address_request" value="${selectedPwdValue}">
-										<button type="button" onclick="openRequest()">변경</button>
-									</td>
+										<td> ${selectedValue}  ${selectedPwdValue}
+											<input type="hidden" name="address_request" value="${selectedValue}">
+											<input type="hidden" name="address_request" value="${selectedPwdValue}">
+											<button type="button" onclick="openRequest()">변경</button>
+										</td>
 									 </c:if>
-									
-								</tr>
+							    </tr>
 								
 						</table>
 					</div>
@@ -127,8 +115,19 @@
 						 	<table class="nofn" style="font-family: Dotum, sans-serif;">
 								<tr>
 									<th colspan='3' class="text-left" style="font-size: 16px; color: #00891A;">
-										내일(화)7/12 도착 보장
-										
+									    <script>
+									        // 현재 날짜 구하기
+									        var currentDate = new Date();
+									        // 3일 후의 날짜 구하기
+									        var threeDaysLater = new Date(currentDate);
+									        threeDaysLater.setDate(currentDate.getDate() + 3);
+									        // 요일 목록
+									        var daysOfWeek = ['일', '월', '화', '수', '목', '금', '토'];
+									        // 날짜를 월/일(요일) 형식으로 변환
+									        var formattedDate = (threeDaysLater.getMonth() + 1) + '/' + threeDaysLater.getDate() + '(' + daysOfWeek[threeDaysLater.getDay()] + ')';
+									        // 결과를 출력
+									        document.write(formattedDate + '까지 도착 보장');
+									    </script>
 									</th>
 								</tr>
 								<c:set var="totalPrice" value="0" />
@@ -186,14 +185,15 @@
 										    <div>
 										        <input class="couponUse" type="radio" name="coupon" value= "${coupon.coupon_value}" style="margin-left: 170px;"/>
 										        <input type="hidden" name="coupon_no" value="${coupon.coupon_no}">
-										        <span class="couponDiscount">${coupon.coupon_value}
+										        <input type="hidden" name="coupon_condition" value="${coupon.coupon_condition}">
+										        <span class="coupon">${coupon.coupon_value}
 										            <c:if test="${coupon.coupon_value >= 100}">원
 										            </c:if>
 										            <c:if test="${coupon.coupon_value <= 100}">% 할인
 										            </c:if>
 										        </span>
 										        
-										        <span style="margin-left: 20px; font-weight: bold;">${coupon.coupon_condition}</span>원 이상 주문 결제 시 사용가능 
+										        <span class ="couponCondition" style="margin-left: 20px; font-weight: bold;">${coupon.coupon_condition}</span>원 이상 주문 결제 시 사용가능 
 										
 										        <c:if test="${coupon.coupon_type == 'BIRTHDAY_COUPON'}">
 										            <span style="display:none">${coupon.coupon_type}</span>
@@ -246,7 +246,7 @@
 										<div>
 											<button type="button" id="cuCashApply" style="margin-left: 170px; margin-top:10px;">적립금 적용</button>
 										</div>
-										<div id="cashOver" class="choice-error" style="color: red; padding-left: 17px; margin-left: 170px; display: none;">
+										<div id="cashOver" class="choice-error errorMsg d-none" style="color: red; padding-left: 17px; margin-left: 170px;">
 											사용가능한 캐시를 초과 입력하였습니다.
 										</div>
 									</div> 
@@ -324,7 +324,7 @@
 											</label>
 										</div>
 											
-										<div id="account-transfer-no-choice" class="choice-error" style="color: red; padding-left: 17px;">
+										<div id="account-transfer-no-choice" class="choice-error errorMsg d-none" style="color: red; padding-left: 17px;">
 											은행을 선택해주세요
 										</div>		
 									</div> 
@@ -391,7 +391,7 @@
 												</span>
 											</label>
 										</div>
-										<div id="coporation-card-no-choice" class="choice-error" style="color: red; padding-left: 17px;">
+										<div id="coporation-card-no-choice" class="choice-error errorMsg d-none" style="color: red; padding-left: 17px;">
 											카드종류를 선택해주세요
 										</div>
 										<div style="border-top: 1px solid #e4e4e4; padding-top: 10px;">
@@ -421,7 +421,7 @@
 											</label>
 										</div>
 										
-										<div id="mobile-corp-no-choice"  class="choice-error" style="color: red; padding-left: 17px;">
+										<div id="mobile-corp-no-choice"  class="choice-error errorMsg d-none" style="color: red; padding-left: 17px;">
 											통신사 정보를 추가해주세요.
 										</div>
 									</div> 
@@ -438,7 +438,7 @@
 												</select>
 											</label>
 										</div>
-										<div id="bank-no-choice" class="choice-error" style="color: red; padding-left: 17px;">
+										<div id="bank-no-choice" class="choice-error errorMsg d-none" style="color: red; padding-left: 17px;">
 											은행을 선택해주세요
 										</div>
 										<div style="border-top: 1px solid #e4e4e4; padding-top: 10px;">
@@ -571,7 +571,7 @@
 									width="250" height="60" alt="쿠페이 머니 결제"/>
 								</div>
 						</button>
-						<button type="submit" onclick="payNow()" class="payb" style=" border: none;  box-shadow: 0 0 0">
+						<button type="submit" class="payb" style=" border: none;  box-shadow: 0 0 0">
 							<img
 								src="//image7.coupangcdn.com/image/rocketpay-order-image/pc/btn_payment.gif"
 								width="260" height="60" alt="결제하기"/>

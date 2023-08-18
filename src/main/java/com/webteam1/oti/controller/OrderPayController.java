@@ -7,10 +7,12 @@ import java.util.Map;
 import javax.annotation.Resource;
 import javax.servlet.http.HttpSession;
 
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -121,19 +123,29 @@ public class OrderPayController {
 
 	@Login
 	@PostMapping("/orderPay")
-	@ResponseBody
 	public String orderPay(Porder porder, @RequestParam("coupon_no") int coupon_no, HttpSession session) {
-		 
 		LoginDto loginUser = (LoginDto) session.getAttribute("loginIng");
 		porder.setUsers_users_id(loginUser.getUsers_id());
 		porder.setCoupon_no(coupon_no);
-		log.info("여기까지 오케");
-		log.info(porder.toString()+"porder안엔 지금 이런게 있어");
 		orderService.addOrder(porder);
-		log.info("뭐가부족한데? ㅡㅡ");
 		
-        return "orderPay/orderPay";
+        return "redirect:/";
 	}
+	
+	@Login
+	@PostMapping("/delete-data")
+	 public ResponseEntity<String> deleteData(@RequestBody String addressNo, HttpSession session) {
+		
+		LoginDto loginUser = (LoginDto) session.getAttribute("loginIng");
+		log.info(loginUser+"로그인유정");
+		orderProductService.getOrderProduct(loginUser.getUsers_id());
+		log.info("실행됐니?");
+		
+        return ResponseEntity.ok("Data deleted successfully");
+    }
+	
+	
+	
 	
 	@Login
 	@GetMapping("/addressSelect")
@@ -269,13 +281,12 @@ public class OrderPayController {
 		String userId = loginDto.getUsers_id();
 		
 		if(productCheckBoxes != null ) {			
-			for (int i = 0; i < selectedProductOptionNos.length; i++) {
+			for (int i = 0; i < selectedQtys.length; i++) {
 				OrderProduct orderProduct = new OrderProduct();
 				orderProduct.setOrderProduct_qty(Integer.parseInt(selectedQtys[i]));
 				orderProduct.setProductOption_productOption_no(Integer.parseInt(selectedProductOptionNos[i]));
 				orderProduct.setUsers_users_id(userId);
 				productService.addOrderProduct(orderProduct); 
-				log.info("앙" + selectedProductOptionNos);
 				if(cartNos != null) {					
 					cartService.cartDelete(Integer.parseInt(cartNos[i]));
 				}

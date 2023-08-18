@@ -2,22 +2,24 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.webteam1.oti.dao.OrderProductDao">
 	<insert id="InsertOrderProducts" parameterType="OrderProduct">
-			insert into orderProduct(orderProduct_no, orderProduct_qty, productOption_productOption_no, users_users_id)
+			insert into orderProduct(orderProduct_no, orderProduct_qty, productOption_productOption_no, users_users_id, orderproduct_isordered)
 			values(
 		        (SELECT NVL(MAX(orderProduct_no)+1, 0) FROM orderProduct),
 		        #{orderProduct_qty},
 		        #{productOption_productOption_no},
-		        #{users_users_id}
+		        #{users_users_id},
+		        0
 	    	)
 	</insert>
+	
 	<select id="getOrderProductByUsersId" resultType="OrderProduct" parameterType="String">
-
 		select *
    		from orderproduct
-    	where users_users_id = #{users_id}
-
+    	where users_users_id = #{users_id} and orderproduct_isordered = 0
 	</select>
 	
-	
-	
+	<update id="addOrderNumber" parameterType="Map">
+	 	update orderproduct set porder_order_no= #{orderNo}, orderproduct_isordered=1
+	 	where orderproduct_no=#{orderproductNo}
+	</update>
 </mapper>

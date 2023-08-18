@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.webteam1.oti.dao.OrderDao">
-	<insert id="InsertOrder" parameterType="Porder">
+	<insert id="insertOrder" parameterType="Porder">
 		<selectKey keyProperty="order_no" resultType="int" order="BEFORE">
 	         select porder_seq.nextval from dual
       	</selectKey>
@@ -12,10 +12,19 @@
 		values(
 			#{order_no}, #{users_users_id}, #{order_cashReceipt}, to_char(sysdate,'yyyy.mm.dd hh24:mi:ss'), #{order_del_fee}, #{coupon_no}, #{address_no}, #{address_request}
 		)
-		
 	</insert>
 
-	
-	
+	<select id="selectOneByUserId" parameterType="String" resultType="int">
+		<![CDATA[
+		    SELECT order_no
+		    FROM (
+		        SELECT order_no
+		        FROM porder
+		        WHERE users_users_id = #{userId}
+		        ORDER BY order_createddate DESC
+		    )
+		    WHERE ROWNUM = 1
+	    ]]>
+	</select>
 	
 </mapper>

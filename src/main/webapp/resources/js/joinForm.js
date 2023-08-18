@@ -26,29 +26,21 @@ function checkValidation() {
 	var uid = $("#uid").val();
 	var uidErr1 = $("#uidErr1");
 	var uidErr2 = $("#uidErr2");
-	//var uidErr3 = $("#uidErr3");
-	//var uidErr4 = $("#uidErr4");
 	console.log("uid: " + uid);
 		if(uid ==="") {
 			isValidation = false;
 			uidErr2.addClass("d-none");
-			//uidErr3.addClass("d-none");
-			//uidErr4.addClass("d-none");
 			uidErr1.removeClass("d-none");
 		} else {
 			var pattern = /^[a-z]+[a-z0-9]{4,19}$/g;
     		var result = pattern.test(uid);
     		if(!result) {
     			isValidation = false;
-    			//uidErr3.addClass("d-none");
     			uidErr2.removeClass("d-none");
     			uidErr1.addClass("d-none");
-    			//uidErr4.addClass("d-none");
     		} else {
     			uidErr2.addClass("d-none");
-    			//uidErr3.removeClass("d-none");
     			uidErr1.addClass("d-none");
-    			//uidErr4.addClass("d-none");
     		}
 		}
 	
@@ -222,21 +214,17 @@ function checkValidation() {
 	var tel = $("#tel").val();
 	console.log("tel: " + tel);
 	var telErr1 = $("#telErr1");
-	//var telErr2 = $("#telErr2");
 	if(tel === "") {
 		isValidation = false;
 		telErr1.removeClass("d-none");
-		//telErr2.addClass("d-none");
 	} else {
 		var pattern = /^(01[016789]{1})-?[0-9]{3,4}-?[0-9]{4}$/;
 		var result = pattern.test(tel);
 		if(!result) {
 			isValidation = false;
 			telErr1.removeClass("d-none");
-    		//telErr2.addClass("d-none");
 		} else {
 			telErr1.addClass("d-none");
-			//telErr2.addClass("d-none");
 		}
 	}
 	
@@ -261,11 +249,8 @@ function checkValidation() {
    
 	if(!isValidation) {
 		event.preventDefault();
-		window.alert('test');
+		window.alert('회원가입에 실패하였습니다.');
 	}
-	
-	
-	
 }		
 
 
