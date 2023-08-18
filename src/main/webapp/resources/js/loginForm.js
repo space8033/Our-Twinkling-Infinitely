@@ -50,6 +50,8 @@ function checkValidation() {
    
 		//uid 검사
 	var uid = $("#uid").val();
+	var uidErr1 = $("#uidErr1");
+	var uidErr2 = $("#uidErr2");
 
 	if(uid ==="") {
 		isValidation = false;
@@ -84,23 +86,23 @@ function checkValidation() {
 	var pwd = $("#pwd").val();
 	var pwdErr1 = $("#pwdErr1");
 	var pwdErr2 = $("#pwdErr2");
-		if(pwd ==="") {
-			isValidation = false;
-			pwdErr2.addClass("d-none");
-			pwdErr3.addClass("d-none");
-			pwdErr1.removeClass("d-none");
-		} else {
-			var pattern = /^(?=.*[a-zA-z])(?=.*[0-9])(?=.*[$`~!@$!%*#^?&\\(\\)\-_=+]).{8,20}$/;
-    		var result = pattern.test(pwd);
-    		if(!result) {
-    			isValidation = false;
-    			pwdErr2.removeClass("d-none");
-    			pwdErr1.addClass("d-none");
-    		} else {
-    			pwdErr2.addClass("d-none");
-    			pwdErr1.addClass("d-none");
-    		}
+	if(pwd ==="") {
+		isValidation = false;
+		pwdErr2.addClass("d-none");
+		pwdErr3.addClass("d-none");
+		pwdErr1.removeClass("d-none");
+	} else {
+		var pattern = /^(?=.*[a-zA-z])(?=.*[0-9])(?=.*[$`~!@$!%*#^?&\\(\\)\-_=+]).{8,20}$/;
+    	var result = pattern.test(pwd);
+    	if(!result) {
+    		isValidation = false;
+    		pwdErr2.removeClass("d-none");
+    		pwdErr1.addClass("d-none");
+    	} else {
+    		pwdErr2.addClass("d-none");
+    		pwdErr1.addClass("d-none");
     	}
+    }
 		
 	if(!isValidation) {
 		var borderbottom = $("#pwd-form");
