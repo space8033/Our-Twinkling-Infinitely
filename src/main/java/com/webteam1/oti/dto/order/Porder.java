@@ -1,4 +1,4 @@
-package com.webteam1.oti.dto;
+package com.webteam1.oti.dto.order;
 
 import java.util.Date;
 

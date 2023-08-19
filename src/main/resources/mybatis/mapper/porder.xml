@@ -26,5 +26,12 @@
 		    WHERE ROWNUM = 1
 	    ]]>
 	</select>
+
+	<select id="selectByUserId" parameterType="String" resultType="int">
+		        SELECT order_no
+		        FROM porder
+		        WHERE users_users_id = #{userId}
+		        
+	</select>
 	
 </mapper>

@@ -1,69 +1,33 @@
-$(init)
+$(init);
 
 function init() {
 	makeOrderCard();
-	loadFooter();
-	var box = $(".boxes");
-	box.click(onClickBox);
-	var classifyMine = $(".classifyMine");
-	classifyMine.click(onClickMine);
-	
-}
-
-function onClickBox() {
-	//박스 초기화
-	$(".boxes").each((index, el) =>
-		$(el).removeClass("clickedBox")
-	)
-	
-	$(event.target).addClass("clickedBox");
-}
-
-function loadFooter() {
-	$("#footer").load("${pageContext.request.contextPath}/WEB-INF/views/common/coupangFooter.jsp");
-}
-
-function onClickMine() {
-	$("#breakDown").empty();
-
-	$(".classifyMine").each((index, el) =>
-		$(el).removeClass("selectedClass")
-	)
-	
-	$(event.target).addClass("selectedClass");
-		
-	if($(event.target).val() === $("#all").val()) {
-		makeOrderCard();
-	}else if($(event.target).val() === $("#deliver").val()) {
-		makeOrderCard();		
-	}else if($(event.target).val() === $("#travel").val()) {
-		noContent();
-	}else if($(event.target).val() === $("#ticket").val()) {
-		noContent();
-	}
+	showAddress();
+	showReviewByUser();
 }
 
 function makeOrderCard() {
 	$.ajax({
-		url:"${pageContext.request.contextPath}/resources/json/mycoupangContent.json",
+		url:"getOrderList",
 		method: "get",
 		success: function(data) {
+			console.log(data.length);
 			let html="";
 			let date="";
 		
 			data.forEach(function(item, index) {
 				let price = item.price.toLocaleString('ko-KR');
-				let made = makeDate(item.date);
-				if(item.date != date) {
-					date = item.date;
+				let made = makeDate(item.orderDate);
+				if(item.orderDate != date) {
+					date = item.orderDate;
 					
 					if(index !== 0) {
 						html += '</div>';
-						html += '<div class="classifyByDate">'
-						html += 	'<div class="d-flex">'
-						html += 		'<div style="width:70%; font-weight:bold; font-size: 20px; padding-left:12px;">' + item.date + ' 주문</div>'
-						html += 		'<div style="width:30%; text-align: right;"><a href="#" id="seeDetail">주문 상세보기> </a></div>'
-						html += 	'</div>'
+						html += '<div class="classifyByDate">';
+						html += 	'<div class="d-flex">';
+						html += 		'<div style="width:70%; font-weight:bold; font-size: 20px; padding-left:12px;">' + item.orderDate + ' 주문</div>';
+						html += 		'<div style="width:30%; text-align: right;"><a href="#" id="seeDetail">주문 상세보기> </a></div>';
+						html += 	'</div>';
 						html +=	 '<div class="orderCard my-3 d-flex">';
 						html += 	'<div class="orderCardLeft pt-2 pl-4">';
 						html += 		'<div class="upperCard d-flex">';
@@ -73,19 +37,15 @@ function makeOrderCard() {
 						html +=			'</div>';
 						html +=			'<div class="lowerCard d-flex">';
 						html +=				'<div class="productImg my-3" style="width: 15%;">';
-						html +=					'<img src="../common/image/coupang/' + item.image + '" width="100%" height="100%">';
+						html +=					'<img src="data:MIME;base64, '+ item.image +'" width="100%" height="100%"/>';
 						html +=				'</div>';
 						html +=				'<div class="productDetail ml-4 mr-3" style="width: 85%;">';
 						html +=					'<div class="detailUpper mt-2 mb-3 mr-2">';
-						html +=						'<img src="//image10.coupangcdn.com/image/badges/rocket/rocket_logo.png" width="50" height="15">';
 						html +=						'<span style="margin-left: 5px; vertical-align: middle; font-size: 15px;">' + item.title + '</span>';
 						html +=					'</div>';
 						html +=					'<div class="detailDown mb-3 d-flex">';
 						html +=						'<div style="text-align: left; width: 65%; color: #978b75">';
 						html +=							price +'원 · ' + item.quantity + '개';
-						html +=						'</div>';
-						html +=						'<div>';
-						html +=							'<button style="background-color: white; border: 1px solid rgb(196, 205, 213); border-radius: 3px;">장바구니 담기</button>';
 						html +=						'</div>';
 						html +=					'</div>';
 						html +=				'</div>';
@@ -98,11 +58,11 @@ function makeOrderCard() {
 						html +=		'</div>';
 						html +=	'</div>';
 					} else {
-							html += '<div class="classifyByDate">'
-							html += 	'<div class="d-flex">'
-							html += 		'<div style="width:70%; font-weight:bold; font-size: 20px; padding-left:12px;">' + item.date + ' 주문</div>'
-							html += 		'<div style="width:30%; text-align: right;"><a href="#" id="seeDetail">주문 상세보기> </a></div>'
-							html += 	'</div>'
+							html += '<div class="classifyByDate">';
+							html += 	'<div class="d-flex">';
+							html += 		'<div style="width:70%; font-weight:bold; font-size: 20px; padding-left:12px;">' + item.orderDate + ' 주문</div>';
+							html += 		'<div style="width:30%; text-align: right;"><a href="#" id="seeDetail">주문 상세보기> </a></div>';
+							html += 	'</div>';
 							html +=	 '<div class="orderCard my-3 d-flex">';
 							html += 	'<div class="orderCardLeft pt-2 pl-4">';
 							html += 		'<div class="upperCard d-flex">';
@@ -112,19 +72,15 @@ function makeOrderCard() {
 							html +=			'</div>';
 							html +=			'<div class="lowerCard d-flex">';
 							html +=				'<div class="productImg my-3" style="width: 15%;">';
-							html +=					'<img src="../common/image/coupang/' + item.image + '" width="100%" height="100%">';
+							html +=					'<img src="data:MIME;base64, '+ item.image +'" width="100%" height="100%"/>';
 							html +=				'</div>';
 							html +=				'<div class="productDetail ml-4 mr-3" style="width: 85%;">';
 							html +=					'<div class="detailUpper mt-2 mb-3 mr-2">';
-							html +=						'<img src="//image10.coupangcdn.com/image/badges/rocket/rocket_logo.png" width="50" height="15">';
 							html +=						'<span style="margin-left: 5px; vertical-align: middle; font-size: 15px;">' + item.title + '</span>';
 							html +=					'</div>';
 							html +=					'<div class="detailDown mb-3 d-flex">';
 							html +=						'<div style="text-align: left; width: 65%; color: #978b75">';
 							html +=							price +'원 · ' + item.quantity + '개';
-							html +=						'</div>';
-							html +=						'<div>';
-							html +=							'<button style="background-color: white; border: 1px solid rgb(196, 205, 213); border-radius: 3px;">장바구니 담기</button>';
 							html +=						'</div>';
 							html +=					'</div>';
 							html +=				'</div>';
@@ -147,19 +103,15 @@ function makeOrderCard() {
 					html +=			'</div>';
 					html +=			'<div class="lowerCard d-flex">';
 					html +=				'<div class="productImg my-3" style="width: 15%;">';
-					html +=					'<img src="../common/image/coupang/' + item.image + '" width="100%" height="100%">';
+					html +=					'<img src="data:MIME;base64, '+ item.image +'" width="100%" height="100%"/>';
 					html +=				'</div>';
 					html +=				'<div class="productDetail ml-4 mr-3" style="width: 85%;">';
 					html +=					'<div class="detailUpper mt-2 mb-3 mr-2">';
-					html +=						'<img src="//image10.coupangcdn.com/image/badges/rocket/rocket_logo.png" width="50" height="15">';
 					html +=						'<span style="margin-left: 5px; vertical-align: middle; font-size: 15px;">' + item.title + '</span>';
 					html +=					'</div>';
 					html +=					'<div class="detailDown mb-3 d-flex">';
 					html +=						'<div style="text-align: left; width: 65%; color: #978b75">';
 					html +=							price +'원 · ' + item.quantity + '개';
-					html +=						'</div>';
-					html +=						'<div>';
-					html +=							'<button style="background-color: white; border: 1px solid rgb(196, 205, 213); border-radius: 3px;">장바구니 담기</button>';
 					html +=						'</div>';
 					html +=					'</div>';
 					html +=				'</div>';
@@ -184,7 +136,7 @@ function makeOrderCard() {
 				}
 				
 			});
-			$("#breakDown").html(html);
+			$("#orderList").html(html);
 		},
 		error: function(error) {
 			noContent();
@@ -198,7 +150,6 @@ function noContent() {
 	
 	html += '<div class="pt-4">';
 	html += 	'<div class="d-flex justify-content-center">';
-	html +=			'<img src="../common/image/coupang/w노랑.png">';
 	html +=		'</div>';
 	html +=		'<div class="d-flex">';
 	html +=			'<div style="text-align: right; width: 60%";>';
@@ -212,7 +163,7 @@ function noContent() {
 	html +=		'</div>';
 	html += '</div>';
 	
-	$("#breakDown").html(html);
+	$("#orderList").html(html);
 }
 
 function makeDate(date) {
@@ -227,3 +178,116 @@ function makeDate(date) {
 	
 	return result;
 }
+
+function showAddress(pageNo3) {
+	$.ajax({
+		url: "address",
+		method: "get",
+		data:{
+			"pageNo": pageNo3
+		},
+		success: function(data) {
+			$("#addressList").html(data);
+		},
+		error: function(error) {
+			console.log("아왜");
+		}
+	});
+}
+
+
+
+function showModifyAddress(addressNo) {
+	$.ajax({
+		url: "modifyForm",
+		method: "get",
+		data:{
+			"addressNo": addressNo
+		},
+		success: function(data) {
+			$("#addressList").html(data);
+		},
+		error: function(error) {
+			console.log("아왜");
+		}
+	});
+}
+
+function showReviewByUser(pageNo5) {
+	$.ajax({
+		url: "reviewByUser",
+		method: "get",
+		data:{
+			"pageNo5": pageNo5
+		},
+		success: function(data) {
+			$("#reviewList").html(data);
+		},
+		error: function(error) {
+			console.log("아왜");
+		}
+	});
+}
+	
+function myReviewDetail(review_no) {
+	$.ajax({
+		url: "myReviewDetail",
+		method: "get",
+		data:{"review_no": review_no},
+		success: function(data) {
+			$("#reviewList").html(data);
+		},
+		error: function(error) {
+			console.log("아왜");
+		}
+	});
+}
+
+function showReviewModify(review_no) {
+	$.ajax({
+		url: "modifyReview",
+		method: "get",
+		data:{"review_no": review_no},
+		success: function(data) {
+			$("#reviewList").html(data);
+			$("#showAlert").hide();
+		},
+		error: function(error) {
+			console.log("아왜");
+		}
+	});
+}
+
+function modifyForm() {
+	var form = $("#modifyReview")[0];
+	var formData = new FormData(form);
+	$.ajax({
+		url: "modifyReview",
+		method: "post",
+		data: formData,
+		success: function(data) {
+			$("#reviewList").html(data);
+		},
+		error: function(error) {
+			console.log("아왜");
+		},
+		cache: false,
+		contentType: false,
+		processData: false
+	});
+}
+
+function deleteReview(review_no) {
+	$.ajax({
+		url: "deleteReview",
+		method: "post",
+		data:{"review_no": review_no},
+		success: function(data) {
+			$("#reviewList").html(data);
+		},
+		error: function(error) {
+			console.log("아왜");
+		}
+	});
+}
+
