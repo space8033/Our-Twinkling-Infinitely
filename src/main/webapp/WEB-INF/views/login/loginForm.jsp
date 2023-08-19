@@ -16,7 +16,7 @@
 		<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>
 		<script src="${pageContext.request.contextPath}/resources/js/loginForm.js"></script>
 		<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/loginForm_css.css">
-	    <title>쿠팡 로그인 폼</title>
+	    <title>OTI 로그인 폼</title>
 	</head>
 	<body>
 	    <header>
@@ -78,9 +78,9 @@
 					</div>
 						
 				    <div class="form-check d-flex">
-						 <div>
+						 <!-- <div>
 						 	<a id="idpwd" href="https://login.coupang.com/login/accountInfoFind.pang" style="font-size:14px; margin-top:5px;">아이디·비밀번호 찾기 <strong>></strong></a>
-						 </div>
+						 </div> -->
 					</div>
 	                <div class="login_form_btn">
 	                    <button type="submit" id="login_btn">로그인</button>
