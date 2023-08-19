@@ -19,6 +19,7 @@
       <script src="https://cdn.jsdelivr.net/npm/gasparesganga-jquery-loading-overlay@2.1.7/dist/loadingoverlay.min.js"></script>
       
       <script src="${pageContext.request.contextPath}/resources/js/basket.js"></script>
+      <script src="${pageContext.request.contextPath}/resources/js/orderPay.js"></script>
       <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/cart.css"/>
       <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/main.css"/>
    </head>
