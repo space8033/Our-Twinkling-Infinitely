@@ -31,7 +31,12 @@
 		        SELECT order_no
 		        FROM porder
 		        WHERE users_users_id = #{userId}
-		        
+	</select>
+
+	<select id="selectByOrderNo" parameterType="int" resultType="Porder">
+		        SELECT *
+		        FROM porder
+		        WHERE order_no = #{orderNo}
 	</select>
 	
 </mapper>

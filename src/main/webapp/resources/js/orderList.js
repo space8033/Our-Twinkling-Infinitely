@@ -155,11 +155,6 @@ function noContent() {
 	html +=			'<div style="text-align: right; width: 60%";>';
 	html +=				'최근 6개월간 주문하신 내역이 없습니다.';
 	html +=			'</div>';
-	html +=			'<div class="ml-2">';
-	html +=				'<a href="#" id="order2023">';
-	html +=					'2023년 주문보기>';
-	html +=				'</a>';
-	html +=			'</div>';
 	html +=		'</div>';
 	html += '</div>';
 	
