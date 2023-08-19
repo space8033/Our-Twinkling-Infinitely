@@ -719,56 +719,18 @@ function checkValidation() {
 		}
 	}
 	console.log(isValidation+"결제성공?");
+	
 	if(!isValidation) {
 		event.preventDefault();
 		window.alert('결제에 실패하였습니다.');
-	}/* else {
-		var coupon_no = $('input[name=coupon]:checked').next().first().val();
-		
-		if (coupon_no === undefined) {
-		    coupon_no = 0;
+	} else {
+		if(window.confirm("결제하시겠습니까??")){
+			location.href="/our-twinkling-infinitely/orderPay";
 		} else {
-		    coupon_no = parseInt(coupon_no);
+			event.preventDefault();
 		}
 		
-		var address_no = $("input[name='address_no']").val();
-		var address_request = $("input[name='address_request']").val();
-		var order_cashReceipt = $("input[name='order_cashReceipt']").val();
-		if(order_cashReceipt === "on") {
-			order_cashReceipt = true
-		} else {
-			order_cashReceipt = false;
-		}
-		var order_del_fee = $("input[name='order_del_fee']").val();
-		
-		
-		
-	    // 서버로 전송할 데이터 생성
-	    var postData = {
-	    	address_no: address_no,
-	    	address_request: address_request,
-	    	order_cashReceipt: order_cashReceipt,
-	    	order_del_fee: order_del_fee,
-	    	coupon_no: coupon_no
-	    };
-	    
-	    // AJAX 요청으로 데이터 전송
-	    $.ajax({
-	    	 type: "POST",
-	    	    url: "/our-twinkling-infinitely/orderPay",
-	    	    contentType: "application/json", // JSON 형식으로 전송
-	    	    data: JSON.stringify(postData),   // 데이터를 JSON 문자열로 변환
-	    	    dataType: "json",                // 응답 데이터 형식 지정
-	    	    success: function(response) {
-	    	        // 서버 응답 처리
-	    	        alert("데이터가 성공적으로 전달 완료되었습니다.");
-	    	    },
-	    	    error: function() {
-	    	        // 오류 처리
-	    	        alert("데이터 전송 중 오류가 발생했습니다.");
-	    	    }
-	    	});
-	}*/
+	}
     
 }
 
