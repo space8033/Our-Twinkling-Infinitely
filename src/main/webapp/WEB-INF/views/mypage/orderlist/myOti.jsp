@@ -41,7 +41,7 @@
 			<div id="myCoupangContent" class="container">
 				<ul id="menu-tab" class="nav nav-tabs nav-justified m-3">
 				    <li class="t-menu nav-item">
-				      <a class="nav-link active" data-toggle="tab" href="#detail">주문 내역</a>
+				      <a class="nav-link active" data-toggle="tab" href="#orderList">주문 내역</a>
 				    </li>
 				    <li class="t-menu nav-item">
 				      <a class="nav-link" data-toggle="tab" href="#addressList">배송지 관리</a>

@@ -22,4 +22,10 @@
 	 	update orderproduct set porder_order_no= #{orderNo}, orderproduct_isordered=1
 	 	where orderproduct_no=#{orderproductNo}
 	</update>
+	
+	<select id="selectByOrderNo" parameterType="int" resultType="int">
+		select productoption_productoption_no
+		from orderproduct
+		where porder_order_no=#{orderNo}
+	</select>
 </mapper>

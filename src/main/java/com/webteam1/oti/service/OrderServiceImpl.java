@@ -12,7 +12,8 @@ import org.springframework.transaction.annotation.Transactional;
 import com.webteam1.oti.dao.OrderDao;
 import com.webteam1.oti.dao.OrderProductDao;
 import com.webteam1.oti.dto.OrderProduct;
-import com.webteam1.oti.dto.Porder;
+import com.webteam1.oti.dto.order.OrderInfo;
+import com.webteam1.oti.dto.order.Porder;
 
 import lombok.extern.slf4j.Slf4j;
 
@@ -50,5 +51,18 @@ public class OrderServiceImpl implements OrderService {
 	public int getOneOrderNoByUserId(String userId) {
 		return orderDao.selectOneByUserId(userId);
 	}
+
+	@Override
+	public List<OrderInfo> getOrderList(String userId) {
+		//유저아이디로 order 찾아오기
+		List<Integer> orderNumList = orderDao.selectByUserId(userId);
+		//order 안에 있는 orderproductno로 productoptionno 찾기
+		for(Integer i : orderNumList) {
+			
+		}
+		return null;
+	}
+	
+	
 	
 }

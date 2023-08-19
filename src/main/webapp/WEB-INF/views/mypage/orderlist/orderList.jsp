@@ -1,5 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 
+<script src="${pageContext.request.contextPath}/resources/js/orderList.js"></script>
+
+<div id="#breakDown">
+
+</div>
+
 <div id="deliveryNotify" class="my-5 container">
 	<div id="notifyTop " class="mb-3">
 		<div class="d-flex mb-3">
