@@ -1,5 +1,6 @@
 package com.webteam1.oti.controller;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -63,6 +64,7 @@ public class OrderPayController {
 	@Login
 	@GetMapping("/orderPay")
 	public String orderPay(Model model, HttpSession session) {
+		
 		LoginDto loginUser = (LoginDto) session.getAttribute("loginIng");
 		ModifyDto loginUserData = userService.getModifyByUsersId(loginUser.getUsers_id());
 		model.addAttribute("orderUser", loginUserData);
@@ -123,28 +125,18 @@ public class OrderPayController {
 
 	@Login
 	@PostMapping("/orderPay")
-	public String orderPay(Porder porder, @RequestParam("coupon_no") int coupon_no, HttpSession session) {
+	@ResponseBody
+	public String orderPay(Porder porder, @RequestParam("coupon_no")String coupon_no, HttpSession session) {
+		
+		log.info("coupon_no :" + coupon_no);
 		LoginDto loginUser = (LoginDto) session.getAttribute("loginIng");
 		porder.setUsers_users_id(loginUser.getUsers_id());
-		porder.setCoupon_no(coupon_no);
+		porder.setCoupon_no(Integer.parseInt(coupon_no));
+		log.info(porder.toString()+"나 오더");
 		orderService.addOrder(porder);
 		
         return "redirect:/";
 	}
-	
-	@Login
-	@PostMapping("/delete-data")
-	 public ResponseEntity<String> deleteData(@RequestBody String addressNo, HttpSession session) {
-		
-		LoginDto loginUser = (LoginDto) session.getAttribute("loginIng");
-		log.info(loginUser+"로그인유정");
-		orderProductService.getOrderProduct(loginUser.getUsers_id());
-		log.info("실행됐니?");
-		
-        return ResponseEntity.ok("Data deleted successfully");
-    }
-	
-	
 	
 	
 	@Login
@@ -280,6 +272,10 @@ public class OrderPayController {
 		LoginDto loginDto = (LoginDto) session.getAttribute("loginIng");
 		String userId = loginDto.getUsers_id();
 		
+		orderProductService.getOrderProduct(loginDto.getUsers_id());
+		orderProductService.deleteOrderProduct(loginDto.getUsers_id());
+		
+		List<OrderProduct> orderProductList = new ArrayList<>();
 		if(productCheckBoxes != null ) {			
 			for (int i = 0; i < selectedQtys.length; i++) {
 				OrderProduct orderProduct = new OrderProduct();
@@ -290,8 +286,12 @@ public class OrderPayController {
 				if(cartNos != null) {					
 					cartService.cartDelete(Integer.parseInt(cartNos[i]));
 				}
+				orderProductList.add(orderProduct);
 			}
 		}
+		
+		
+		
 		
 	    return "redirect:/orderPay";
 	}
