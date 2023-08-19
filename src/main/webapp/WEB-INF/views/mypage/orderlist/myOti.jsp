@@ -30,18 +30,18 @@
 				</div>
 				<div class="myInfo">			
 					<h2>${loginIng.users_name}</h2>
-					<p>가입일: ${loginIng.users_createdDate}</p>
+					<p>가입일: ${joinDay}</p>
 					<a href="${pageContext.request.contextPath}/modify">회원 정보 변경</a>
 				</div>
 				<div id="cash" class="mine">
-					<a href="#">
+					<a  href="#" class="accordion">
 						<img class="icon" src="${pageContext.request.contextPath}/resources/yuimg/won.png" width="55"/>
 						<div class="text-body">적립금></div>
 					</a>
 					<p>0</p>
 				</div>
 				<div class="mine">
-					<a href="#">
+					<a onclick="showCouponList()" href="#" class="accordion" >
 						<img  class="icon" src="${pageContext.request.contextPath}/resources/yuimg/coupon.png" width="55"/>
 						<div class="text-body">쿠폰></div>
 					</a>
@@ -62,6 +62,71 @@
 					<p>0</p>
 				</div>
 			</div>
+		</div>
+		<div id="myCoupons">
+		  <div id="numOfcoupons">
+			  <span><img src="https://cdn-icons-png.flaticon.com/512/6713/6713658.png" width="30"/></span>
+			  <span>사용가능 쿠폰수: <span id="num">${totalCoupons}</span></span>
+		  </div>
+		  <div class="coupon-list">
+			  <c:if test="${coupons != null}">
+				  <c:forEach var="coupon" items="${coupons}">
+				  	<div class="myCoupon">
+				  		<c:if test="${coupon.coupon_type == 'BIRTHDAY_COUPON'}">
+						  	<div class="coupon-date">쿠폰 지급일: ${coupon.coupon_createdDate}/ 쿠폰 만료일: ${coupon.coupon_expiredDate}</div>
+						  	<div class="couponLine card">
+							  	<div class="card-body">	
+							  		<div class="coupon-title text-primary">					  		
+								  		생일 축하 쿠폰
+							  		</div>				  	
+								  	<p class="coupon-detail"><fmt:formatNumber value="${coupon.coupon_value}" type="number"/>원</p>
+								  	<div class="coupon-content">
+								  		<span class="text-danger">
+								  			<fmt:formatNumber value="${coupon.coupon_condition}" type="number"/>
+								  		</span>원 이상 사용 가능!
+								  	</div>	 	  	 	  		
+							  	</div>
+						  	</div>
+				  		</c:if>		  	
+				  		<c:if test="${coupon.coupon_type == 'WELCOME_COUPON'}">
+						  	<div class="coupon-date">쿠폰 지급일: ${coupon.coupon_createdDate}/ 쿠폰 만료일: ${coupon.coupon_expiredDate}</div>
+						  	<div class="couponLine card">
+						  		<div class="card-body">
+						  			<div class="coupon-title">
+									  	신규 가입 쿠폰
+						  			</div>					  		
+								  	<p class="coupon-detail">${coupon.coupon_value}% 할인!</p>
+								  	<div class="coupon-content">
+								  		<span class="text-danger">
+								  			<fmt:formatNumber value="${coupon.coupon_condition}" type="number"/>
+								  		</span>원 이상 사용 가능!
+								  	</div>	 	  		
+						  		</div>
+						  	</div>
+				  		</c:if>		  	
+				  		<c:if test="${coupon.coupon_type == 'DEL_FREE_COUPON'}">
+							<div class="coupon-date">쿠폰 지급일: ${coupon.coupon_createdDate}/ 쿠폰 만료일: ${coupon.coupon_expiredDate}</div>
+						  	<div class="couponLine card">
+							  	<div class="card-body">	
+							  		<div class="coupon-title text-primary">						  		
+								  		배송비 무료 쿠폰
+							  		</div>				  	
+								  	<p class="coupon-detail"><fmt:formatNumber value="${coupon.coupon_value}" type="number"/>원</p>
+								  	<div class="coupon-content">
+								  		<span class="text-danger">
+								  			<fmt:formatNumber value="${coupon.coupon_condition}" type="number"/>
+								  		</span>원 이상 사용 가능!
+								  	</div>	 	  	
+							  	</div>
+						  	</div>
+				  		</c:if>		  	
+				  	</div>
+				  </c:forEach>
+			  </c:if>
+		  </div>
+		  <c:if test="${totalCoupons == 0}">
+		  	<div class="noCoupon card">사용가능한 쿠폰이 업습니다.</div>
+		  </c:if>
 		</div>
 		<div id="wrapper">
 			<h6>나의 쇼핑 활동</h6>

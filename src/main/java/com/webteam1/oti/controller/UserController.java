@@ -19,6 +19,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.util.WebUtils;
 
+import com.webteam1.oti.dto.Coupon;
 import com.webteam1.oti.dto.cart.Cart;
 import com.webteam1.oti.dto.user.Agreement;
 import com.webteam1.oti.dto.user.JoinDto;
@@ -296,13 +297,26 @@ public class UserController {
 	@GetMapping("/mypage")
 	public String myPage(HttpSession session, Model model) {
 		LoginDto user = (LoginDto)session.getAttribute("loginIng");
+		
 		//리뷰 수
 		int totalReviews = reviewService.countByUserId(user.getUsers_id());
 		model.addAttribute("totalReviews", totalReviews);
+		
 		//쿠폰 수
 		int totalCoupons = couponService.numberOfCoupon(user.getUsers_id());
 		model.addAttribute("totalCoupons", totalCoupons);
-		return "mypage/orderlist/myOti";
+		
+		//쿠폰리스트
+		List<Coupon> list = couponService.getCouponByUsersId(user.getUsers_id());
+		model.addAttribute("coupons", list);
+		
+		//마이페이지에 보일 가입일
+		String join = user.getUsers_createdDate();
+	    String joinDay = join.substring(0, 10);
+	
+	    model.addAttribute("joinDay", joinDay);
+		
+	    return "mypage/orderlist/myOti";
 	}
 	//마이페이지 기본 이미지로 변경(기존에 이미지 파일이 있다면 null로 업데이트)
 	@Login

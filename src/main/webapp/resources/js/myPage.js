@@ -5,6 +5,7 @@ function init() {
 	showReviewByUser();
 	//마이페이지 이미지 변경 확인버튼 숨기기
 	$("#imgSubmit").hide();
+	$("#myCoupons").hide();
 }
 
 function showAddress(pageNo3) {
@@ -134,3 +135,8 @@ $(document).ready(function() {
 		}
 	});
 });
+
+//적립금 목록과 쿠폰리스트 목록
+function showCouponList(){
+	$("#myCoupons").toggle();
+}
