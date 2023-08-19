@@ -106,6 +106,7 @@ function priceCalculate() {
 	
 	
 	var selectedCouponValue = parseFloat($('input[name=coupon_no]:checked').next().first().val());
+	console.log(selectedCouponValue +"selectedCouponValue는?");
 	if(selectedCouponValue == "2500") {
 		price = totalPrice + delFee + balance;
 		
@@ -387,11 +388,12 @@ $(document).ready(function(){
 	});
 	
 	
+	
     
 
 	$('.couponUse').change(function(){
-		  var selectedCouponValue = parseFloat($('input[name=coupon_no]:checked').next().first().val());
-
+		  var selectedCouponValue = parseFloat($('input[name="coupon_no"]:checked').next().first().val());
+		  console.log("selectedCouponValue는?", selectedCouponValue);
 		  if (selectedCouponValue !== 0) {
 		        var totalPrice = parseFloat($('.totalPrice').text());
 		        var couponPrice;
@@ -420,6 +422,7 @@ $(document).ready(function(){
 	$('#cuCashrow').hide();
 	$('#cuCashInput').click(function(){
 		$('#cuCashrow').toggle();
+		$("#cashOver").css("display", "none"); 
 		
 	});
 		
