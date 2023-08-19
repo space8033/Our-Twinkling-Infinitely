@@ -12,7 +12,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
@@ -123,7 +122,7 @@ public class OrderPayController {
 
 	@Login
 	@PostMapping("/orderPay")
-	public String orderPay(@RequestBody Porder porder, HttpSession session) {
+	public String orderPay(Porder porder, HttpSession session) {
 		
 		LoginDto loginUser = (LoginDto) session.getAttribute("loginIng");
 		porder.setUsers_users_id(loginUser.getUsers_id());
