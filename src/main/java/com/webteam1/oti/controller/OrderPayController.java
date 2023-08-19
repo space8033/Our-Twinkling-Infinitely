@@ -8,7 +8,6 @@ import java.util.Map;
 import javax.annotation.Resource;
 import javax.servlet.http.HttpSession;
 
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -16,7 +15,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.webteam1.oti.dto.Address;
 import com.webteam1.oti.dto.Coupon;
@@ -125,17 +123,14 @@ public class OrderPayController {
 
 	@Login
 	@PostMapping("/orderPay")
-	@ResponseBody
-	public String orderPay(Porder porder, @RequestParam("coupon_no")String coupon_no, HttpSession session) {
+	public String orderPay(@RequestBody Porder porder, HttpSession session) {
 		
-		log.info("coupon_no :" + coupon_no);
 		LoginDto loginUser = (LoginDto) session.getAttribute("loginIng");
 		String[] cartNos = (String[]) session.getAttribute("cartNos");
 		for(int i=0; i<cartNos.length; i++) {
 			cartService.cartDelete(Integer.parseInt(cartNos[i]));
 		}
 		porder.setUsers_users_id(loginUser.getUsers_id());
-		porder.setCoupon_no(Integer.parseInt(coupon_no));
 		log.info(porder.toString()+"나 오더");
 		orderService.addOrder(porder);
 		
