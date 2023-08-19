@@ -11,4 +11,5 @@ public interface OrderDao {
 	public int insertOrder(Porder order);
 	public int selectOneByUserId(String userId);
 	public List<Integer> selectByUserId(String userId);
+	public Porder selectByOrderNo(int orderNo);
 }

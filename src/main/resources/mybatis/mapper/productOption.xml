@@ -4,13 +4,15 @@
 
 	
 	<select id="selectByOptionNo" parameterType="int" resultType="ProductOption">
-		
 		select *
    		from productoption
     	where productoption_no = #{productOptionNo}
-   		
   	</select>
   	 
-
+	<select id="selectProductNo" parameterType="int" resultType="int">
+		select product_product_no
+		from productoption
+    	where productoption_no = #{productOptionNo}
+	</select>
     
 </mapper>
