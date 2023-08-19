@@ -19,10 +19,12 @@ import com.webteam1.oti.dao.OrderDao;
 import com.webteam1.oti.dao.OrderProductDao;
 import com.webteam1.oti.dao.ProductDao;
 import com.webteam1.oti.dao.ProductOptionDao;
+import com.webteam1.oti.dao.UserDao;
 import com.webteam1.oti.dto.OrderProduct;
 import com.webteam1.oti.dto.Product;
 import com.webteam1.oti.dto.order.OrderInfo;
 import com.webteam1.oti.dto.order.Porder;
+import com.webteam1.oti.dto.user.LoginDto;
 
 import lombok.extern.slf4j.Slf4j;
 
@@ -40,6 +42,9 @@ public class OrderServiceImpl implements OrderService {
 	private ProductDao productDao;
 	@Resource
 	private CouponDao couponDao;
+	@Resource
+	private UserDao userDao;
+
 	
 	@Override
 	@Transactional
@@ -60,6 +65,17 @@ public class OrderServiceImpl implements OrderService {
 			orderProductDao.addOrderNumber(map);
 		}
 		couponDao.updateUsedCoupon(order.getCoupon_no());
+		
+		LoginDto user = userDao.selectByUsersId(order.getUsers_users_id());
+		int beforePoint = user.getUsers_opoint();
+		log.info(beforePoint+"이전포인트");
+		int usedPoint = order.getUsers_opoint();
+		log.info(usedPoint+"사용포인트");
+		int afterPoint = beforePoint - usedPoint; 
+		log.info(afterPoint+"계산후포인트");
+		user.setUsers_opoint(afterPoint);
+		log.info(user.toString()+"나 바뀐 유저임 ㅋㅋ");
+		userDao.updateOpoint(user);
 		
 	}
 

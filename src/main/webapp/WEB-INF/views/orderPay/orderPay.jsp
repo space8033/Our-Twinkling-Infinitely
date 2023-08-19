@@ -216,11 +216,11 @@
 								<th>배송비</th>
 								<td>
 								<c:if test="${totalPrice >= 50000}">
-									<span id="delFee">0</span>원
+									<span id="delFee">0</span> 원
 									<input type="hidden" name="order_del_fee" value="0">
 								</c:if>
 								<c:if test="${totalPrice <= 50000}">
-									<span id="delFee">2500</span>원
+									<span id="delFee">2500</span> 원
 									<input type="hidden" name="order_del_fee" value="2500">
 								</c:if>
 								</td>
@@ -230,7 +230,7 @@
 								<td style="margin:0px; padding:0px;">
 									<div style=" padding-top:10px; padding-left:16px; padding-bottom:10px;">
 										<span style="display:inline-block; width:155px;">
-											<input type="number" id="balance" readonly="readonly" name="users_opoint" style="border: none; width:40px;">
+											-<input type="number" id="balance" readonly="readonly" name="users_opoint" style="border: none; width:50px;">
 											<span>원</span>
 										</span>
 										<span style="padding-top:20px;">
@@ -256,9 +256,9 @@
 							<tr>
 								<th>총결제금액</th>
 								<td>
-									<span><input type="number" id="price" readonly="readonly" name="total_price" style="border: none; width:40px;"></span>원
-									<span id="expectPoint" style="margin-left: 100px; display=none;">
-										캐시적립 예정 : <span id="point"> </span>원
+									<span><input type="number" id="price" readonly="readonly" name="total_price" value="0" style="border: none; width:63px;"></span>원
+									<span id="expectPoint" style="margin-left: 100px;">
+										캐시적립 예정 : <input type="number" id="point" readonly="readonly" value="0" style="border: none; width:30px;">원
 									</span>		
 								</td>
 							</tr>

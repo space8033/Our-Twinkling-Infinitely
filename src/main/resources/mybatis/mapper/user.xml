@@ -109,5 +109,13 @@
 		where users_id=#{users_id}
 	</update>
 	
+	<!-- 김시온 -->
+	<update id="updateOpoint" parameterType="Login">
+		update users set
+		users_opoint = #{users_opoint}
+		where users_id=#{users_id}
+	
+	</update>
+	
    
 </mapper>

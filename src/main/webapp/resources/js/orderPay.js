@@ -101,24 +101,24 @@ function priceCalculate() {
 		balance = 0;
 		$('#balance').val(0);
 	}
-	var price = parseInt($('#price').text().replace(/,/gi, ""));
+	var price = $('#price').val();
 	console.log("price : "+price);
 	
 	
-	var selectedCouponValue = parseFloat($('input[name=coupon_no]:checked').next().first().val());
-	console.log(selectedCouponValue +"selectedCouponValue는?");
-	if(selectedCouponValue == "2500") {
-		price = totalPrice + delFee + balance;
+	
+	price = totalPrice - discount + delFee - balance;
+	
+	
+	point = parseInt(price * 0.005); 
+	console.log("point : " + point);
+	if(price <= 0) {
+		$('#price').val(0);
+		$('#point').val(0);
 		
 	} else {
-
-		price = totalPrice - discount + delFee + balance;
-	
+		$('#price').val(price);
+		$('#point').val(point);
 	}
-	point = parseInt(price*0.01);
-	$('#price').text(price);
-	$('#point').text(point);
-	
 }
 
 function openAdress() {
@@ -145,10 +145,8 @@ $(document).ready(function(){
 	$('#selectPay').hide();
 	$('#basicPay').show();
 	$('#discount-info').hide();
-	$('#expectPoint').css('display', 'none');
 	
 	$("input[name='pay-method']").change(function(){
-		$('#expectPoint').css('display', 'none');
 		// 계좌이체 선택 시.
 		if($("input[name='pay-method']:checked").val() == '계좌이체'){
 			$('#credit-card-option').hide();
@@ -185,7 +183,6 @@ $(document).ready(function(){
 			$('#selectPay').hide();
 			$('#basicPay').show();
 			$('#discount-info').hide();
-			$('#expectPoint').css('display', 'inline-block');
 			
 			
 			$("#L_coupay-money").addClass("payMethod-arrow");
@@ -429,13 +426,20 @@ $(document).ready(function(){
 		
 	//쿠팡캐시 모두사용 체크 이벤트
 	$('#allUse').click(function(){
-		  if($("#allUse").is(":checked")){
+		var totalPrice = parseInt($('.totalPrice').text().replace(/,/gi, ""));
+		var discount =parseInt($('#discount').text().replace(/,/gi, ""));	
+		var delFee =parseInt($('#delFee').text().replace(/,/gi, ""));
+		
+		var limit = totalPrice - discount + delFee; 
+		
+		  if($("#allUse").prop("checked")){
 	      var allCash = parseInt($('#cuBal').text());
-	        //$('#cuCash').attr('value', allCash);
-	      $('#cuCash').val(allCash);
-	            console.log(allCash);
-	            console.log(cuCash);
-	      } else if(!$("#allUse").is(":checked")){
+	      	if(limit<allCash){
+	      		$('#cuCash').val(limit);
+	      	} else {
+	      		$('#cuCash').val(allCash);
+	      	}    
+	      } else {
 	        	$('#cuCash').val(0);
 	      }
 	});
@@ -443,17 +447,28 @@ $(document).ready(function(){
 	//쿠팡캐시 적용 클릭 이벤트
 	$('#cuCashApply').click(function(){
 		  $("#cashOver").css("display", "none"); 	
-		  var balance = parseInt( $('#cuBal').text())
+		  var balance = parseInt( $('#cuBal').text());
+		  
+		  var totalPrice = parseInt($('.totalPrice').text().replace(/,/gi, ""));
+		  var discount =parseInt($('#discount').text().replace(/,/gi, ""));	
+		  var delFee =parseInt($('#delFee').text().replace(/,/gi, ""));
+			
+		  var limit = totalPrice - discount + delFee; 
+		  
 			 	
 		  if(($("#cuCash").val())>balance){
 				console.log($("#cuCash").val());
 				$("#cashOver").css("display", "block");
 				
 		  } else if(($("#cuCash").val())<=balance) {
-				$("#balance").val($('#cuCash').val());
-				$('#cuCashrow').hide();
-				priceCalculate();
-				
+			    if(($("#cuCash").val())<=limit){
+				      $("#balance").val($('#cuCash').val());
+				      $('#cuCashrow').hide();
+				      priceCalculate();
+			    } else {
+			    	  console.log($("#cuCash").val());
+					  $("#cashOver").css("display", "block");
+			    }	    
 		  } else {
 				console.log($("#cuCash").val());
 				$('#cuCash').val(0);
