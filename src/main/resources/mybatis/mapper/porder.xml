@@ -37,6 +37,7 @@
 		        SELECT *
 		        FROM porder
 		        WHERE order_no = #{orderNo}
+		        ORDER BY order_createddate DESC
 	</select>
 	
 </mapper>
