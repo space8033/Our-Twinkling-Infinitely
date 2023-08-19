@@ -1,5 +1,6 @@
 package com.webteam1.oti.controller;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -7,10 +8,12 @@ import java.util.Map;
 import javax.annotation.Resource;
 import javax.servlet.http.HttpSession;
 
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -61,6 +64,7 @@ public class OrderPayController {
 	@Login
 	@GetMapping("/orderPay")
 	public String orderPay(Model model, HttpSession session) {
+		
 		LoginDto loginUser = (LoginDto) session.getAttribute("loginIng");
 		ModifyDto loginUserData = userService.getModifyByUsersId(loginUser.getUsers_id());
 		model.addAttribute("orderUser", loginUserData);
@@ -121,14 +125,19 @@ public class OrderPayController {
 
 	@Login
 	@PostMapping("/orderPay")
-	public String orderPay(Porder porder, @RequestParam("coupon_no") int coupon_no, HttpSession session) {
+	@ResponseBody
+	public String orderPay(Porder porder, @RequestParam("coupon_no")String coupon_no, HttpSession session) {
+		
+		log.info("coupon_no :" + coupon_no);
 		LoginDto loginUser = (LoginDto) session.getAttribute("loginIng");
 		porder.setUsers_users_id(loginUser.getUsers_id());
-		porder.setCoupon_no(coupon_no);
+		porder.setCoupon_no(Integer.parseInt(coupon_no));
+		log.info(porder.toString()+"나 오더");
 		orderService.addOrder(porder);
 		
         return "redirect:/";
 	}
+	
 	
 	@Login
 	@GetMapping("/addressSelect")
@@ -263,6 +272,10 @@ public class OrderPayController {
 		LoginDto loginDto = (LoginDto) session.getAttribute("loginIng");
 		String userId = loginDto.getUsers_id();
 		
+		orderProductService.getOrderProduct(loginDto.getUsers_id());
+		orderProductService.deleteOrderProduct(loginDto.getUsers_id());
+		
+		List<OrderProduct> orderProductList = new ArrayList<>();
 		if(productCheckBoxes != null ) {			
 			for (int i = 0; i < selectedQtys.length; i++) {
 				OrderProduct orderProduct = new OrderProduct();
@@ -273,8 +286,12 @@ public class OrderPayController {
 				if(cartNos != null) {					
 					cartService.cartDelete(Integer.parseInt(cartNos[i]));
 				}
+				orderProductList.add(orderProduct);
 			}
 		}
+		
+		
+		
 		
 	    return "redirect:/orderPay";
 	}

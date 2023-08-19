@@ -184,7 +184,7 @@
 										<c:forEach var="coupon" items="${couponList}">
 										    <div>
 										        <input class="couponUse" type="radio" name="coupon" value= "${coupon.coupon_value}" style="margin-left: 170px;"/>
-										        <input type="hidden" name="coupon_no" value="${coupon.coupon_no}">
+										        <input type="hidden" name="couponNo" value="${coupon.coupon_no}">
 										        <input type="hidden" name="coupon_condition" value="${coupon.coupon_condition}">
 										        <span class="coupon">${coupon.coupon_value}
 										            <c:if test="${coupon.coupon_value >= 100}">원
@@ -246,7 +246,7 @@
 										<div>
 											<button type="button" id="cuCashApply" style="margin-left: 170px; margin-top:10px;">적립금 적용</button>
 										</div>
-										<div id="cashOver" class="choice-error errorMsg d-none" style="color: red; padding-left: 17px; margin-left: 170px;">
+										<div id="cashOver" class="choice-error" style="color: red; padding-left: 17px; margin-left: 170px;">
 											사용가능한 캐시를 초과 입력하였습니다.
 										</div>
 									</div> 
@@ -324,7 +324,7 @@
 											</label>
 										</div>
 											
-										<div id="account-transfer-no-choice" class="choice-error errorMsg d-none" style="color: red; padding-left: 17px;">
+										<div id="account-transfer-no-choice" class="choice-error" style="color: red; padding-left: 17px;">
 											은행을 선택해주세요
 										</div>		
 									</div> 
@@ -345,7 +345,7 @@
 										<div>
 											<label>
 												<span style="padding-right:35px;">카드선택</span>  
-												<select>
+												<select id="">
 													<option value="KB국민카드">KB국민카드</option>
 													<option value="롯데카드">롯데카드</option>
 													<option value="신한카드">신한카드</option>
@@ -391,7 +391,7 @@
 												</span>
 											</label>
 										</div>
-										<div id="coporation-card-no-choice" class="choice-error errorMsg d-none" style="color: red; padding-left: 17px;">
+										<div id="coporation-card-no-choice" class="choice-error" style="color: red; padding-left: 17px;">
 											카드종류를 선택해주세요
 										</div>
 										<div style="border-top: 1px solid #e4e4e4; padding-top: 10px;">
@@ -421,7 +421,7 @@
 											</label>
 										</div>
 										
-										<div id="mobile-corp-no-choice"  class="choice-error errorMsg d-none" style="color: red; padding-left: 17px;">
+										<div id="mobile-corp-no-choice"  class="choice-error" style="color: red; padding-left: 17px;">
 											통신사 정보를 추가해주세요.
 										</div>
 									</div> 
@@ -438,7 +438,7 @@
 												</select>
 											</label>
 										</div>
-										<div id="bank-no-choice" class="choice-error errorMsg d-none" style="color: red; padding-left: 17px;">
+										<div id="bank-no-choice" class="choice-error" style="color: red; padding-left: 17px;">
 											은행을 선택해주세요
 										</div>
 										<div style="border-top: 1px solid #e4e4e4; padding-top: 10px;">

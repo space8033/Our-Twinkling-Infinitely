@@ -41,8 +41,12 @@ public interface UserService {
 	//회원 탈퇴
 	public void unjoin(String uid);
 	
+	//작성자: 성유진
 	//마이페이지 이미지 추가
 	public void addMyImg(LoginDto user);
+	
+	//마이페이지 기본이미지로 변경
+    public void changeBasic(String usersId);
 	
 	
 }

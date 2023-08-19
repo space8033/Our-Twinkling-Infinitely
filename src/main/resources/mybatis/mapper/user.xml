@@ -94,10 +94,18 @@
 
 	</select>
 	
+	<!-- 작성자: 성유진 -->
 	<!-- 마이페이지 이미지 변경하기 -->
 	<update id="updateMyImage" parameterType="Login">
 		update users set 
 		users_imgFile=#{users_imgFile, jdbcType=VARCHAR}
+		where users_id=#{users_id}
+	</update>
+	
+	<!-- 기본이미지로 변경 -->
+	<update id="updateBasic" parameterType="Login">
+		update users set 
+		users_imgFile = null
 		where users_id=#{users_id}
 	</update>
    

@@ -28,4 +28,8 @@
 		from orderproduct
 		where porder_order_no=#{orderNo}
 	</select>
+	<delete id="pageOutDelete" parameterType="Map">
+	 	delete orderproduct
+	 	where users_users_id = #{users_id} and orderproduct_isordered = 0
+	</delete>
 </mapper>

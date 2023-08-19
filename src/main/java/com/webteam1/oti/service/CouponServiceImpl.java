@@ -8,6 +8,7 @@ import java.util.Date;
 import java.util.List;
 
 import javax.annotation.Resource;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
@@ -16,6 +17,7 @@ import com.webteam1.oti.dao.CouponDao;
 import com.webteam1.oti.dao.UserDao;
 import com.webteam1.oti.dto.Coupon;
 import com.webteam1.oti.dto.Coupon.CouponType;
+import com.webteam1.oti.interceptor.Login;
 
 import lombok.extern.slf4j.Slf4j;
 
@@ -137,40 +139,11 @@ public class CouponServiceImpl implements CouponService{
 		return userCouponList;
 	}
 	
-/*	@Override
-	public void registerAddress(Address address) {
-		
-		addressDao.insert(address);
-	}
-
+	@Login
 	@Override
-	public void updateAddress(Address address) {
-		addressDao.update(address);
+	public int numberOfCoupon(String usersId) {
+		int numOfCoupon = couponDao.countMyCoupon(usersId);
+		return numOfCoupon;
 	}
-
-	@Override
-	public List<Address> getList(Map<String, Object> map) {
-		List<Address> addressList = addressDao.selectByPage(map);
-		
-		return addressList;
-	}
-
-	@Override
-	public int countByUserId(String userId) {
-		
-		return addressDao.countByUserId(userId);
-	}
-
-	@Override
-	public Address getByAddressNo(int address_no) {
-		
-		return addressDao.selectByAno(address_no);
-	}
-
-	@Override
-	public Address getDefault(String user_id) {
-		
-		return addressDao.selectByDefault(user_id);
-	}*/
 	
 }

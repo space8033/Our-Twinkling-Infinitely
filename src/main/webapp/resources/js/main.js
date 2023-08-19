@@ -284,3 +284,4 @@ function deleteFile(obj) {
 	$("#showAlert").hide();
     obj.parent().remove();
 }
+

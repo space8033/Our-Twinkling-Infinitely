@@ -12,4 +12,6 @@ public interface CouponDao {
 	public int delete(Coupon coupon);
 	public List<Coupon> getExpiredCoupons(String nowDate);
 	public List<Coupon> selectCouponByUsersId(String usersId);
+	//회원당 쿠폰 개수
+	public int countMyCoupon(String usersId);
 }

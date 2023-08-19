@@ -19,6 +19,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.util.WebUtils;
 
+import com.webteam1.oti.dto.Coupon;
 import com.webteam1.oti.dto.cart.Cart;
 import com.webteam1.oti.dto.user.Agreement;
 import com.webteam1.oti.dto.user.JoinDto;
@@ -28,6 +29,7 @@ import com.webteam1.oti.interceptor.Login;
 import com.webteam1.oti.service.AgreementService;
 import com.webteam1.oti.service.CartService;
 import com.webteam1.oti.service.CouponService;
+import com.webteam1.oti.service.ReviewService;
 import com.webteam1.oti.service.UserService;
 import com.webteam1.oti.service.UserService.JoinResult;
 import com.webteam1.oti.service.UserService.LoginResult;
@@ -44,6 +46,8 @@ public class UserController {
 	private UserService userService;
 	@Resource
 	private CartService cartService;
+	@Resource
+	private ReviewService reviewService;
 	@Resource
 	private AgreementService agreementService;
 	@Resource
@@ -287,13 +291,45 @@ public class UserController {
 		return "home";
 	}
 	
+	//작성자: 성유진
+	//마이페이지
 	@Login
 	@GetMapping("/mypage")
 	public String myPage(HttpSession session, Model model) {
+		LoginDto user = (LoginDto)session.getAttribute("loginIng");
 		
-		return "mypage/orderlist/myOti";
-	}
+		//리뷰 수
+		int totalReviews = reviewService.countByUserId(user.getUsers_id());
+		model.addAttribute("totalReviews", totalReviews);
+		
+		//쿠폰 수
+		int totalCoupons = couponService.numberOfCoupon(user.getUsers_id());
+		model.addAttribute("totalCoupons", totalCoupons);
+		
+		//쿠폰리스트
+		List<Coupon> list = couponService.getCouponByUsersId(user.getUsers_id());
+		model.addAttribute("coupons", list);
+		
+		//마이페이지에 보일 가입일
+		String join = user.getUsers_createdDate();
+	    String joinDay = join.substring(0, 10);
 	
+	    model.addAttribute("joinDay", joinDay);
+		
+	    return "mypage/orderlist/myOti";
+	}
+	//마이페이지 기본 이미지로 변경(기존에 이미지 파일이 있다면 null로 업데이트)
+	@Login
+	@GetMapping("/basic")
+	public String basicImg(HttpSession session) {
+		LoginDto user = (LoginDto)session.getAttribute("loginIng");
+		//기존에 있던 이미지 삭제
+		userService.changeBasic(user.getUsers_id());
+		user.setUsers_imgFile(null);
+		user.setUsers_img(null);
+
+		return "redirect:/mypage";
+	}
 	//마이페이지 이미지 추가
 	@Login
 	@PostMapping("/mypage")

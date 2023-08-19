@@ -13,4 +13,5 @@ public interface OrderProductDao {
 	public List<OrderProduct> getOrderProductByUsersId (String users_id);
 	public void addOrderNumber(Map<String, Object> map);
 	public List<Integer> selectByOrderNo(int orderNo);
+	public void pageOutDelete(String usersId);
 }
