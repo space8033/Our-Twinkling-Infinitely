@@ -9,6 +9,7 @@ import com.webteam1.oti.dto.Coupon;
 @Mapper
 public interface CouponDao {
 	public int insert(Coupon coupon);
+	public void updateUsedCoupon(int coupon_no);
 	public int delete(Coupon coupon);
 	public List<Coupon> getExpiredCoupons(String nowDate);
 	public List<Coupon> selectCouponByUsersId(String usersId);

@@ -13,6 +13,7 @@ public class Coupon {
 	private String coupon_createdDate;
 	private String coupon_expiredDate;
 	private String users_users_id;
+	private boolean coupon_used;
 	
 	public enum CouponType {
 		BIRTHDAY_COUPON, DEL_FREE_COUPON, WELCOME_COUPON

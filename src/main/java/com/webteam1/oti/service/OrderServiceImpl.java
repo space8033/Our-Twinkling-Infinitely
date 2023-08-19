@@ -10,6 +10,7 @@ import javax.annotation.Resource;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.webteam1.oti.dao.CouponDao;
 import com.webteam1.oti.dao.OrderDao;
 import com.webteam1.oti.dao.OrderProductDao;
 import com.webteam1.oti.dao.ProductDao;
@@ -33,6 +34,8 @@ public class OrderServiceImpl implements OrderService {
 	private ProductOptionDao productOptionDao;
 	@Resource
 	private ProductDao productDao;
+	@Resource
+	private CouponDao couponDao;
 	
 	@Override
 	@Transactional
@@ -52,6 +55,7 @@ public class OrderServiceImpl implements OrderService {
 			log.info("상품번호: " + op.getOrderProduct_no());
 			orderProductDao.addOrderNumber(map);
 		}
+		couponDao.updateUsedCoupon(order.getCoupon_no());
 		
 	}
 

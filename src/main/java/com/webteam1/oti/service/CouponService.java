@@ -8,6 +8,7 @@ public interface CouponService {
 	public int generateWelcomeCoupon(String users_id);
 	public int generateBirthdayCoupon();
 	public int generateComeBackCoupon();
+	public void useCoupon(int coupon_no);
 	public void deleteExpiredCoupons();
 	public List<Coupon> getCouponByUsersId(String usersId);
 	//쿠폰 개수

@@ -7,12 +7,16 @@
       	</selectKey>
       	
 		insert into coupon(
-	      	coupon_no, coupon_type, coupon_value, coupon_condition, coupon_createdDate, coupon_expiredDate, users_users_id
+	      	coupon_no, coupon_type, coupon_value, coupon_condition, coupon_createdDate, coupon_expiredDate, users_users_id, coupon_used
 		)
 		values(
-			#{coupon_no}, #{coupon_type}, #{coupon_value}, #{coupon_condition}, #{coupon_createdDate}, #{coupon_expiredDate}, #{users_users_id}
+			#{coupon_no}, #{coupon_type}, #{coupon_value}, #{coupon_condition}, #{coupon_createdDate}, #{coupon_expiredDate}, #{users_users_id}, 0
 		)
 	</insert>
+	<update id="updateUsedCoupon">
+	    update coupon set coupon_used=1
+	 	where coupon_no=#{coupon_no}
+	</update>
 	<!-- 쿠폰 삭제 -->
 	<delete id="delete" parameterType="int">
 	
@@ -33,7 +37,7 @@
 
 		select *
    		from coupon
-    	where users_users_id = #{usersId}
+    	where users_users_id = #{usersId} and coupon_used = 0
 
 	</select>
 	
@@ -42,7 +46,7 @@
 
 		select count(*)
    		from coupon
-    	where users_users_id = #{usersId}
+    	where users_users_id = #{usersId} and coupon_used = 0
 
 	</select>
   	

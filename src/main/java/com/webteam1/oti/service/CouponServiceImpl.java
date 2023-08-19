@@ -120,6 +120,11 @@ public class CouponServiceImpl implements CouponService{
 	}
 	
 	@Override
+	public void useCoupon(int coupon_no) {
+		couponDao.updateUsedCoupon(coupon_no);
+	}
+	
+	@Override
 	@Scheduled(cron = "0 0 0 * * ?")
 	public void deleteExpiredCoupons() {
 		 LocalDate today = LocalDate.now();
