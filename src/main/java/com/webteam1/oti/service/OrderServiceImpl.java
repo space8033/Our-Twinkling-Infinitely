@@ -1,6 +1,10 @@
 package com.webteam1.oti.service;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -66,7 +70,7 @@ public class OrderServiceImpl implements OrderService {
 	
 	@Transactional
 	@Override
-	public List<OrderInfo> getOrderList(String userId) {
+	public List<OrderInfo> getOrderList(String userId) throws ParseException{
 		List<OrderInfo> orderInfoList = new ArrayList<>();
 		//유저아이디로 order 찾아오기
 		List<Integer> orderNumList = orderDao.selectByUserId(userId);
@@ -82,7 +86,20 @@ public class OrderServiceImpl implements OrderService {
 				//product에서 정보빼기
 				OrderInfo orderInfo = new OrderInfo();
 				String date = order.getOrder_createdDate().substring(0,  10);
-				orderInfo.setOrderDate(date);
+				try {
+					orderInfo.setOrderDate(date);
+					Date arrivalDate = convertArrival(date);
+					orderInfo.setArrivalDate(reverse(arrivalDate));
+					
+					Date today = new Date();
+					if(arrivalDate.before(today)) {
+						orderInfo.setDeliveryStatus("배송 완료");
+					}else {
+						orderInfo.setDeliveryStatus("배송 중");
+					}
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
 				orderInfo.setTitle(product.getProduct_name());
 				orderInfo.setPrice(product.getProduct_price());
 				orderInfo.setQuantity(j.getOrderProduct_qty());
@@ -96,6 +113,31 @@ public class OrderServiceImpl implements OrderService {
 		return orderInfoList;
 	}
 	
+	//날짜 변환
+	public Date convertOrder(String date) throws ParseException{
+		SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy.MM.dd");
+		Date convertedDate = dateFormat.parse(date);
+		
+		return convertedDate;
+	}
 	
+	//3일 뒤 날짜 변환
+	public Date convertArrival(String date) throws ParseException {
+		SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy.MM.dd");
+		Date convertedDate = dateFormat.parse(date);
+		Calendar calendar = Calendar.getInstance();
+		calendar.setTime(convertedDate);
+		calendar.add(Calendar.DAY_OF_MONTH, 3);
+		
+		Date arrivalDate = calendar.getTime();
+		
+		return arrivalDate;
+	}
 	
+	//날짜를 yyyy.MM.dd로 변환
+	public String reverse(Date date) {
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyy.MM.dd");
+		
+		return sdf.format(date);
+	}
 }

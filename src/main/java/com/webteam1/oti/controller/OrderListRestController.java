@@ -1,5 +1,6 @@
 package com.webteam1.oti.controller;
 
+import java.text.ParseException;
 import java.util.List;
 
 import javax.annotation.Resource;
@@ -28,7 +29,7 @@ public class OrderListRestController {
 	@Login
 	@ResponseBody
 	@GetMapping("getOrderList")
-	public List<OrderInfo> getOrderList(HttpSession session, Model model) {
+	public List<OrderInfo> getOrderList(HttpSession session, Model model) throws ParseException {
 		LoginDto user = (LoginDto)session.getAttribute("loginIng");
 		String userId = user.getUsers_id();
 		

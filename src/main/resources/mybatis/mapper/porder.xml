@@ -31,13 +31,13 @@
 		        SELECT order_no
 		        FROM porder
 		        WHERE users_users_id = #{userId}
+		        ORDER BY order_createddate desc
 	</select>
 
 	<select id="selectByOrderNo" parameterType="int" resultType="Porder">
 		        SELECT *
 		        FROM porder
 		        WHERE order_no = #{orderNo}
-		        ORDER BY order_createddate DESC
 	</select>
 	
 </mapper>

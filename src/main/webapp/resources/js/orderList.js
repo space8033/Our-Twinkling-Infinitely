@@ -17,7 +17,8 @@ function makeOrderCard() {
 		
 			data.forEach(function(item, index) {
 				let price = item.price.toLocaleString('ko-KR');
-				let made = makeDate(item.orderDate);
+				let orderDate = makeDate(item.orderDate);
+				let arrivalDate = makeDate(item.arrivalDate);
 				if(item.orderDate != date) {
 					date = item.orderDate;
 					
@@ -25,14 +26,14 @@ function makeOrderCard() {
 						html += '</div>';
 						html += '<div class="classifyByDate">';
 						html += 	'<div class="d-flex">';
-						html += 		'<div style="width:70%; font-weight:bold; font-size: 20px; padding-left:12px;">' + item.orderDate + ' 주문</div>';
+						html += 		'<div style="width:70%; font-weight:bold; font-size: 20px; padding-left:12px;">' + orderDate + ' 주문</div>';
 						html += 		'<div style="width:30%; text-align: right;"><a href="#" id="seeDetail">주문 상세보기> </a></div>';
 						html += 	'</div>';
 						html +=	 '<div class="orderCard my-3 d-flex">';
 						html += 	'<div class="orderCardLeft pt-2 pl-4">';
 						html += 		'<div class="upperCard d-flex">';
-						html +=				'<div style="width: 20%; font-size: 18px; font-weight: bold;">배송 완료 <span style="font-weight: bold; color: rgb(206, 206, 206);">·</span></div>';
-						html +=				'<div class="ml-1" style="width: 70%; color: #108209; font-size: 18px;">' + made +'도착</div>';
+						html +=				'<div style="width: 20%; font-size: 18px; font-weight: bold;">' + item.deliveryStatus + '<span style="font-weight: bold; color: rgb(206, 206, 206);">·</span></div>';
+						html +=				'<div class="ml-1" style="width: 70%; color: #108209; font-size: 18px;">' + arrivalDate +'도착</div>';
 						html +=				'<div class="moreIcon" style="width: 10%; text-align: right; padding-right: 15px; color: rgb(180, 180, 180);"> ⠇</div>';
 						html +=			'</div>';
 						html +=			'<div class="lowerCard d-flex">';
@@ -60,14 +61,14 @@ function makeOrderCard() {
 					} else {
 							html += '<div class="classifyByDate">';
 							html += 	'<div class="d-flex">';
-							html += 		'<div style="width:70%; font-weight:bold; font-size: 20px; padding-left:12px;">' + item.orderDate + ' 주문</div>';
+							html += 		'<div style="width:70%; font-weight:bold; font-size: 20px; padding-left:12px;">' + orderDate + ' 주문</div>';
 							html += 		'<div style="width:30%; text-align: right;"><a href="#" id="seeDetail">주문 상세보기> </a></div>';
 							html += 	'</div>';
 							html +=	 '<div class="orderCard my-3 d-flex">';
 							html += 	'<div class="orderCardLeft pt-2 pl-4">';
 							html += 		'<div class="upperCard d-flex">';
-							html +=				'<div style="width: 20%; font-size: 18px; font-weight: bold;">배송 완료 <span style="font-weight: bold; color: rgb(206, 206, 206);">·</span></div>';
-							html +=				'<div class="ml-1" style="width: 70%; color: #108209; font-size: 18px;">' + made +'도착</div>';
+							html +=				'<div style="width: 20%; font-size: 18px; font-weight: bold;">' + item.deliveryStatus + '<span style="font-weight: bold; color: rgb(206, 206, 206);">·</span></div>';
+							html +=				'<div class="ml-1" style="width: 70%; color: #108209; font-size: 18px;">' + arrivalDate +'도착</div>';
 							html +=				'<div class="moreIcon" style="width: 10%; text-align: right; padding-right: 15px; color: rgb(180, 180, 180);"> ⠇</div>';
 							html +=			'</div>';
 							html +=			'<div class="lowerCard d-flex">';
@@ -97,8 +98,8 @@ function makeOrderCard() {
 					html +=	 '<div class="orderCard my-3 d-flex">';
 					html += 	'<div class="orderCardLeft pt-2 pl-4">';
 					html += 		'<div class="upperCard d-flex">';
-					html +=				'<div style="width: 20%; font-size: 18px; font-weight: bold;">배송 완료 <span style="font-weight: bold; color: rgb(206, 206, 206);">·</span></div>';
-					html +=				'<div class="ml-1" style="width: 70%; color: #108209; font-size: 18px;">' + made +'도착</div>';
+					html +=				'<div style="width: 20%; font-size: 18px; font-weight: bold;">' + item.deliveryStatus + '<span style="font-weight: bold; color: rgb(206, 206, 206);">·</span></div>';
+					html +=				'<div class="ml-1" style="width: 70%; color: #108209; font-size: 18px;">' + arrivalDate +'도착</div>';
 					html +=				'<div class="moreIcon" style="width: 10%; text-align: right; padding-right: 15px; color: rgb(180, 180, 180);"> ⠇</div>';
 					html +=			'</div>';
 					html +=			'<div class="lowerCard d-flex">';
