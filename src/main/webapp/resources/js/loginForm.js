@@ -52,10 +52,12 @@ function checkValidation() {
 	var uid = $("#uid").val();
 	var uidErr1 = $("#uidErr1");
 	var uidErr2 = $("#uidErr2");
+	var uidErr3 = $("#uidErr3");
 
 	if(uid ==="") {
 		isValidation = false;
 		uidErr2.addClass("d-none");
+		uidErr3.addClass("d-none");
 		uidErr1.removeClass("d-none");
 	} else {
 		var pattern = /^[a-z]+[a-z0-9]{4,19}$/g;
@@ -64,9 +66,11 @@ function checkValidation() {
     		isValidation = false;
     		uidErr2.removeClass("d-none");
     		uidErr1.addClass("d-none");
+    		uidErr3.addClass("d-none");
     	} else {
     		uidErr2.addClass("d-none");
     		uidErr1.addClass("d-none");
+    		uidErr3.addClass("d-none");
     	}
 	}
 	
@@ -148,9 +152,11 @@ $(document).ready(function(){
     		var uid = $("#uid").val();
 	    	var uidErr1 = $("#uidErr1");
 	    	var uidErr2 = $("#uidErr2");
+	    	var uidErr3 = $("#uidErr3");
 	    		if(uid ==="") {
 	    			isValidation = false;
 	    			uidErr2.addClass("d-none");
+	    			uidErr3.addClass("d-none");
 	    			uidErr1.removeClass("d-none");
 	    		} else {
 	    			var pattern = /^[a-z]+[a-z0-9]{4,19}$/g;
@@ -159,8 +165,10 @@ $(document).ready(function(){
 		    			isValidation = false;
 		    			uidErr2.removeClass("d-none");
 		    			uidErr1.addClass("d-none");
+		    			uidErr3.addClass("d-none");
 		    		} else {
 		    			uidErr2.addClass("d-none");
+		    			uidErr3.addClass("d-none");
 		    			uidErr1.addClass("d-none");
 		    		}
 	    		}
