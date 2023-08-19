@@ -64,7 +64,16 @@ window.addEventListener("beforeunload", function(event) {
 
 */
 
-
+function validateForm() {
+	consolelog("실행ssss");
+	event.preventDefault();
+    // 체크된 체크박스가 있는지 확인합니다.
+    if (!$(".pchk:checked").length > 0) {
+        alert("상품을 하나 이상 선택해주세요.");
+        return false; // 폼 제출 방지
+    }
+    return true; // 폼 제출 허용
+}
 //결제 금액 계산
 function priceCalculate() {
 	
