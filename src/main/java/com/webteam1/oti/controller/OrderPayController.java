@@ -130,6 +130,10 @@ public class OrderPayController {
 		
 		log.info("coupon_no :" + coupon_no);
 		LoginDto loginUser = (LoginDto) session.getAttribute("loginIng");
+		String[] cartNos = (String[]) session.getAttribute("cartNos");
+		for(int i=0; i<cartNos.length; i++) {
+			cartService.cartDelete(Integer.parseInt(cartNos[i]));
+		}
 		porder.setUsers_users_id(loginUser.getUsers_id());
 		porder.setCoupon_no(Integer.parseInt(coupon_no));
 		log.info(porder.toString()+"나 오더");
@@ -261,7 +265,7 @@ public class OrderPayController {
 		return "redirect:/";
 	}
 	
-
+	//상품 상세페이지 또는 장바구니 페이지에서 결제하기 버튼을 눌렀을 때 해당 상품의 데이터를 넣기 위함
 	@Login
 	@PostMapping("/addOrderProduct")
 	public String addOrderProduct(@RequestParam(name="productOption_productOption_no", required=false) String[] selectedProductOptionNos,
@@ -283,15 +287,12 @@ public class OrderPayController {
 				orderProduct.setProductOption_productOption_no(Integer.parseInt(selectedProductOptionNos[i]));
 				orderProduct.setUsers_users_id(userId);
 				productService.addOrderProduct(orderProduct); 
-				if(cartNos != null) {					
-					cartService.cartDelete(Integer.parseInt(cartNos[i]));
+				if(cartNos != null) {
+					session.setAttribute("cartNos", cartNos);
 				}
 				orderProductList.add(orderProduct);
 			}
 		}
-		
-		
-		
 		
 	    return "redirect:/orderPay";
 	}

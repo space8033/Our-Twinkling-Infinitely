@@ -34,6 +34,10 @@ $(document).ready(function() {
 				$("#detailAlert").alert("close");
 			});
 		}
+		if($(".pchk:checked").length == 0){
+			alert("구매할 상품을 선택해 주세요");
+			event.preventDefault(); // 폼 제출 막기
+		}
 	});
 });
 
@@ -171,7 +175,7 @@ function deleteButton1(){
 	$("#btn_delete").html(btnContent);
 }
 
-//삭제 버튼을 클릭했을 때 알림창
+//전체삭제 버튼을 클릭했을 때 알림창
 function AllDeleteConfirmDialog(){
 	if($(".pchk:checked").length != 0){		
 		var result = window.confirm("선택한 상품을 모두 삭제하시겠습니까?");
