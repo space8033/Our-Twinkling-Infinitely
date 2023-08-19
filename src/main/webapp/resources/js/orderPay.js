@@ -5,7 +5,17 @@ function init(){
 	priceCalculate();
 	couponList();
 }
-
+//basket에서 check 옵션을 선택 유효성 검사
+$(document).ready(function() {
+	//필수 옵션을 선택 안했을 때 유효성 검사(구매하기)
+	$("#orderForm").submit(function(event) {
+		if ($(".pchk:checked").length == 0) { // 옵션이 선택되지 않았을 경우
+			alert("구매하실 상품을 선택해주세요");
+			event.preventDefault(); // 폼 제출 막기
+		}
+		
+	});
+});
 function couponList() {
 	 var totalPrice = parseFloat($('.totalPrice').text().replace(/,/g, ""));
 	    
@@ -64,7 +74,16 @@ window.addEventListener("beforeunload", function(event) {
 
 */
 
-
+function validateForm() {
+	consolelog("실행ssss");
+	event.preventDefault();
+    // 체크된 체크박스가 있는지 확인합니다.
+    if (!$(".pchk:checked").length > 0) {
+        alert("상품을 하나 이상 선택해주세요.");
+        return false; // 폼 제출 방지
+    }
+    return true; // 폼 제출 허용
+}
 //결제 금액 계산
 function priceCalculate() {
 	

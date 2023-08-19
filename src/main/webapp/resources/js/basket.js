@@ -12,7 +12,7 @@ let hoverImages = document.querySelectorAll('.hover-image');
 $(document).ready(function() {
 	changeImg();//이미지 호버 효과
 	$("#detailAlert").hide();//경고 창 숨기기
-	//필수 옵션을 선택 안했을 때 유효성 검사
+	//필수 옵션을 선택 안했을 때 유효성 검사(장바구니)
 	$("#addCart").submit(function(event) {
 		var selectedOption1 = $("#option1").val(); // 선택된 옵션 값 가져오기
 		var selectedOption2 = $("#option2").val(); // 선택된 옵션 값 가져오기
@@ -24,6 +24,7 @@ $(document).ready(function() {
 		    });
 		}
 	});
+	//필수 옵션을 선택 안했을 때 유효성 검사(구매하기)
 	$("#addOrderProduct").submit(function(event) {
 		var selectedOption1 = $("#option1").val(); // 선택된 옵션 값 가져오기
 		var selectedOption2 = $("#option2").val(); // 선택된 옵션 값 가져오기
@@ -34,6 +35,7 @@ $(document).ready(function() {
 				$("#detailAlert").alert("close");
 			});
 		}
+		
 	});
 });
 
@@ -171,7 +173,7 @@ function deleteButton1(){
 	$("#btn_delete").html(btnContent);
 }
 
-//삭제 버튼을 클릭했을 때 알림창
+//전체삭제 버튼을 클릭했을 때 알림창
 function AllDeleteConfirmDialog(){
 	if($(".pchk:checked").length != 0){		
 		var result = window.confirm("선택한 상품을 모두 삭제하시겠습니까?");
@@ -289,7 +291,7 @@ function jsonProduct() {
         	
         	html += '<tr class="productRow">';	
         	html += '	<td>';
-      	    html += '		<input id="chk' + index + '" title="' + item.product_name + ' 상품을 결제상픔으로 결정" type="checkbox" name="productCheckBox" class="pchk" value='+ item.product_price*item.cart_qty +' onclick="chkCalculate()" />';
+      	    html += '		<input id="chk' + index + '" title="' + item.product_name + ' 상품을 결제상픔으로 결정" type="checkbox" name="productCheckBox" class="pchk" value='+ item.product_price*item.cart_qty +' onclick="chkCalculate()"/>';
       	    html += '		<input class="changeDis" type="hidden" name="orderProduct_qty" value="'+ item.cart_qty +'" disabled/>';
       	    html += '		<input class="changeDis" type="hidden" name="users_users_id" value="'+ item.users_users_id +'" disabled/>';
       	    html += '		<input class="changeDis" type="hidden" name="productOption_productOption_no" value="'+ item.productOption_productOption_no +'" disabled/>';
@@ -368,6 +370,11 @@ function jsonProduct() {
   });
   
 }
+
+function setCustomAlert(message) {
+	console.log("실행함!");
+	alert(message);
+}
 //X버튼 눌렀을 때 해당 상품 삭제
 function cartDelete(cart_no){
 	$.ajax({
@@ -409,4 +416,3 @@ function qtyUpdate(cartNo, newQty) {
         }
     });
 }
-
