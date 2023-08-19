@@ -11,7 +11,7 @@ public class Porder {
 	private int address_no;
 	private String address_request;
 	private boolean order_cashReceipt;
-	private Date order_createdDate;
+	private String order_createdDate;
 	private Date order_modifiedDate;
 	private Date order_deletedDate;
 	private String order_del_fee;

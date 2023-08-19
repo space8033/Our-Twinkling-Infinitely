@@ -88,5 +88,10 @@ public class OrderProductServiceImpl implements OrderProductService {
 	public void deleteOrderProduct(String usersId) {
 		orderProductDao.pageOutDelete(usersId);
 	}
+
+	@Override
+	public List<OrderProduct> getOrderProductByOrderNum(int orderNo) {
+		return orderProductDao.selectByOrderNo(orderNo);
+	}
 	
 }

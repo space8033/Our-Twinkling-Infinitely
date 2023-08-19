@@ -94,7 +94,8 @@ function priceCalculate() {
 	var price = parseInt($('#price').text().replace(/,/gi, ""));
 	console.log("price : "+price);
 	
-	var selectedCouponValue = parseFloat($('input[name=coupon]:checked').val());
+	
+	var selectedCouponValue = parseFloat($('input[name=coupon_no]:checked').next().first().val());
 	if(selectedCouponValue == "2500") {
 		price = totalPrice + delFee + balance;
 		
@@ -379,7 +380,7 @@ $(document).ready(function(){
     
 
 	$('.couponUse').change(function(){
-		  var selectedCouponValue = parseFloat($('input[name=coupon]:checked').val());
+		  var selectedCouponValue = parseFloat($('input[name=coupon_no]:checked').next().first().val());
 
 		  if (selectedCouponValue !== 0) {
 		        var totalPrice = parseFloat($('.totalPrice').text());
@@ -711,16 +712,23 @@ function checkValidation() {
 	if(!isValidation) {
 		event.preventDefault();
 		window.alert('결제에 실패하였습니다.');
-	} else {
+	}/* else {
 		var coupon_no = $('input[name=coupon]:checked').next().first().val();
 		
-		if(coupon_no === 'undefined') {
-			coupon_no === 0;
-		} 
+		if (coupon_no === undefined) {
+		    coupon_no = 0;
+		} else {
+		    coupon_no = parseInt(coupon_no);
+		}
 		
 		var address_no = $("input[name='address_no']").val();
 		var address_request = $("input[name='address_request']").val();
 		var order_cashReceipt = $("input[name='order_cashReceipt']").val();
+		if(order_cashReceipt === "on") {
+			order_cashReceipt = true
+		} else {
+			order_cashReceipt = false;
+		}
 		var order_del_fee = $("input[name='order_del_fee']").val();
 		
 		
@@ -750,7 +758,7 @@ function checkValidation() {
 	    	        alert("데이터 전송 중 오류가 발생했습니다.");
 	    	    }
 	    	});
+	}*/
     
-	}
 }
 

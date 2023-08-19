@@ -1,6 +1,5 @@
 package com.webteam1.oti.controller;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import javax.annotation.Resource;
@@ -12,11 +11,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.webteam1.oti.dto.Product;
 import com.webteam1.oti.dto.order.OrderInfo;
 import com.webteam1.oti.dto.user.LoginDto;
 import com.webteam1.oti.interceptor.Login;
-import com.webteam1.oti.service.ProductService;
+import com.webteam1.oti.service.OrderService;
 
 import lombok.extern.slf4j.Slf4j;
 
@@ -25,7 +23,7 @@ import lombok.extern.slf4j.Slf4j;
 @RequestMapping("/")
 public class OrderListRestController {
 	@Resource
-	private ProductService productService;
+	private OrderService orderService;
 	
 	@Login
 	@ResponseBody
@@ -34,8 +32,8 @@ public class OrderListRestController {
 		LoginDto user = (LoginDto)session.getAttribute("loginIng");
 		String userId = user.getUsers_id();
 		
-		List<OrderInfo> list = new ArrayList<>();
-	
+		List<OrderInfo> list = orderService.getOrderList(userId);
+		
 		return list;
 	}
 }

@@ -65,7 +65,12 @@ $(document).ready(function(){
 });
 
 
-
+function cancel() {
+	if(window.confirm("회원정보 수정을 취소하시겠습니까?")){
+		location.href="/our-twinkling-infinitely/";
+	}
+	
+}
 
 function unjoin() {
 	if(window.confirm("탈퇴하시겠습니까?")){
@@ -205,7 +210,7 @@ function checkValidation() {
    
 	if(!isValidation) {
 		event.preventDefault();
-		window.alert('test');
+		window.alert('회원정보 수정에 실패하였습니다.');
 	} else {
 		if(window.confirm("회원정보를 수정하시겠습니까?")){
 			location.href="/our-twinkling-infinitely/modify";

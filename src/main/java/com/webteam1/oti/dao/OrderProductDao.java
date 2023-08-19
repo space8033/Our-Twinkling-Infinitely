@@ -12,6 +12,7 @@ public interface OrderProductDao {
 	public void InsertOrderProducts(OrderProduct orderProduct);
 	public List<OrderProduct> getOrderProductByUsersId (String users_id);
 	public void addOrderNumber(Map<String, Object> map);
-	public List<Integer> selectByOrderNo(int orderNo);
+	public List<OrderProduct> selectByOrderNo(int orderNo);
+	public int selectOptionNo(int orderproduct_no);
 	public void pageOutDelete(String usersId);
 }

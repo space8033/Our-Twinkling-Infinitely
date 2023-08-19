@@ -7,5 +7,5 @@ import com.webteam1.oti.dto.ProductOption;
 @Mapper
 public interface ProductOptionDao {
 	public ProductOption selectByOptionNo(int productOptionNo);
-	
+	public int selectProductNo(int productOptionNo);
 }

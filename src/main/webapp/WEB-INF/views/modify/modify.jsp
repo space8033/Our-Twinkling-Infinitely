@@ -207,7 +207,7 @@
 			<div class="d-flex container py-4" style="border-top: 1px solid #e5e5e5">
 				<div style="width:30%"></div>
 				<button type="submit" class="mx-2 p-2" style="width:15%">회원정보수정</button>
-				<button class="mx-2 p-2" style="width:15%">취소</button>
+				<button type="button" onclick= "cancel()" class="mx-2 p-2" style="width:15%">취소</button>
 				<div style="width:30%"></div>
 				<button type="button" onclick="unjoin()" style="width:10%; border: 1px solid #d0d0d0; background-color: white">회원탈퇴</button>
 			</div>
