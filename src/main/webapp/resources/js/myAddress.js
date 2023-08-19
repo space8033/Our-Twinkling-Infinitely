@@ -50,7 +50,7 @@ function select(addressNo) {
 		data: postData, 
 		success: function(response) {
 			alert("배송지가 변경되었습니다.");
-			window.opener.updateContent();
+			window.opener.location.reload();
 			window.close();
 		},
 		error: function(error) {

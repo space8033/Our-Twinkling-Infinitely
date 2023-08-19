@@ -85,7 +85,8 @@ function priceCalculate() {
 	var price = parseInt($('#price').text().replace(/,/gi, ""));
 	console.log("price : "+price);
 	
-	var selectedCouponValue = parseFloat($('input[name=coupon]:checked').val());
+	
+	var selectedCouponValue = parseFloat($('input[name=coupon_no]:checked').next().first().val());
 	if(selectedCouponValue == "2500") {
 		price = totalPrice + delFee + balance;
 		
@@ -142,6 +143,7 @@ $(document).ready(function(){
 			$('#basicPay').show();
 			$('#discount-info').hide();
 			
+			
 			$('#L_account-transfer').addClass("payMethod-arrow");
 			$("#L_coupay-money").removeClass("payMethod-arrow");
 			$("#L_credit-card").removeClass("payMethod-arrow");
@@ -165,6 +167,7 @@ $(document).ready(function(){
 			$('#discount-info').hide();
 			$('#expectPoint').css('display', 'inline-block');
 			
+			
 			$("#L_coupay-money").addClass("payMethod-arrow");
 			$('#L_account-transfer').removeClass("payMethod-arrow");
 			$("#L_credit-card").removeClass("payMethod-arrow");
@@ -186,6 +189,7 @@ $(document).ready(function(){
 			$('#selectPay').hide();
 			$('#basicPay').show();
 			$('#discount-info').show();
+			$('#cash-receipt').prop('checked', false);
 			
 			$("#L_credit-card").addClass("payMethod-arrow");
 			$("#L_coupay-money").removeClass("payMethod-arrow");
@@ -204,6 +208,7 @@ $(document).ready(function(){
 			$('#deposit-without-bankbook-option').hide();
 			$('#account-transfer-option').hide();
 			$('#cash-receipt').hide();
+			$('#cash-receipt').prop('checked', false);
 			$('#deposit-without-bankbook-option-caution').hide();
 			$('#selectPay').hide();
 			$('#basicPay').show();
@@ -231,6 +236,7 @@ $(document).ready(function(){
 			$('#basicPay').hide();
 			$('#discount-info').hide();
 			$("#L_phone").addClass("payMethod-arrow");
+			$('#cash-receipt').prop('checked', false);
 			
 			$("#L_credit-card").removeClass("payMethod-arrow");
 			$("#L_corporation-card").removeClass("payMethod-arrow");
@@ -365,7 +371,7 @@ $(document).ready(function(){
     
 
 	$('.couponUse').change(function(){
-		  var selectedCouponValue = parseFloat($('input[name=coupon]:checked').val());
+		  var selectedCouponValue = parseFloat($('input[name=coupon_no]:checked').next().first().val());
 
 		  if (selectedCouponValue !== 0) {
 		        var totalPrice = parseFloat($('.totalPrice').text());
@@ -697,34 +703,53 @@ function checkValidation() {
 	if(!isValidation) {
 		event.preventDefault();
 		window.alert('결제에 실패하였습니다.');
-	} else {
+	}/* else {
 		var coupon_no = $('input[name=coupon]:checked').next().first().val();
 		
-		if(coupon_no === 'undefined') {
-			coupon_no === 0;
-		} 
-		coupon_no = String(coupon_no);
-	    
+		if (coupon_no === undefined) {
+		    coupon_no = 0;
+		} else {
+		    coupon_no = parseInt(coupon_no);
+		}
+		
+		var address_no = $("input[name='address_no']").val();
+		var address_request = $("input[name='address_request']").val();
+		var order_cashReceipt = $("input[name='order_cashReceipt']").val();
+		if(order_cashReceipt === "on") {
+			order_cashReceipt = true
+		} else {
+			order_cashReceipt = false;
+		}
+		var order_del_fee = $("input[name='order_del_fee']").val();
+		
+		
+		
 	    // 서버로 전송할 데이터 생성
 	    var postData = {
+	    	address_no: address_no,
+	    	address_request: address_request,
+	    	order_cashReceipt: order_cashReceipt,
+	    	order_del_fee: order_del_fee,
 	    	coupon_no: coupon_no
 	    };
 	    
 	    // AJAX 요청으로 데이터 전송
 	    $.ajax({
-	        type: "POST",
-	        url: "/our-twinkling-infinitely/orderPay", // 보낼 곳의 URL
-	        data: postData,
-	        success: function(response) {
-	            // 서버 응답 처리 (예: 성공 메시지 표시)
-	            alert("데이터가 성공적으로 전달 완료되었습니다.");
-	        },
-	        error: function() {
-	            // 오류 처리
-	            alert("데이터 전송 중 오류가 발생했습니다.");
-	        }
-	    });
+	    	 type: "POST",
+	    	    url: "/our-twinkling-infinitely/orderPay",
+	    	    contentType: "application/json", // JSON 형식으로 전송
+	    	    data: JSON.stringify(postData),   // 데이터를 JSON 문자열로 변환
+	    	    dataType: "json",                // 응답 데이터 형식 지정
+	    	    success: function(response) {
+	    	        // 서버 응답 처리
+	    	        alert("데이터가 성공적으로 전달 완료되었습니다.");
+	    	    },
+	    	    error: function() {
+	    	        // 오류 처리
+	    	        alert("데이터 전송 중 오류가 발생했습니다.");
+	    	    }
+	    	});
+	}*/
     
-	}
 }
 

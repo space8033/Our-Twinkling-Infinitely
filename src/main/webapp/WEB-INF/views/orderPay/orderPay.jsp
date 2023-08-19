@@ -183,8 +183,8 @@
 									<div id="dicountRow" style="background-color: #f8f8f8; padding-bottom:16px; padding-top:10px;">
 										<c:forEach var="coupon" items="${couponList}">
 										    <div>
-										        <input class="couponUse" type="radio" name="coupon" value= "${coupon.coupon_value}" style="margin-left: 170px;"/>
-										        <input type="hidden" name="couponNo" value="${coupon.coupon_no}">
+										        <input class="couponUse" type="radio" name="coupon_no" value= "${coupon.coupon_no}" style="margin-left: 170px;"/>
+										        <input type="hidden" name="coupon_value" value="${coupon.coupon_value}">
 										        <input type="hidden" name="coupon_condition" value="${coupon.coupon_condition}">
 										        <span class="coupon">${coupon.coupon_value}
 										            <c:if test="${coupon.coupon_value >= 100}">원
