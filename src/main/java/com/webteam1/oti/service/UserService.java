@@ -47,6 +47,7 @@ public interface UserService {
 	
 	//마이페이지 기본이미지로 변경
     public void changeBasic(String usersId);
+    
 	
 	
 }

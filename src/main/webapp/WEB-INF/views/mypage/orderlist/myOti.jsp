@@ -35,11 +35,11 @@
 					<a href="${pageContext.request.contextPath}/modify">회원 정보 변경</a>
 				</div>
 				<div id="cash" class="mine">
-					<a  href="#" class="accordion">
+					<a onclick="" href="#" class="accordion">
 						<img class="icon" src="${pageContext.request.contextPath}/resources/yuimg/won.png" width="55"/>
 						<div class="text-body">적립금></div>
 					</a>
-					<p>0</p>
+					<p>${totalPoints}P</p>
 				</div>
 				<div class="mine">
 					<a onclick="showCouponList()" href="#" class="accordion" >

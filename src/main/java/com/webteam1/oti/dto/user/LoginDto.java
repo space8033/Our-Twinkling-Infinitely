@@ -18,4 +18,6 @@ public class LoginDto {
 	private byte[] users_imgFile;
 	//base64로 인코딩된 이미지 
 	private String users_img;
+	//유저의 적립금
+	private int users_opoint;
 }

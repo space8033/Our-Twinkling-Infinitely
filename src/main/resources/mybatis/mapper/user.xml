@@ -38,7 +38,7 @@
 	
 	<!-- LoginDto 아이디 같은 것으로부터 LoginDto에 담아오기-->
 	<select id="selectByUsersId" resultType="Login" parameterType="String">
-		select users_id, users_password, users_type, users_name, users_createdDate, users_imgFile
+		select users_id, users_password, users_type, users_name, users_createdDate, users_imgFile, users_opoint
 		from users 
 		where users_id=#{users_id}
 
@@ -108,5 +108,14 @@
 		users_imgFile = null
 		where users_id=#{users_id}
 	</update>
+	
+	<!-- 김시온 -->
+	<update id="updateOpoint" parameterType="Login">
+		update users set
+		users_opoint = #{users_opoint}
+		where users_id=#{users_id}
+	
+	</update>
+	
    
 </mapper>

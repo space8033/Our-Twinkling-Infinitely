@@ -69,10 +69,12 @@ public class OrderPayController {
 		List<ProductOption> optionList = orderProductService.getOrderProductOption(loginUser.getUsers_id());
 		List<OrderProduct> orderProductList = orderProductService.getOrderProduct(loginUser.getUsers_id());
 		List<Coupon> couponList = couponService.getCouponByUsersId(loginUser.getUsers_id());
+		int totalPoints = loginUser.getUsers_opoint();
 		model.addAttribute("productList", productList);
 		model.addAttribute("optionList", optionList);
 		model.addAttribute("orderProductList", orderProductList);
 		model.addAttribute("couponList", couponList);
+		model.addAttribute("totalPoints", totalPoints);
 		
 		Address loginUserAddress = addressService.getDefault(loginUser.getUsers_id());
 		log.info(loginUserAddress+"loginUserAddress");

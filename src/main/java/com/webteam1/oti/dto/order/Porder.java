@@ -16,4 +16,6 @@ public class Porder {
 	private Date order_deletedDate;
 	private String order_del_fee;
 	private int coupon_no;
+	private int users_opoint;
+	private int total_price;
 }

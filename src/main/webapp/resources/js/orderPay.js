@@ -95,30 +95,30 @@ function priceCalculate() {
 	var delFee =parseInt($('#delFee').text().replace(/,/gi, ""));
 	console.log("delFee : "+ delFee);
 	
-	var balance =parseInt($('#balance').text().replace(/,/gi, ""));
+	var balance =$('#balance').val();
 	console.log("balance : "+ balance);
-	if(isNaN(balance)){
-		balance =0;
-		parseInt($('#balance').text(0));
+	if(balance === ""){
+		balance = 0;
+		$('#balance').val(0);
 	}
-	var price = parseInt($('#price').text().replace(/,/gi, ""));
+	var price = $('#price').val();
 	console.log("price : "+price);
 	
 	
-	var selectedCouponValue = parseFloat($('input[name=coupon_no]:checked').next().first().val());
-	console.log(selectedCouponValue +"selectedCouponValue는?");
-	if(selectedCouponValue == "2500") {
-		price = totalPrice + delFee + balance;
+	
+	price = totalPrice - discount + delFee - balance;
+	
+	
+	point = parseInt(price * 0.005); 
+	console.log("point : " + point);
+	if(price <= 0) {
+		$('#price').val(0);
+		$('#point').val(0);
 		
 	} else {
-
-		price = totalPrice - discount + delFee + balance;
-	
+		$('#price').val(price);
+		$('#point').val(point);
 	}
-	point = parseInt(price*0.01);
-	$('#price').text(price);
-	$('#point').text(point);
-	
 }
 
 function openAdress() {
@@ -145,10 +145,8 @@ $(document).ready(function(){
 	$('#selectPay').hide();
 	$('#basicPay').show();
 	$('#discount-info').hide();
-	$('#expectPoint').css('display', 'none');
 	
 	$("input[name='pay-method']").change(function(){
-		$('#expectPoint').css('display', 'none');
 		// 계좌이체 선택 시.
 		if($("input[name='pay-method']:checked").val() == '계좌이체'){
 			$('#credit-card-option').hide();
@@ -185,7 +183,6 @@ $(document).ready(function(){
 			$('#selectPay').hide();
 			$('#basicPay').show();
 			$('#discount-info').hide();
-			$('#expectPoint').css('display', 'inline-block');
 			
 			
 			$("#L_coupay-money").addClass("payMethod-arrow");
@@ -429,13 +426,20 @@ $(document).ready(function(){
 		
 	//쿠팡캐시 모두사용 체크 이벤트
 	$('#allUse').click(function(){
-		  if($("#allUse").is(":checked")){
+		var totalPrice = parseInt($('.totalPrice').text().replace(/,/gi, ""));
+		var discount =parseInt($('#discount').text().replace(/,/gi, ""));	
+		var delFee =parseInt($('#delFee').text().replace(/,/gi, ""));
+		
+		var limit = totalPrice - discount + delFee; 
+		
+		  if($("#allUse").prop("checked")){
 	      var allCash = parseInt($('#cuBal').text());
-	        //$('#cuCash').attr('value', allCash);
-	      $('#cuCash').val(allCash);
-	            console.log(allCash);
-	            console.log(cuCash);
-	      } else if(!$("#allUse").is(":checked")){
+	      	if(limit<allCash){
+	      		$('#cuCash').val(limit);
+	      	} else {
+	      		$('#cuCash').val(allCash);
+	      	}    
+	      } else {
 	        	$('#cuCash').val(0);
 	      }
 	});
@@ -443,22 +447,33 @@ $(document).ready(function(){
 	//쿠팡캐시 적용 클릭 이벤트
 	$('#cuCashApply').click(function(){
 		  $("#cashOver").css("display", "none"); 	
-		  var balance = parseInt( $('#cuBal').text())
+		  var balance = parseInt( $('#cuBal').text());
+		  
+		  var totalPrice = parseInt($('.totalPrice').text().replace(/,/gi, ""));
+		  var discount =parseInt($('#discount').text().replace(/,/gi, ""));	
+		  var delFee =parseInt($('#delFee').text().replace(/,/gi, ""));
+			
+		  var limit = totalPrice - discount + delFee; 
+		  
 			 	
 		  if(($("#cuCash").val())>balance){
 				console.log($("#cuCash").val());
 				$("#cashOver").css("display", "block");
 				
 		  } else if(($("#cuCash").val())<=balance) {
-				$("#balance").text('-' + $('#cuCash').val()); 
-				$('#cuCashrow').hide();
-				priceCalculate();
-				
+			    if(($("#cuCash").val())<=limit){
+				      $("#balance").val($('#cuCash').val());
+				      $('#cuCashrow').hide();
+				      priceCalculate();
+			    } else {
+			    	  console.log($("#cuCash").val());
+					  $("#cashOver").css("display", "block");
+			    }	    
 		  } else {
 				console.log($("#cuCash").val());
 				$('#cuCash').val(0);
 				priceCalculate();
-				$("#balance").text($('#cuCash').val()); 
+				$("#balance").val($('#cuCash').val()); 
 		  }
 	});
 		
@@ -643,19 +658,104 @@ $(document).ready(function(){
 
 
 function checkValidation() {
+	var isValidation = true;
+	$('#biznumErr').hide();
+	$('#telnumErr').hide();
+	$('#cashnumErr').hide();
+	if($("input[name='cash-receipt-type']:checked").val() == 'income-deduction'){
+		var select = $("#income-deduction-option option:selected").val();
+		if(select === "pnum") {
+			var tel = $("#numErr1").val();
+			console.log(tel);
+			if(tel ==="") {
+				console.log(tel);
+				$('#biznumErr').hide();
+				$('#cashnumErr').hide();
+				$('#telnumErr').show();
+				console.log(select);
+			} else{
+				var pattern = /^(01[016789]{1})-?[0-9]{3,4}-?[0-9]{4}$/;
+				var result = pattern.test(tel);
+				if(!result) {
+		   			$('#biznumErr').hide();
+		   			$('#cashnumErr').hide();
+		   			$('#telnumErr').show();
+				}
+		}
+		
+		} else if(select === "cash-card"){
+			var cashnum = $("#numErr2").val();
+			if(cashnum ==="") {
+				$('#biznumErr').hide();
+				$('#telnumErr').hide();
+				$('#cashnumErr').show();
+			} else {
+				var pattern = /^(01[016789]{1})-?[0-9]{3,4}-?[0-9]{4}$/;
+				var result = pattern.test(cashnum);
+				if(!result) {
+		   			$('#biznumErr').hide();
+		   			$('#telnumErr').hide();
+		   			$('#cashnumErr').show();
+				}
+			}
+		}
+	} else {
+		
+		$('#biznumErr').hide();
+		$('#telnumErr').hide();
+		$('#cashnumErr').hide();
+		
+		var select = $("#proof-of-expenditure-option option:selected").val();
+			
+			if(select === "cash-card") {
+				//현금영수증카드번호 수정 유효성 검사	
+				var cashnum = $("#numErr2").val();
+				if(cashnum ==="") {
+					$('#biznumErr').hide();
+					$('#telnumErr').hide();
+					$('#cashnumErr').show();
+				} else {
+					var pattern = /^(01[016789]{1})-?[0-9]{3,4}-?[0-9]{4}$/;
+					var result = pattern.test(cashnum);
+					if(!result) {
+		   				$('#biznumErr').hide();
+		   				$('#telnumErr').hide();
+		   				$('#cashnumErr').show();
+					}
+				}
+			} else if(select === "biznum"){
+				//사업자번호 수정 유효성 검사
+				var biznum = $("#numErr3").val();	
+					if(biznum ==="") {
+						$('#telnumErr').hide();
+						$('#cashnumErr').hide();
+						$('#biznumErr').show();
+					} else {
+						var pattern = /^(01[016789]{1})-?[0-9]{3,4}-?[0-9]{4}$/;
+						var result = pattern.test(biznum);
+						if(!result) {
+			   				$('#telnumErr').hide();
+			   				$('#cashnumErr').hide();
+			   				$('#biznumErr').show();
+						}
+					}
+				}
+		}
 	
-    var isValidation = true;
+    
    	
    	var addressNo = $('#addressNo').val();
    	if(addressNo == null) {
    		isValidation = false;
+   		alert("배송지를 선택해주세요");
    	}
-	console.log(isValidation+"결제성공?");
+	
 	//계좌이체
 	if($("input[name='pay-method']:checked").val() == '계좌이체'){
 	   	var nonselect1 = $("#account-transfer-choice-bank option:selected").val();
 		if(nonselect1 === "none") {
 			isValidation = false;
+			alert("은행을 선택해주세요");
 		} 
 	}	
 	
@@ -664,6 +764,7 @@ function checkValidation() {
 		var nonselect2 = $("#credit-card-option option:selected").val();
 		if(nonselect2 === "none") {
 			isValidation = false;
+			alert("카드를 선택해주세요");
 		} 
 	}
 	
@@ -672,6 +773,7 @@ function checkValidation() {
 		var nonselect3 = $("#coporation-card-choice option:selected").val();
 		if(nonselect3 === "none") {
 			isValidation = false;
+			alert("카드를 선택해주세요");
 		} 
 	}	
 	
@@ -680,6 +782,7 @@ function checkValidation() {
 		var nonselect3 = $("#mobile-corp option:selected").val();
 		if(nonselect3 === "none") {
 			isValidation = false;
+			alert("통신사를 선택해주세요");
 		} 
 	}	
 	
@@ -688,6 +791,7 @@ function checkValidation() {
 		var nonselect4 = $("#bank-choice option:selected").val();
 		if(nonselect4 === "none") {
 			isValidation = false;
+			alert("은행을 선택해주세요");
 		}
 	}	
    	
@@ -698,12 +802,12 @@ function checkValidation() {
 		var check1 = $("#income-deduction-option option:selected").val();
 		if(check1 === "pnum") {
 			var numErr1 = $("#numErr1").val();
-			if(numErr1 === null) {
+			if(numErr1 === "") {
 				isValidation = false;
 			}
 		} else if(check2 === "cash-card") {
 			var numErr2 = $("#numErr2").val();
-			if(numErr2 === null) {
+			if(numErr2 === "") {
 				isValidation = false;
 			}
 		}
@@ -711,12 +815,12 @@ function checkValidation() {
 		var check3 = $("#proof-of-expenditure-option option:selected").val();
 		if(check3 === "cash-card") {
 			var numErr2 = $("#numErr2").val();
-			if(numErr1 === null) {
+			if(numErr1 === "") {
 				isValidation = false;
 			}
 		} else if(check4 === "biznum") {
 			var numErr3 = $("#numErr3").val();
-			if(numErr3 === null) {
+			if(numErr3 === "") {
 				isValidation = false;
 			}
 		}

@@ -306,6 +306,12 @@ public class UserController {
 		int totalCoupons = couponService.numberOfCoupon(user.getUsers_id());
 		model.addAttribute("totalCoupons", totalCoupons);
 		
+		//가용 적립금
+		LoginDto loginUser = userService.getUser(user.getUsers_id());
+		int totalPoints = loginUser.getUsers_opoint();
+		model.addAttribute("totalPoints", totalPoints);
+		
+		
 		//쿠폰리스트
 		List<Coupon> list = couponService.getCouponByUsersId(user.getUsers_id());
 		model.addAttribute("coupons", list);
