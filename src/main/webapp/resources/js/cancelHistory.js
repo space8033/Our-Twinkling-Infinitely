@@ -18,7 +18,7 @@ function onClickMine() {
 	$(event.target).addClass("selectedRefundMenu");	
 }
 
-function makeOrderCard() {
+function makeCancelCard() {
 	$.ajax({
 		url:"cancelHistory_content.jsp",
 		method: "get",

@@ -188,7 +188,7 @@
 				      <a class="nav-link" data-toggle="tab" href="#reviewList">리뷰 관리</a>
 				    </li>
 				    <li class="t-menu nav-item">
-				      <a class="nav-link" data-toggle="tab" href="#menuu3">교환/환불/취소 내역</a>
+				      <a class="nav-link" data-toggle="tab" href="#cancelList">교환/환불/취소 내역</a>
 				    </li>
 				</ul>
 				
@@ -197,13 +197,13 @@
 						    <div id="orderList" class="container tab-pane active" style="background-color: white"><br>
 						    
 						    </div>
-						    <div id="addressList" class="container tab-pane fade" style="background-color: white" onclick="showAddress(1)"><br>
+						    <div id="addressList" class="container tab-pane fade" style="background-color: white"><br>
 						    
 						    </div>
-						    <div id="reviewList" class="container tab-pane fade" style="background-color: white" onclick="showReviewByUser(1)"><br>
+						    <div id="reviewList" class="container tab-pane fade" style="background-color: white"><br>
 						    
 						    </div>
-						    <div id="menuu3" class="container tab-pane fade" style="background-color: white"><br>
+						    <div id="cancelList" class="container tab-pane fade" style="background-color: white"><br>
 						      
 						    </div>
 					  	</div>

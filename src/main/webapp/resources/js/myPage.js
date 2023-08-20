@@ -2,7 +2,7 @@ $(init);
 
 function init() {
 	showAddress();
-	showReviewByUser();
+	showReviewByUser(1);
 	//마이페이지 이미지 변경 확인버튼 숨기기
 	$("#imgSubmit").hide();
 	$("#myCoupons").hide();
@@ -42,7 +42,7 @@ function showModifyAddress(addressNo) {
 	});
 }
 
-function showReviewByUser(pageNo5) {
+/*function showReviewByUser(pageNo5) {
 	$.ajax({
 		url: "reviewByUser",
 		method: "get",
@@ -56,9 +56,9 @@ function showReviewByUser(pageNo5) {
 			console.log("아왜");
 		}
 	});
-}
+}*/
 	
-function myReviewDetail(review_no) {
+/*function myReviewDetail(review_no) {
 	$.ajax({
 		url: "myReviewDetail",
 		method: "get",
@@ -70,9 +70,9 @@ function myReviewDetail(review_no) {
 			console.log("아왜");
 		}
 	});
-}
+}*/
 
-function showReviewModify(review_no) {
+/*function showReviewModify(review_no) {
 	$.ajax({
 		url: "modifyReview",
 		method: "get",
@@ -85,9 +85,9 @@ function showReviewModify(review_no) {
 			console.log("아왜");
 		}
 	});
-}
+}*/
 
-function modifyForm() {
+/*function modifyForm() {
 	var form = $("#modifyReview")[0];
 	var formData = new FormData(form);
 	$.ajax({
@@ -104,9 +104,9 @@ function modifyForm() {
 		contentType: false,
 		processData: false
 	});
-}
+}*/
 
-function deleteReview(review_no) {
+/*function deleteReview(review_no) {
 	$.ajax({
 		url: "deleteReview",
 		method: "post",
@@ -118,7 +118,7 @@ function deleteReview(review_no) {
 			console.log("아왜");
 		}
 	});
-}
+}*/
 
 //마이페이지==============================================================
 //마이페이지 이미지추가 확인버튼

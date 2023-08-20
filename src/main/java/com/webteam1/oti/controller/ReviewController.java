@@ -124,7 +124,7 @@ public class ReviewController {
 		model.addAttribute("user", user.getUsers_id());
 		session.setAttribute("productNum", productNum);
 		
-		return "detail/reviewWrite";
+		return "mypage/orderlist/reviewWrite";
 	}
 	
 	//리뷰 작성하기
