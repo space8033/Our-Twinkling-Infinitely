@@ -226,3 +226,62 @@
 	text-align: center;
 	width: 950px;
 }
+
+
+/* 취소 환불 리스트==============================================*/
+.refundMenu {
+	width: 50%; 
+	text-align: center; 
+	border: 2px solid #dfdfdf; 
+	font-size:20px; 
+	font-weight: bold;
+    background-color: rgb(249, 249, 249);
+    padding-top: 5px;
+    padding-bottom: 5px;
+}
+.selectedRefundMenu {
+	border: 3px solid rgb(75, 129, 217);
+	border-bottom: none;
+	color: rgb(75, 129, 217);
+	background-color: white;
+}
+.refundTop {
+   	border:	1px solid rgb(240, 240, 240);
+   	background-color: rgb(249, 249, 249);
+   	font-size: 20px;
+   	padding: 10px;
+   	margin-top: 20px;
+}
+ .refundBottom {
+    border:	1px solid rgb(240, 240, 240);
+ }
+.refundBottomLeft {
+	width: 100%;
+}
+.refundTop span {
+	font-weight: bold;
+}
+.refundBottom span {
+	font-weight: bold;
+}
+.refundContent {
+	width: 75%;
+	border:	1px solid rgb(240, 240, 240);
+	padding-right: 20px;
+}
+.refundInfo {
+	width: 25%;
+	border:	1px solid rgb(240, 240, 240);
+	padding-top: 70px;
+	padding-bottom: 70px;
+	text-align: center;
+}
+#pagingButton div button{
+	margin-top: 20px;
+	background-color: white;
+	border: 1px solid rgb(196, 205, 213);
+	border-radius: 4px;
+	height: 40px;
+	width: 80px;
+	margin-bottom: 40px;
+}

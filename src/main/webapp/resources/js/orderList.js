@@ -329,7 +329,7 @@ function deleteReview(review_no) {
 
 function makeCancelCard() {
 	$.ajax({
-		url:"cancelHistory_content.jsp",
+		url:"getCancelList",
 		method: "get",
 		success: function(data) {
 			let html="";
@@ -337,11 +337,10 @@ function makeCancelCard() {
 			
 			data.forEach(function(item, index) {
 				var price = item.price.toLocaleString("ko-KR");
-				if(item.orderNumber == orderNum ) {
+				if(item.orderNo == orderNum ) {
 					html += '			<div class="refundBottomLeft d-flex pl-4">';
 					html += '				<div class="refundContent py-5" style="border-left: none;">';
-					html += '					<span>' + item.title + '</span> <br>';
-					html += 							item.detail;
+					html += '					<span>' + item.productName + '</span> <br>';
 					html += '				</div>';
 					html += '				<div class="refundInfo">';
 					html += 					item.quantity + '개 <br>';
@@ -349,15 +348,14 @@ function makeCancelCard() {
 					html += '				</div>';
 					html += '			</div>';
 				}else {
-					orderNum = item.orderNumber;
+					orderNum = item.orderNo;
 					if(index == 0) {
-						html +=' 	<div class="refundTop">'+ item.type + '접수일 : <span>' + item.registerDate + '</span> | 주문일 : <span>' + item.orderDate + '</span> | 주문번호 : <span>' + item.orderNumber + '</span></div>';
+						html +=' 	<div class="refundTop">'+ item.crType + '접수일 : <span>' + item.cancelDate + '</span> | 주문일 : <span>' + item.orderedDate + '</span> | 주문번호 : <span>' + item.orderNo + '</span></div>';
 						html += '		<div class="refundBottom d-flex">';
 						html += '         <div style="width:75%">'
 						html += '			<div class="refundBottomLeft d-flex pl-4">';
 						html += '				<div class="refundContent py-5" style="border-left: none; ">';
-						html += '					<span>' + item.title + '</span> <br>';
-						html += 							item.detail;
+						html += '					<span>' + item.productName + '</span> <br>';
 						html += '				</div>';
 						html += '				<div class="refundInfo">';
 						html += 					item.quantity + '개 <br>';
@@ -369,22 +367,21 @@ function makeCancelCard() {
 						html +=' 		<div class="refundStatus d-flex">';
 						html += '			<div style="width: 50%; display: flex; align-items: center; padding-left: 10px;">';
 						html += '                 <div>'
-						html += '				<span>'+ item.type + '완료</span> <br>';
-						html += '					6/16(금) 이내 카드사 환불 완료 예정';
+						html += '				<span>'+ item.crType + '예정</span> <br>';
+						html += '					8월 25일(금) 이내 카드사 환불 완료 예정';
 						html += '                 </div>'
 						html += '			</div>';
 						html += '			<div style="width: 50%; display: flex; align-items: center;">';
-						html += '				<button style="width: 100px; background-color: white; border: 2px solid #7890d0; color: #7890d0;">' + item.type + '상세</button>';
+						html += '				<button style="width: 100px; background-color: white; border: 2px solid #7890d0; color: #7890d0;">' + item.crType + '상세</button>';
 						html += '			</div>';
 						html += '		</div>';
 						html += '	</div>';
-						html += '<div class="refundTop">' + item.type + '접수일 : <span>' + item.registerDate + '</span> | 주문일 : <span>' + item.orderDate + '</span> | 주문번호 : <span>' + item.orderNumber + '</span></div>';
+						html += '<div class="refundTop">' + item.crType + '접수일 : <span>' + item.cancelDate + '</span> | 주문일 : <span>' + item.orderedDate + '</span> | 주문번호 : <span>' + item.orderNo + '</span></div>';
 						html += '<div class="refundBottom d-flex">';
 						html += '         <div style="width:75%">'
 						html += '	<div class="refundBottomLeft d-flex pl-4">';
 						html += '		<div class="refundContent py-5" style="border-left: none;">';
-						html += '			<span>' + item.title + '</span> <br>';
-						html += 			item.detail;
+						html += '			<span>' + item.productName + '</span> <br>';
 						html += '		</div>';
 						html += '		<div class="refundInfo">';
 						html += 			item.quantity + '개 <br>';
@@ -398,12 +395,12 @@ function makeCancelCard() {
 					html +=' 		<div class="refundStatus d-flex">';
 					html += '			<div style="width: 50%; padding-left:10px; display: flex; align-items: center;">';
 					html += '                 <div>'
-					html += '				<span>'+ item.type + '완료</span> <br>';
-					html += '					6/16(금) 이내 카드사 환불 완료 예정';
+					html += '				<span>'+ item.crType + '예정</span> <br>';
+					html += '					8월 25일(금) 이내 카드사 환불 완료 예정';
 					html += '                 </div>'
 					html += '           </div>';
 					html += '			<div style="width: 50%; display: flex; align-items: center;">';
-					html += '				<button style="width: 100px; background-color: white; border: 2px solid #7890d0; color: #7890d0;">' + item.type + '상세</button>';
+					html += '				<button style="width: 100px; background-color: white; border: 2px solid #7890d0; color: #7890d0;">' + item.crType + '상세</button>';
 					html += '			</div>';
 					html += '		</div>';
 					html += '	</div>';
@@ -416,7 +413,7 @@ function makeCancelCard() {
 				}
 				
 			});
-			$("#refundContainer").html(html);
+			$("#cancelList").html(html);
 		},
 		error: function(error) {
 			console.log("에러임");

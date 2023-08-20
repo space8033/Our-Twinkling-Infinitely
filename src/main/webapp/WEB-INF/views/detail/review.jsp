@@ -15,65 +15,74 @@
 					<a id="photoFilter"class="mx-1 filterP" style="font-size: 12px; color:black;" href="javascript:showReview(${productNum}, 1, 1)">포토 리뷰만 보기</a>					
 				</c:if>
 			</div>
-			<hr>
-			<c:forEach var="review" items="${reviews}">
-				<div class="d-flex">
-					<a href="javascript:reviewDetail(${review.review_no})">${review.review_title}</a>
-					<c:if test="${review.review_images != 0}">
-						<img src="${pageContext.request.contextPath}/resources/oimg/camera.png" width="25" height="25" class="ml-2">
-					</c:if>
+			<hr/>
+			<c:set var="myReview" value="${reviews}" /> <!-- yourList는 컨트롤러에서 넘겨준 List 객체입니다. -->
+
+			<c:if test="${empty myReview}">
+				<div style="text-align: center">
+				    <p>리뷰가 없습니다.</p>
 				</div>
-				<br>
-				<c:if test="${review.review_rating == 0}">
-					<span class="fa fa-star"></span>
-					<span class="fa fa-star"></span>
-					<span class="fa fa-star"></span>
-					<span class="fa fa-star"></span>
-					<span class="fa fa-star"></span>
-				</c:if>
-				<c:if test="${review.review_rating == 1}">
-					<span class="fa fa-star checked"></span>
-					<span class="fa fa-star"></span>
-					<span class="fa fa-star"></span>
-					<span class="fa fa-star"></span>
-					<span class="fa fa-star"></span>
-				</c:if>
-				<c:if test="${review.review_rating == 2}">
-					<span class="fa fa-star checked"></span>
-					<span class="fa fa-star checked"></span>
-					<span class="fa fa-star"></span>
-					<span class="fa fa-star"></span>
-					<span class="fa fa-star"></span>
-				</c:if>
-				<c:if test="${review.review_rating == 3}">
-					<span class="fa fa-star checked"></span>
-					<span class="fa fa-star checked"></span>
-					<span class="fa fa-star checked"></span>
-					<span class="fa fa-star"></span>
-					<span class="fa fa-star"></span>
-				</c:if>
-				<c:if test="${review.review_rating == 4}">
-					<span class="fa fa-star checked"></span>
-					<span class="fa fa-star checked"></span>
-					<span class="fa fa-star checked"></span>
-					<span class="fa fa-star checked"></span>
-					<span class="fa fa-star"></span>
-				</c:if>
-				<c:if test="${review.review_rating == 5}">
-					<span class="fa fa-star checked"></span>
-					<span class="fa fa-star checked"></span>
-					<span class="fa fa-star checked"></span>
-					<span class="fa fa-star checked"></span>
-					<span class="fa fa-star checked"></span>
-				</c:if>
-				
-				<br>
-				${review.review_name}<br>
-				${review.review_createdDate}<br>
-				<br>
-				
-				<hr style="color: #e8e9eb">
-			</c:forEach>
+			</c:if>
+			<c:if test="${not empty myReview}">
+				<c:forEach var="review" items="${myReview}">
+					<div class="d-flex">
+						<a href="javascript:reviewDetail(${review.review_no})">${review.review_title}</a>
+						<c:if test="${review.review_images != 0}">
+							<img src="${pageContext.request.contextPath}/resources/oimg/camera.png" width="25" height="25" class="ml-2">
+						</c:if>
+					</div>
+					<br>
+					<c:if test="${review.review_rating == 0}">
+						<span class="fa fa-star"></span>
+						<span class="fa fa-star"></span>
+						<span class="fa fa-star"></span>
+						<span class="fa fa-star"></span>
+						<span class="fa fa-star"></span>
+					</c:if>
+					<c:if test="${review.review_rating == 1}">
+						<span class="fa fa-star checked"></span>
+						<span class="fa fa-star"></span>
+						<span class="fa fa-star"></span>
+						<span class="fa fa-star"></span>
+						<span class="fa fa-star"></span>
+					</c:if>
+					<c:if test="${review.review_rating == 2}">
+						<span class="fa fa-star checked"></span>
+						<span class="fa fa-star checked"></span>
+						<span class="fa fa-star"></span>
+						<span class="fa fa-star"></span>
+						<span class="fa fa-star"></span>
+					</c:if>
+					<c:if test="${review.review_rating == 3}">
+						<span class="fa fa-star checked"></span>
+						<span class="fa fa-star checked"></span>
+						<span class="fa fa-star checked"></span>
+						<span class="fa fa-star"></span>
+						<span class="fa fa-star"></span>
+					</c:if>
+					<c:if test="${review.review_rating == 4}">
+						<span class="fa fa-star checked"></span>
+						<span class="fa fa-star checked"></span>
+						<span class="fa fa-star checked"></span>
+						<span class="fa fa-star checked"></span>
+						<span class="fa fa-star"></span>
+					</c:if>
+					<c:if test="${review.review_rating == 5}">
+						<span class="fa fa-star checked"></span>
+						<span class="fa fa-star checked"></span>
+						<span class="fa fa-star checked"></span>
+						<span class="fa fa-star checked"></span>
+						<span class="fa fa-star checked"></span>
+					</c:if>
+					
+					<br>
+					${review.review_name}<br>
+					${review.review_createdDate}<br>
+					<br>
+					
+					<hr style="color: #e8e9eb">
+				</c:forEach>
+			</c:if>
 			<tr>
 				<td colspan="4" class="text-center">
 					<div>

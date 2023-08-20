@@ -135,14 +135,14 @@
         }
         
         #pagingButton div button{
-				margin-top: 20px;
-				background-color: white;
-				border: 1px solid rgb(196, 205, 213);
-				border-radius: 4px;
-				height: 40px;
-				width: 80px;
-				margin-bottom: 40px;
-			}
+			margin-top: 20px;
+			background-color: white;
+			border: 1px solid rgb(196, 205, 213);
+			border-radius: 4px;
+			height: 40px;
+			width: 80px;
+			margin-bottom: 40px;
+		}
          
          /*------------------------------------footer css------------------------------------*/
          /* footer */
