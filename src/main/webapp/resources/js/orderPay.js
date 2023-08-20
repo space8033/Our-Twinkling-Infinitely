@@ -389,7 +389,7 @@ $(document).ready(function(){
     
 
 	$('.couponUse').change(function(){
-		  var selectedCouponValue = parseFloat($('input[name="coupon_no"]:checked').next().first().val());
+		  var selectedCouponValue = parseFloat($('input[name="coupon_coupon_no"]:checked').next().first().val());
 		  console.log("selectedCouponValue는?", selectedCouponValue);
 		  if (selectedCouponValue !== 0) {
 		        var totalPrice = parseFloat($('.totalPrice').text());

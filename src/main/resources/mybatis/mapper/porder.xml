@@ -10,7 +10,7 @@
 	      	order_no, users_users_id, order_cashReceipt, order_createdDate, order_del_fee, coupon_coupon_no, address_no, address_request, users_users_opoint, order_total_price
 		)
 		values(
-			#{order_no}, #{users_users_id}, #{order_cashReceipt}, to_char(sysdate,'yyyy.mm.dd hh24:mi:ss'), #{order_del_fee}, #{coupon_no}, #{address_no}, #{address_request}, #{users_opoint}, #{total_price}
+			#{order_no}, #{users_users_id}, #{order_cashReceipt}, to_char(sysdate,'yyyy.mm.dd hh24:mi:ss'), #{order_del_fee}, #{coupon_coupon_no}, #{address_no}, #{address_request}, #{users_users_opoint}, #{order_total_price}
 		)
 	</insert>
 
