@@ -149,7 +149,31 @@
 				    	</div>
 				    </div>
 				    <div id="menu2" class="tabMenu-content container tab-pane fade"><br>
-				      <h3>Menu 2</h3>
+				      <table>
+				      	<colgroup>
+				      		<col width="7%">
+				      		<col width="8%">
+				      		<col width="10%">
+				      		<col width="auto">
+				      		<col width="12%">
+				      		<col width="13%">
+				      	</colgroup>
+				      	<thead>
+				      		<tr>
+				      			<th scope="col">번호</th>
+				      			<th scope="col">답변여부</th>
+				      			<th scope="col">구분</th>
+				      			<th scope="col">내용</th>
+				      			<th scope="col">작성자</th>
+				      			<th scope="col">등록일자</th>
+				      		</tr>
+				      	</thead>
+				      	<tbody>
+				      		<tr>
+				      		
+				      		</tr>
+				      	</tbody>
+				      </table>
 				    </div>
 				    <div id="menu3" class="tabMenu-content container tab-pane fade"><br>
 				      

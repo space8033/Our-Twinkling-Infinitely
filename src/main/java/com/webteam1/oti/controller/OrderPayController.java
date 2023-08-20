@@ -6,6 +6,7 @@ import java.util.List;
 import java.util.Map;
 
 import javax.annotation.Resource;
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Controller;
@@ -128,12 +129,14 @@ public class OrderPayController {
 		
 		LoginDto loginUser = (LoginDto) session.getAttribute("loginIng");
 		String[] cartNos = (String[]) session.getAttribute("cartNos");
-		log.info(cartNos+"나카트엔오");
-		for(int i=0; i<cartNos.length; i++) {
-			cartService.cartDelete(Integer.parseInt(cartNos[i]));
+		
+		if(cartNos != null) {			
+			for(int i=0; i<cartNos.length; i++) {
+				cartService.cartDelete(Integer.parseInt(cartNos[i]));
+			}
 		}
+		
 		porder.setUsers_users_id(loginUser.getUsers_id());
-		log.info(porder.toString()+"나 오더");
 		orderService.addOrder(porder);
 		
         return "redirect:/";
