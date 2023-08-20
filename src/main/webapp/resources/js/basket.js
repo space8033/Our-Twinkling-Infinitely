@@ -44,6 +44,7 @@ $(document).ready(function() {
 function checkAll() {
 	if($(event.target).is(":checked") == true){
 		if($("#cboxAll_top").is(":checked") == true){
+			$(".changeDis").prop("disabled", false);
 			$(".pchk").prop("checked", true);
 			$("#cboxAll_bottom").prop("checked", true);
 			$("#s_p_choice").html($(".pchk").length);

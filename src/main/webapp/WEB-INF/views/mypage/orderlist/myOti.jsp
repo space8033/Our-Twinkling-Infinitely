@@ -49,8 +49,8 @@
 					<p>${totalCoupons}</p>
 				</div>
 				<div class="mine">
-					<a href="#">
-						<img  class="icon" src="${pageContext.request.contextPath}/resources/yuimg/리뷰아이콘.png" width="55"/>
+					<a href="#" onclick="showReview()">
+						<img class="icon" src="${pageContext.request.contextPath}/resources/yuimg/리뷰아이콘.png" width="55"/>
 						<div class="text-body">리뷰></div>
 					</a>
 					<p>${totalReviews}</p>
