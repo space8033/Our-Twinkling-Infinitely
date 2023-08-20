@@ -141,14 +141,8 @@ function showCouponList(){
 	$("#myCoupons").toggle();
 }
 
-function showPointList(){
-	$("#myPoints").toggle();
-}
-
-
-//리뷰아이콘 클릭했을 때 리뷰관리 탭 넘어가기
+//리뷰아이콘을 클릭하면 리뷰관리 탭이 클릭되기 위함
 function showReview(){
 	const reviewTabLink = document.querySelector('[data-toggle="tab"][href="#reviewList"]');
 	reviewTabLink.click();
 }
-
