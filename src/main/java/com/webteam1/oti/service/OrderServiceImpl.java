@@ -71,8 +71,11 @@ public class OrderServiceImpl implements OrderService {
 		log.info(beforePoint+"이전포인트");
 		int usedPoint = order.getUsers_opoint();
 		log.info(usedPoint+"사용포인트");
-		int afterPoint = beforePoint - usedPoint; 
+		int totalPrice = order.getTotal_price();
+		int savePoint = (int) (totalPrice * 0.005);
+		int afterPoint = beforePoint - usedPoint + savePoint; 
 		log.info(afterPoint+"계산후포인트");
+		
 		user.setUsers_opoint(afterPoint);
 		log.info(user.toString()+"나 바뀐 유저임 ㅋㅋ");
 		userDao.updateOpoint(user);
