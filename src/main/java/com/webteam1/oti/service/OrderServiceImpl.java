@@ -66,6 +66,7 @@ public class OrderServiceImpl implements OrderService {
 		}
 		couponDao.updateUsedCoupon(order.getCoupon_no());
 		
+		//주문시 적립금 사용/적립 기능
 		LoginDto user = userDao.selectByUsersId(order.getUsers_users_id());
 		int beforePoint = user.getUsers_opoint();
 		log.info(beforePoint+"이전포인트");

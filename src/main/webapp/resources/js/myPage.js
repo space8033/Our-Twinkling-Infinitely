@@ -140,3 +140,6 @@ $(document).ready(function() {
 function showCouponList(){
 	$("#myCoupons").toggle();
 }
+function showPointList(){
+	$("#myPoints").toggle();
+}
