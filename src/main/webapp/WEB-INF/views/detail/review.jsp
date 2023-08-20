@@ -100,7 +100,7 @@
 			</tr>
 		</table>
 		
-		<div class="mt-2">
+		<%-- <div class="mt-2">
 			<a href="javascript:writeReview(${productNum})" class="btn btn-sm btn-info">새글쓰기</a>
-		</div>
+		</div> --%>
 	</div>      

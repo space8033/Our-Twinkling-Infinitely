@@ -120,6 +120,7 @@ public class OrderServiceImpl implements OrderService {
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
+				orderInfo.setProductNo(productNo);
 				orderInfo.setTitle(product.getProduct_name());
 				orderInfo.setPrice(product.getProduct_price());
 				orderInfo.setQuantity(j.getOrderProduct_qty());

@@ -12,6 +12,7 @@
 	            <input id="btitle" type="text" name="reviewTitle" class="form-control">
 	         </div>
 	         
+	         
 	         <div class="input-group">
 	            <div class="input-group-prepend"><span class="input-group-text">별점</span></div>
 		        <div class="rate">
@@ -46,7 +47,7 @@
 		            <input type="file" name="file" style="width:80%; border: solid 1px #f0f0f0">
 		        </div>
 		    </div>
-	            
+		    
 	         <div class="mt-3">
 	            <button class="btn btn-info btn-sm mr-2" >글쓰기</button>
 	            <a class="btn btn-info btn-sm" href="javascript:showReviewByUser(1)">목록보기</a>

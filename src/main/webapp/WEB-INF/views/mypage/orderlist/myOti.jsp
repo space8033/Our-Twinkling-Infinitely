@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ include file="/WEB-INF/views/common/header.jsp" %>
-		<script src="${pageContext.request.contextPath}/resources/js/myPage.js"></script>
 		<script src="${pageContext.request.contextPath}/resources/js/orderList.js"></script>
+		<script src="${pageContext.request.contextPath}/resources/js/myPage.js"></script>
 		<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/myOti.css"/>
 	</head>
 	
@@ -197,10 +197,10 @@
 						    <div id="orderList" class="container tab-pane active" style="background-color: white"><br>
 						    
 						    </div>
-						    <div id="addressList" class="container tab-pane fade" style="background-color: white"><br>
+						    <div id="addressList" class="container tab-pane fade" style="background-color: white" onclick="showAddress(1)"><br>
 						    
 						    </div>
-						    <div id="reviewList" class="container tab-pane fade" style="background-color: white"><br>
+						    <div id="reviewList" class="container tab-pane fade" style="background-color: white" onclick="showReviewByUser(1)"><br>
 						    
 						    </div>
 						    <div id="menuu3" class="container tab-pane fade" style="background-color: white"><br>
