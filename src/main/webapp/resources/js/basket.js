@@ -436,8 +436,8 @@ function openProductInquiryPopup() {
 
     // 상품문의 팝업창 열기
     var popupWindow = window.open(absolutePath, "popupWindow", "width=" + popupWidth + ",height=" + popupHeight + ",left=" + left + ",top=" + top);
-    
 }
+
 
 
 //상품문의리스트를 눌렀을 때 상세내용 보기

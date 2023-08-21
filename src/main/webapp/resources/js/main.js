@@ -5,7 +5,6 @@ function init(){
 	//header 검색바 숨기기
 	$(".topnav").hide();
 	//상품 메인페이지 광고
-	changeImg();
 	showSlides();
 }
 
