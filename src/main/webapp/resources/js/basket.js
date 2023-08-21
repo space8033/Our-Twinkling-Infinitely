@@ -4,6 +4,7 @@ function init() {
    loading();
    jsonProduct();
    $("#btn_delete").hide();
+   $('.content-row').hide();
 }
 let mainImage = document.getElementById('main-image');
 let hoverImages = document.querySelectorAll('.hover-image');
@@ -418,21 +419,6 @@ function qtyUpdate(cartNo, newQty) {
     });
 }
 
-//상품문의
-function showform(){
-	// 팝업 창의 크기와 위치 설정
-    var popupWidth = 550;
-    var popupHeight = 800;
-    var left = (window.innerWidth - popupWidth) / 2;
-    var top = (window.innerHeight - popupHeight) / 2;
-    
-    // 현재 페이지의 절대 경로 생성 
-    var currentOrigin = window.location.origin;
-    var additionalPath = "/our-twinkling-infinitely/productInquiryWrite"; // 추가 경로
-    var absolutePath = currentOrigin + additionalPath;
-	
-    window.open(absolutePath, "popupWindow", "width=" + popupWidth + ",height=" + popupHeight + ",left=" + left + ",top=" + top);
-}
 
 //상품문의
 function openProductInquiryPopup() {
@@ -456,8 +442,9 @@ function openProductInquiryPopup() {
     };
 }
 
+//상품문의리스트를 눌렀을 때 상세내용 보기
 function showInquiryContent(row) {
-    // 해당 클릭된 행의 다음 형제 요소를 찾아서 토글
-    let contentRow = row.nextElementSibling;
-    contentRow.classList.toggle("show");
+    // 해당 클릭된 행의 다음 형제 요소를 찾기
+    let contentRow = $(row).next(".content-row");
+    contentRow.toggle();
 }

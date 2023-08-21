@@ -33,6 +33,7 @@ import com.webteam1.oti.service.ReviewService;
 
 import lombok.extern.slf4j.Slf4j;
 
+@Slf4j
 @Controller
 @RequestMapping("/")
 public class ProductController implements Serializable{
@@ -48,7 +49,7 @@ public class ProductController implements Serializable{
 	//상품 상세 페이지 불러오기
 	//상품리스트에서 그 상품에 해당하는 상품 상세정보
 	@GetMapping("/detailProduct")
-	public String detailView(String product_no, String pageNo2, String pageNo3, Model model, HttpSession session) {
+	public String detailView(String product_no, String pageNo2, String pageNo8, Model model, HttpSession session) {
 		   int productNum = Integer.parseInt(product_no);
 		   Product product = productService.getProduct(productNum);
 		   if(product.getProduct_imgFile() != null) {
@@ -119,28 +120,31 @@ public class ProductController implements Serializable{
 		   //상품 문의하기에 해당 상품의 옵션을 가져오기 위함
 		   session.setAttribute("options", options);
 		   
-		   //상품에 해당하는 상품문의 리스트(page3: 상품문의 페이징)
-		   if(pageNo3 == null) {
+		   //상품에 해당하는 상품문의 리스트(page8: 상품문의 페이징)
+		   if(pageNo8 == null) {
 			   //세션에 저장되어있는지 확인
-			   pageNo3 = (String) session.getAttribute("pageNo3");
+			   pageNo8 = (String) session.getAttribute("pageNo8");
 			   //저장되어있지 않다면 "1"로 초기화
-			   if(pageNo3 == null) {
-				   pageNo3 = "1";
+			   if(pageNo8 == null) {
+				   pageNo8 = "1";
 			   }
 		   }
 		   //문자열을 정수로 변환
-		   int intPageNo3 = Integer.parseInt(pageNo3);
-		   //세션에 pageNo3를 저장
-		   session.setAttribute("pageNo3", String.valueOf(pageNo3));
+		   int intPageNo8 = Integer.parseInt(pageNo8);
+		   //세션에 pageNo8를 저장
+		   session.setAttribute("pageNo8", String.valueOf(pageNo8));
 		   
 		   //상품별 총 상품문의 수
 		   int pinquiryNum = productService.getTotalPinquiryNum(Integer.parseInt(product_no));
-		   Pager pager3 = new Pager(5, 5, pinquiryNum, intPageNo3);
+		   Pager pager8 = new Pager(5, 5, pinquiryNum, intPageNo8);
 		   
-		   @SuppressWarnings("unused")
-		   List<Pinquiry> pinquirys = productService.getPinquiryList(pager3);
+		   Map<String, Object> map2 = new HashMap<>();
+		   map2.put("startRowNo", pager.getStartRowNo());
+		   map2.put("endRowNo", pager.getEndRowNo());
+		   map2.put("product_no", productNo);
+		   List<Pinquiry> pinquirys = productService.getPinquiryList(map2);
 		   
-		   model.addAttribute("pager3", pager3);
+		   model.addAttribute("pager8", pager8);
 		   model.addAttribute("pinquirys", pinquirys);
 		   
 		   return "detail/detailView";
@@ -168,7 +172,7 @@ public class ProductController implements Serializable{
 	public String pInquiryWrite(HttpSession session, Model model, Pinquiry pinquiry) {
 		productService.writePinquiry(pinquiry);
 
-		return "redirect:/detail/detailView";
+		return "redirect:/productInquiryWrite";
 	}
 	
 	//검색

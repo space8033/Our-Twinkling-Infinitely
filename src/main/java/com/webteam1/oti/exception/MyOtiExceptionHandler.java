@@ -10,7 +10,7 @@ import org.springframework.web.servlet.NoHandlerFoundException;
 @Component
 @ControllerAdvice
 public class MyOtiExceptionHandler {
-	@ExceptionHandler(NullPointerException.class)
+/*	@ExceptionHandler(NullPointerException.class)
 	public String handleNullPointerException() {
 		return "exception/exception500";
 	}
@@ -30,6 +30,6 @@ public class MyOtiExceptionHandler {
 	@ResponseStatus(HttpStatus.NOT_FOUND)
 	public String handle404(NoHandlerFoundException e) {
 		return "exception/exception404";
-	}
+	}*/
 }
 */

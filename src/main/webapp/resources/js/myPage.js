@@ -7,6 +7,9 @@ function init() {
 	//마이페이지 이미지 변경 확인버튼 숨기기
 	$("#imgSubmit").hide();
 	$("#myCoupons").hide();
+	$("#myPoints").hide();
+	$("#myPinquiries").hide();
+	$('.content-row').hide();
 }
 
 function showAddress(pageNo3) {
@@ -63,6 +66,15 @@ function showCouponList(){
 
 function showPointList(){
 	$("#myPoints").toggle();
+}
+function showPinquiryList(){
+	$("#myPinquiries").toggle();
+}
+//상품문의리스트를 눌렀을 때 상세내용 보기
+function showInquiryContent(row) {
+    // 해당 클릭된 행의 다음 형제 요소를 찾기
+    let contentRow = $(row).next(".content-row");
+    contentRow.toggle();
 }
 
 function showPoint(pageNo7) {

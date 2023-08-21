@@ -27,7 +27,7 @@ public interface ProductDao {
 	//상품문의 작성
 	public int insertPinquiry(Pinquiry pinquiry);
 	//페이지 별 상품문의 리스트
-	public List<Pinquiry> selectPinquiryByPage(Pager pager);
+	public List<Pinquiry> selectPinquiryByPage(Map<String,Object> map);
 	//총 상품문의리스트 행의수 
 	public int countPinquiry(int product_no);
 }
