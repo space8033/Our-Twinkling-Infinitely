@@ -7,6 +7,7 @@ public class OrderInfo {
 	private String orderDate;
 	private String arrivalDate;
 	private String deliveryStatus;
+	private int productNo;
 	private String title;
 	private int price;
 	private int quantity;

@@ -1,8 +1,10 @@
 $(init);
 
 function init() {
+	console.log("gdgd");
 	showAddress();
 	showReviewByUser();
+	showPoint(1);
 	//마이페이지 이미지 변경 확인버튼 숨기기
 	$("#imgSubmit").hide();
 	$("#myCoupons").hide();
@@ -142,6 +144,24 @@ function showCouponList(){
 
 function showPointList(){
 	$("#myPoints").toggle();
+}
+
+function showPoint(pageNo7) {
+	console.log("ddd");
+	  $.ajax({
+	    url: "getHistory",
+	    method: "get",
+	    data: {
+	      "pageNo7": pageNo7
+	    },
+	    success: function(data) {
+	      $("#myPoints").html(data);
+	      
+	    },
+	    error: function(error) {
+	      console.log("에러 발생: " + error);
+	    }
+	  });
 }
 
 

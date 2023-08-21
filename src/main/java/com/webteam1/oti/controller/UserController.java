@@ -1,6 +1,9 @@
 package com.webteam1.oti.controller;
 
+import java.util.ArrayList;
 import java.util.Base64;
+import java.util.Comparator;
+import java.util.Iterator;
 import java.util.List;
 
 //github.com/space8033/Our-Twinkling-Infinitely.git
@@ -16,11 +19,14 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.util.WebUtils;
 
 import com.webteam1.oti.dto.Coupon;
+import com.webteam1.oti.dto.Pager;
 import com.webteam1.oti.dto.cart.Cart;
+import com.webteam1.oti.dto.point.Point;
 import com.webteam1.oti.dto.user.Agreement;
 import com.webteam1.oti.dto.user.JoinDto;
 import com.webteam1.oti.dto.user.LoginDto;
@@ -29,6 +35,7 @@ import com.webteam1.oti.interceptor.Login;
 import com.webteam1.oti.service.AgreementService;
 import com.webteam1.oti.service.CartService;
 import com.webteam1.oti.service.CouponService;
+import com.webteam1.oti.service.PointService;
 import com.webteam1.oti.service.ReviewService;
 import com.webteam1.oti.service.UserService;
 import com.webteam1.oti.service.UserService.JoinResult;
@@ -52,6 +59,8 @@ public class UserController {
 	private AgreementService agreementService;
 	@Resource
 	private CouponService couponService;
+	@Resource
+	private PointService pointService;
 	
 	//회원가입 폼 불러오기
 	@GetMapping("/joinForm")
@@ -316,6 +325,8 @@ public class UserController {
 		List<Coupon> list = couponService.getCouponByUsersId(user.getUsers_id());
 		model.addAttribute("coupons", list);
 		
+		
+		
 		//마이페이지에 보일 가입일
 		String join = user.getUsers_createdDate();
 	    String joinDay = join.substring(0, 10);
@@ -324,6 +335,75 @@ public class UserController {
 		
 	    return "mypage/orderlist/myOti";
 	}
+	
+	@Login
+	@GetMapping("/getHistory")
+	public String pointHistory(@RequestParam(name = "pageNo7", required = false) String pageNo7, HttpSession session, Model model) {
+		
+		LoginDto loginUser = (LoginDto)session.getAttribute("loginIng");
+		//작성자: 김시온
+		//적립금리스트
+		if(pageNo7 == null) {
+		    //세션에 저장되어 있는지 확인
+		    pageNo7 = (String) session.getAttribute("pageNo7");
+		    //저장되어있지 않다면 "1"로 초기화
+		    if(pageNo7 == null) {
+		        pageNo7 = "1";
+		    }
+		}
+
+		//문자열을 정수로 변환
+		int intPageNo = Integer.parseInt(pageNo7);
+		List<Point> usedPointList = pointService.usedPointList(loginUser.getUsers_id());
+		List<Point> savedPointList = pointService.savedPointList(loginUser.getUsers_id());
+		// 날짜를 내림차순으로 정렬하는 Comparator
+		Comparator<Point> dateComparator = Comparator.comparing(Point::getDate, Comparator.reverseOrder());
+
+		// 사용된 포인트 리스트를 날짜 내림차순으로 정렬
+		usedPointList.sort(dateComparator);
+
+		// 적립된 포인트 리스트를 날짜 내림차순으로 정렬
+		savedPointList.sort(dateComparator);
+
+		// 교대로 합치는 로직
+		List<Point> combinedPointList = new ArrayList<>();
+		Iterator<Point> usedIterator = usedPointList.iterator();
+		Iterator<Point> savedIterator = savedPointList.iterator();
+
+		while (usedIterator.hasNext() || savedIterator.hasNext()) {
+		    if (usedIterator.hasNext()) {
+		        combinedPointList.add(usedIterator.next());
+		    }
+		    if (savedIterator.hasNext()) {
+		        combinedPointList.add(savedIterator.next());
+		    }
+		}
+
+		// 합친 리스트의 크기를 구하고 페이징 처리
+		int combinedListSize = combinedPointList.size();
+		log.info(combinedListSize+"몇갠데 그래서");
+		int itemsPerPage = 10;
+		int totalRows = combinedListSize;
+		Pager pager = new Pager(itemsPerPage, 5, totalRows, intPageNo);
+
+		// 페이징 처리된 범위에 맞게 합친 리스트를 추출
+		int startRow = (pager.getPageNo() - 1) * itemsPerPage;
+		int endRow = Math.min(startRow + itemsPerPage, combinedListSize);
+		List<Point> pagedPointList = combinedPointList.subList(startRow, endRow);
+		
+		log.info(pagedPointList+"이게뭐야 페이지드 리스트?");
+		// 세션에 pageNo를 저장
+		session.setAttribute("pageNo7", String.valueOf(pageNo7));
+
+		model.addAttribute("pager", pager);
+		log.info(pageNo7 + "나페이지넘버세븐");
+		model.asMap().remove("pointList");
+		model.addAttribute("pointList", pagedPointList); // 합친 리스트 대신 페이징 처리된 리스트를 전달
+		
+		return "mypage/point/myPoint";
+	}
+	
+	
 	//마이페이지 기본 이미지로 변경(기존에 이미지 파일이 있다면 null로 업데이트)
 	@Login
 	@GetMapping("/basic")

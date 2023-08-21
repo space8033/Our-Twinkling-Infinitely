@@ -10,7 +10,7 @@
 	      	order_no, users_users_id, order_cashReceipt, order_createdDate, order_del_fee, coupon_coupon_no, address_no, address_request, users_users_opoint, order_total_price
 		)
 		values(
-			#{order_no}, #{users_users_id}, #{order_cashReceipt}, to_char(sysdate,'yyyy.mm.dd hh24:mi:ss'), #{order_del_fee}, #{coupon_no}, #{address_no}, #{address_request}, #{users_opoint}, #{total_price}
+			#{order_no}, #{users_users_id}, #{order_cashReceipt}, to_char(sysdate,'yyyy.mm.dd hh24:mi:ss'), #{order_del_fee}, #{coupon_coupon_no}, #{address_no}, #{address_request}, #{users_users_opoint}, #{order_total_price}
 		)
 	</insert>
 
@@ -38,6 +38,38 @@
 		        SELECT *
 		        FROM porder
 		        WHERE order_no = #{orderNo}
+	</select>
+	
+	<!-- 작성자 : 김시온 -->
+	<select id="selectOrderByUsersId" parameterType="String" resultType="Porder">
+		        SELECT *
+		        FROM porder
+		        WHERE users_users_id = #{usersId}
+		        ORDER BY order_createddate desc
+	</select> 
+<!-- 	<select id="selectOrderByUsersId" parameterType="Map" resultType="Porder">
+		<![CDATA[
+	       select rnum, order_no, users_users_id, order_createdDate, coupon_coupon_no, users_users_opoint, order_total_price
+			 from (
+			    select rownum as rnum, order_no, users_users_id, order_createdDate, coupon_coupon_no, users_users_opoint, order_total_price
+			    from(
+			        select order_no, users_users_id, order_createdDate, coupon_coupon_no, users_users_opoint, order_total_price
+			        from porder
+			        where users_users_id = #{usersId}
+			        order by order_createddate desc
+			    )
+			    where rownum <= #{endRowNo}
+			 )
+			 where rnum >= #{startRowNo}
+		]]>
+	</select> -->
+	
+	
+	
+	<select id="countOrderByUsersId" parameterType="String" resultType="int">
+		        select count(*)
+		  		from porder
+		  		where users_users_id = #{usersId}
 	</select>
 	
 </mapper>

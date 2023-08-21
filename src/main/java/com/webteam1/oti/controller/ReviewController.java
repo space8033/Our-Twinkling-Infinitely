@@ -122,7 +122,8 @@ public class ReviewController {
 	public String getWriteReview(String productNum, Model model, HttpSession session) {
 		LoginDto user = (LoginDto) session.getAttribute("loginIng");
 		model.addAttribute("user", user.getUsers_id());
-		model.addAttribute("productNum", productNum);
+		session.setAttribute("productNum", productNum);
+		
 		return "detail/reviewWrite";
 	}
 	
@@ -132,7 +133,8 @@ public class ReviewController {
 	public String writeReview(ReviewReceive review, HttpSession session) throws IOException {
 		int productNo = -1;
 		if(session.getAttribute("productNum") != null) {
-			productNo = (int)session.getAttribute("productNum");			
+			String productNumber = (String) session.getAttribute("productNum");
+			productNo = Integer.parseInt(productNumber);
 		}else {
 		}
 		Map<String, Object> map = new HashMap<>();
@@ -158,7 +160,7 @@ public class ReviewController {
 				imageService.registerImg(image);
 			}
 		}
-		return "redirect:/review";
+		return "redirect:/reviewByUser";
 	}
 	
 	//해당 유저의 리뷰 가져오기

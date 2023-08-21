@@ -53,9 +53,9 @@ function makeOrderCard() {
 						html +=			'</div>';
 						html +=		'</div>';
 						html +=		'<div class="orderCardRight d-flex">';
-						html +=			'<button class="cardButton">배송조회</button>';
+						html +=			'<button class="cardButton" >배송조회</button>';
 						html +=			'<button class="cardButton">교환, 반품 신청</button>';
-						html +=			'<button class="cardButton">리뷰 작성하기</button>';
+						html +=			'<button class="cardButton" onclick="writeReview(' + item.productNo + ')">리뷰 작성하기</button>';
 						html +=		'</div>';
 						html +=	'</div>';
 					} else {
@@ -90,7 +90,7 @@ function makeOrderCard() {
 							html +=		'<div class="orderCardRight d-flex">';
 							html +=			'<button class="cardButton">배송조회</button>';
 							html +=			'<button class="cardButton">교환, 반품 신청</button>';
-							html +=			'<button class="cardButton">리뷰 작성하기</button>';
+							html +=			'<button class="cardButton" onclick="writeReview(' + item.productNo + ')">리뷰 작성하기</button>';
 							html +=		'</div>';
 							html +=	'</div>';
 					}
@@ -121,7 +121,7 @@ function makeOrderCard() {
 					html +=		'<div class="orderCardRight d-flex">';
 					html +=			'<button class="cardButton">배송조회</button>';
 					html +=			'<button class="cardButton">교환, 반품 신청</button>';
-					html +=			'<button class="cardButton">리뷰 작성하기</button>';
+					html +=			'<button class="cardButton" onclick="writeReview(' + item.productNo + ')">리뷰 작성하기</button>';
 					html +=		'</div>';
 					html += '</div>';
 				}
@@ -206,6 +206,45 @@ function showModifyAddress(addressNo) {
 		error: function(error) {
 			console.log("아왜");
 		}
+	});
+}
+
+//리뷰 작성하기
+function writeReview(productNum) {
+	console.log("작성좀");
+	$.ajax({
+		url: "reviewWrite",
+		method: "get",
+		data:{"productNum": productNum},
+		success: function(data) {
+			$("#reviewList").html(data);
+			$("#showAlert").hide();
+			const reviewTabLink = document.querySelector('[data-toggle="tab"][href="#reviewList"]');
+			reviewTabLink.click();
+		},
+		error: function(error) {
+			console.log("아왜");
+		}
+	});
+}
+//폼 데이터를 비동기화로 넘기기 위한 스크립트.
+//그림파일도 넘기기 위해 formData로 form을 받고 cache, contentType, processData를 false로 해줌 
+function submitForm() {
+	var form = $("#reviewWrite")[0];
+	var formData = new FormData(form);
+	$.ajax({
+		url: "reviewWrite",
+		method: "post",
+		data: formData,
+		success: function(data) {
+			$("#reviewList").html(data);
+		},
+		error: function(error) {
+			console.log("아왜");
+		},
+		cache: false,
+      contentType: false,
+      processData: false
 	});
 }
 

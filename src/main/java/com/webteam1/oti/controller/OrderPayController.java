@@ -130,12 +130,13 @@ public class OrderPayController {
 		LoginDto loginUser = (LoginDto) session.getAttribute("loginIng");
 		String[] cartNos = (String[]) session.getAttribute("cartNos");
 		
-		if(cartNos != null) {			
+		if(cartNos != null) {
 			for(int i=0; i<cartNos.length; i++) {
 				cartService.cartDelete(Integer.parseInt(cartNos[i]));
-			}
+			}	
 		}
 		
+		session.removeAttribute("cartNos");
 		porder.setUsers_users_id(loginUser.getUsers_id());
 		orderService.addOrder(porder);
 		

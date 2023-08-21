@@ -161,26 +161,7 @@ function showReview(productNum, pageNo2, filter) {
 		}
 	});
 }
-//폼 데이터를 비동기화로 넘기기 위한 스크립트.
-//그림파일도 넘기기 위해 formData로 form을 받고 cache, contentType, processData를 false로 해줌 
-function submitForm() {
-	var form = $("#reviewWrite")[0];
-	var formData = new FormData(form);
-	$.ajax({
-		url: "reviewWrite",
-		method: "post",
-		data: formData,
-		success: function(data) {
-			$("#menu3").html(data);
-		},
-		error: function(error) {
-			console.log("아왜");
-		},
-		cache: false,
-        contentType: false,
-        processData: false
-	});
-}
+
 //리뷰 수정 요청하기
 function modifyForm() {
 	var form = $("#modifyReview")[0];
@@ -214,21 +195,7 @@ function reviewDetail(review_no) {
 		}
 	});
 }
-//리뷰 작성하기
-function writeReview(productNum) {
-	$.ajax({
-		url: "reviewWrite",
-		method: "get",
-		data:{"productNum": productNum},
-		success: function(data) {
-			$("#menu3").html(data);
-			$("#showAlert").hide();
-		},
-		error: function(error) {
-			console.log("아왜");
-		}
-	});
-}
+
 //리뷰 수정하기
 function showReviewModify(review_no) {
 	$.ajax({

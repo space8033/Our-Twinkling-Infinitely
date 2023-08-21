@@ -64,15 +64,15 @@ public class OrderServiceImpl implements OrderService {
 			log.info("상품번호: " + op.getOrderProduct_no());
 			orderProductDao.addOrderNumber(map);
 		}
-		couponDao.updateUsedCoupon(order.getCoupon_no());
+		couponDao.updateUsedCoupon(order.getCoupon_coupon_no());
 		
 		//주문시 적립금 사용/적립 기능
 		LoginDto user = userDao.selectByUsersId(order.getUsers_users_id());
 		int beforePoint = user.getUsers_opoint();
 		log.info(beforePoint+"이전포인트");
-		int usedPoint = order.getUsers_opoint();
+		int usedPoint = order.getUsers_users_opoint();
 		log.info(usedPoint+"사용포인트");
-		int totalPrice = order.getTotal_price();
+		int totalPrice = order.getOrder_total_price();
 		int savePoint = (int) (totalPrice * 0.005);
 		int afterPoint = beforePoint - usedPoint + savePoint; 
 		log.info(afterPoint+"계산후포인트");
@@ -120,6 +120,7 @@ public class OrderServiceImpl implements OrderService {
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
+				orderInfo.setProductNo(productNo);
 				orderInfo.setTitle(product.getProduct_name());
 				orderInfo.setPrice(product.getProduct_price());
 				orderInfo.setQuantity(j.getOrderProduct_qty());

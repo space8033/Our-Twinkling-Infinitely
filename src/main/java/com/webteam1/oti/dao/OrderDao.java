@@ -1,6 +1,7 @@
 package com.webteam1.oti.dao;
 
 import java.util.List;
+import java.util.Map;
 
 import org.apache.ibatis.annotations.Mapper;
 
@@ -12,4 +13,6 @@ public interface OrderDao {
 	public int selectOneByUserId(String userId);
 	public List<Integer> selectByUserId(String userId);
 	public Porder selectByOrderNo(int orderNo);
+	public List<Porder> selectOrderByUsersId(String userId);
+	public int countOrderByUsersId(String usersId);
 }
