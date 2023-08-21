@@ -73,6 +73,11 @@ window.addEventListener("beforeunload", function(event) {
 });
 
 */
+window.history.pushState(null, null, window.location.href);
+window.onpopstate = function(event) {
+    window.history.go(1);
+};
+
 
 function validateForm() {
 	consolelog("실행ssss");
