@@ -16,7 +16,7 @@
 				</c:if>
 			</div>
 			<hr/>
-			<c:set var="myReview" value="${reviews}" /> <!-- yourList는 컨트롤러에서 넘겨준 List 객체입니다. -->
+			<c:set var="myReview" value="${reviews}" /> 
 
 			<c:if test="${empty myReview}">
 				<div style="text-align: center">
@@ -93,10 +93,10 @@
 						
 						<c:forEach var="i" begin="${pager.startPageNo}" end="${pager.endPageNo}">
 							<c:if test="${pager.pageNo != i}">
-								<a class="btn btn-outline-success btn-sm" href="javascript:showReview(${productNum}, ${i})">${i}</a>
+								<a class="btn btn-sm" href="javascript:showReview(${productNum}, ${i})" style="color: black;">${i}</a>
 							</c:if>
 							<c:if test="${pager.pageNo == i}">
-								<a class="btn btn-danger btn-sm" href="javascript:showReview(${productNum}, ${i})">${i}</a>
+								<a class="btn btn-sm" href="javascript:showReview(${productNum}, ${i})" style="color: #53aeff; font-weight: bold;">${i}</a>
 							</c:if>
 						</c:forEach>
 						
@@ -109,7 +109,4 @@
 			</tr>
 		</table>
 		
-		<%-- <div class="mt-2">
-			<a href="javascript:writeReview(${productNum})" class="btn btn-sm btn-info">새글쓰기</a>
-		</div> --%>
 	</div>      

@@ -82,10 +82,10 @@
 						
 						<c:forEach var="i" begin="${pager.startPageNo}" end="${pager.endPageNo}">
 							<c:if test="${pager.pageNo != i}">
-								<a class="btn btn-outline-success btn-sm" href="javascript:showReviewByUser(${i})">${i}</a>
+								<a class="btn btn-sm" href="javascript:showReviewByUser(${i})" style="color: black;">${i}</a>
 							</c:if>
 							<c:if test="${pager.pageNo == i}">
-								<a class="btn btn-danger btn-sm" href="javascript:showReviewByUser(${i})">${i}</a>
+								<a class="btn btn-sm" href="javascript:showReviewByUser(${i})" style="color: #53aeff; font-weight: bold;">${i}</a>
 							</c:if>
 						</c:forEach>
 						

@@ -62,7 +62,7 @@
 							<div style="width:100%; border:1px solid #dadfe3">
 								<div class="d-flex">
 									<c:forEach var="image" items="${base64Img}">
-										<img src="data:MIME;base64, ${image}" height="75" width="75" class="mx-1">
+										<img src="data:MIME;base64, ${image}" height="75" width="75" class="mx-1 reviewImages">
 									</c:forEach>
 								</div>
 								${review.review_contents}
