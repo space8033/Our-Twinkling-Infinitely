@@ -204,8 +204,8 @@
 			<form id="addressAdd" name="addressAdd" onsubmit="checkValidation()" action="addressAdd" method="post">
 				<div class="my-3">
 					<div class="my-3 d-flex">
-						<div style="border: 1px solid #d0d0d0;">
-							<img class="addressIcon" src="${pageContext.request.contextPath}/resources/oimg/w회원.png">
+						<div style="margin-top: 10px;">
+							<img class="addressIcon" src="${pageContext.request.contextPath}/resources/oimg/w회원.png" style=" border: 1px solid #d0d0d0; height: 48px;">
 						</div>
 						<div>
 							<input type="text" id="uname" class="inputHolder" placeholder="받는 사람" style="border: 1px solid #d0d0d0;" 
@@ -216,14 +216,14 @@
 					<span id=unameErr2 class="errorMsg text-danger d-none small ml-2" style="border: none">받는 사람 이름을 정확히 입력해주세요.</span>
 				</div>
 				<div class="mt-3 d-flex">
-					<div style="border: 1px solid #d0d0d0;">
-						<img class="addressIcon" src="${pageContext.request.contextPath}/resources/oimg/w주소.png">
+					<div style="border: 1px solid #d0d0d0; margin-top: 10px;">
+						<img class="addressIcon" src="${pageContext.request.contextPath}/resources/oimg/w주소.png"  style=" height: 47px;">
 					</div>
 					<div>
 						<input class="inputHolder2" id="findNum" type="text" placeholder="우편번호 찾기" disabled="disabled" style="border: 1px solid #d0d0d0; border-right:none; background-color: white;">
 					</div>
-					<div class="cursorPointer" style="border: 1px solid #d0d0d0; border-left: none;" onclick="findAddress()">
-						<img class="addressIcon" src="${pageContext.request.contextPath}/resources/oimg/w돋보기.png">
+					<div class="cursorPointer" style="border: 1px solid #d0d0d0; border-left: none;  border-left: none; margin-top: 10px;" onclick="findAddress()">
+						<img class="addressIcon" src="${pageContext.request.contextPath}/resources/oimg/w돋보기.png"   style=" height: 45px; border-left: 1px solid #d0d0d0;">
 					</div>
 				</div>
 				<div>
@@ -261,14 +261,14 @@
 					<span id=utelErr2 class="errorMsg text-danger d-none small ml-2" style="border: none;">국내 휴대폰 번호만 가능합니다.</span>
 				</div>
 				<div class="my-3 d-flex">
-					<div style="border: 1px solid #d0d0d0;">
+					<div style="border: 1px solid #d0d0d0;  margin-top: 10px;">
 						<img class="addressIcon" src="${pageContext.request.contextPath}/resources/oimg/w요청사항.png">
 					</div>
 					<div>
-						<input id="deliveryNotify" class="inputHolder2" type="text" placeHolder="배송 요청사항" readonly="readonly" style="border: 1px solid #d0d0d0; border-right:none; background-color: white;" value="${address.deliveryRequest}" name="deliveryRequest">
+						<input id="deliveryNotify" class="inputHolder2" type="text" placeHolder="배송 요청사항" readonly="readonly" style="border: 1px solid #d0d0d0; height:51px; border-right:none; background-color: white;" value="${address.deliveryRequest}" name="deliveryRequest">
 					</div>
-					<div id="modalButton" class="cursorPointer" style="border: 1px solid #d0d0d0; border-left: none;">
-						<img class="addressIcon" src="${pageContext.request.contextPath}/resources/oimg/w우꺽쇠.png" >
+					<div id="modalButton" class="cursorPointer" style="border: 1px solid #d0d0d0; border-left: none;  margin-top: 10px;">
+						<img class="addressIcon" src="${pageContext.request.contextPath}/resources/oimg/w우꺽쇠.png" style="height: 48px;" >
 					</div>
 				</div>
 				<span id=deliveryNotifyErr class="errorMsg d-none text-danger small" style="border: none;">배송 요청사항을 입력해주세요.</span>

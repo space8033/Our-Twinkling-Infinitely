@@ -154,13 +154,15 @@
 		      			<th scope="col">등록일자</th>
 		      		</tr>
 		      	</thead>
+			    <c:if test="${pinquirys == 0}">		
+			    	<tbody>
+						<tr>
+					   		<td id="noInquiry" colspan="6">등록된 상품문의가 없습니다.</td>						
+						</tr>			    	
+			    	</tbody>      				   
+			    </c:if>
 		      	<tbody>
 		      		<c:forEach var="pinquiry" items="${myinquiryList}" varStatus="i">
-		      			<c:if test="${myinquiryList == null}">
-		      				<tr>
-		      					<td colspan="6">등록된 상품문의가 없습니다.</td>
-		      				</tr>
-		      			</c:if>				      		
 			      		<tr onclick="showInquiryContent(this)" style="cursor: pointer;">
 			      			<td>${i.count}</td>
 			      			<td>답변예정</td>
@@ -189,7 +191,7 @@
 			      			<td colspan="6" style="background-color: #f5f5f5;">
 			      				<div class="content">${pinquiry.PINQUIRY_CONTENT}</div>
 			      			</td>	
-			      		</tr>
+			      		</tr>			      		
 		      		</c:forEach>
 		      	</tbody>
 	      </table>

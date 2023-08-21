@@ -140,7 +140,7 @@ function priceCalculate() {
 }
 
 function openAdress() {
-   	window.open("/our-twinkling-infinitely/addressSelect", "winLogin", "left=350, top=300, width=500, height=650");
+   	window.open("/our-twinkling-infinitely/addressSelect", "winLogin", "left=350, top=300, width=560, height=650");
 }
 
 function openRequest() {
