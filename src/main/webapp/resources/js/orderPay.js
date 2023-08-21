@@ -4,6 +4,7 @@ $(init)
 function init(){
 	priceCalculate();
 	couponList();
+	date();
 }
 //basket에서 check 옵션을 선택 유효성 검사
 $(document).ready(function() {
@@ -73,11 +74,23 @@ window.addEventListener("beforeunload", function(event) {
 });
 
 */
-window.history.pushState(null, null, window.location.href);
-window.onpopstate = function(event) {
-    window.history.go(1);
-};
 
+function date() {
+	 var today = new Date();
+     var futureDate = new Date(today);
+     futureDate.setDate(today.getDate() + 3);
+     
+     var year = futureDate.getFullYear();
+     var month = String(futureDate.getMonth() + 1).padStart(2, '0');
+     var day = String(futureDate.getDate()).padStart(2, '0');
+     var dayOfWeek = ['일', '월', '화', '수', '목', '금', '토'][futureDate.getDay()];
+     
+     var formattedDate = year + '/' + month + '/' + day + ' (' + dayOfWeek + ')까지 도착 예정';
+     
+     $("#date").val(formattedDate);
+	
+	
+}
 
 function validateForm() {
 	consolelog("실행ssss");
@@ -750,10 +763,16 @@ function checkValidation() {
     
    	
    	var addressNo = $('#addressNo').val();
+   	console.log(addressNo+"배송지번호");
    	if(addressNo == null) {
    		isValidation = false;
    		alert("배송지를 선택해주세요");
    	}
+   	if(addressNo === "") {
+   		isValidation = false;
+   		alert("배송지를 선택해주세요");
+   	}
+	console.log(isValidation+"유효성");
 	
 	//계좌이체
 	if($("input[name='pay-method']:checked").val() == '계좌이체'){

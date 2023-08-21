@@ -351,6 +351,9 @@ public class UserController {
 		        pageNo7 = "1";
 		    }
 		}
+		LoginDto user = userService.getUser(loginUser.getUsers_id());
+		int totalPoints = loginUser.getUsers_opoint();
+		model.addAttribute("totalPoints", totalPoints);
 
 		//문자열을 정수로 변환
 		int intPageNo = Integer.parseInt(pageNo7);

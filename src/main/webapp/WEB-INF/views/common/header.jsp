@@ -37,7 +37,7 @@
 		   	<div class="logo">		   	
 			   <p style="width: 200px;">Our-Twinkling-Infinitely</p>	   
 			   <c:if test = "${loginIng != null}">
-			  	 <div id="loginIng" class="d-flex justify-content-end">현재 ${loginIng.users_id} 아이디로 로그인 중입니다.</div>
+			  	 <div id="loginIng" class="d-flex justify-content-end"><span style="padding-top: 6px;">환영합니다! ${loginIng.users_id} 님 </span><img src="${pageContext.request.contextPath}/resources/image/sion/light.png" width="23px" /></div>
 			   </c:if>
 			   <c:if test = "${loginIng == null}">
 			   </c:if>

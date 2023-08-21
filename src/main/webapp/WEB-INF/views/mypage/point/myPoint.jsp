@@ -9,7 +9,7 @@
 	
 	<body class="container">
 				<div id="point">
-					  <span><img src="https://cdn-icons-png.flaticon.com/512/6713/6713658.png" width="30"/></span>
+					  <span><img class="icon" src="${pageContext.request.contextPath}/resources/image/sion/free-icon-point.png" width="30"/></span>
 				  	  <span>사용가능 포인트: <span id="num">${totalPoints}P</span></span>
 		 	    </div>
 				

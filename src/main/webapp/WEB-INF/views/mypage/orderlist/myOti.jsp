@@ -126,7 +126,7 @@
 			  </c:if>
 		  </div>
 		  <c:if test="${totalCoupons == 0}">
-		  	<div class="noCoupon card">사용가능한 쿠폰이 업습니다.</div>
+		  	<div class="noCoupon card">사용가능한 쿠폰이 없습니다.</div>
 		  </c:if>
 		</div>
 		<div id = "myPoints" class="container">

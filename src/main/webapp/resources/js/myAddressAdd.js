@@ -120,12 +120,36 @@ function checkValidation() {
 		isValidation = false;
 	}
 	
+	var postSelect = $("#findNum").val();
+	if(postSelect === "") {
+		isValidation = false;
+		uaddressErr.removeClass("d-none");
+		uaddressErr.addClass("redLine");
+	}
+	
 	var roadAddress = $("#roadAddress").val();
+	console.log(roadAddress+"도로명주소");
 	var uaddressErr = $("#uaddressErr");
 	
 	uaddressErr.addClass("d-none");
 	
+	
+	
+	
 	if(!roadAddress) {
+		uaddressErr.removeClass("d-none");
+		uaddressErr.addClass("redLine");
+		isValidation = false;
+	}
+	
+	if(roadAddress === "") {
+		uaddressErr.removeClass("d-none");
+		uaddressErr.addClass("redLine");
+		isValidation = false;
+	}
+	
+	var detail = $("#detail").val();
+	if(detail === "") {
 		uaddressErr.removeClass("d-none");
 		uaddressErr.addClass("redLine");
 		isValidation = false;
@@ -166,6 +190,7 @@ function checkValidation() {
 	
 	deliveryNotifyErr.addClass("d-none");
 	
+	console.log(deliveryNotify+"나 배송 요청 사항");
 	if(deliveryNotify === "") {
 		deliveryNotifyErr.removeClass("d-none");
 		deliveryNotifyErr.addClass("redLine");

@@ -199,9 +199,9 @@
 	
 	<body class="container">
 		<div id= "header">배송지 추가</div>
-		<div id="wrapper" class="d-flex justify-content-center">	
+		<div id="wrapper" class="d-flex justify-content-center">
 		<!------------------------------------- 내용 들어갈 div -------------------------------------->
-			<form id="addressAdd" name="addressAdd" action="addressAdd" method="post">
+			<form id="addressAdd" name="addressAdd" onsubmit="checkValidation()" action="addressAdd" method="post">
 				<div class="my-3">
 					<div class="my-3 d-flex">
 						<div style="border: 1px solid #d0d0d0;">

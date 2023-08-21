@@ -114,20 +114,9 @@
 						<div id="orderplus">
 						 	<table class="nofn" style="font-family: Dotum, sans-serif;">
 								<tr>
-									<th colspan='3' class="text-left" style="font-size: 16px; color: #00891A;">
-									    <script>
-									        // 현재 날짜 구하기
-									        var currentDate = new Date();
-									        // 3일 후의 날짜 구하기
-									        var threeDaysLater = new Date(currentDate);
-									        threeDaysLater.setDate(currentDate.getDate() + 3);
-									        // 요일 목록
-									        var daysOfWeek = ['일', '월', '화', '수', '목', '금', '토'];
-									        // 날짜를 월/일(요일) 형식으로 변환
-									        var formattedDate = (threeDaysLater.getMonth() + 1) + '/' + threeDaysLater.getDate() + '(' + daysOfWeek[threeDaysLater.getDay()] + ')';
-									        // 결과를 출력
-									        document.write(formattedDate + '까지 도착 보장');
-									    </script>
+									<th colspan='3' class="text-left" >
+									    <input type="text" id="date" readonly="readonly" name="date" value="0" style="background-color: #F4F4F4; border: none; width:300px; font-size: 16px; color: #00891A;">
+									    
 									</th>
 								</tr>
 								<c:set var="totalPrice" value="0" />

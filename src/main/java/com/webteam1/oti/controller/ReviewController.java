@@ -165,13 +165,13 @@ public class ReviewController {
 	@GetMapping("/reviewByUser")
 	public String reviewByUser(String pageNo5, Model model, HttpSession session) {
 		if(pageNo5 == null) {
-		   //세션에 저장되어 있는지 확인
-		   pageNo5 = (String) session.getAttribute("pageNo5");
-		   //저장되어있지 않다면 "1"로 초기화
-		   if(pageNo5 == null) {
-			   pageNo5 = "1";
-		   }
-		}
+	         //세션에 저장되어 있는지 확인
+	         if(session.getAttribute("pageNo5") == null) {
+	              pageNo5 = "1";            
+	         } else {
+	              pageNo5 = (String) session.getAttribute("pageNo5");
+	         }
+	    }
 		LoginDto user = (LoginDto) session.getAttribute("loginIng");
 		String userId = user.getUsers_id();
 		
