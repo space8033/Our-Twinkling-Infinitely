@@ -136,14 +136,10 @@ public class ReviewController {
 			productNo = Integer.parseInt(productNumber);
 		}else {
 		}
-		Map<String, Object> map = new HashMap<>();
-		map.put("user_id", review.getReviewWriter());
-		map.put("productNo", productNo);
-		map.put("title", review.getReviewTitle());
 		
 		review.setProductNo(productNo);
 		reviewService.createReview(review);
-		int reviewNo = reviewService.findByUserId(map);
+		int reviewNo = reviewService.findByUserId(review.getReviewWriter());
 		
 		MultipartFile[] files = review.getFile();
 		
@@ -254,6 +250,29 @@ public class ReviewController {
 		}
 		
 		return "redirect:/review";
+	}
+
+	@Login
+	@PostMapping("/modifyUserReview")
+	public String modifyReviewPost2(ReviewReceive review, HttpSession session) throws Exception{
+		reviewService.updateReview(review);
+		imageService.deleteImages(review.getReview_no());
+		
+		MultipartFile[] files = review.getFile();
+		
+		for(MultipartFile file : files) {
+			Image image = new Image();
+			if(!file.isEmpty()) {
+				image.setImage_name(file.getOriginalFilename());
+				image.setImage_fileName(file.getContentType());
+				image.setImage_file(file.getBytes());
+				image.setReview_review_no(review.getReview_no());
+				
+				imageService.registerImg(image);
+			}
+		}
+		
+		return "redirect:/reviewByUser";
 	}
 	
 	@Login

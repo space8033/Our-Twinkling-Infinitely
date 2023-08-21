@@ -7,7 +7,7 @@
    <head>
       <meta charset="UTF-8">
       <meta name="viewport" content="width=device-width, initial-scale=1.0">
-      <link rel="icon" href="../../common/image/coupang/쿠팡아이콘.png" type="image/x-icon">
+      <link rel="icon" href="${pageContext.request.contextPath}/resources/yuimg/favicon.png" type="image/x-icon">
       <title>OTi | 장바구니</title>
       
       <!-- Bootstrap을 사용하기 위한 외부 라이브러리 가져오기 -->

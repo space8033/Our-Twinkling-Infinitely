@@ -1,5 +1,9 @@
 package com.webteam1.oti.service;
 
+import java.util.List;
+import java.util.Map;
+
+import com.webteam1.oti.dto.Pinquiry;
 import com.webteam1.oti.dto.user.JoinDto;
 import com.webteam1.oti.dto.user.LoginDto;
 import com.webteam1.oti.dto.user.ModifyDto;
@@ -47,7 +51,9 @@ public interface UserService {
 	
 	//마이페이지 기본이미지로 변경
     public void changeBasic(String usersId);
-    
-	
+    //마이페이지 상품문의 수
+    public int getMyInquiry(String usersId);
+    //마이페이지 상품문의 리스트
+	public List<Pinquiry> getMyInquiryList(String usersId);
 	
 }

@@ -63,8 +63,8 @@ public class ProductServiceImpl implements ProductService{
 	
 	//Pinquiry list
 	@Override
-	public List<Pinquiry> getPinquiryList(Pager pager) {
-		List<Pinquiry> list = productDao.selectPinquiryByPage(pager);
+	public List<Pinquiry> getPinquiryList(Map<String, Object> map) {
+		List<Pinquiry> list = productDao.selectPinquiryByPage(map);
 		return list;
 	}
 	

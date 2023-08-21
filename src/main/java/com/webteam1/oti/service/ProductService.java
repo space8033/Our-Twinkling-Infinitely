@@ -24,6 +24,6 @@ public interface ProductService {
 	public int countResult(Map<String, Object> map);
 	//productInquiry Service
 	public int writePinquiry(Pinquiry pinquiry);
-	public List<Pinquiry> getPinquiryList(Pager pager); 
+	public List<Pinquiry> getPinquiryList(Map<String, Object> map); 
 	public int getTotalPinquiryNum(int product_no);
 }

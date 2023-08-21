@@ -1,6 +1,8 @@
 package com.webteam1.oti.service;
 
 import java.util.Base64;
+import java.util.List;
+import java.util.Map;
 
 import javax.annotation.Resource;
 
@@ -9,6 +11,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import com.webteam1.oti.dao.UserDao;
+import com.webteam1.oti.dto.Pinquiry;
 import com.webteam1.oti.dto.user.JoinDto;
 import com.webteam1.oti.dto.user.LoginDto;
 import com.webteam1.oti.dto.user.ModifyDto;
@@ -131,6 +134,18 @@ public class UserServiceImpl implements UserService{
 	@Override
 	public void changeBasic(String usersId) {
 		userDao.updateBasic(usersId);
+	}
+
+	@Override
+	public int getMyInquiry(String usersId) {
+		int numOfPinquirys = userDao.selectMyPinquiry(usersId);
+		return numOfPinquirys;
+	}
+
+	@Override
+	public List<Pinquiry> getMyInquiryList(String usersId) {
+		List<Pinquiry> list = userDao.selectMyPinquiryList(usersId);
+		return list;
 	}
 }	
 	

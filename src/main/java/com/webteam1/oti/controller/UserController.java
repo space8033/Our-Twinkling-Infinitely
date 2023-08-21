@@ -25,6 +25,7 @@ import org.springframework.web.util.WebUtils;
 
 import com.webteam1.oti.dto.Coupon;
 import com.webteam1.oti.dto.Pager;
+import com.webteam1.oti.dto.Pinquiry;
 import com.webteam1.oti.dto.cart.Cart;
 import com.webteam1.oti.dto.point.Point;
 import com.webteam1.oti.dto.user.Agreement;
@@ -325,7 +326,13 @@ public class UserController {
 		List<Coupon> list = couponService.getCouponByUsersId(user.getUsers_id());
 		model.addAttribute("coupons", list);
 		
-		
+		//상품문의 수
+		int pinquirys = userService.getMyInquiry(user.getUsers_id());
+		model.addAttribute("pinquirys", pinquirys);
+		//상품문의 리스트
+		List<Pinquiry> pinquiryList = userService.getMyInquiryList(user.getUsers_id());
+		log.info("리스틀얍 : " + pinquiryList.toString());
+		model.addAttribute("myinquiryList", pinquiryList);
 		
 		//마이페이지에 보일 가입일
 		String join = user.getUsers_createdDate();
@@ -417,7 +424,6 @@ public class UserController {
 	@Login
 	@PostMapping("/mypage")
 	public String addMyImg(MultipartFile users_mattach, HttpSession session, Model model) throws Exception{
-		
 		LoginDto loginDto = (LoginDto)session.getAttribute("loginIng");
 		loginDto.setUsers_mattach(users_mattach);
 		

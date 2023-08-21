@@ -37,8 +37,8 @@ public class ReviewServiceImpl implements ReviewService{
 	}
 
 	@Override
-	public int findByUserId(Map<String , Object> map) {
-		return reviewDao.selectByUserId(map);
+	public int findByUserId(String user_id) {
+		return reviewDao.selectByUserId(user_id);
 	}
 
 	@Override
