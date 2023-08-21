@@ -43,7 +43,7 @@
 									    <tr class="table-light">
 									      <td>${point.date}</td>
 									      <td>${point.order_number}</td>
-									      <td>+${point.opoint}</td>
+									      <td class="text-primary">+${point.opoint}</td>
 									      <td>${point.point_category}</td>
 									      <td>${point.point_status}</td>
 									    </tr>

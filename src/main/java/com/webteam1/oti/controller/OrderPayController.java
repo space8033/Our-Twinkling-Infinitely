@@ -62,6 +62,7 @@ public class OrderPayController {
 	@Login
 	@GetMapping("/orderPay")
 	public String orderPay(Model model, HttpSession session) {
+
 		
 		LoginDto loginUser = (LoginDto) session.getAttribute("loginIng");
 		ModifyDto loginUserData = userService.getModifyByUsersId(loginUser.getUsers_id());
@@ -70,7 +71,8 @@ public class OrderPayController {
 		List<ProductOption> optionList = orderProductService.getOrderProductOption(loginUser.getUsers_id());
 		List<OrderProduct> orderProductList = orderProductService.getOrderProduct(loginUser.getUsers_id());
 		List<Coupon> couponList = couponService.getCouponByUsersId(loginUser.getUsers_id());
-		int totalPoints = loginUser.getUsers_opoint();
+		LoginDto user = userService.getUser(loginUser.getUsers_id());
+		int totalPoints = user.getUsers_opoint();
 		model.addAttribute("productList", productList);
 		model.addAttribute("optionList", optionList);
 		model.addAttribute("orderProductList", orderProductList);
@@ -140,7 +142,7 @@ public class OrderPayController {
 		porder.setUsers_users_id(loginUser.getUsers_id());
 		orderService.addOrder(porder);
 		
-        return "redirect:/";
+		return "redirect:/orderPay";
 	}
 	
 	
