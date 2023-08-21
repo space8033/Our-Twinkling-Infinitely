@@ -364,6 +364,7 @@ public class UserController {
 		List<Point> usedPointList = pointService.usedPointList(loginUser.getUsers_id());
 		List<Point> savedPointList = pointService.savedPointList(loginUser.getUsers_id());
 		// 날짜를 내림차순으로 정렬하는 Comparator
+		// 날짜를 내림차순으로 정렬하는 Comparator
 		Comparator<Point> dateComparator = Comparator.comparing(Point::getDate, Comparator.reverseOrder());
 
 		// 사용된 포인트 리스트를 날짜 내림차순으로 정렬
@@ -372,19 +373,11 @@ public class UserController {
 		// 적립된 포인트 리스트를 날짜 내림차순으로 정렬
 		savedPointList.sort(dateComparator);
 
-		// 교대로 합치는 로직
+		// 두 리스트를 합친 후 날짜순으로 정렬
 		List<Point> combinedPointList = new ArrayList<>();
-		Iterator<Point> usedIterator = usedPointList.iterator();
-		Iterator<Point> savedIterator = savedPointList.iterator();
-
-		while (usedIterator.hasNext() || savedIterator.hasNext()) {
-		    if (usedIterator.hasNext()) {
-		        combinedPointList.add(usedIterator.next());
-		    }
-		    if (savedIterator.hasNext()) {
-		        combinedPointList.add(savedIterator.next());
-		    }
-		}
+		combinedPointList.addAll(usedPointList);
+		combinedPointList.addAll(savedPointList);
+		combinedPointList.sort(dateComparator);
 
 		// 합친 리스트의 크기를 구하고 페이징 처리
 		int combinedListSize = combinedPointList.size();
@@ -423,6 +416,7 @@ public class UserController {
 
 		return "redirect:/mypage";
 	}
+	
 	//마이페이지 이미지 추가
 	@Login
 	@PostMapping("/mypage")

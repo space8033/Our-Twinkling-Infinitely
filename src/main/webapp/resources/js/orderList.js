@@ -212,7 +212,6 @@ function showModifyAddress(addressNo) {
 
 //리뷰 작성하기
 function writeReview(productNum) {
-	console.log("작성좀");
 	$.ajax({
 		url: "reviewWrite",
 		method: "get",
