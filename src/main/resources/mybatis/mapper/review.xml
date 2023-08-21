@@ -62,10 +62,17 @@
 		values(#{review_no}, #{reviewWriter}, #{reviewRating}, #{reviewTitle}, #{reviewContents}, to_char(sysdate,'yyyy.mm.dd hh24:mi:ss'), #{productNo})
 	</insert>
 
-	<select id="selectByUserId" parameterType="Map" resultType="int">
-		select review_no
-		from review
-		where review_name = #{user_id} and product_no=#{productNo} and review_title = #{title}
+	<select id="selectByUserId" parameterType="String" resultType="int">
+		<![CDATA[
+		    SELECT review_no
+		    FROM (
+		        SELECT review_no
+		        FROM review
+		        WHERE review_name = #{user_id}
+		        ORDER BY review_createddate DESC
+		    )
+		    WHERE ROWNUM = 1
+	    ]]>
 	</select>
 	
 	<update id="updateReview" parameterType="ReviewReceive">

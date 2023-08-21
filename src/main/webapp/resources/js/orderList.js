@@ -297,7 +297,7 @@ function modifyForm() {
 	var form = $("#modifyReview")[0];
 	var formData = new FormData(form);
 	$.ajax({
-		url: "modifyReview",
+		url: "modifyUserReview",
 		method: "post",
 		data: formData,
 		success: function(data) {
