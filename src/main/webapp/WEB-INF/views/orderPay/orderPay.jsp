@@ -183,7 +183,7 @@
 									<div id="dicountRow" style="background-color: #f8f8f8; padding-bottom:16px; padding-top:10px;">
 										<c:forEach var="coupon" items="${couponList}">
 										    <div>
-										        <input class="couponUse" type="radio" name="coupon_no" value= "${coupon.coupon_no}" style="margin-left: 170px;"/>
+										        <input class="couponUse" type="radio" name="coupon_coupon_no" value= "${coupon.coupon_no}" style="margin-left: 170px;"/>
 										        <input type="hidden" name="coupon_value" value="${coupon.coupon_value}">
 										        <input type="hidden" name="coupon_condition" value="${coupon.coupon_condition}">
 										        <span class="coupon">${coupon.coupon_value}
@@ -230,7 +230,7 @@
 								<td style="margin:0px; padding:0px;">
 									<div style=" padding-top:10px; padding-left:16px; padding-bottom:10px;">
 										<span style="display:inline-block; width:155px;">
-											-<input type="number" id="balance" readonly="readonly" name="users_opoint" style="border: none; width:50px;">
+											-<input type="number" id="balance" readonly="readonly" name="users_users_opoint" style="border: none; width:50px;">
 											<span>원</span>
 										</span>
 										<span style="padding-top:20px;">
@@ -256,7 +256,7 @@
 							<tr>
 								<th>총결제금액</th>
 								<td>
-									<span><input type="number" id="price" readonly="readonly" name="total_price" value="0" style="border: none; width:63px;"></span>원
+									<span><input type="number" id="price" readonly="readonly" name="order_total_price" value="0" style="border: none; width:63px;"></span>원
 									<span id="expectPoint" style="margin-left: 100px;">
 										캐시적립 예정 : <input type="number" id="point" readonly="readonly" value="0" style="border: none; width:30px;">원
 									</span>		

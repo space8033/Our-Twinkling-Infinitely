@@ -15,7 +15,7 @@ public class Porder {
 	private Date order_modifiedDate;
 	private Date order_deletedDate;
 	private String order_del_fee;
-	private int coupon_no;
-	private int users_opoint;
-	private int total_price;
+	private int coupon_coupon_no;
+	private int users_users_opoint;
+	private int order_total_price;
 }

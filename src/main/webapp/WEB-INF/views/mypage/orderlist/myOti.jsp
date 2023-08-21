@@ -35,7 +35,7 @@
 					<a href="${pageContext.request.contextPath}/modify">회원 정보 변경</a>
 				</div>
 				<div id="cash" class="mine">
-					<a onclick="showPointList()" href="#" class="accordion">
+					<a onclick="showPointList()" href="#myPoints" class="accordion">
 						<img class="icon" src="${pageContext.request.contextPath}/resources/yuimg/won.png" width="55"/>
 						<div class="text-body">적립금></div>
 					</a>
@@ -132,47 +132,7 @@
 		<div id = "myPoints" class="container">
 				
 		<!------------------------------------- 내용 들어갈 div -------------------------------------->
-				<div id="point-list" style="width: 100%; margin-top: 20px;">
-					<div id="pointContainer" style="width: 100%;">
-						<c:forEach var="address" items="${list}">
-							<div class="myAddress">
-								<div class="mt-4 mb-2 font-weight-bold">${address.address_receiver}</div>
-								<c:if test="${address.address_isdefault == true}">
-									<div id="standardAddress">기본배송지</div>
-								</c:if>
-								<div class="mt-2">${address.address_roadAddress} </div>
-								<div class="mt-2">${address.address_jibunAddress} </div>
-								<div class="mt-2">${address.address_extraAddress} </div>
-								<div class="mt-2">${address.address_detail} </div>
-								<div> ${address.users_phone}</div>
-								<div> ${address.deliveryRequest}</div>
-								<div><button class="modifyButton" onclick="javascript:showModifyAddress(${address.address_no})">수정</button></div>
-							</div>
-						</c:forEach>
-					</div>
-					
-					<div class="d-flex justify-content-center m-4">
-						<a class="btn btn-sm" href="javascript:showAddress(1)">처음</a>
-						<c:if test="${pager.groupNo>1}">
-							<a class="btn btn-sm" href="javascript:showAddress(${pager.startPageNo-1})">이전</a>
-						</c:if>
-						
-						<c:forEach var="i" begin="${pager.startPageNo}" end="${pager.endPageNo}">
-							<c:if test="${pager.pageNo != i}">
-								<a class="btn btn-sm" href="javascript:showAddress(${i})">${i}</a>
-							</c:if>
-							<c:if test="${pager.pageNo == i}">
-								<a class="btn btn-sm" href="javascript:showAddress(${i})">${i}</a>
-							</c:if>
-						</c:forEach>
-						
-						<c:if test="${pager.groupNo<pager.totalGroupNo}">
-							<a class="btn btn-sm" href="javascript:showAddress(${pager.endPageNo+1})">다음</a>
-						</c:if>
-						<a class="btn btn-sm" href="javascript:showAddress(${pager.totalPageNo}">맨끝</a>
-					</div>
-					
-				</div>
+				
   		</div>
 		<div id="wrapper">
 			<h6>나의 쇼핑 활동</h6>
