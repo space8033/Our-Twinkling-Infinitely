@@ -150,63 +150,62 @@
 				    </div>
 				    <div id="menu2" class="tabMenu-content container tab-pane fade"><br>
 				       <table class="table">
-		       	<colgroup>
-		      		<col width="7%">
-		      		<col width="12%">
-		      		<col width="10%">
-		      		<col width="auto">
-		      		<col width="12%">
-		      		<col width="13%">
-		      	</colgroup>
-		      	<thead>
-		      		<tr>
-		      			<th scope="col">번호</th>
-		      			<th scope="col">답변여부</th>
-		      			<th scope="col">구분</th>
-		      			<th scope="col">제목</th>
-		      			<th scope="col">작성자</th>
-		      			<th scope="col">등록일자</th>
-		      		</tr>
-		      	</thead>
-		      	<tbody>
-		      		<c:forEach var="inquiry" items="${pinquirys}" varStatus="i">
-		      			<c:if test="${pinquirys == null}">
-		      				<tr>
-		      					<td colspan="6">등록된 상품문의가 없습니다.</td>
-		      				</tr>
-		      			</c:if>				      		
-			      		<tr onclick="showInquiryContent(this)" style="cursor: pointer;">
-			      			<td>${i.count}</td>
-			      			<td>답변예정</td>
-			      			<td>
-			      				<c:if test="${inquiry.pinquiry_type == 1}">
-			      					크기
-			      				</c:if>
-			      				<c:if test="${inquiry.pinquiry_type == 2}">
-			      					배송
-			      				</c:if>
-			      				<c:if test="${inquiry.pinquiry_type == 3}">
-			      					재입고
-			      				</c:if>
-			      				<c:if test="${inquiry.pinquiry_type == 4}">
-			      					상품상세문의
-			      				</c:if>
-			      				<c:if test="${inquiry.pinquiry_type == 5}">
-			      					기타
-			      				</c:if>
-			      			</td>
-			      			<td>${inquiry.pinquiry_title}</td>
-			      			<td>${inquiry.users_users_id}</td>
-			      			<td>${inquiry.pinquiry_createdDate}</td>
-			      		</tr>
-			      		<tr class="content-row">
-			      			<td colspan="6" style="background-color: #f5f5f5;">
-			      				<div class="content">${inquiry.pinquiry_content}</div>
-			      			</td>	
-			      		</tr>
-		      		</c:forEach>
-		      	</tbody>
-	      </table>
+					       	<colgroup>
+					      		<col width="7%">
+					      		<col width="12%">
+					      		<col width="10%">
+					      		<col width="auto">
+					      		<col width="12%">
+					      		<col width="13%">
+					      	</colgroup>
+					      	<thead>
+					      		<tr>
+					      			<th scope="col">번호</th>
+					      			<th scope="col">답변여부</th>
+					      			<th scope="col">구분</th>
+					      			<th scope="col">제목</th>
+					      			<th scope="col">작성자</th>
+					      			<th scope="col">등록일자</th>
+					      		</tr>
+					      	</thead>
+					      	<tbody>
+					      		<c:forEach var="inquiry" items="${pinquirys}" varStatus="i">
+					      			<c:if test="${pinquirys == null}">
+					      				<tr>
+					      					<td colspan="6">등록된 상품문의가 없습니다.</td>
+					      				</tr>
+					      			</c:if>				      		
+						      		<tr onclick="showInquiryContent(this)" style="cursor: pointer;">
+						      			<td>${i.count}</td>
+						      			<td>답변예정</td>
+						      			<td>
+						      				<c:if test="${inquiry.pinquiry_type == 1}">
+						      					크기
+						      				</c:if>
+						      				<c:if test="${inquiry.pinquiry_type == 2}">
+						      					배송
+						      				</c:if>
+						      				<c:if test="${inquiry.pinquiry_type == 3}">
+						      					재입고
+						      				</c:if>
+						      				<c:if test="${inquiry.pinquiry_type == 4}">
+						      					상품상세문의
+						      				</c:if>
+						      				<c:if test="${inquiry.pinquiry_type == 5}">
+						      					기타
+						      				</c:if>
+						      			</td>
+						      			<td>${inquiry.pinquiry_title}</td>
+						      			<td>${inquiry.users_users_id}</td>
+						      			<td>${inquiry.pinquiry_createdDate}</td>
+						      		</tr>
+						      		<tr class="content-row">
+						      			<td colspan="6" style="background-color: #f5f5f5;">
+						      				<div class="content">${inquiry.pinquiry_content}</div>
+						      			</td>	
+						      		</tr>
+					      		</c:forEach>
+					      	</tbody>
 				      </table>
 				      <div class="d-flex justify-content-center m-4">
 						<a class="btn btn-sm" href="?product_no=${product.product_no}&pageNo=1">처음</a>

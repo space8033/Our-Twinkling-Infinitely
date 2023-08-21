@@ -9,6 +9,33 @@
 <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.4/dist/jquery.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>
+<script>
+$(document).ready(function() {
+	console.log("실행")
+    $("#productInquiryWrite").submit(function(){
+    	console.log("실행")
+    	event.preventDefault(); 
+    	var formData = $("#productInquiryWrite").serialize(); // 폼 데이터 직렬화
+		
+	    $.ajax({
+	        url: "productInquiryWrite",
+	        type: "POST", 
+	        data: formData,
+	        success: function(response) {
+	            // 서버로부터 응답을 받았을 때 처리할 로직
+	            alert("폼 데이터가 성공적으로 전송되었습니다.");
+	            window.opener.location.reload();
+	            window.close(); // 팝업 닫기
+	        },
+	        error: function(jqXHR, textStatus, errorThrown) {
+	            // 요청 실패 시 처리할 로직
+	            alert("폼 데이터 전송 중 오류가 발생하였습니다.");
+	        }
+	    });
+    });
+
+});
+</script>
 
 <link rel="icon" href="${pageContext.request.contextPath}/resources/yuimg/favicon.png" type="image/x-icon">
 <title>OTi 상품문의</title>
@@ -18,7 +45,7 @@
 	<header>
 		<h2>상품문의</h2>
 	</header>
-	<form id="productInquiryWrite" method="post" action="productInquiryWrite" onsubmit="parent.parentClosePopup();">
+	<form id="productInquiryWrite" method="post" action="productInquiryWrite" onsubmit="submitAndClose()">
 		<div class="qa-product d-flex">
 			<img src="data:MIME;base64, ${product.product_img}" width="95"/>
 			<input type="hidden" name="product_product_no" value="${product.product_no}"/>
@@ -88,7 +115,7 @@
 		</div>
 		<div class="d-flex justify-content-center">
 			<button type="button" class="btn btn-outline-primary">취소하기</button>
-			<button type="submit" class="btn btn-primary">작성하기</button>
+			<button type="submit" class="btn btn-primary" onclick="submitAndClose()">작성하기</button>
 		</div>
 	</form>
 </body>
