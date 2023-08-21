@@ -12,6 +12,7 @@
 		<typeAlias alias="Pager" type="com.webteam1.oti.dto.Pager"/>
 		<typeAlias alias="Product" type="com.webteam1.oti.dto.Product"/>
 		<typeAlias alias="ProductOption" type="com.webteam1.oti.dto.ProductOption"/>
+		<typeAlias alias="Pinquiry" type="com.webteam1.oti.dto.Pinquiry"/>
 		<typeAlias alias="Porder" type="com.webteam1.oti.dto.order.Porder"/>
 		<typeAlias alias="Cart" type="com.webteam1.oti.dto.cart.Cart"/>
 		<typeAlias alias="CartDto" type="com.webteam1.oti.dto.cart.CartDto"/>

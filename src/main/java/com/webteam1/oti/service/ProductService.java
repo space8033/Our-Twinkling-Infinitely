@@ -6,6 +6,7 @@ import java.util.Map;
 
 import com.webteam1.oti.dto.OrderProduct;
 import com.webteam1.oti.dto.Pager;
+import com.webteam1.oti.dto.Pinquiry;
 import com.webteam1.oti.dto.Product;
 import com.webteam1.oti.dto.ProductOption;
 
@@ -21,4 +22,8 @@ public interface ProductService {
 	//product Search Service
 	public List<Product> search(Map<String, Object> map);
 	public int countResult(Map<String, Object> map);
+	//productInquiry Service
+	public int writePinquiry(Pinquiry pinquiry);
+	public List<Pinquiry> getPinquiryList(Pager pager); 
+	public int getTotalPinquiryNum(int product_no);
 }

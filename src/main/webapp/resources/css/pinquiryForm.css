@@ -1,0 +1,64 @@
+.qa-product{
+	margin: 20px;
+	padding-bottom: 8px;
+    border-bottom: 1px solid #f6f6f6;
+}
+.qa-product-info{
+	padding-top: 25px;
+}
+.p-info{
+	margin-left: 20px;
+}
+
+.qa-type-area{
+	width: 130px;
+}
+.notify{
+	color: #8d8f8e;
+	font-size: 12px;
+}
+h2{
+	font-size: 20px;
+	font-weight: bold;
+	margin: 20px;
+}
+table{
+	margin-top: 20px;
+}
+label{
+	font-size: 13px;
+}
+th{
+	font-size: 14px;
+	margin: 12px;
+	padding-right: 10px;
+	padding-left: 20px;
+}
+#guide{
+	font-size: 14px;
+	font-weight: bold;
+	padding-right: 10px;
+	padding-left: 20px;
+	padding-top: 10px;
+	border-top: 1px solid #f6f6f6;
+}
+#p-name{
+	font-weight: bold;
+}
+td{
+	margin: 20px;
+}
+
+.emphasis{
+	font-size: 12px;
+	color: black;
+	font-weight: bold;
+}
+button{
+	margin-right: 5px;
+}
+::placeholder {
+    font-size: 12px; 
+  	font-weight: bold;
+  	padding: 5px
+}

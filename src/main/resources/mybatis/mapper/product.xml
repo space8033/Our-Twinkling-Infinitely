@@ -13,6 +13,8 @@
 		)
 	</insert>
 	
+	
+	<!-- 페이지 별 상품리스트 -->
 	<select id="selectByPage" parameterType="Pager" resultType="Product">
    		<![CDATA[
        select rnum, product_no, product_name, product_price, product_imgFile, product_img
@@ -28,7 +30,8 @@
 		 where rnum >= #{startRowNo}
 		 ]]>
   	</select>
-  	 
+
+  	
   	<select id="count" resultType="int">
    		select count(*) from product 
    	</select>
@@ -51,6 +54,39 @@
     	where product_product_no=#{product_no}
     </select>
     
+	<!-- 상품문의 -->
+	<insert id="insertPinquiry" parameterType="Pinquiry">
+		insert into pinquiry(
+			pinquiry_no, pinquiry_title, pinquiry_content, pinquiry_type, product_product_no, users_users_id, pinquiry_createdDate
+		)
+		values(
+			 pinquiry_seq.NEXTVAL, #{pinquiry_title}, #{pinquiry_content}, #{pinquiry_type},
+			#{product_product_no}, #{users_users_id}, to_char(sysdate,'yyyy.mm.dd')
+		)
+	</insert>
+  
+  	<!-- 페이지 별 상품문의리스트 -->
+	<select id="selectPinquiryByPage" parameterType="Pager" resultType="Pinquiry">
+   		<![CDATA[
+       select rnum, pinquiry_no, pinquiry_title, pinquiry_content, pinquiry_type, users_users_id, pinquiry_createdDate
+		 from (
+		    select rownum as rnum, pinquiry_no, pinquiry_title, pinquiry_content, pinquiry_type, users_users_id, pinquiry_createdDate
+		    from(
+		        select  pinquiry_no, pinquiry_title, pinquiry_content, pinquiry_type, users_users_id, pinquiry_createdDate
+		        from pinquiry
+		        order by pinquiry_no desc
+		    )
+		    where rownum <= #{endRowNo}
+		 )
+		 where rnum >= #{startRowNo}
+		 ]]>
+  	</select>
+  	
+  	<select id="countPinquiry" parameterType="int" resultType="int">
+   		select count(*) from pinquiry where product_product_no=#{product_no}
+   	</select>
+  	
+  	<!-- search -->
     <select id="search" parameterType="map" resultType="product">
     	<![CDATA[
 	       select rnum,  product_no, product_name, product_price, product_imgFile, product_img
