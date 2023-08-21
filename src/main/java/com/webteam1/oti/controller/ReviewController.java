@@ -162,7 +162,7 @@ public class ReviewController {
 	public String reviewByUser(String pageNo5, Model model, HttpSession session) {
 		if(pageNo5 == null) {
 	         //세션에 저장되어 있는지 확인
-	         if(session.getAttribute("pageNo5") == null) {
+	         if(session.getAttribute("pageNo5") == null || session.getAttribute("pageNo5") == "") {
 	              pageNo5 = "1";            
 	         } else {
 	              pageNo5 = (String) session.getAttribute("pageNo5");
