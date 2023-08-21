@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.apache.ibatis.annotations.Mapper;
 
+import com.webteam1.oti.dto.Pinquiry;
 import com.webteam1.oti.dto.user.JoinDto;
 import com.webteam1.oti.dto.user.LoginDto;
 import com.webteam1.oti.dto.user.ModifyDto;
@@ -34,11 +35,18 @@ public interface UserDao {
 	//마지막 접속한 유저 조회
 	public List<String> getLastLoginDate(String threeMonthsAgoDate);
 	
+	public void updateOpoint(LoginDto users);
+
+	//작성자: 성유진
 	//마이페이지 사진 추가
 	public void updateMyImage(LoginDto login);
 	//기본이미지로 변경(기존에 등록했던 이미지가 있다면 null로 변경)
     public void updateBasic(String usersId);
+    //회원별 작성한 상품문의 수
+    public int selectMyPinquiry(String usersId);
+    //회원별 작성할 상품문의 리스트
+    public List<Pinquiry> selectMyPinquiryList(String usersId);
     
-    public void updateOpoint(LoginDto users);
+    
     
 }

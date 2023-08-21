@@ -18,6 +18,7 @@
 		<div class="qa-product d-flex">
 			<img src="data:MIME;base64, ${product.product_img}" width="95"/>
 			<input type="hidden" name="product_product_no" value="${product.product_no}"/>
+			<input type="hidden" name="product_no" value="${product.product_no}"/>
 			<input type="hidden" name="users_users_id" value="${user.users_id}"/>
 			<div class="qa-product-info">
 				<div id="p-name" class="p-info">${product.product_name}</div>

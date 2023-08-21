@@ -55,6 +55,7 @@
     </select>
     
 	<!-- 상품문의 -->
+	<!-- 상품문의 작성 -->
 	<insert id="insertPinquiry" parameterType="Pinquiry">
 		insert into pinquiry(
 			pinquiry_no, pinquiry_title, pinquiry_content, pinquiry_type, product_product_no, users_users_id, pinquiry_createdDate
@@ -74,6 +75,7 @@
 		    from(
 		        select  pinquiry_no, pinquiry_title, pinquiry_content, pinquiry_type, users_users_id, pinquiry_createdDate
 		        from pinquiry
+		        where product_no = #{product_no}
 		        order by pinquiry_no desc
 		    )
 		    where rownum <= #{endRowNo}
@@ -82,6 +84,7 @@
 		 ]]>
   	</select>
   	
+  	<!-- 총 상품문의 수 -->
   	<select id="countPinquiry" parameterType="int" resultType="int">
    		select count(*) from pinquiry where product_product_no=#{product_no}
    	</select>

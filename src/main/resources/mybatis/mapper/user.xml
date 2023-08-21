@@ -108,6 +108,13 @@
 		users_imgFile = null
 		where users_id=#{users_id}
 	</update>
+	<!-- user별 작성한 상품문의 -->
+  	<select id="selectMyPinquiry" parameterType="String" resultType="int">
+   		select count(*) from pinquiry where users_users_id=#{users_id}
+   	</select>
+  	<select id="selectMyPinquiryList" parameterType="String" resultType="Pinquiry">
+   		select * from pinquiry where users_users_id=#{users_id}
+   	</select>
 	
 	<!-- 김시온 -->
 	<update id="updateOpoint" parameterType="Login">
