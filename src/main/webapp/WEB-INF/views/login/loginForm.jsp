@@ -6,9 +6,7 @@
 	<head>
 	    <meta charset="UTF-8">
 		<meta name="viewport" content="width=device-width, initial-scale=2.0">
-		<link rel="shortcut icon"
-			  href="//image9.coupangcdn.com/image/coupang/favicon/v2/favicon.ico"
-			  type="image/x-icon" />
+		<link rel="icon" href="${pageContext.request.contextPath}/resources/yuimg/favicon.png" type="image/x-icon">
 	     
 		<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css">
 		<script src="https://cdn.jsdelivr.net/npm/jquery@3.6.4/dist/jquery.min.js"></script>
@@ -16,7 +14,7 @@
 		<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>
 		<script src="${pageContext.request.contextPath}/resources/js/loginForm.js"></script>
 		<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/loginForm_css.css">
-	    <title>OTI 로그인 폼</title>
+	    <title>OTi 로그인 폼</title>
 	</head>
 	<body>
 	    <header>

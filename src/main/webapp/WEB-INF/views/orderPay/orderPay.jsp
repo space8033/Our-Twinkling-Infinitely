@@ -7,9 +7,8 @@
 	<head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-		<link rel="icon" href="/html_css_javascript/favicon.ico"
-		type="image/x-icon">
-		<title>Insert title here</title>
+		<link rel="icon" href="${pageContext.request.contextPath}/resources/yuimg/favicon.png" type="image/x-icon">
+      	<title>OTi 주문결제</title>
 		<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css">
 		<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/orderPay_css.css">
 		<script src="https://cdn.jsdelivr.net/npm/jquery@3.6.4/dist/jquery.min.js"></script>
