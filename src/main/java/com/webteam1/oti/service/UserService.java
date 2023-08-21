@@ -1,6 +1,7 @@
 package com.webteam1.oti.service;
 
 import java.util.List;
+import java.util.Map;
 
 import com.webteam1.oti.dto.Pinquiry;
 import com.webteam1.oti.dto.user.JoinDto;

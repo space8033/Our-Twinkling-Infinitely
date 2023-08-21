@@ -331,7 +331,8 @@ public class UserController {
 		model.addAttribute("pinquirys", pinquirys);
 		//상품문의 리스트
 		List<Pinquiry> pinquiryList = userService.getMyInquiryList(user.getUsers_id());
-		model.addAttribute("pinquiryList", pinquiryList);
+		log.info("리스틀얍 : " + pinquiryList.toString());
+		model.addAttribute("myinquiryList", pinquiryList);
 		
 		//마이페이지에 보일 가입일
 		String join = user.getUsers_createdDate();
@@ -426,7 +427,6 @@ public class UserController {
 	@Login
 	@PostMapping("/mypage")
 	public String addMyImg(MultipartFile users_mattach, HttpSession session, Model model) throws Exception{
-		
 		LoginDto loginDto = (LoginDto)session.getAttribute("loginIng");
 		loginDto.setUsers_mattach(users_mattach);
 		

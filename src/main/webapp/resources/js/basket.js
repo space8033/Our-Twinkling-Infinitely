@@ -4,6 +4,7 @@ function init() {
    loading();
    jsonProduct();
    $("#btn_delete").hide();
+   $('.content-row').hide();
 }
 let mainImage = document.getElementById('main-image');
 let hoverImages = document.querySelectorAll('.hover-image');
@@ -441,8 +442,9 @@ function openProductInquiryPopup() {
     };
 }
 
+//상품문의리스트를 눌렀을 때 상세내용 보기
 function showInquiryContent(row) {
-    // 해당 클릭된 행의 다음 형제 요소를 찾아서 토글
-    let contentRow = row.nextElementSibling;
-    contentRow.classList.toggle("show");
+    // 해당 클릭된 행의 다음 형제 요소를 찾기
+    let contentRow = $(row).next(".content-row");
+    contentRow.toggle();
 }

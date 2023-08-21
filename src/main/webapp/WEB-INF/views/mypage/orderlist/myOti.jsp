@@ -56,7 +56,7 @@
 					<p>${totalReviews}</p>
 				</div>
 				<div class="mine">
-					<a href="#">
+					<a onclick="showPinquiryList()" href="#">
 						<img class="icon" src="https://cdn-icons-png.flaticon.com/512/1898/1898245.png" width="55"/>
 						<div class="text-body">문의></div>
 					</a>
@@ -134,65 +134,65 @@
 		<!------------------------------------- 내용 들어갈 div -------------------------------------->
 				
   		</div>
-  		<div class="coupon-list">
-  			 <table>
-				       	<colgroup>
-				      		<col width="7%">
-				      		<col width="8%">
-				      		<col width="10%">
-				      		<col width="auto">
-				      		<col width="12%">
-				      		<col width="13%">
-				      	</colgroup>
-				      	<thead>
-				      		<tr>
-				      			<th scope="col">번호</th>
-				      			<th scope="col">답변여부</th>
-				      			<th scope="col">구분</th>
-				      			<th scope="col">내용</th>
-				      			<th scope="col">작성자</th>
-				      			<th scope="col">등록일자</th>
-				      		</tr>
-				      	</thead>
-				      	<tbody>
-				      		<c:forEach var="pinquary" items="${pinquiryList}">
-				      			<c:if test="${pinquiryList == null}">
-				      				<tr>
-				      					<td colspan="6">등록된 상품문의가 없습니다.</td>
-				      				</tr>
-				      			</c:if>				      		
-					      		<tr onclick="showInquiryContent(this)">
-					      			<td>${pinquiryList.pinquiry_no}</td>
-					      			<td>답변예정</td>
-					      			<td>
-					      				<c:if test="${pinquiryList.pinquiry_type == 1}">
-					      					크기
-					      				</c:if>
-					      				<c:if test="${pinquiryList.pinquiry_type == 2}">
-					      					배송
-					      				</c:if>
-					      				<c:if test="${pinquiryList.pinquiry_type == 3}">
-					      					재입고
-					      				</c:if>
-					      				<c:if test="${pinquiryList.pinquiry_type == 4}">
-					      					상품상세문의
-					      				</c:if>
-					      				<c:if test="${pinquiryList.pinquiry_type == 5}">
-					      					기타
-					      				</c:if>
-					      			</td>
-					      			<td>${pinquiryList.pinquiry_title}</td>
-					      			<td>${pinquiryList.users_users_id}</td>
-					      			<td>${pinquiryList.pinquiry_createdDate}</td>
-					      		</tr>
-					      		<tr class="content-row">
-					      			<td colspan="6">
-					      				<div class="content">${pinquiry.pinquiry_content}</div>
-					      			</td>	
-					      		</tr>
-				      		</c:forEach>
-				      	</tbody>
-				      </table>
+  		<div id="myPinquiries">
+  			<table class="table">
+		       	<colgroup>
+		      		<col width="7%">
+		      		<col width="12%">
+		      		<col width="10%">
+		      		<col width="auto">
+		      		<col width="12%">
+		      		<col width="13%">
+		      	</colgroup>
+		      	<thead>
+		      		<tr>
+		      			<th scope="col">번호</th>
+		      			<th scope="col">답변여부</th>
+		      			<th scope="col">구분</th>
+		      			<th scope="col">제목</th>
+		      			<th scope="col">작성자</th>
+		      			<th scope="col">등록일자</th>
+		      		</tr>
+		      	</thead>
+		      	<tbody>
+		      		<c:forEach var="pinquiry" items="${myinquiryList}" varStatus="i">
+		      			<c:if test="${myinquiryList == null}">
+		      				<tr>
+		      					<td colspan="6">등록된 상품문의가 없습니다.</td>
+		      				</tr>
+		      			</c:if>				      		
+			      		<tr onclick="showInquiryContent(this)" style="cursor: pointer;">
+			      			<td>${i.count}</td>
+			      			<td>답변예정</td>
+			      			<td>
+			      				<c:if test="${pinquiry.PINQUIRY_TYPE == 1}">
+			      					크기
+			      				</c:if>
+			      				<c:if test="${pinquiry.PINQUIRY_TYPE == 2}">
+			      					배송
+			      				</c:if>
+			      				<c:if test="${pinquiry.PINQUIRY_TYPE == 3}">
+			      					재입고
+			      				</c:if>
+			      				<c:if test="${pinquiry.PINQUIRY_TYPE == 4}">
+			      					상품상세문의
+			      				</c:if>
+			      				<c:if test="${pinquiry.PINQUIRY_TYPE == 5}">
+			      					기타
+			      				</c:if>
+			      			</td>
+			      			<td>${pinquiry.PINQUIRY_TITLE}</td>
+			      			<td>${pinquiry.USERS_USERS_ID}</td>
+			      			<td>${pinquiry.PINQUIRY_CREATEDDATE}</td>
+			      		</tr>
+			      		<tr class="content-row">
+			      			<td colspan="6" style="background-color: #f5f5f5;">
+			      				<div class="content">${pinquiry.PINQUIRY_CONTENT}</div>
+			      			</td>	
+			      		</tr>
+		      		</c:forEach>
+		      	</tbody>
+	      </table>
   		</div>
 		<div id="wrapper">
 			<h6>나의 쇼핑 활동</h6>

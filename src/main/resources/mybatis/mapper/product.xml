@@ -67,7 +67,7 @@
 	</insert>
   
   	<!-- 페이지 별 상품문의리스트 -->
-	<select id="selectPinquiryByPage" parameterType="Pager" resultType="Pinquiry">
+	<select id="selectPinquiryByPage" parameterType="Map" resultType="Pinquiry">
    		<![CDATA[
        select rnum, pinquiry_no, pinquiry_title, pinquiry_content, pinquiry_type, users_users_id, pinquiry_createdDate
 		 from (
@@ -75,7 +75,7 @@
 		    from(
 		        select  pinquiry_no, pinquiry_title, pinquiry_content, pinquiry_type, users_users_id, pinquiry_createdDate
 		        from pinquiry
-		        where product_no = #{product_no}
+		        where product_product_no = #{product_no}
 		        order by pinquiry_no desc
 		    )
 		    where rownum <= #{endRowNo}
