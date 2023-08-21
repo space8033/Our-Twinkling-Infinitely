@@ -18,7 +18,6 @@ import com.webteam1.oti.service.ProductService;
 
 import lombok.extern.slf4j.Slf4j;
 
-@Slf4j
 @Controller
 public class HomeController {
 	@Resource
@@ -29,7 +28,6 @@ public class HomeController {
 	//홈 페이지 불러오기
 	@RequestMapping("/")
 	public String index(String pageNo, Model model, HttpSession session) {
-		log.info("실행");
 	   //브라우저에서 pageNo가 넘어오지 않았을 때
 	   if(pageNo == null) {
 		   //세션에 저장되어 있는지 확인

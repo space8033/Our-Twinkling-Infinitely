@@ -37,7 +37,6 @@ import com.webteam1.oti.service.UserService;
 import lombok.extern.slf4j.Slf4j;
 
 //OrderPayController 전체 작성자 : 김시온
-@Slf4j
 @Controller
 @RequestMapping("/")
 public class OrderPayController {
@@ -78,7 +77,6 @@ public class OrderPayController {
 		model.addAttribute("totalPoints", totalPoints);
 		
 		Address loginUserAddress = addressService.getDefault(loginUser.getUsers_id());
-		log.info(loginUserAddress+"loginUserAddress");
 		if(loginUserAddress == null) {
 			String addressNo = (String) session.getAttribute("addressNum");
 			if(addressNo != null) { 
@@ -89,8 +87,6 @@ public class OrderPayController {
 				//배송 요청사항 목록 받아오기
 				String selectedValue = (String) session.getAttribute("selectedValue");
 			    String selectedPwdValue = (String) session.getAttribute("selectedPwdValue");
-			    log.info(selectedValue + "=selectedValue");
-				log.info(selectedPwdValue + "=selectedPwdValue");
 				if(selectedValue != null) {
 				      model.addAttribute("selectedValue", selectedValue);
 				      model.addAttribute("selectedPwdValue", selectedPwdValue);
@@ -183,7 +179,6 @@ public class OrderPayController {
 	public String addressSelect(@RequestParam("addressNo") String addressNo, HttpSession session) {
 		session.setAttribute("addressNum", addressNo);
 		
-		log.info(addressNo+"addressNo");
 		return "redirect:/orderPay";
 	}
 	
@@ -199,8 +194,6 @@ public class OrderPayController {
 	public String addressRequest(@RequestParam("selectedValue") String selectedValue, @RequestParam("selectedPwdValue") String selectedPwdValue, HttpSession session) {
 		session.setAttribute("selectedValue", selectedValue);
 	    session.setAttribute("selectedPwdValue", selectedPwdValue);
-	    log.info(selectedValue + "=selectedValue");
-	    log.info(selectedPwdValue + "=selectedPwdValue");
 	    
         return "redirect:/orderPay";
 	}
@@ -208,7 +201,6 @@ public class OrderPayController {
 	@Login
 	@GetMapping("/addressModify")
 	public String modifyAddress(String addressNo, Model model, HttpSession session) {
-		log.info(addressNo+"=addressNo");
 		Address now = addressService.getByAddressNo(Integer.parseInt(addressNo));
 		model.addAttribute("address", now);
 		session.setAttribute("addressNo", now.getAddress_no());
@@ -252,8 +244,6 @@ public class OrderPayController {
 				addressService.updateAddress(nowDefault);
 			}
 		}
-		log.info(user_id+"users_id");
-		log.info(address+"address");
 		
 		addressService.registerAddress(address);
 		
