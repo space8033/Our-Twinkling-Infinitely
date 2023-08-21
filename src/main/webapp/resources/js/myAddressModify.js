@@ -53,7 +53,7 @@ function onBlurTel() {
 	}
 }
 
-function checkValidation() {
+function checkValidation(event) {
 	let isValidation = true;
 	var errorMsgs = $(".errorMsg");
 	errorMsgs.each((index, el) => $(el).addClass("d-none"));
@@ -78,6 +78,7 @@ function checkValidation() {
 	}
 	
 	var roadAddress = $("#roadAddress").val();
+	
 	var uaddressErr = $("#uaddressErr");
 	
 	uaddressErr.addClass("d-none");
@@ -214,8 +215,8 @@ $(document).ready(function(){
 });		
 
 function modifyAddress() {
-	checkValidation();
-	
+	var event = new Event("submit");
+	checkValidation(event);
 	var form1 = $("#modifyForm").serialize();
 	$.ajax({
 		url: "modifyForm",

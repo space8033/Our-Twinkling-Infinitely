@@ -62,8 +62,6 @@ $(document).ready(function(){
 					  utelErr2.addClass("redLine");
 					  utelErr1.addClass("d-none");
 				  } else {
-					  telErr1.addClass("d-none");
-					  telErr2.addClass("d-none");
 					  utelErr2.removeClass("redLine");
 					  utelErr1.removeClass("redLine");
 				  }
@@ -95,7 +93,7 @@ $(document).ready(function(){
 	
 });		 
 
-function checkValidation() {
+function checkValidation(event) {
 	let isValidation = true;
 	
 	var errorMsgs = $(".errorMsg");
@@ -120,6 +118,8 @@ function checkValidation() {
 		isValidation = false;
 	}
 	
+	var uaddressErr = $("#uaddressErr");
+	
 	var postSelect = $("#findNum").val();
 	if(postSelect === "") {
 		isValidation = false;
@@ -129,12 +129,10 @@ function checkValidation() {
 	
 	var roadAddress = $("#roadAddress").val();
 	console.log(roadAddress+"도로명주소");
+	
 	var uaddressErr = $("#uaddressErr");
 	
 	uaddressErr.addClass("d-none");
-	
-	
-	
 	
 	if(!roadAddress) {
 		uaddressErr.removeClass("d-none");
@@ -246,7 +244,8 @@ function findAddress() {
 }
 
 function submitAddress() {
-	checkValidation();
+	var event = new Event("submit");
+	checkValidation(event);
 	
 	var form1 = $("#registerForm").serialize();
 	$.ajax({
