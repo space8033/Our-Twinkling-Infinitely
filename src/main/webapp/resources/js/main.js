@@ -124,7 +124,7 @@ function changeImg(){
 	});
 }
 
-//===================================리뷰
+//review=======================================================================
 //리뷰 리스트 보여주기
 function showReview(productNum, pageNo2) {
 	$.ajax({
@@ -142,6 +142,7 @@ function showReview(productNum, pageNo2) {
 		}
 	});
 }
+
 //포토리뷰만 보여주기
 function showReview(productNum, pageNo2, filter) {
 	$.ajax({
@@ -284,4 +285,3 @@ function deleteFile(obj) {
 	$("#showAlert").hide();
     obj.parent().remove();
 }
-

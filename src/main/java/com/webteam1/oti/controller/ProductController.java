@@ -1,5 +1,6 @@
 package com.webteam1.oti.controller;
 
+import java.io.Serializable;
 import java.util.Base64;
 import java.util.HashMap;
 import java.util.List;
@@ -14,14 +15,16 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 
 //github.com/space8033/Our-Twinkling-Infinitely.git
 
 import com.webteam1.oti.dto.Image;
 import com.webteam1.oti.dto.Pager;
+import com.webteam1.oti.dto.Pinquiry;
 import com.webteam1.oti.dto.Product;
 import com.webteam1.oti.dto.ProductOption;
+import com.webteam1.oti.dto.user.LoginDto;
+import com.webteam1.oti.interceptor.Login;
 //github.com/space8033/Our-Twinkling-Infinitely.git
 import com.webteam1.oti.service.CartService;
 import com.webteam1.oti.service.ImageService;
@@ -33,7 +36,7 @@ import lombok.extern.slf4j.Slf4j;
 @Controller
 @RequestMapping("/")
 @Slf4j
-public class ProductController {
+public class ProductController implements Serializable{
 	@Resource
 	private ProductService productService;
 	@Resource
@@ -46,7 +49,7 @@ public class ProductController {
 	//상품 상세 페이지 불러오기
 	//상품리스트에서 그 상품에 해당하는 상품 상세정보
 	@GetMapping("/detailProduct")
-	public String detailView(String product_no, String pageNo2, Model model, HttpSession session) {
+	public String detailView(String product_no, String pageNo2, String pageNo3, Model model, HttpSession session) {
 		   int productNum = Integer.parseInt(product_no);
 		   Product product = productService.getProduct(productNum);
 		   if(product.getProduct_imgFile() != null) {
@@ -54,6 +57,8 @@ public class ProductController {
 			   product.setProduct_img(base64Img);
 		   }
 		   model.addAttribute("product", product);
+		   //상품 문의하기에 해당 상품의 정보를 가져오기 위함
+		   session.setAttribute("product", product);
 		   
 		   //상품 상세페이지에 있을 이미지 배열 가져오기
 		   List<Image> imageList = imageService.getImage(productNum); 
@@ -70,6 +75,7 @@ public class ProductController {
 		   //상품에 해당하는 옵션 리스트 가져오기
 		   List<ProductOption> optionList = productService.getOptionList(productNum);
 		   model.addAttribute("options", optionList);
+		   
 		   //상품에 해당하는 상품상세이미지 가져오기
 		   Image detailImg = imageService.getDetailImg(productNum);
 		   if(detailImg.getImage_file() != null) {
@@ -84,6 +90,7 @@ public class ProductController {
 		   model.addAttribute("productNum", productNum);
 		   model.addAttribute("pageNo2", pageNo2);
 		   
+		   
 		   //----------리뷰 페이징 및 리뷰 리스트 ----------------------------------------------------
 		   if(pageNo2 == null) {
 			   //세션에 저장되어 있는지 확인
@@ -96,7 +103,7 @@ public class ProductController {
 		   int productNo = (int)session.getAttribute("productNum");
 			//문자열을 정수로 변환
 		   int intPageNo = Integer.parseInt(pageNo2);
-			//세션에 pageNo를 저장
+		   //세션에 pageNo를 저장
 		   session.setAttribute("pageNo2", String.valueOf(pageNo2));
 		   int totalRows = reviewService.countByProductNo(productNo);
 		   Pager pager = new Pager(5, 5, totalRows, intPageNo);
@@ -105,13 +112,67 @@ public class ProductController {
 		   map.put("startRowNo", pager.getStartRowNo());
 		   map.put("endRowNo", pager.getEndRowNo());
 		   map.put("productNo", productNo);
-			//리뷰 리스트 가져오기
 			
+		   //리뷰 리스트 가져오기
 		   model.addAttribute("pager", pager);
+		   
+		   //상품문의 ============================================================
+		   //상품 문의하기에 해당 상품의 옵션을 가져오기 위함
+		   session.setAttribute("options", options);
+		   
+		   //상품에 해당하는 상품문의 리스트(page3: 상품문의 페이징)
+		   if(pageNo3 == null) {
+			   //세션에 저장되어있는지 확인
+			   pageNo3 = (String) session.getAttribute("pageNo3");
+			   //저장되어있지 않다면 "1"로 초기화
+			   if(pageNo3 == null) {
+				   pageNo3 = "1";
+			   }
+		   }
+		   //문자열을 정수로 변환
+		   int intPageNo3 = Integer.parseInt(pageNo3);
+		   //세션에 pageNo3를 저장
+		   session.setAttribute("pageNo3", String.valueOf(pageNo3));
+		   
+		   //상품별 총 상품문의 수
+		   int pinquiryNum = productService.getTotalPinquiryNum(Integer.parseInt(product_no));
+		   Pager pager3 = new Pager(5, 5, pinquiryNum, intPageNo3);
+		   
+		   @SuppressWarnings("unused")
+		   List<Pinquiry> pinquirys = productService.getPinquiryList(pager3);
+		   
+		   model.addAttribute("pager3", pager3);
+		   model.addAttribute("pinquirys", pinquirys);
 		   
 		   return "detail/detailView";
 	}
 	
+	//상품문의 작성
+	@Login
+	@GetMapping("/productInquiryWrite")
+	public String pInquiryForm(HttpSession session, Model model){
+		Product product = (Product)session.getAttribute("product");
+		model.addAttribute("product", product);
+		
+		@SuppressWarnings("unchecked")
+		List<ProductOption> options = (List<ProductOption>) session.getAttribute("options");
+		model.addAttribute("options", options);
+		
+		LoginDto user = (LoginDto) session.getAttribute("loginIng");
+		model.addAttribute("user", user);
+		
+		return "detail/productInquiryWrite";
+	}
+	
+	@Login
+	@PostMapping("/productInquiryWrite")
+	public String pInquiryWrite(HttpSession session, Model model, Pinquiry pinquiry) {
+		productService.writePinquiry(pinquiry);
+
+		return "redirect:/detail/detailView";
+	}
+	
+	//검색
 	@GetMapping("searchResult")
 	public String search(String pageNo4, Model model, HttpSession session, String search) {
 		Map<String, Object> map = new HashMap<>();
@@ -150,4 +211,5 @@ public class ProductController {
 	   
 	   return "search/search";
 	}
+	
 }

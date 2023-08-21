@@ -11,6 +11,7 @@ import com.webteam1.oti.dao.OrderProductDao;
 import com.webteam1.oti.dao.ProductDao;
 import com.webteam1.oti.dto.OrderProduct;
 import com.webteam1.oti.dto.Pager;
+import com.webteam1.oti.dto.Pinquiry;
 import com.webteam1.oti.dto.Product;
 import com.webteam1.oti.dto.ProductOption;
 
@@ -44,8 +45,8 @@ public class ProductServiceImpl implements ProductService{
 
 	@Override
 	public int getTotalProductNum() {
-		int totalBoardNum = productDao.count();
-		return totalBoardNum;
+		int totalProductNum = productDao.count();
+		return totalProductNum;
 	}
 
 	@Override
@@ -59,6 +60,19 @@ public class ProductServiceImpl implements ProductService{
 	public void addOrderProduct(OrderProduct orderProduct) {
 		orderProductDao.InsertOrderProducts(orderProduct);
 	}
+	
+	//Pinquiry list
+	@Override
+	public List<Pinquiry> getPinquiryList(Pager pager) {
+		List<Pinquiry> list = productDao.selectPinquiryByPage(pager);
+		return list;
+	}
+	
+	@Override
+	public int getTotalPinquiryNum(int product_no) {
+		int totalPinquiryNum = productDao.countPinquiry(product_no);
+		return totalPinquiryNum;
+	}
 
 	//product search
 	@Override
@@ -70,6 +84,13 @@ public class ProductServiceImpl implements ProductService{
 	public int countResult(Map<String, Object> map) {
 		return productDao.countResult(map);
 	}
+
+	@Override
+	public int writePinquiry(Pinquiry pinquiry) {
+		int insertNo = productDao.insertPinquiry(pinquiry);
+		return insertNo;
+	}
+	
 
 
 	

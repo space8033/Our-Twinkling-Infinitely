@@ -127,7 +127,6 @@ function showSubmitBtn(){
 }
 //이미지 변경시 유효성 검사
 $(document).ready(function() {	
-	console.log("앙앙");
 	$("#addMyImg").submit(function(event) {
 		if ($("#fileInput")[0].files.length === 0) { //이미지 파일을 추가하지 않았을 경우 
 			alert("변경할 이미지를 선택해주세요.")
