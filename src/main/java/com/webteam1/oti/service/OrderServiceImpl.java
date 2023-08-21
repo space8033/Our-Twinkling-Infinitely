@@ -26,10 +26,7 @@ import com.webteam1.oti.dto.order.OrderInfo;
 import com.webteam1.oti.dto.order.Porder;
 import com.webteam1.oti.dto.user.LoginDto;
 
-import lombok.extern.slf4j.Slf4j;
-
 //OrderProductService 전체 작성자 : 김시온
-@Slf4j
 @Service
 public class OrderServiceImpl implements OrderService {
 	@Resource
@@ -55,13 +52,10 @@ public class OrderServiceImpl implements OrderService {
 		//현재 주문할 상품 목록
 		List<OrderProduct> list = orderProductDao.getOrderProductByUsersId(order.getUsers_users_id());
 		for(OrderProduct op : list) {
-			log.info(op.toString());
 			//주문할 각 상품에 대해 orderNo 업데이트 및 주문완료된 상품으로 표시
 			Map<String, Object> map = new HashMap<>();
 			map.put("orderNo", orderNo);
 			map.put("orderproductNo", op.getOrderProduct_no());
-			log.info("주문번호: " + orderNo);
-			log.info("상품번호: " + op.getOrderProduct_no());
 			orderProductDao.addOrderNumber(map);
 		}
 		couponDao.updateUsedCoupon(order.getCoupon_coupon_no());
@@ -69,16 +63,12 @@ public class OrderServiceImpl implements OrderService {
 		//주문시 적립금 사용/적립 기능
 		LoginDto user = userDao.selectByUsersId(order.getUsers_users_id());
 		int beforePoint = user.getUsers_opoint();
-		log.info(beforePoint+"이전포인트");
 		int usedPoint = order.getUsers_users_opoint();
-		log.info(usedPoint+"사용포인트");
 		int totalPrice = order.getOrder_total_price();
 		int savePoint = (int) (totalPrice * 0.005);
 		int afterPoint = beforePoint - usedPoint + savePoint; 
-		log.info(afterPoint+"계산후포인트");
 		
 		user.setUsers_opoint(afterPoint);
-		log.info(user.toString()+"나 바뀐 유저임 ㅋㅋ");
 		userDao.updateOpoint(user);
 		
 	}

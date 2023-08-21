@@ -29,7 +29,6 @@ import com.webteam1.oti.service.UserService;
 
 import lombok.extern.slf4j.Slf4j;
 
-@Slf4j
 @Controller
 public class ReviewController {
 	@Resource
@@ -145,7 +144,6 @@ public class ReviewController {
 		review.setProductNo(productNo);
 		reviewService.createReview(review);
 		int reviewNo = reviewService.findByUserId(map);
-		log.info(reviewNo + "리뷰 번호");
 		
 		MultipartFile[] files = review.getFile();
 		

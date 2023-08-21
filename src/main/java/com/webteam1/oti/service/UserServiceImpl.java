@@ -15,10 +15,7 @@ import com.webteam1.oti.dto.user.JoinDto;
 import com.webteam1.oti.dto.user.LoginDto;
 import com.webteam1.oti.dto.user.ModifyDto;
 
-import lombok.extern.slf4j.Slf4j;
-
 //UserServiceImpl 전체 작성자 : 김시온
-@Slf4j
 @Service
 public class UserServiceImpl implements UserService{
 	@Resource
@@ -114,7 +111,6 @@ public class UserServiceImpl implements UserService{
 	public void modify(ModifyDto user) {
 		PasswordEncoder passwordEncoder = PasswordEncoderFactories.createDelegatingPasswordEncoder();
 		user.setUsers_password(passwordEncoder.encode(user.getUsers_password()));
-		log.info(user.toString()+"수정할 유저의 정보");
 		userDao.update(user);	
 		
 	}

@@ -10,12 +10,8 @@ import org.springframework.stereotype.Service;
 import com.webteam1.oti.dao.OrderDao;
 import com.webteam1.oti.dto.order.Porder;
 import com.webteam1.oti.dto.point.Point;
-import com.webteam1.oti.dto.point.UsePoint;
-
-import lombok.extern.slf4j.Slf4j;
 
 
-@Slf4j
 @Service
 public class PointServiceImpl implements PointService {
 	@Resource

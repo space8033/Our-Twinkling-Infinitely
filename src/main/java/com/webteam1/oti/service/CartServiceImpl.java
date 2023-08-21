@@ -8,7 +8,6 @@ import javax.annotation.Resource;
 import org.springframework.stereotype.Service;
 
 import com.webteam1.oti.dao.CartDao;
-import com.webteam1.oti.dto.Product;
 import com.webteam1.oti.dto.cart.Cart;
 import com.webteam1.oti.dto.cart.CartDto;
 @Service

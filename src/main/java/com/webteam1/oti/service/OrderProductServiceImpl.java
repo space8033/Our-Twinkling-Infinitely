@@ -15,10 +15,7 @@ import com.webteam1.oti.dto.OrderProduct;
 import com.webteam1.oti.dto.Product;
 import com.webteam1.oti.dto.ProductOption;
 
-import lombok.extern.slf4j.Slf4j;
-
 //OrderProductService 전체 작성자 : 김시온
-@Slf4j
 @Service
 public class OrderProductServiceImpl implements OrderProductService {
 	@Resource
