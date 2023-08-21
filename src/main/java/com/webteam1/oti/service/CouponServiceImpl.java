@@ -22,7 +22,6 @@ import com.webteam1.oti.interceptor.Login;
 import lombok.extern.slf4j.Slf4j;
 
 
-@Slf4j
 @Service
 public class CouponServiceImpl implements CouponService{
 	@Resource
@@ -48,7 +47,6 @@ public class CouponServiceImpl implements CouponService{
 		 coupon.setCoupon_expiredDate(coupon_expiredDate);
 	     
 		 
-		 log.info(coupon.toString()+"쿠폰 들어갈 목록이야");
 	     return couponDao.insert(coupon);
 	}
 	
@@ -62,7 +60,6 @@ public class CouponServiceImpl implements CouponService{
 		 String currentMonthDay = currentDate.substring(0, 5);
 				 
 		 List<String> users = userDao.getUsersWithBirthday(currentMonthDay);
-		 log.info(currentMonthDay+"오늘 날짜 아마도");
 	     for (String user : users) {
 	            Coupon coupon = new Coupon();
 	            coupon.setCoupon_type(CouponType.BIRTHDAY_COUPON);
@@ -78,11 +75,9 @@ public class CouponServiceImpl implements CouponService{
 	   		 	String coupon_expiredDate = expiredDate.format(formatter);
 	   		 	coupon.setCoupon_expiredDate(coupon_expiredDate);
 	            
-	            log.info(coupon.toString());
 	            couponDao.insert(coupon);
 	     }
 	        
-	     log.info(users.size()+"생성된 쿠폰 수");
 	     return users.size(); // 생성된 쿠폰 수 반환
 	}
 	
@@ -95,7 +90,6 @@ public class CouponServiceImpl implements CouponService{
 
 	     DateTimeFormatter formatter1 = DateTimeFormatter.ofPattern("yyyy-MM-dd");
 	     String threeMonthsAgoDate = threeMonthsAgo.format(formatter1);
-	     log.info(threeMonthsAgoDate+"3달전의 날짜는?");
 	     List<String> users = userDao.getLastLoginDate(threeMonthsAgoDate);
 	     for (String user : users) {
 			 Coupon coupon = new Coupon();
@@ -112,10 +106,8 @@ public class CouponServiceImpl implements CouponService{
 	   		 String coupon_expiredDate = expiredDate.format(formatter);
 	   		 coupon.setCoupon_expiredDate(coupon_expiredDate);
 	            
-	         log.info(coupon.toString());
 	         couponDao.insert(coupon);
 	     }
-	     log.info(users.size()+"생성된 쿠폰 수");
 	     return users.size(); // 생성된 쿠폰 수 반환
 	}
 	
@@ -133,7 +125,6 @@ public class CouponServiceImpl implements CouponService{
 	     List<Coupon> expiredCoupons = couponDao.getExpiredCoupons(nowDate);
 	        
 	        for (Coupon coupon : expiredCoupons) {
-	            log.info(coupon.toString());
 	        	couponDao.delete(coupon);
 	        }    
 	}

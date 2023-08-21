@@ -32,7 +32,6 @@ import lombok.extern.slf4j.Slf4j;
 //장바구니 리스트를 데이터로 반환하기 위함 
 @RestController
 @RequestMapping("/")
-@Slf4j
 public class CartRestController {
 	@Resource
 	private CartService cartService;

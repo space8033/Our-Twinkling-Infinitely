@@ -18,7 +18,6 @@ public class AddressServiceImpl implements AddressService{
 	
 	@Override
 	public void registerAddress(Address address) {
-		
 		addressDao.insert(address);
 	}
 
@@ -29,9 +28,8 @@ public class AddressServiceImpl implements AddressService{
 
 	@Override
 	public List<Address> getList(Map<String, Object> map) {
-		List<Address> addressList = addressDao.selectByPage(map);
 		
-		return addressList;
+		return addressDao.selectByPage(map);
 	}
 
 	@Override

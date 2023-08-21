@@ -33,8 +33,8 @@ public class ImageServiceImpl implements ImageService{
 
 	@Override
 	public List<Image> getReviewImages(int review_no) {
-		
-		return imageDao.selectByRno(review_no);
+		List<Image> list = imageDao.selectByRno(review_no);
+		return list;
 	}
 
 	@Override

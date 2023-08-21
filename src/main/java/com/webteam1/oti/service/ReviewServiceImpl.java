@@ -11,10 +11,7 @@ import com.webteam1.oti.dao.ReviewDao;
 import com.webteam1.oti.dto.review.Review;
 import com.webteam1.oti.dto.review.ReviewReceive;
 
-import lombok.extern.slf4j.Slf4j;
-
 @Service
-@Slf4j
 public class ReviewServiceImpl implements ReviewService{
 	@Resource
 	private ReviewDao reviewDao;

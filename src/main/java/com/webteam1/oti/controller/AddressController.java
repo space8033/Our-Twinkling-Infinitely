@@ -22,7 +22,6 @@ import lombok.extern.slf4j.Slf4j;
 
 @Controller
 @RequestMapping("/")
-@Slf4j
 public class AddressController {
 	/*@작성자: 오우주
 	 * 

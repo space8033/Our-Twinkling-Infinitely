@@ -35,7 +35,6 @@ import lombok.extern.slf4j.Slf4j;
 
 @Controller
 @RequestMapping("/")
-@Slf4j
 public class ProductController implements Serializable{
 	@Resource
 	private ProductService productService;
