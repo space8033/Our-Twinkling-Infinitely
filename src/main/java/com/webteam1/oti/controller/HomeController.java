@@ -29,14 +29,14 @@ public class HomeController {
 	@RequestMapping("/")
 	public String index(String pageNo, Model model, HttpSession session) {
 	   //브라우저에서 pageNo가 넘어오지 않았을 때
-	   if(pageNo == null) {
-		   //세션에 저장되어 있는지 확인
-		   pageNo = (String) session.getAttribute("pageNo");
-		   //저장되어있지 않다면 "1"로 초기화
-		   if(pageNo == null) {
-			   pageNo = "1";
-		   }
-	   }
+		if(pageNo == null) {
+	         //세션에 저장되어 있는지 확인
+	         if(session.getAttribute("pageNo") == null || session.getAttribute("pageNo") == "") {
+	              pageNo = "1";            
+	         } else {
+	              pageNo = (String) session.getAttribute("pageNo");
+	         }
+	    }
 	   //문자열을 정수로 변환
 	   int intPageNo = Integer.parseInt(pageNo);
 	   //세션에 pageNo를 저장

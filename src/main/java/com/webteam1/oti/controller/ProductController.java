@@ -93,13 +93,13 @@ public class ProductController implements Serializable{
 		   
 		   //----------리뷰 페이징 및 리뷰 리스트 ----------------------------------------------------
 		   if(pageNo2 == null) {
-			   //세션에 저장되어 있는지 확인
-			   pageNo2 = (String) session.getAttribute("pageNo2");
-			   //저장되어있지 않다면 "1"로 초기화
-			   if(pageNo2 == null) {
-				   pageNo2 = "1";
-			   }
-		   }
+		         //세션에 저장되어 있는지 확인
+		         if(session.getAttribute("pageNo2") == null || session.getAttribute("pageNo2") == "") {
+		              pageNo2 = "1";            
+		         } else {
+		              pageNo2 = (String) session.getAttribute("pageNo2");
+		         }
+		    }
 		   int productNo = (int)session.getAttribute("productNum");
 			//문자열을 정수로 변환
 		   int intPageNo = Integer.parseInt(pageNo2);

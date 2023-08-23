@@ -2,7 +2,7 @@ $(init);
 
 function init() {
 	showAddress();
-	showReviewByUser();
+	showReviewByUser(1);
 	showPoint(1);
 	//마이페이지 이미지 변경 확인버튼 숨기기
 	$("#imgSubmit").hide();

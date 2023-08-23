@@ -6,7 +6,6 @@ function init(){
 	$(".topnav").hide();
 	//상품 메인페이지 광고
 	showSlides();
-	changeImg();
 }
 
 let slideIndex = 0;
@@ -123,6 +122,7 @@ function changeImg(){
 		});
 	});
 }
+
 
 //review=======================================================================
 //리뷰 리스트 보여주기
