@@ -263,7 +263,7 @@
 											
 										<div id="L_coupay-money" >
 											<label>
-												<input id="coupay-money" class="cash" type="radio" name="pay-method" value="쿠페이머니"/> 쿠페이 머니 
+												<input id="coupay-money" class="cash" type="radio" name="pay-method" value="쿠페이머니"/> 오페이 머니 
 												<img
 													class="rpay-badge rpay-icon-2percent"
 													src="//image7.coupangcdn.com/image/rocketpay/order/icon_max_cashback_v2.png"

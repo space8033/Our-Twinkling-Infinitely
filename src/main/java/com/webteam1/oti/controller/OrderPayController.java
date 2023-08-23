@@ -1,5 +1,6 @@
 package com.webteam1.oti.controller;
 
+import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -22,6 +23,7 @@ import com.webteam1.oti.dto.OrderProduct;
 import com.webteam1.oti.dto.Pager;
 import com.webteam1.oti.dto.Product;
 import com.webteam1.oti.dto.ProductOption;
+import com.webteam1.oti.dto.order.OrderInfo;
 import com.webteam1.oti.dto.order.Porder;
 import com.webteam1.oti.dto.user.LoginDto;
 import com.webteam1.oti.dto.user.ModifyDto;
@@ -37,6 +39,7 @@ import com.webteam1.oti.service.UserService;
 import lombok.extern.slf4j.Slf4j;
 
 //OrderPayController 전체 작성자 : 김시온
+@Slf4j
 @Controller
 @RequestMapping("/")
 public class OrderPayController {
@@ -289,5 +292,28 @@ public class OrderPayController {
 		
 	    return "redirect:/orderPay";
 	}
+	
+	@Login
+	@GetMapping("orderDetail")
+	public String getOrderDetail(String orderNo, HttpSession session, Model model) throws ParseException {
+		LoginDto user = (LoginDto)session.getAttribute("loginIng");
+		String userId = user.getUsers_id();
+		log.info(orderNo+"order넘버는?");
+		int intorderNo = Integer.parseInt(orderNo);
+		List<OrderInfo> list = orderService.getOrderList(userId);
+		List<OrderInfo> detailList = new ArrayList<>();
+
+		for (OrderInfo orderInfo : list) {
+			 if (intorderNo == orderInfo.getOrderNo()) {
+		            detailList.add(orderInfo);
+			 }
+		}	 
+
+		model.addAttribute("detailList", detailList);
+		return "mypage/orderlist/detailOrder";
+	}
+		
+		
+
 	
 }

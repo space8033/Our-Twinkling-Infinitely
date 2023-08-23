@@ -50,4 +50,12 @@
 
 	</select>
   	
+	<select id="selectByCouponNo" resultType="Coupon" parameterType="int">
+
+		select *
+   		from coupon
+    	where coupon_no=#{coupon_no}
+
+	</select>
+  	
 </mapper>

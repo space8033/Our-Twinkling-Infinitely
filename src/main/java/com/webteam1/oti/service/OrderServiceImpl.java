@@ -14,19 +14,26 @@ import javax.annotation.Resource;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.webteam1.oti.dao.AddressDao;
 import com.webteam1.oti.dao.CouponDao;
 import com.webteam1.oti.dao.OrderDao;
 import com.webteam1.oti.dao.OrderProductDao;
 import com.webteam1.oti.dao.ProductDao;
 import com.webteam1.oti.dao.ProductOptionDao;
 import com.webteam1.oti.dao.UserDao;
+import com.webteam1.oti.dto.Address;
+import com.webteam1.oti.dto.Coupon;
+import com.webteam1.oti.dto.Coupon.CouponType;
 import com.webteam1.oti.dto.OrderProduct;
 import com.webteam1.oti.dto.Product;
 import com.webteam1.oti.dto.order.OrderInfo;
 import com.webteam1.oti.dto.order.Porder;
 import com.webteam1.oti.dto.user.LoginDto;
 
+import lombok.extern.slf4j.Slf4j;
+
 //OrderProductService 전체 작성자 : 김시온
+@Slf4j
 @Service
 public class OrderServiceImpl implements OrderService {
 	@Resource
@@ -41,7 +48,9 @@ public class OrderServiceImpl implements OrderService {
 	private CouponDao couponDao;
 	@Resource
 	private UserDao userDao;
-
+	@Resource
+	private AddressDao addressDao;
+	
 	
 	@Override
 	@Transactional
@@ -110,12 +119,33 @@ public class OrderServiceImpl implements OrderService {
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
+				
+				int addressNo = order.getAddress_no();
+				
+				Address address = addressDao.selectByAno(addressNo);
+				String address1 = address.getAddress_roadAddress();
+				String address2 = address.getAddress_extraAddress();
+				String address3 = address.getAddress_detail();
+				String addressInfo = address1 + address2 + address3;
+				int couponNo = order.getCoupon_coupon_no();
+				
+				Coupon orderCoupon = couponDao.selectByCouponNo(couponNo);
+				String coupontype = String.valueOf(orderCoupon.getCoupon_type());
+				int couponValue = orderCoupon.getCoupon_value();
+				String couponContent = coupontype + couponValue;
+				
+				orderInfo.setAddress(addressInfo);
+				orderInfo.setOrderNo(order.getOrder_no());
+				orderInfo.setTotalPrice(order.getOrder_total_price());
+				orderInfo.setUsedPoint(order.getUsers_users_opoint());
+				orderInfo.setAddressRequest(order.getAddress_request());
+				orderInfo.setCouponContent(couponContent);
+				
 				orderInfo.setProductNo(productNo);
 				orderInfo.setTitle(product.getProduct_name());
 				orderInfo.setPrice(product.getProduct_price());
 				orderInfo.setQuantity(j.getOrderProduct_qty());
 				orderInfo.setImage(product.getProduct_imgFile());
-				
 				orderInfoList.add(orderInfo);
 			}
 			

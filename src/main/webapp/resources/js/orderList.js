@@ -28,7 +28,7 @@ function makeOrderCard() {
 						html += '<div class="classifyByDate">';
 						html += 	'<div class="d-flex">';
 						html += 		'<div style="width:70%; font-weight:bold; font-size: 20px; padding-left:12px;">' + orderDate + ' 주문</div>';
-						html += 		'<div style="width:30%; text-align: right;"><a href="#" id="seeDetail">주문 상세보기> </a></div>';
+						html += 		'<div style="width:30%; text-align: right;"><a href="#" id="seeDetail"> </a></div>';
 						html += 	'</div>';
 						html +=	 '<div class="orderCard my-3 d-flex">';
 						html += 	'<div class="orderCardLeft pt-2 pl-4">';
@@ -70,7 +70,8 @@ function makeOrderCard() {
 							html += 		'<div class="upperCard d-flex">';
 							html +=				'<div style="width: 20%; font-size: 18px; font-weight: bold;">' + item.deliveryStatus + '<span style="font-weight: bold; color: rgb(206, 206, 206);">·</span></div>';
 							html +=				'<div class="ml-1" style="width: 70%; color: #108209; font-size: 18px;">' + arrivalDate +'도착</div>';
-							html +=				'<div class="moreIcon" style="width: 10%; text-align: right; padding-right: 15px; color: rgb(180, 180, 180);"> ⠇</div>';
+							html +=				'<div class="dropdown" style="width: 10%; text-align: right; padding-right: 15px; color: rgb(180, 180, 180);"> ⠇';
+							html +=				'<div class="dropdown-content"><a href="javascript:showDetail(' + item.orderNo +')">주문 상세보기</a></div></div>';
 							html +=			'</div>';
 							html +=			'<div class="lowerCard d-flex">';
 							html +=				'<div class="productImg my-3" style="width: 15%;">';
@@ -174,6 +175,22 @@ function makeDate(date) {
 	result += d[2];
 	
 	return result;
+}
+function showDetail(orderNo) {
+	$.ajax({
+		url: "orderDetail",
+		method: "get",
+		data:{
+			"orderNo": orderNo
+		},
+		success: function(data) {
+			var url = "/our-twinkling-infinitely/orderDetail?orderNo=" + orderNo;
+            window.open(url, "winLogin", "left=350, top=300, width=560, height=650");
+		},
+		error: function(error) {
+			console.log("아왜안떠왜왜왜");
+		}
+	});
 }
 
 function showAddress(pageNo3) {

@@ -16,6 +16,6 @@ public class Coupon {
 	private boolean coupon_used;
 	
 	public enum CouponType {
-		BIRTHDAY_COUPON, DEL_FREE_COUPON, WELCOME_COUPON
+		BIRTHDAY_COUPON, DEL_FREE_COUPON, WELCOME_COUPON, NO_COUPON
 	}
 }
