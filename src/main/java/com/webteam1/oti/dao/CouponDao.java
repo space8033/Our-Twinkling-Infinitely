@@ -15,4 +15,5 @@ public interface CouponDao {
 	public List<Coupon> selectCouponByUsersId(String usersId);
 	//회원당 쿠폰 개수
 	public int countMyCoupon(String usersId);
+	public Coupon selectByCouponNo(int coupon_no);
 }
