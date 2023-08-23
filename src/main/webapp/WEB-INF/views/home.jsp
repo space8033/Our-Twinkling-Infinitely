@@ -87,7 +87,7 @@
 		    	<h2 id="s-title">"Our twinkling infinitely"</h2>
 		    	<p class="s-content">영원히 간직되는 반짝임</p>
 		    	<p class="s-content">작은 빛 하나로 반짝이는 순간을 영원히 간직해보세요!</p>
-		    	<p class="s-content">오티아이는 아득함과 빛을 모티브로 일상의 색체를 바꿔줄 수 있는 소품들을 여러분에게 제안합니다.</p>
+		    	<p class="s-content">오티아이는 아늑함과 빛을 모티브로 일상의 색채를 바꿔줄 수 있는 소품들을 여러분에게 제안합니다.</p>
 		    	<div class="d-flex justify-content-center m-4">
 			    	<img class="storyImg" src="${pageContext.request.contextPath}/resources/yuimg/메인스토리내용1.jpg"/>
 			    	<img class="storyImg" src="${pageContext.request.contextPath}/resources/yuimg/메인스토리내용2.jpg"/>	    	
