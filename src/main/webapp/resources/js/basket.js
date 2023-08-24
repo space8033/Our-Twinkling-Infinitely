@@ -67,6 +67,7 @@ function checkAll() {
 			$("#s_p_choice").html($(".pchk").length);//선택한 개수
 			$("#btn_delete").show();
 		}else if($("#cboxAll_bottom").is(":checked") == true){
+			$(".changeDis").prop("disabled", false);
 			$(".pchk").prop("checked", true);
 			$("#cboxAll_top").prop("checked", true);
 			$("#s_p_choice").html($(".pchk").length);
