@@ -220,3 +220,13 @@
 
     end 
 ```
+
+16. 리뷰 삭제
+```mermaid
+  sequenceDiagram
+  client ->> server : 리뷰 삭제 요청
+
+  alt 삭제에 성공한 경우
+  server ->> client : 성공 반환
+  end 
+```
