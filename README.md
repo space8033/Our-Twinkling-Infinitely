@@ -230,3 +230,19 @@
   server ->> client : 성공 반환
   end 
 ```
+
+17. 상품 문의 작성 폼 띄우기
+```mermaid
+  sequenceDiagram
+  client ->> interceptor : 로그인 확인 요청
+  client ->> controller : 문의 작성 요청(현재 상품정보 포함)
+
+
+  alt 로그인 중인 경우
+  controller ->> client : 문의 작성 폼 반환(client에서 받은 정보 반환)
+
+  else 로그인 중이 아닌 경우
+  interceptor ->> client : 로그인 폼 반환
+
+  end 
+```
