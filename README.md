@@ -2,6 +2,9 @@
 
 #### Flow Chart
 
+
+
+
 1. 회원가입
 ```mermaid
   sequenceDiagram
@@ -245,4 +248,24 @@
   interceptor ->> client : 로그인 폼 반환
 
   end 
+```
+
+```mermaid
+  sequenceDiagram
+    client ->> controller : 주문내역 조회 요청
+    controller ->> service : UserInfo에 맞게 데이터 요청
+    service ->> dao : Order, OrderProduct, Product 테이블에 데이터 요청
+
+    alt DB 호출에 성공한 경우
+    dao ->> service : 데이터 반환
+    service ->> controller : dto에 맞춰 데이터 반환
+    controller ->> client : dto를 client에 반환
+
+    else 호출 중 에러 발생한 경우
+    dao ->> service : 데이터 반환
+    service ->> dao : 전체 실패 반환
+    service ->> controller : 실패 반환
+    controller ->> client : 실패 반환
+    
+  end
 ```
