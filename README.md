@@ -2,6 +2,9 @@
 
 #### Flow Chart
 
+
+
+
 1. 회원가입
 ```mermaid
   sequenceDiagram
@@ -219,4 +222,50 @@
     server ->> client : 성공 반환
 
     end 
+```
+
+16. 리뷰 삭제
+```mermaid
+  sequenceDiagram
+  client ->> server : 리뷰 삭제 요청
+
+  alt 삭제에 성공한 경우
+  server ->> client : 성공 반환
+  end 
+```
+
+17. 상품 문의 작성 폼 띄우기
+```mermaid
+  sequenceDiagram
+  client ->> interceptor : 로그인 확인 요청
+  client ->> controller : 문의 작성 요청(현재 상품정보 포함)
+
+
+  alt 로그인 중인 경우
+  controller ->> client : 문의 작성 폼 반환(client에서 받은 정보 반환)
+
+  else 로그인 중이 아닌 경우
+  interceptor ->> client : 로그인 폼 반환
+
+  end 
+```
+
+```mermaid
+  sequenceDiagram
+    client ->> controller : 주문내역 조회 요청
+    controller ->> service : UserInfo에 맞게 데이터 요청
+    service ->> dao : Order, OrderProduct, Product 테이블에 데이터 요청
+
+    alt DB 호출에 성공한 경우
+    dao ->> service : 데이터 반환
+    service ->> controller : dto에 맞춰 데이터 반환
+    controller ->> client : dto를 client에 반환
+
+    else 호출 중 에러 발생한 경우
+    dao ->> service : 데이터 반환
+    service ->> dao : 전체 실패 반환
+    service ->> controller : 실패 반환
+    controller ->> client : 실패 반환
+    
+  end
 ```

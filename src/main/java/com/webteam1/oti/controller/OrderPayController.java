@@ -141,7 +141,7 @@ public class OrderPayController {
 		porder.setUsers_users_id(loginUser.getUsers_id());
 		orderService.addOrder(porder);
 		
-		return "redirect:/orderPay";
+		return "redirect:/";
 	}
 	
 	
