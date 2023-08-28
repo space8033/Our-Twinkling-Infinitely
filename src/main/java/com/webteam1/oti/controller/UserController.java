@@ -331,7 +331,7 @@ public class UserController {
 		model.addAttribute("pinquirys", pinquirys);
 		//상품문의 리스트
 		List<Pinquiry> pinquiryList = userService.getMyInquiryList(user.getUsers_id());
-		log.info("리스틀얍 : " + pinquiryList.toString());
+		
 		model.addAttribute("myinquiryList", pinquiryList);
 		
 		//마이페이지에 보일 가입일
@@ -342,7 +342,42 @@ public class UserController {
 		
 	    return "mypage/orderlist/myOti";
 	}
+	//마이페이지 기본 이미지로 변경(기존에 이미지 파일이 있다면 null로 업데이트)
+		@Login
+		@GetMapping("/basic")
+		public String basicImg(HttpSession session) {
+			LoginDto user = (LoginDto)session.getAttribute("loginIng");
+			//기존에 있던 이미지 삭제
+			userService.changeBasic(user.getUsers_id());
+			user.setUsers_imgFile(null);
+			user.setUsers_img(null);
+
+			return "redirect:/mypage";
+		}
+		
+		//마이페이지 이미지 추가
+		@Login
+		@PostMapping("/mypage")
+		public String addMyImg(MultipartFile users_mattach, HttpSession session, Model model) throws Exception{
+			LoginDto loginDto = (LoginDto)session.getAttribute("loginIng");
+			loginDto.setUsers_mattach(users_mattach);
+			
+			//MultipartFile타입의 파일을 바이트 타입으로 변경
+			if(users_mattach != null) {			
+				loginDto.setUsers_imgFile(users_mattach.getBytes());
+			}
+			//변경된 이미지 파일을 업데이트 
+			userService.addMyImg(loginDto);
+			
+			//마이페이지에 등록한 이미지가 있다면 base64로 인코딩
+			if(loginDto.getUsers_imgFile() != null) {
+				String base64Img = Base64.getEncoder().encodeToString(loginDto.getUsers_imgFile());
+				loginDto.setUsers_img(base64Img);
+			}
+			return "redirect:/mypage";
+		}
 	
+		
 	@Login
 	@GetMapping("/getHistory")
 	public String pointHistory(@RequestParam(name = "pageNo7", required = false) String pageNo7, HttpSession session, Model model) {
@@ -407,40 +442,7 @@ public class UserController {
 	}
 	
 	
-	//마이페이지 기본 이미지로 변경(기존에 이미지 파일이 있다면 null로 업데이트)
-	@Login
-	@GetMapping("/basic")
-	public String basicImg(HttpSession session) {
-		LoginDto user = (LoginDto)session.getAttribute("loginIng");
-		//기존에 있던 이미지 삭제
-		userService.changeBasic(user.getUsers_id());
-		user.setUsers_imgFile(null);
-		user.setUsers_img(null);
-
-		return "redirect:/mypage";
-	}
 	
-	//마이페이지 이미지 추가
-	@Login
-	@PostMapping("/mypage")
-	public String addMyImg(MultipartFile users_mattach, HttpSession session, Model model) throws Exception{
-		LoginDto loginDto = (LoginDto)session.getAttribute("loginIng");
-		loginDto.setUsers_mattach(users_mattach);
-		
-		//MultipartFile타입의 파일을 바이트 타입으로 변경
-		if(users_mattach != null) {			
-			loginDto.setUsers_imgFile(users_mattach.getBytes());
-		}
-		//변경된 이미지 파일을 업데이트 
-		userService.addMyImg(loginDto);
-		
-		//마이페이지에 등록한 이미지가 있다면 base64로 인코딩
-		if(loginDto.getUsers_imgFile() != null) {
-			String base64Img = Base64.getEncoder().encodeToString(loginDto.getUsers_imgFile());
-			loginDto.setUsers_img(base64Img);
-		}
-		return "redirect:/mypage";
-	}
 	
 
 }
