@@ -13,6 +13,7 @@ import com.webteam1.oti.dto.ProductOption;
 public interface ProductService {
 	//product list Service
 	public List<Product> getList(Pager pager);
+	public List<Product> getListAll();
 	public Product getProduct(int product_no);
 	public void addHitcount(int product_no);
 	public int getTotalProductNum();

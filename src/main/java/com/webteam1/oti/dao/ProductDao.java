@@ -15,6 +15,7 @@ import com.webteam1.oti.dto.ProductOption;
 public interface ProductDao {
 	public int insert(Product product);
 	public List<Product> selectByPage(Pager pager);
+	public List<Product> selectProduct();
 	public Product selectByPno(int product_no);
 	public int updateByPno(Product product);
 	public Image selectByImg(Product product);
