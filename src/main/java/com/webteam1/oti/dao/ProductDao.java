@@ -17,6 +17,7 @@ public interface ProductDao {
 	public List<Product> selectByPage(Pager pager);
 	public List<Product> selectProduct();
 	public Product selectByPno(int product_no);
+	public Product selectImgFileDataByPno(int product_no);
 	public int updateByPno(Product product);
 	public Image selectByImg(Product product);
 	public int count();

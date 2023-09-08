@@ -40,7 +40,12 @@ public class ProductServiceImpl implements ProductService{
 		Product product = productDao.selectByPno(product_no);
 		return product;
 	}
-
+	@Override
+	public Product getImgFile(int product_no) {
+		Product product = productDao.selectImgFileDataByPno(product_no);
+		return product;
+	}
+	
 	@Override
 	public void addHitcount(int product_no) {
 		Product product = productDao.selectByPno(product_no);
