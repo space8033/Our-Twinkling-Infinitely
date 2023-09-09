@@ -545,20 +545,7 @@
 						위 주문 내용을 확인 하였으며, 회원 본인은 개인정보 이용 및 제공(해외직구의 경우 국외제공) 및 결제에 동의합니다.
 					</div>
 					<div class="text-center" id="payButton">
-						<button type="button" class="payb" style="border: none; box-shadow: 0 0 0">
-								<div>
-									<img id = "maxCash"
-									style="cursor: pointer; font-size: 11px; width: 96px;"
-									class="paymentRocketpayBtn__tooltip-2percent-cashback"
-									src="//image10.coupangcdn.com/image/rocketpay/checkout/ico_cashback_tip.png"
-									width="96" height="36" alt="최대 캐시적립"/> 
-								</div>
-								<div>
-									<img
-									src="//image7.coupangcdn.com/image/rocketpay/checkout/btn_coupay_payment.png"
-									width="250" height="60" alt="쿠페이 머니 결제"/>
-								</div>
-						</button>
+
 						<button type="submit" class="payb" style=" border: none;  box-shadow: 0 0 0">
 							<img
 								src="//image7.coupangcdn.com/image/rocketpay-order-image/pc/btn_payment.gif"

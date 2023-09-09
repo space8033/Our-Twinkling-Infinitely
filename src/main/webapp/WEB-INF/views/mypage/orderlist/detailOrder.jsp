@@ -25,23 +25,37 @@
 	</head>
 	
 	<body>
-		<div id= "header">주문 상세보기</div>
+		
 				
 		<!------------------------------------- 내용 들어갈 div -------------------------------------->
-		<div class="container" style="width: 100%;">
-			<div id="detailContainer" style="width: 100%;">
+		<div class="container" style="width: 100%; height: 100%">
+			<div id= "header" class="my-2" style="text-align: center; font-size: 20px; font-weight: bold;">주문 상세보기</div>
+			<div id="detailContainer" style="width: 100%; font-size: 15px;">
 			<c:forEach var="orderInfo" items="${detailList}" varStatus="c">
-			    주문번호 : ${orderInfo.orderNo}
-			    총 결제 금액 : ${orderInfo.totalPrice}
-			    배송지 : ${orderInfo.address}
-			    배송 요청사항 : ${orderInfo.addressRequest}
-			    쿠폰 사용 내역 : ${orderInfo.couponContent}
-			    포인트 사용 내역 : ${orderInfo.usedPoint}
+				<ul class="list-group">
+				  <li class="list-group-item">주문번호 : ${orderInfo.orderNo} </li>
+				  <li class="list-group-item">총 결제 금액 : ${orderInfo.totalPrice} 원</li>
+				  <li class="list-group-item">배송지 : ${orderInfo.address} </li>
+				  <li class="list-group-item">배송 요청사항 : ${orderInfo.addressRequest} </li>
+				  <li class="list-group-item">쿠폰 사용 내역 : 
+					  <c:if test="${orderInfo.couponContent == 'NO_COUPON0'}">
+					  	 쿠폰을 사용해서 할인받은 금액이 없습니다.
+					  </c:if>
+					  <c:if test="${orderInfo.couponContent == 'DEL_FREE_COUPON2500'}">
+					  	 COMEBACK 쿠폰 사용 / 배송비 무료
+					  </c:if>
+					  <c:if test="${orderInfo.couponContent == 'BIRTHDAY_COUPON2000'}">
+					  	 생일 쿠폰 사용 / 2000원 할인
+					  </c:if>
+					  <c:if test="${orderInfo.couponContent == 'WELCOME_COUPON10'}">
+					  	 가입 쿠폰 사용 / 10% 할인 적용
+					  </c:if>
+				  </li>
+			      <li class="list-group-item">포인트 사용 내역 : ${orderInfo.usedPoint} P</li>
+				</ul>    
 			</c:forEach>
 			</div>
 		</div>
-			
-			
       
 	</body>
 	

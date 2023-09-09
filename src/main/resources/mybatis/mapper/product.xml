@@ -31,16 +31,27 @@
 		 ]]>
   	</select>
 
+	<select id="selectProduct" resultType="Product">
+       select product_no, product_name, product_price, product_img
+       		from product
+		    order by product_no desc
+  	</select>
   	
   	<select id="count" resultType="int">
    		select count(*) from product 
    	</select>
    	
    	<select id="selectByPno" parameterType="int" resultType="Product">
-         select *
+         select product_no, product_name, product_price, product_img, product_imgFile
          from product
          where product_no=#{product_no}
     </select>
+    
+    <select id="selectImgFileDataByPno" parameterType="int" resultType="Product">
+		select product_no, product_imgFile
+		from product
+		where product_no = #{product_no}
+	</select>
     
     <update id="updateByPno" parameterType="Product">
     	update product set product_hitcount=#{product_hitcount}

@@ -19,15 +19,10 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.util.WebUtils;
 
-import com.webteam1.oti.dto.OrderProduct;
 import com.webteam1.oti.dto.cart.Cart;
 import com.webteam1.oti.dto.cart.CartDto;
 import com.webteam1.oti.dto.user.LoginDto;
-import com.webteam1.oti.interceptor.Login;
 import com.webteam1.oti.service.CartService;
-import com.webteam1.oti.service.ProductService;
-
-import lombok.extern.slf4j.Slf4j;
 
 //장바구니 리스트를 데이터로 반환하기 위함 
 @RestController
@@ -35,8 +30,6 @@ import lombok.extern.slf4j.Slf4j;
 public class CartRestController {
 	@Resource
 	private CartService cartService;
-	@Resource
-	private ProductService productService;
 	
 	//비동기로 장바구니에 담은 상품 리스트 불러오기
 	@ResponseBody

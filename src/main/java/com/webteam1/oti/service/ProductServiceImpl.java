@@ -28,13 +28,24 @@ public class ProductServiceImpl implements ProductService{
 		List<Product> productList = productDao.selectByPage(pager);
 	    return productList;
 	}
+	
+	@Override
+	public List<Product> getListAll(){
+		List<Product> productList = productDao.selectProduct();
+		return productList;
+	}
 
 	@Override
 	public Product getProduct(int product_no) {
 		Product product = productDao.selectByPno(product_no);
 		return product;
 	}
-
+	@Override
+	public Product getImgFile(int product_no) {
+		Product product = productDao.selectImgFileDataByPno(product_no);
+		return product;
+	}
+	
 	@Override
 	public void addHitcount(int product_no) {
 		Product product = productDao.selectByPno(product_no);

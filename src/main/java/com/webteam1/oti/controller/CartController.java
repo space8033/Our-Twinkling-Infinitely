@@ -18,26 +18,16 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.util.WebUtils;
 
 import com.webteam1.oti.dto.Product;
 import com.webteam1.oti.dto.cart.Cart;
-import com.webteam1.oti.dto.cart.CartDto;
 import com.webteam1.oti.dto.user.LoginDto;
 import com.webteam1.oti.service.CartService;
-import com.webteam1.oti.service.ImageService;
-import com.webteam1.oti.service.ProductService;
-
-import lombok.extern.slf4j.Slf4j;
 
 @Controller
 @RequestMapping("/")
 public class CartController {
-	@Resource
-	private ProductService productService;
-	@Resource
-	private ImageService imageService;
     @Resource
 	private CartService cartService;
 
