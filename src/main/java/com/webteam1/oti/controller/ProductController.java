@@ -178,6 +178,7 @@ public class ProductController implements Serializable{
 	//검색
 	@GetMapping("searchResult")
 	public String search(String pageNo4, Model model, HttpSession session, String search) {
+		//매개 변수 역할을 할 map 선언
 		Map<String, Object> map = new HashMap<>();
 	    map.put("search", search);
 	    

@@ -31,7 +31,6 @@ public class OrderProductServiceImpl implements OrderProductService {
 		List<OrderProduct> productList = orderProductDao.getOrderProductByUsersId(userId);
 		
 		//해당 유저의 orderProductList에서 productOption 리스트 객체 구함
-		List<ProductOption> productOptionList = new ArrayList<>();
 		List<Product> orderdproductList = new ArrayList<>();
 
 		for (OrderProduct product : productList) {
@@ -39,7 +38,6 @@ public class OrderProductServiceImpl implements OrderProductService {
 		    
 		    //주문한 프러덕트의 option 객체들을 가져옴 .
 		    ProductOption option = productOptionDao.selectByOptionNo(productOptionNo);
-		    productOptionList.add(option);
 		    
 		    //productOption에 있는 productNo로 product객체들을 받아옴
 		    Product orderProduct = productDao.selectByPno(option.getProduct_product_no());
@@ -79,8 +77,8 @@ public class OrderProductServiceImpl implements OrderProductService {
 	@Override
 	public void addOrderNo(Map<String, Object> map) {
 		orderProductDao.addOrderNumber(map);
-		
 	}
+	
 	@Override
 	public void deleteOrderProduct(String usersId) {
 		orderProductDao.pageOutDelete(usersId);

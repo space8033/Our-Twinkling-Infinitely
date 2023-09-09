@@ -94,7 +94,6 @@ public class UserController {
 			log.info(agreement.isAgreement_sns()+"동의sns");
 			agreementService.insertAgreement(users, agreement);
 			couponService.generateWelcomeCoupon(users.getUsers_id());
-			
 			return "redirect:/loginForm";
 		}
 	}
@@ -154,7 +153,7 @@ public class UserController {
 				return "redirect:/";
 			}else {
 				if(redirectUrl.contains("addOrderProduct")) {
-					redirectUrl = "/orderPay";
+					redirectUrl = "/";
 				}
 				session.removeAttribute("redirectUrl");
 				return "redirect:" + redirectUrl;				

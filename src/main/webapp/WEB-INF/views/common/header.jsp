@@ -52,7 +52,7 @@
 		   		</div>
 			  	<div class="topnav container">
 				  <div class="search-container">
-				      <input type="text" placeholder="Search.." name="search" id="search" onkeyup="if(window.event.keyCode==13){searchByEnter()}">
+				      <input type="text" placeholder="Search.." name="search" id="search" onkeyup="if(window.event.keyCode==13){searchByEnter()}" autocomplete="off">
 				      <button><i class="fa fa-search" id="idSearch"></i></button>
 				  </div>
 				</div>
