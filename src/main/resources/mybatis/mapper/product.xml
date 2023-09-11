@@ -124,4 +124,9 @@
     	where product_name like '%' || #{search} || '%'
     </select>
     
+    <select id="searchProducts" resultType="Product">
+	    SELECT *
+	    FROM product
+	    WHERE product_name LIKE CONCAT('%', #{keyword}, '%')
+	</select>
 </mapper>

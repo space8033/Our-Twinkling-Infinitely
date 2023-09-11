@@ -1,10 +1,13 @@
 package com.webteam1.oti.controller;
 
 import java.util.List;
+import java.util.Map;
 
 import javax.annotation.Resource;
 
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -34,4 +37,12 @@ public class MobileProductController {
 		Product product = productService.getImgFile(product_no);
 		return product.getProduct_imgFile();
 	}
+	
+	@PostMapping("/search")
+    public List<Product> searchProducts(@RequestBody Map<String, String> searchParams) {
+        String keyword = searchParams.get("keyword");
+        // 검색어를 이용하여 productService에서 검색을 수행하고 결과를 반환
+        List<Product> searchResults = productService.searchProducts(keyword);
+        return searchResults;
+    }
 }
