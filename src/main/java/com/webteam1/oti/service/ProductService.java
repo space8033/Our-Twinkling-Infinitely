@@ -28,4 +28,6 @@ public interface ProductService {
 	public int writePinquiry(Pinquiry pinquiry);
 	public List<Pinquiry> getPinquiryList(Map<String, Object> map); 
 	public int getTotalPinquiryNum(int product_no);
+	//모바일 검색
+	public List<Product> searchProducts(String keyword);
 }

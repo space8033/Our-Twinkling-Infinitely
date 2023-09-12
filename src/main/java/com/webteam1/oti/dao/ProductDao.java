@@ -32,4 +32,6 @@ public interface ProductDao {
 	public List<Pinquiry> selectPinquiryByPage(Map<String,Object> map);
 	//총 상품문의리스트 행의수 
 	public int countPinquiry(int product_no);
+	//모바일 검색기능
+	public List<Product> searchProducts(String keyword);
 }

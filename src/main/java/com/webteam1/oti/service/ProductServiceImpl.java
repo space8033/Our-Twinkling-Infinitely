@@ -101,8 +101,14 @@ public class ProductServiceImpl implements ProductService{
 		int insertNo = productDao.insertPinquiry(pinquiry);
 		return insertNo;
 	}
-	
 
+	@Override
+	public List<Product> searchProducts(String keyword) {
+		List<Product> products = productDao.searchProducts(keyword);
+		return products;
+	}
+	
+	
 
 	
 }
