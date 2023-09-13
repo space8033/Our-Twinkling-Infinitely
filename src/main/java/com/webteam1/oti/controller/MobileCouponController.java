@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.webteam1.oti.dto.CouponMobile;
+import com.webteam1.oti.dto.Coupon;
 import com.webteam1.oti.service.CouponService;
 
 import lombok.extern.slf4j.Slf4j;
@@ -21,8 +21,8 @@ public class MobileCouponController {
 	private CouponService couponService;
 	
 	@GetMapping(value="/getCouponByUser", produces="application/json; charset=UTF-8")
-	public List<CouponMobile> getCouponByUser(String usersId) {
-		List<CouponMobile> userCouponList = couponService.getCouponMobileByUsersId(usersId);
+	public List<Coupon> getCouponByUser(String usersId) {
+		List<Coupon> userCouponList = couponService.getCouponByUsersId(usersId);
 		
 		return userCouponList;
 	}
