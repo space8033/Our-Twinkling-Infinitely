@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 
 import com.webteam1.oti.dao.OrderProductDao;
 import com.webteam1.oti.dao.ProductDao;
+import com.webteam1.oti.dto.Image;
 import com.webteam1.oti.dto.OrderProduct;
 import com.webteam1.oti.dto.Pager;
 import com.webteam1.oti.dto.Pinquiry;
@@ -102,12 +103,29 @@ public class ProductServiceImpl implements ProductService{
 		return insertNo;
 	}
 
+	
 	@Override
 	public List<Product> searchProducts(String keyword) {
 		List<Product> products = productDao.searchProducts(keyword);
 		return products;
 	}
-	
+	@Override
+	public Product productDetail(int product_no) {
+		Product products = productDao.productDetail(product_no);
+		return products;
+	}
+
+	@Override
+	public List<Image> selectDetailImgThumbnail(int product_no) {
+		List<Image> products = productDao.selectDetailImgThumbnail(product_no);
+		return products;
+	}
+
+	@Override
+	public Image selectDetailImgDetail(int product_no) {
+		Image products = productDao.selectDetailImgDetail(product_no);
+		return products;
+	}
 	
 
 	

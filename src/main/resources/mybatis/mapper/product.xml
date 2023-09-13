@@ -125,8 +125,31 @@
     </select>
     
     <select id="searchProducts" resultType="Product">
-	    SELECT *
+	    SELECT product_no, product_name, product_price
 	    FROM product
-	    WHERE product_name LIKE CONCAT('%', #{keyword}, '%')
+	    WHERE product_name LIKE '%'||#{keyword}||'%'
+	</select>
+	<select id="productDetail" parameterType="int" resultType="Product">
+		select p.product_no as product_no,
+       		p.product_name as product_name,
+       		p.product_price as product_price
+    		from product p
+    		where p.product_no = #{product_no}
+	</select>
+	<select id="selectDetailImgThumbnail" parameterType="int" resultType="Image">
+		select p.product_no as product_product_no,
+		       i.image_file as image_file
+		    from product p, image i
+		    where p.product_no = i.product_product_no
+		    and product_product_no = #{product_no}
+		    and i.image_name like '%상품' || #{product_no} || '%'
+	</select>
+	<select id="selectDetailImgDetail" parameterType="int" resultType="Image">
+		select p.product_no as product_product_no,
+		       i.image_file as image_file
+		    from product p, image i
+		    where p.product_no = i.product_product_no
+		    and product_product_no = #{product_no}
+		    and i.image_name like '%detail%'
 	</select>
 </mapper>
