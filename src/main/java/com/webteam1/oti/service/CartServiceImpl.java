@@ -61,5 +61,11 @@ public class CartServiceImpl implements CartService{
 		cartDao.qtyUpdate(cart);
 	}
 
+	@Override
+	public List<Cart> getCartAll() {
+		List<Cart> list = cartDao.selectCartAll();
+		return list;
+	}
+
 
 }
