@@ -26,4 +26,9 @@ public class MobileCouponController {
 		
 		return userCouponList;
 	}
+	
+	@GetMapping(value="/getCouponCount", produces = "application/json;")
+	public int getCouponCount(String usersId) {
+		return couponService.numberOfCoupon(usersId);
+	}
 }	
