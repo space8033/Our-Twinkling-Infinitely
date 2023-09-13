@@ -4,6 +4,7 @@ import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -16,6 +17,7 @@ import org.springframework.stereotype.Service;
 import com.webteam1.oti.dao.CouponDao;
 import com.webteam1.oti.dao.UserDao;
 import com.webteam1.oti.dto.Coupon;
+import com.webteam1.oti.dto.CouponMobile;
 import com.webteam1.oti.dto.Coupon.CouponType;
 import com.webteam1.oti.interceptor.Login;
 
@@ -133,6 +135,24 @@ public class CouponServiceImpl implements CouponService{
 	public List<Coupon> getCouponByUsersId(String usersId) {
 		List<Coupon> userCouponList = couponDao.selectCouponByUsersId(usersId);
 		return userCouponList;
+	}
+	
+	@Override
+	public List<CouponMobile> getCouponMobileByUsersId(String usersId) {
+		List<CouponMobile> list = new ArrayList<>();
+		
+		List<Coupon> couponList = couponDao.selectCouponByUsersId(usersId);
+		for(Coupon coupon : couponList) {
+			CouponMobile couponMobile = new CouponMobile();
+			couponMobile.setCoupon_no(coupon.getCoupon_no());
+			couponMobile.setCoupon_type(coupon.getCoupon_type());
+			couponMobile.setUsers_id(coupon.getUsers_users_id());
+			
+			list.add(couponMobile);
+		}
+		
+		return list;
+		
 	}
 	
 	@Login
