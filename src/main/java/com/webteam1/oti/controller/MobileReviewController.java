@@ -31,13 +31,6 @@ public class MobileReviewController {
 		return list;
 	}
 	
-	@GetMapping(value="/getReviewImageList", produces="application/json; charset=UTF-8")
-	public List<Integer> getReviewImageList(int review_no) {
-		List<Integer> list = imageService.getReviewImagesNo(review_no);
-		
-		return list;
-	}
-	
 	@GetMapping(value="/getReviewImage", produces="image/jpeg")
 	public byte[] getReviewImage(int image_no) {
 		Image image = imageService.getImageByImageNo(image_no);

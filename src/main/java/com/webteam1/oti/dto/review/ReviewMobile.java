@@ -14,5 +14,5 @@ public class ReviewMobile {
 	private String review_createdDate;
 	private int product_no;
 	private String product_name;
-	private List<Integer> image_list;
+	private List<Integer> images_no;
 }

@@ -77,7 +77,7 @@ public class ReviewServiceImpl implements ReviewService{
 			reviewMobile.setReview_createdDate(review.getReview_createdDate());
 			reviewMobile.setProduct_no(review.getProduct_no());
 			reviewMobile.setProduct_name(pname);
-			reviewMobile.setImage_list(imageList);
+			reviewMobile.setImages_no(imageList);
 			
 			list.add(reviewMobile);
 		}
