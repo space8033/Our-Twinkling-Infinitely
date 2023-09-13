@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Map;
 
 import com.webteam1.oti.dto.review.Review;
+import com.webteam1.oti.dto.review.ReviewMobile;
 import com.webteam1.oti.dto.review.ReviewReceive;
 
 public interface ReviewService {
@@ -14,6 +15,8 @@ public interface ReviewService {
 	public int findByUserId(String user_id);
 	public int countByUserId(String userId);
 	public List<Review> getReviewListByUser(Map<String, Object> map);
+	public List<ReviewMobile> getReviewListByUserId(String userId);
+	public List<Integer> getImageNoByReviewNo(int review_no);
 	public void updateReview(ReviewReceive review);
 	public void deleteReview(int review_no);
 }

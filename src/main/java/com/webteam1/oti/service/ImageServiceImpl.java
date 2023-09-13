@@ -42,4 +42,17 @@ public class ImageServiceImpl implements ImageService{
 		imageDao.deleteByRno(review_no);
 	}
 
+	@Override
+	public List<Integer> getReviewImagesNo(int review_no) {
+		List<Integer> list = imageDao.selectImageNoByReviewNo(review_no);
+		
+		return list;
+	}
+
+	@Override
+	public Image getImageByImageNo(int image_no) {
+		
+		return imageDao.selectImageByImageNo(image_no);
+	}
+
 }

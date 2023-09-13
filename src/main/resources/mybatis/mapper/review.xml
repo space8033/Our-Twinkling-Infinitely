@@ -35,6 +35,12 @@
 		]]>
 	</select>
 	
+	<select id="selectByUserIdMobile" parameterType="String" resultType="Review">
+		select *
+		from review
+		where review_name=#{userId}
+	</select>
+	
 	<select id="countByPno" parameterType="int" resultType="int">
 		select count(*)
   		from review

@@ -11,4 +11,6 @@ public interface ImageService {
 	public void registerImg(Image image);
 	public List<Image> getReviewImages(int review_no);
 	public void deleteImages(int review_no);
+	public List<Integer> getReviewImagesNo(int review_no);
+	public Image getImageByImageNo(int image_no);
 }

@@ -20,6 +20,18 @@
 		values(#{image_no}, #{image_name}, #{image_file}, #{review_review_no}, #{image_fileName})
 	</insert>
 	
+	<select id="selectImageByImageNo" parameterType="int" resultType="Image">
+		select *
+		from image
+		where image_no=#{image_no}
+	</select>
+	
+	<select id="selectImageNoByReviewNo" parameterType="int" resultType="int">
+		select image_no
+		from image
+		where review_review_no=#{review_review_no}
+	</select>
+	
 	<select id="selectByRno" parameterType="int" resultType="Image">
 		select image_no, image_name, image_file, image_fileName, product_product_no, review_review_no
 		from image
