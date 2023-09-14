@@ -27,4 +27,5 @@ public class Cart {
 	private String users_users_id;
 	//로그인 했는지 유뮤 
 	private int cart_isLogin;
+	
 }

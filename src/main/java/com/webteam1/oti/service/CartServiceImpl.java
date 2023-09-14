@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 import com.webteam1.oti.dao.CartDao;
 import com.webteam1.oti.dto.cart.Cart;
 import com.webteam1.oti.dto.cart.CartDto;
+import com.webteam1.oti.dto.cart.MobileCart;
 @Service
 public class CartServiceImpl implements CartService{
 	@Resource 
@@ -62,9 +63,15 @@ public class CartServiceImpl implements CartService{
 	}
 
 	@Override
-	public List<Cart> getCartAll() {
-		List<Cart> list = cartDao.selectCartAll();
+	public List<MobileCart> getCartAll() {
+		List<MobileCart> list = cartDao.selectCartAll();
 		return list;
+	}
+
+	@Override
+	public int numberOfCart() {
+		int numOfCart = cartDao.countCart();
+		return numOfCart;
 	}
 
 
