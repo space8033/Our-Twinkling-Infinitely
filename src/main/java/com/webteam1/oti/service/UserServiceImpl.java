@@ -2,7 +2,6 @@ package com.webteam1.oti.service;
 
 import java.util.Base64;
 import java.util.List;
-import java.util.Map;
 
 import javax.annotation.Resource;
 
@@ -14,6 +13,7 @@ import com.webteam1.oti.dao.UserDao;
 import com.webteam1.oti.dto.Pinquiry;
 import com.webteam1.oti.dto.user.JoinDto;
 import com.webteam1.oti.dto.user.LoginDto;
+import com.webteam1.oti.dto.user.Login;
 import com.webteam1.oti.dto.user.ModifyDto;
 
 //UserServiceImpl 전체 작성자 : 김시온
@@ -146,6 +146,25 @@ public class UserServiceImpl implements UserService{
 	public List<Pinquiry> getMyInquiryList(String usersId) {
 		List<Pinquiry> list = userDao.selectMyPinquiryList(usersId);
 		return list;
+	}
+	
+	@Override
+	public LoginResult loginByMember(Login member) {
+		LoginDto dbUser = userDao.selectByUsersId(member.getUserId());
+		if(dbUser == null) {
+			return LoginResult.FAIL_UID;
+		}
+		PasswordEncoder passwordEncoder = PasswordEncoderFactories.createDelegatingPasswordEncoder();
+		if(passwordEncoder.matches(member.getPassword(), dbUser.getUsers_password())) {
+			if(dbUser.getUsers_type().equals("ENABLED")) {
+				userDao.updateLogindate(member.getUserId());
+				return LoginResult.SUCCESS;
+			} else {
+				return LoginResult.FAIL_ENABLED;
+			}
+		} else {
+			return LoginResult.FAIL_PASSWORD;
+		}
 	}
 }	
 	

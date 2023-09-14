@@ -6,6 +6,7 @@ import java.util.Map;
 import com.webteam1.oti.dto.Pinquiry;
 import com.webteam1.oti.dto.user.JoinDto;
 import com.webteam1.oti.dto.user.LoginDto;
+import com.webteam1.oti.dto.user.Login;
 import com.webteam1.oti.dto.user.ModifyDto;
 
 //UserService 전체 작성자 : 김시온
@@ -55,5 +56,6 @@ public interface UserService {
     public int getMyInquiry(String usersId);
     //마이페이지 상품문의 리스트
 	public List<Pinquiry> getMyInquiryList(String usersId);
+	public LoginResult loginByMember(Login member);
 	
 }
