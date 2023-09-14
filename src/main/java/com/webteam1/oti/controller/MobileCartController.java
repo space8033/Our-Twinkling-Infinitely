@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.webteam1.oti.dto.Product;
 import com.webteam1.oti.dto.cart.Cart;
+import com.webteam1.oti.dto.cart.MobileCart;
 import com.webteam1.oti.service.CartService;
 import com.webteam1.oti.service.ProductService;
 
@@ -23,11 +24,10 @@ public class MobileCartController {
 	private CartService cartService;
     @Resource
     private ProductService productService;
-    
-
+   
     @GetMapping(value="/getCartList", produces="application/json; charset=UTF-8")
-	public List<Cart> getCartList(){
-		List<Cart> list = cartService.getCartAll();
+	public List<MobileCart> getCartList(){
+		List<MobileCart> list = cartService.getCartAll();
 		log.info("리스트"+list.size());
 		return list;
 	}
@@ -36,5 +36,10 @@ public class MobileCartController {
 	public byte[] fileDownload(int product_no){
 		Product product = productService.getImgFile(product_no);
 		return product.getProduct_imgFile();
+	}
+	
+	@GetMapping(value="/getCartCount",  produces="application/json; charset=UTF-8")
+	public int getCartCount() {
+		return cartService.numberOfCart();
 	}
 }

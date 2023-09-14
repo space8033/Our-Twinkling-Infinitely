@@ -6,6 +6,7 @@ import java.util.Map;
 import com.webteam1.oti.dto.Product;
 import com.webteam1.oti.dto.cart.Cart;
 import com.webteam1.oti.dto.cart.CartDto;
+import com.webteam1.oti.dto.cart.MobileCart;
 
 public interface CartService {
 	public int addCart(Cart cart);
@@ -16,6 +17,7 @@ public interface CartService {
 	public List<Cart> getCartByCkId(String ckId);
 	public int getOptionNo(Map<String, Object> map);
 	public List<CartDto> getCartList(Cart cart);
-	public List<Cart> getCartAll();
+	public List<MobileCart> getCartAll();
+	public int numberOfCart();
 }
 

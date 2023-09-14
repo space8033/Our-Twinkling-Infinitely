@@ -83,11 +83,17 @@
 	</update>
 	
 	<!-- 모바일용 장바구니 모두 불러오기 -->
-	<select id="selectCartAll" resultType="Cart">
+	<select id="selectCartAll" resultType="com.webteam1.oti.dto.cart.MobileCart">
 		select  c.cart_no, c.productOption_productOption_no, c.cart_optionContent, c.cart_qty, p.product_no,
 		p.product_name , p.product_price ,p.product_imgFile, o.productOption_no , o.productOption_type
 		from CART c 
 		left outer join PRODUCT p on c.product_product_no = p.product_no 
 		left outer join PRODUCTOPTION o on c.productOption_productOption_no = o.productOption_no
 	</select>
+	
+	<!-- 모바일용 장바구니에 있는 상품 갯수 불러오기 -->
+	<select id="countCart" resultType="int">
+		select count(*)
+		from cart
+	</select>	
 </mapper>
