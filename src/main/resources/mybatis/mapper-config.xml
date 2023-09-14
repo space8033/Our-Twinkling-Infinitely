@@ -22,6 +22,7 @@
 		<typeAlias alias="Review" type="com.webteam1.oti.dto.review.Review"/>
 		<typeAlias alias="ReviewReceive" type="com.webteam1.oti.dto.review.ReviewReceive"/>
 		<typeAlias alias="Coupon" type="com.webteam1.oti.dto.Coupon"/>
+		<typeAlias alias="ProductDetail" type="com.webteam1.oti.dto.ProductDetail"/>
 	</typeAliases>
 </configuration>
 

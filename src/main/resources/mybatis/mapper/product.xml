@@ -129,13 +129,18 @@
 	    FROM product
 	    WHERE product_name LIKE '%'||#{keyword}||'%'
 	</select>
-	<select id="productDetail" parameterType="int" resultType="Product">
-		select p.product_no as product_no,
-       		p.product_name as product_name,
-       		p.product_price as product_price
-    		from product p
-    		where p.product_no = #{product_no}
+	<select id="productDetail" parameterType="int" resultType="ProductDetail">
+		select product_no, product_name, product_price
+    		from product
+    		where product_no = #{product_no}
 	</select>
+	
+	<select id="getProductOptionMobile" parameterType="int" resultType="String">
+    	select productoption_type
+    	from productOption
+    	where product_product_no=#{product_no}
+    </select>
+    
 	<select id="selectDetailImgThumbnail" parameterType="int" resultType="Image">
 		select p.product_no as product_product_no,
 		       i.image_file as image_file

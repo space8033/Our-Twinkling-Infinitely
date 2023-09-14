@@ -1,4 +1,4 @@
-package com.webteam1.oti.exception;
+/*package com.webteam1.oti.exception;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Component;
@@ -31,4 +31,4 @@ public class MyOtiExceptionHandler {
 	public String handle404(NoHandlerFoundException e) {
 		return "exception/exception404";
 	}
-}
+}*/

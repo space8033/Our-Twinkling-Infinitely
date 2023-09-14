@@ -13,6 +13,7 @@ public interface ImageDao {
 	public int insertReviewImage(Image image);
 	public List<Image> selectByRno(int rno);
 	public List<Integer> selectImageNoByReviewNo(int review_review_no);
+	public List<Integer> selectImageNoByProductNo(int product_product_no);
 	public void deleteByRno(int review_no);
 	public Image selectImageByImageNo(int image_no);
 }

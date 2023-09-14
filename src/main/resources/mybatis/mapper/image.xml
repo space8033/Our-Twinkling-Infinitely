@@ -32,6 +32,12 @@
 		where review_review_no=#{review_review_no}
 	</select>
 	
+	<select id="selectImageNoByProductNo" parameterType="int" resultType="int">
+		select image_no
+		from image
+		where product_product_no=#{product_product_no}
+	</select>
+	
 	<select id="selectByRno" parameterType="int" resultType="Image">
 		select image_no, image_name, image_file, image_fileName, product_product_no, review_review_no
 		from image

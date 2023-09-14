@@ -9,6 +9,7 @@ import com.webteam1.oti.dto.OrderProduct;
 import com.webteam1.oti.dto.Pager;
 import com.webteam1.oti.dto.Pinquiry;
 import com.webteam1.oti.dto.Product;
+import com.webteam1.oti.dto.ProductDetail;
 import com.webteam1.oti.dto.ProductOption;
 
 public interface ProductService {
@@ -33,7 +34,7 @@ public interface ProductService {
 	//모바일 검색
 	public List<Product> searchProducts(String keyword);
 	//모바일 상품 상세정보
-	public Product productDetail(int product_no);
+	public ProductDetail productDetail(int product_no);
 	//상품 상세정보(상세보기 썸네일 사진들)
 	public List<Image> selectDetailImgThumbnail(int product_no);
 	//상품 상세정보(상세 정보 사진)

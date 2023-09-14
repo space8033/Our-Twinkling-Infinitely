@@ -11,7 +11,8 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.webteam1.oti.dto.Image;
 import com.webteam1.oti.dto.Product;
-import com.webteam1.oti.dto.ProductOption;
+import com.webteam1.oti.dto.ProductDetail;
+import com.webteam1.oti.service.ImageService;
 import com.webteam1.oti.service.ProductService;
 
 import lombok.extern.slf4j.Slf4j;
@@ -23,6 +24,9 @@ public class MobileProductController {
 	
 	@Resource
 	private ProductService productService;
+	
+	@Resource
+	private ImageService imageService;
 	
 	
 	@GetMapping(value="/getProductList", produces="application/json; charset=UTF-8")
@@ -45,25 +49,16 @@ public class MobileProductController {
 	    return searchResults;
 	}
 	
-	
-	
 	@GetMapping(value="/getDetailList", produces="application/json; charset=UTF-8")
-	public Product getDetailList(int product_no) {
-		Product product = productService.productDetail(product_no);
-		return product;
-	}
-	
-	@GetMapping(value="/getDetailOption",produces="application/json; charset=UTF-8")
-	public List<ProductOption> getDetailOption(int product_no){
-			List<ProductOption> productOption = productService.getOptionList(product_no);
-			return productOption;
+	public ProductDetail getDetailList(int product_no) {
+		ProductDetail productDetail = productService.productDetail(product_no);
+		return productDetail;
 	}
 	
 	@GetMapping(value="/getDetailImgThumbnail", produces="image/jpeg")
-	public List<Image> getDetailImgThumbnail(int product_no){
-		log.info("실행");
-		List<Image> image = productService.selectDetailImgThumbnail(product_no);
-		return image;
+	public byte[] getDetailImgThumbnail(int image_no){
+		Image image = imageService.getImageByImageNo(image_no);
+		return image.getImage_file();
 	}
 	
 	@GetMapping(value="/getDetailImgDetail", produces="image/jpeg")

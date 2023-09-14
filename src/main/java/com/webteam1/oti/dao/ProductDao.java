@@ -9,6 +9,7 @@ import com.webteam1.oti.dto.Image;
 import com.webteam1.oti.dto.Pager;
 import com.webteam1.oti.dto.Pinquiry;
 import com.webteam1.oti.dto.Product;
+import com.webteam1.oti.dto.ProductDetail;
 import com.webteam1.oti.dto.ProductOption;
 
 @Mapper
@@ -37,7 +38,9 @@ public interface ProductDao {
 	//모바일 검색기능
 	public List<Product> searchProducts(String keyword);
 	//상품 상세정보(사진 제외)
-	public Product productDetail(int product_no);
+	public ProductDetail productDetail(int product_no);
+	//상품 타입 가져오기
+	public List<String> getProductOptionMobile(int product_no);
 	//상품 상세정보(상세보기 썸네일 사진들)
 	public List<Image> selectDetailImgThumbnail(int product_no);
 	//상품 상세정보(상세 정보 사진)

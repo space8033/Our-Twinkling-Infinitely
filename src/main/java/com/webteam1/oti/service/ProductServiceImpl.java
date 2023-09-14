@@ -1,5 +1,6 @@
 package com.webteam1.oti.service;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
@@ -7,6 +8,7 @@ import javax.annotation.Resource;
 
 import org.springframework.stereotype.Service;
 
+import com.webteam1.oti.dao.ImageDao;
 import com.webteam1.oti.dao.OrderProductDao;
 import com.webteam1.oti.dao.ProductDao;
 import com.webteam1.oti.dto.Image;
@@ -14,6 +16,7 @@ import com.webteam1.oti.dto.OrderProduct;
 import com.webteam1.oti.dto.Pager;
 import com.webteam1.oti.dto.Pinquiry;
 import com.webteam1.oti.dto.Product;
+import com.webteam1.oti.dto.ProductDetail;
 import com.webteam1.oti.dto.ProductOption;
 
 @Service
@@ -22,6 +25,8 @@ public class ProductServiceImpl implements ProductService{
 	private ProductDao productDao;
 	@Resource
 	private OrderProductDao orderProductDao;
+	@Resource
+	private ImageDao imageDao;
 	
 	//product list
 	@Override
@@ -32,8 +37,22 @@ public class ProductServiceImpl implements ProductService{
 	
 	@Override
 	public List<Product> getListAll(){
+		List<Product> list = new ArrayList<>();
 		List<Product> productList = productDao.selectProduct();
-		return productList;
+		for(Product product : productList) {
+			List<Integer> imageList = imageDao.selectImageNoByProductNo(product.getProduct_no());
+			List<String> optionType = productDao.getProductOptionMobile(product.getProduct_no());
+			
+			Product renewproduct = new Product();
+			renewproduct.setProduct_no(product.getProduct_no());
+			renewproduct.setProduct_name(product.getProduct_name());
+			renewproduct.setProduct_price(product.getProduct_price());
+			renewproduct.setProduct_option(optionType);
+			renewproduct.setImage_no(imageList);
+			
+			list.add(renewproduct);
+		}
+		return list;
 	}
 
 	@Override
@@ -110,9 +129,20 @@ public class ProductServiceImpl implements ProductService{
 		return products;
 	}
 	@Override
-	public Product productDetail(int product_no) {
-		Product products = productDao.productDetail(product_no);
-		return products;
+	public ProductDetail productDetail(int product_no) {
+			
+		ProductDetail pdt = productDao.productDetail(product_no);
+		
+		ProductDetail pd = new ProductDetail();
+		List<Integer> imageList = imageDao.selectImageNoByProductNo(product_no);
+		List<String> optionType = productDao.getProductOptionMobile(product_no);
+		pd.setProduct_no(pdt.getProduct_no());
+		pd.setProduct_name(pdt.getProduct_name());
+		pd.setProduct_price(pdt.getProduct_price());
+		pd.setProductoption_type(optionType);
+		pd.setImages_no(imageList);
+		
+		return pd;
 	}
 
 	@Override

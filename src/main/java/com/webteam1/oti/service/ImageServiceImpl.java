@@ -55,4 +55,5 @@ public class ImageServiceImpl implements ImageService{
 		return imageDao.selectImageByImageNo(image_no);
 	}
 
+
 }
