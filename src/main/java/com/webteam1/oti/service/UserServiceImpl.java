@@ -9,7 +9,10 @@ import org.springframework.security.crypto.factory.PasswordEncoderFactories;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import com.webteam1.oti.dao.CouponDao;
+import com.webteam1.oti.dao.ReviewDao;
 import com.webteam1.oti.dao.UserDao;
+import com.webteam1.oti.dto.MyPage;
 import com.webteam1.oti.dto.Pinquiry;
 import com.webteam1.oti.dto.user.JoinDto;
 import com.webteam1.oti.dto.user.LoginDto;
@@ -21,6 +24,10 @@ import com.webteam1.oti.dto.user.ModifyDto;
 public class UserServiceImpl implements UserService{
 	@Resource
 	private UserDao userDao;
+	@Resource
+	private CouponDao couponDao;
+	@Resource
+	private ReviewDao reviewDao;
 	
 	//회원가입
 	@Override
@@ -166,6 +173,25 @@ public class UserServiceImpl implements UserService{
 			return LoginResult.FAIL_PASSWORD;
 		}
 	}
+
+	@Override
+	public MyPage getMyPageInfo(String userId) {
+		LoginDto user = userDao.selectByUsersId(userId);
+		int couponCount = couponDao.countMyCoupon(userId);
+		int reviewCount = reviewDao.countByUser(userId);
+		int inquiryCount = getMyInquiry(userId);
+		
+		MyPage mypage = new MyPage();
+		mypage.setName(user.getUsers_name());
+		mypage.setCreated_at(user.getUsers_createdDate());
+		mypage.setPoint(user.getUsers_opoint());
+		mypage.setCouponCount(couponCount);
+		mypage.setReviewCount(reviewCount);
+		mypage.setInquiryCount(inquiryCount);
+		
+		return mypage;
+	}
+	
 }	
 	
 	

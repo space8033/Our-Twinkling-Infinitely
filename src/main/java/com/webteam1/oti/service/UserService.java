@@ -3,6 +3,7 @@ package com.webteam1.oti.service;
 import java.util.List;
 import java.util.Map;
 
+import com.webteam1.oti.dto.MyPage;
 import com.webteam1.oti.dto.Pinquiry;
 import com.webteam1.oti.dto.user.JoinDto;
 import com.webteam1.oti.dto.user.LoginDto;
@@ -57,5 +58,6 @@ public interface UserService {
     //마이페이지 상품문의 리스트
 	public List<Pinquiry> getMyInquiryList(String usersId);
 	public LoginResult loginByMember(Login member);
+	public MyPage getMyPageInfo(String userId);
 	
 }
