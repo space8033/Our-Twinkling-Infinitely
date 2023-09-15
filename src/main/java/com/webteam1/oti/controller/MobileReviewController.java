@@ -37,4 +37,9 @@ public class MobileReviewController {
 		
 		return image.getImage_file();
 	}
+	
+	@GetMapping(value="/deleteReview", produces="application/json; charset=UTF-8")
+	public void deleteReview(int reviewNo) {
+		reviewService.deleteReview(reviewNo);
+	}
 }
