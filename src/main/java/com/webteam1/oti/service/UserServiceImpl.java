@@ -1,6 +1,8 @@
 package com.webteam1.oti.service;
 
+import java.util.ArrayList;
 import java.util.Base64;
+import java.util.Comparator;
 import java.util.List;
 
 import javax.annotation.Resource;
@@ -14,9 +16,11 @@ import com.webteam1.oti.dao.ReviewDao;
 import com.webteam1.oti.dao.UserDao;
 import com.webteam1.oti.dto.MyPage;
 import com.webteam1.oti.dto.Pinquiry;
+import com.webteam1.oti.dto.point.Point;
+import com.webteam1.oti.dto.point.PointHistory;
 import com.webteam1.oti.dto.user.JoinDto;
-import com.webteam1.oti.dto.user.LoginDto;
 import com.webteam1.oti.dto.user.Login;
+import com.webteam1.oti.dto.user.LoginDto;
 import com.webteam1.oti.dto.user.ModifyDto;
 
 //UserServiceImpl 전체 작성자 : 김시온
@@ -28,6 +32,8 @@ public class UserServiceImpl implements UserService{
 	private CouponDao couponDao;
 	@Resource
 	private ReviewDao reviewDao;
+	@Resource
+	private PointService pointService;
 	
 	//회원가입
 	@Override
@@ -190,6 +196,38 @@ public class UserServiceImpl implements UserService{
 		mypage.setInquiryCount(inquiryCount);
 		
 		return mypage;
+	}
+
+	@Override
+	public List<PointHistory> getPointHistory(String userId) {
+		List<Point> sp = pointService.savedPointList(userId);
+		List<Point> up = pointService.usedPointList(userId);
+		
+		List<PointHistory> list = new ArrayList<>();
+		for(Point p : sp) {
+			PointHistory pointHistory = new PointHistory();
+			pointHistory.setChangeDate(p.getDate());
+			pointHistory.setChangePoint(p.getOpoint());
+			pointHistory.setChangeType(p.getPoint_status());
+			pointHistory.setOrderNo(p.getOrder_number());
+			
+			list.add(pointHistory);
+		}
+		
+		for(Point p : up) {
+			PointHistory pointHistory = new PointHistory();
+			pointHistory.setChangeDate(p.getDate());
+			pointHistory.setChangePoint(p.getOpoint());
+			pointHistory.setChangeType(p.getPoint_status());
+			pointHistory.setOrderNo(p.getOrder_number());
+			
+			list.add(pointHistory);
+		}
+		
+		Comparator<PointHistory> dateComparator = Comparator.comparing(PointHistory::getChangeDate, Comparator.reverseOrder());
+		list.sort(dateComparator);
+		
+		return list;
 	}
 	
 }	

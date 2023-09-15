@@ -5,6 +5,7 @@ import java.util.Map;
 
 import com.webteam1.oti.dto.MyPage;
 import com.webteam1.oti.dto.Pinquiry;
+import com.webteam1.oti.dto.point.PointHistory;
 import com.webteam1.oti.dto.user.JoinDto;
 import com.webteam1.oti.dto.user.LoginDto;
 import com.webteam1.oti.dto.user.Login;
@@ -59,5 +60,6 @@ public interface UserService {
 	public List<Pinquiry> getMyInquiryList(String usersId);
 	public LoginResult loginByMember(Login member);
 	public MyPage getMyPageInfo(String userId);
+	public List<PointHistory> getPointHistory(String userId);
 	
 }
