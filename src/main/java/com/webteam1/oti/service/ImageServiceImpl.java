@@ -1,5 +1,6 @@
 package com.webteam1.oti.service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.annotation.Resource;
@@ -7,12 +8,17 @@ import javax.annotation.Resource;
 import org.springframework.stereotype.Service;
 
 import com.webteam1.oti.dao.ImageDao;
+import com.webteam1.oti.dao.ProductDao;
 import com.webteam1.oti.dto.Image;
+import com.webteam1.oti.dto.ProductDetail;
 
 @Service
 public class ImageServiceImpl implements ImageService{
 	@Resource
 	private ImageDao imageDao;
+	
+	@Resource
+	private ProductDao productDao;
 	
 	@Override
 	public List<Image> getImage(int product_no) {
@@ -55,5 +61,12 @@ public class ImageServiceImpl implements ImageService{
 		return imageDao.selectImageByImageNo(image_no);
 	}
 
+
+	@Override
+	public List<Integer> getImageNoByProductNo(int product_no){
+		List<Integer> imageList = imageDao.selectImageNoByProductNo(product_no);;
+		
+		return imageList;
+	}
 
 }

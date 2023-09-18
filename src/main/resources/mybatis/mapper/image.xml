@@ -23,7 +23,8 @@
 	<select id="selectImageByImageNo" parameterType="int" resultType="Image">
 		select *
 		from image
-		where image_no=#{image_no}
+		where image_name like '%상품%'
+		and image_no=#{image_no}
 	</select>
 	
 	<select id="selectImageNoByReviewNo" parameterType="int" resultType="int">
@@ -36,6 +37,7 @@
 		select image_no
 		from image
 		where product_product_no=#{product_product_no}
+		and image_name like '%상품%'
 	</select>
 	
 	<select id="selectByRno" parameterType="int" resultType="Image">

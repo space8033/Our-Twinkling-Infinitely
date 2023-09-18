@@ -1,6 +1,7 @@
 package com.webteam1.oti.service;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.Map;
 
@@ -125,8 +126,22 @@ public class ProductServiceImpl implements ProductService{
 	
 	@Override
 	public List<Product> searchProducts(String keyword) {
+		List<Product> list = new ArrayList<>();
 		List<Product> products = productDao.searchProducts(keyword);
-		return products;
+		for(Product product : products) {
+			List<Integer> imageList = imageDao.selectImageNoByProductNo(product.getProduct_no());
+			List<String> optionType = productDao.getProductOptionMobile(product.getProduct_no());
+			
+			Product renewproduct = new Product();
+			renewproduct.setProduct_no(product.getProduct_no());
+			renewproduct.setProduct_name(product.getProduct_name());
+			renewproduct.setProduct_price(product.getProduct_price());
+			renewproduct.setProduct_option(optionType);
+			renewproduct.setImage_no(imageList);
+			
+			list.add(renewproduct);
+		}
+		return list;
 	}
 	@Override
 	public ProductDetail productDetail(int product_no) {
@@ -136,11 +151,13 @@ public class ProductServiceImpl implements ProductService{
 		ProductDetail pd = new ProductDetail();
 		List<Integer> imageList = imageDao.selectImageNoByProductNo(product_no);
 		List<String> optionType = productDao.getProductOptionMobile(product_no);
+		Collections.sort(imageList);
 		pd.setProduct_no(pdt.getProduct_no());
 		pd.setProduct_name(pdt.getProduct_name());
 		pd.setProduct_price(pdt.getProduct_price());
 		pd.setProductoption_type(optionType);
 		pd.setImages_no(imageList);
+		
 		
 		return pd;
 	}
