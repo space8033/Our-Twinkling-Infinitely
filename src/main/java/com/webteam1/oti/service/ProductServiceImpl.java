@@ -126,8 +126,22 @@ public class ProductServiceImpl implements ProductService{
 	
 	@Override
 	public List<Product> searchProducts(String keyword) {
+		List<Product> list = new ArrayList<>();
 		List<Product> products = productDao.searchProducts(keyword);
-		return products;
+		for(Product product : products) {
+			List<Integer> imageList = imageDao.selectImageNoByProductNo(product.getProduct_no());
+			List<String> optionType = productDao.getProductOptionMobile(product.getProduct_no());
+			
+			Product renewproduct = new Product();
+			renewproduct.setProduct_no(product.getProduct_no());
+			renewproduct.setProduct_name(product.getProduct_name());
+			renewproduct.setProduct_price(product.getProduct_price());
+			renewproduct.setProduct_option(optionType);
+			renewproduct.setImage_no(imageList);
+			
+			list.add(renewproduct);
+		}
+		return list;
 	}
 	@Override
 	public ProductDetail productDetail(int product_no) {
