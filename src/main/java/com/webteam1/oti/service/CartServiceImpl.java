@@ -1,5 +1,6 @@
 package com.webteam1.oti.service;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -63,16 +64,21 @@ public class CartServiceImpl implements CartService{
 	}
 
 	@Override
-	public List<MobileCart> getCartAll() {
-		List<MobileCart> list = cartDao.selectCartAll();
-		return list;
-	}
-
-	@Override
-	public int numberOfCart() {
-		int numOfCart = cartDao.countCart();
+	public int numberOfCart(String users_users_id) {
+		int numOfCart = cartDao.countCart(users_users_id);
 		return numOfCart;
 	}
 
+	@Override
+	public void updateQty(int cart_no, int cart_qty) {
+		Map<String, Object> map = new HashMap<>();
+		map.put("cart_no", cart_no);
+		map.put("cart_qty", cart_qty);
+		cartDao.updateQty(map);
+	}
 
+	@Override
+	public List<MobileCart> getCartAll(String users_users_id) {
+		return cartDao.selectCart(users_users_id);
+	}
 }

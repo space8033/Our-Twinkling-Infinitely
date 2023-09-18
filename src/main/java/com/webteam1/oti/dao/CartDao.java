@@ -21,6 +21,7 @@ public interface CartDao {
 	public int selectOptionNo(Map<String, Object> map);
 	public List<Cart> selectByCkId(String ckId);
 	public List<CartDto> selectCartList(Cart cart);
-	public List<MobileCart> selectCartAll();
-	public int countCart();
+	public List<MobileCart> selectCart(String users_users_id);
+	public int countCart(String users_users_id);
+	public void updateQty(Map<String, Object> map);
 }

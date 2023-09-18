@@ -26,8 +26,8 @@ public class MobileCartController {
     private ProductService productService;
    
     @GetMapping(value="/getCartList", produces="application/json; charset=UTF-8")
-	public List<MobileCart> getCartList(){
-		List<MobileCart> list = cartService.getCartAll();
+	public List<MobileCart> getCartList(String user_Id){
+		List<MobileCart> list = cartService.getCartAll(user_Id);
 		log.info("리스트"+list.size());
 		return list;
 	}
@@ -39,7 +39,18 @@ public class MobileCartController {
 	}
 	
 	@GetMapping(value="/getCartCount",  produces="application/json; charset=UTF-8")
-	public int getCartCount() {
-		return cartService.numberOfCart();
+	public int getCartCount(String user_Id) {
+		return cartService.numberOfCart(user_Id);
+	}
+	
+	@GetMapping(value="/updateCartCount", produces="application/json; charset=UTF-8")
+	public void qtyUpdate(int cart_no, int cart_qty) {
+		cartService.updateQty(cart_no, cart_qty);
+		log.info("작동중");
+	}
+	
+	@GetMapping(value="/deleteOneCart", produces="application/json; charset=UTF-8")
+	public void deleteOneCart(int cart_no) {
+		cartService.cartDelete(cart_no);
 	}
 }

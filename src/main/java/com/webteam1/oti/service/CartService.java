@@ -17,7 +17,8 @@ public interface CartService {
 	public List<Cart> getCartByCkId(String ckId);
 	public int getOptionNo(Map<String, Object> map);
 	public List<CartDto> getCartList(Cart cart);
-	public List<MobileCart> getCartAll();
-	public int numberOfCart();
+	public List<MobileCart> getCartAll(String users_users_id);
+	public int numberOfCart(String users_users_id);
+	public void updateQty(int cart_no, int cart_qty); //모바일용 수량 업데이트
 }
 
