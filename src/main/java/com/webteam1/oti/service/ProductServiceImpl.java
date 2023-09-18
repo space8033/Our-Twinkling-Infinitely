@@ -1,6 +1,7 @@
 package com.webteam1.oti.service;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.Map;
 
@@ -136,11 +137,13 @@ public class ProductServiceImpl implements ProductService{
 		ProductDetail pd = new ProductDetail();
 		List<Integer> imageList = imageDao.selectImageNoByProductNo(product_no);
 		List<String> optionType = productDao.getProductOptionMobile(product_no);
+		Collections.sort(imageList);
 		pd.setProduct_no(pdt.getProduct_no());
 		pd.setProduct_name(pdt.getProduct_name());
 		pd.setProduct_price(pdt.getProduct_price());
 		pd.setProductoption_type(optionType);
 		pd.setImages_no(imageList);
+		
 		
 		return pd;
 	}

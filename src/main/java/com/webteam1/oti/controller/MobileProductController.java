@@ -1,5 +1,6 @@
 package com.webteam1.oti.controller;
 
+import java.util.Collections;
 import java.util.List;
 
 import javax.annotation.Resource;
@@ -52,7 +53,14 @@ public class MobileProductController {
 	@GetMapping(value="/getDetailList", produces="application/json; charset=UTF-8")
 	public ProductDetail getDetailList(int product_no) {
 		ProductDetail productDetail = productService.productDetail(product_no);
+		Collections.sort(productDetail.getImages_no());
 		return productDetail;
+	}
+	
+	@GetMapping(value="/getImageNo", produces="application/json; charset=UTF-8")
+	public List<Integer> getImageNo(int product_no){
+		List<Integer> image_no = imageService.getImageNoByProductNo(product_no);
+		return image_no;
 	}
 	
 	@GetMapping(value="/getDetailImgThumbnail", produces="image/jpeg")

@@ -13,4 +13,5 @@ public interface ImageService {
 	public void deleteImages(int review_no);
 	public List<Integer> getReviewImagesNo(int review_no);
 	public Image getImageByImageNo(int image_no);
+	public List<Integer> getImageNoByProductNo(int product_no);
 }
