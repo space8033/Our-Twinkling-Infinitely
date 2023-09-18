@@ -4,10 +4,13 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Collections;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
 import javax.annotation.Resource;
 
@@ -23,9 +26,9 @@ import com.webteam1.oti.dao.ProductOptionDao;
 import com.webteam1.oti.dao.UserDao;
 import com.webteam1.oti.dto.Address;
 import com.webteam1.oti.dto.Coupon;
-import com.webteam1.oti.dto.Coupon.CouponType;
 import com.webteam1.oti.dto.OrderProduct;
 import com.webteam1.oti.dto.Product;
+import com.webteam1.oti.dto.order.OrderHistory;
 import com.webteam1.oti.dto.order.OrderInfo;
 import com.webteam1.oti.dto.order.Porder;
 import com.webteam1.oti.dto.user.LoginDto;
@@ -181,4 +184,69 @@ public class OrderServiceImpl implements OrderService {
 		
 		return sdf.format(date);
 	}
+
+	@Override
+	@Transactional
+	public List<OrderHistory> getOrderHistory(String userId) throws ParseException {
+		List<OrderHistory> orderHistories = new ArrayList<>();
+		List<Integer> orderNumList = orderDao.selectByUserId(userId);
+		
+		for(Integer i : orderNumList) {
+			Porder order = orderDao.selectByOrderNo(i);
+			List<OrderProduct> opNumList = orderProductDao.selectByOrderNo(i);
+			for(OrderProduct j : opNumList) {
+				//productoption_no로 product 찾기
+				int productOptionNo = orderProductDao.selectOptionNo(j.getOrderProduct_no());
+				int productNo = productOptionDao.selectProductNo(productOptionNo);
+				Product product = productDao.selectByPno(productNo);
+				//product에서 정보빼기
+				OrderHistory orderHistory = new OrderHistory();
+				String date = order.getOrder_createdDate().substring(0,  10);
+				try {
+					Date arrivalDate = convertArrival(date);
+					orderHistory.setArrival(reverse(arrivalDate));
+					
+					Date today = new Date();
+					if(arrivalDate.before(today)) {
+						orderHistory.setDeliveryStatus("배송 완료");
+					}else {
+						orderHistory.setDeliveryStatus("배송 중");
+					}
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+				
+				orderHistory.setProductNo(productNo);
+				orderHistory.setProductName(product.getProduct_name());
+				orderHistory.setPrice(product.getProduct_price());
+				orderHistory.setQuantity(j.getOrderProduct_qty());
+				orderHistory.setOrderDate(order.getOrder_createdDate().substring(0, 10));
+				
+				orderHistories.add(orderHistory);
+			}
+		}
+		
+			
+		return orderHistories;
+	}
+	
+	@Override
+	public List<String> getDates(String userId) throws ParseException {
+		List<OrderHistory> histories = getOrderHistory(userId);
+		Set<String> set = new HashSet<>();
+		
+		for(OrderHistory oh : histories) {
+			set.add(oh.getOrderDate());
+		}
+		
+		List<String> list = new ArrayList<>();
+		for(String s : set) {
+			list.add(s);
+		}
+		
+		Collections.sort(list, Collections.reverseOrder());
+		
+		return list;
+	}
+	
 }

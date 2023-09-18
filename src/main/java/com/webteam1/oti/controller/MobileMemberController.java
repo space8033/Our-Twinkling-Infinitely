@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.webteam1.oti.dto.InquiryMobile;
 import com.webteam1.oti.dto.MyPage;
 import com.webteam1.oti.dto.point.PointHistory;
 import com.webteam1.oti.dto.user.Login;
@@ -77,5 +78,11 @@ public class MobileMemberController {
 		LoginDto user = userService.getUser(userId);
 		
 		return user.getUsers_opoint();
+	}
+	
+	@GetMapping(value="/inquriy", produces="application/json; charset=UTF-8")
+	public List<InquiryMobile> inquriy(String userId) {
+		
+		return userService.getInquriyList(userId);
 	}
 }

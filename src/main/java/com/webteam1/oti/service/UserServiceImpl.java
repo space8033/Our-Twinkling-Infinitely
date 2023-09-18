@@ -14,6 +14,7 @@ import org.springframework.stereotype.Service;
 import com.webteam1.oti.dao.CouponDao;
 import com.webteam1.oti.dao.ReviewDao;
 import com.webteam1.oti.dao.UserDao;
+import com.webteam1.oti.dto.InquiryMobile;
 import com.webteam1.oti.dto.MyPage;
 import com.webteam1.oti.dto.Pinquiry;
 import com.webteam1.oti.dto.point.Point;
@@ -34,6 +35,8 @@ public class UserServiceImpl implements UserService{
 	private ReviewDao reviewDao;
 	@Resource
 	private PointService pointService;
+	@Resource
+	private ProductService productService;
 	
 	//회원가입
 	@Override
@@ -228,6 +231,25 @@ public class UserServiceImpl implements UserService{
 		list.sort(dateComparator);
 		
 		return list;
+	}
+
+	@Override
+	public List<InquiryMobile> getInquriyList(String userId) {
+		List<Pinquiry> inquries = userDao.selectMyPinquiryList(userId);
+		List<InquiryMobile> list = new ArrayList<>();
+		
+		for(Pinquiry p : inquries) {
+			InquiryMobile im = new InquiryMobile();
+			im.setInquriyNo(p.getPinquiry_no());
+			im.setProductNo(p.getProduct_product_no());
+			im.setInquriyType(p.getPinquiry_type());
+			im.setProductName(productService.getProduct(p.getPinquiry_no()).getProduct_name());
+			im.setCreatedAt(p.getPinquiry_createdDate().substring(0, 10));
+			im.setInquriyTitle(p.getPinquiry_title());
+			
+			list.add(im);
+		}
+		return null;
 	}
 	
 }	

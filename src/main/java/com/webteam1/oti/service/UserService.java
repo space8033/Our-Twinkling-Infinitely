@@ -3,6 +3,7 @@ package com.webteam1.oti.service;
 import java.util.List;
 import java.util.Map;
 
+import com.webteam1.oti.dto.InquiryMobile;
 import com.webteam1.oti.dto.MyPage;
 import com.webteam1.oti.dto.Pinquiry;
 import com.webteam1.oti.dto.point.PointHistory;
@@ -61,5 +62,6 @@ public interface UserService {
 	public LoginResult loginByMember(Login member);
 	public MyPage getMyPageInfo(String userId);
 	public List<PointHistory> getPointHistory(String userId);
+	public List<InquiryMobile> getInquriyList(String userId);
 	
 }
