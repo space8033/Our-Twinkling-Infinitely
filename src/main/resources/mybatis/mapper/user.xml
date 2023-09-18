@@ -115,6 +115,14 @@
   	<select id="selectMyPinquiryList" parameterType="String" resultType="Map">
    		select * from pinquiry where users_users_id=#{users_id} order by pinquiry_no desc
    	</select>
+  	
+  	<select id="selectPinquiryListByUserId" parameterType="String" resultType="Pinquiry">
+   		select * from pinquiry where users_users_id=#{users_id} order by pinquiry_no desc
+   	</select>
+
+  	<select id="selectAllPinquiry" resultType="Pinquiry">
+   		select * from pinquiry order by pinquiry_no desc
+   	</select>
 	
 	<!-- 김시온 -->
 	<update id="updateOpoint" parameterType="Login">

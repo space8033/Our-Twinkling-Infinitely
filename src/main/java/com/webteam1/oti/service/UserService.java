@@ -63,5 +63,6 @@ public interface UserService {
 	public MyPage getMyPageInfo(String userId);
 	public List<PointHistory> getPointHistory(String userId);
 	public List<InquiryMobile> getInquriyList(String userId);
+	public List<InquiryMobile> getAllInquriyList();
 	
 }

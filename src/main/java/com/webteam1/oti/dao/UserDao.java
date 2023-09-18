@@ -47,6 +47,8 @@ public interface UserDao {
     //회원별 작성할 상품문의 리스트
     public List<Pinquiry> selectMyPinquiryList(String usersId);
     
+    public List<Pinquiry> selectPinquiryListByUserId(String usersId);
+    public List<Pinquiry> selectAllPinquiry();
     
     
 }

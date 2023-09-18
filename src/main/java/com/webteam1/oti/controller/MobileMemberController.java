@@ -80,9 +80,13 @@ public class MobileMemberController {
 		return user.getUsers_opoint();
 	}
 	
-	@GetMapping(value="/inquriy", produces="application/json; charset=UTF-8")
+	@GetMapping(value="/inquiry", produces="application/json; charset=UTF-8")
 	public List<InquiryMobile> inquriy(String userId) {
-		
 		return userService.getInquriyList(userId);
+	}
+	
+	@GetMapping(value="/allInquiry", produces="application/json; charset=UTF-8")
+	public List<InquiryMobile> allInquriy() {
+		return userService.getAllInquriyList();
 	}
 }

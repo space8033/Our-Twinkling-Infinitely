@@ -235,21 +235,40 @@ public class UserServiceImpl implements UserService{
 
 	@Override
 	public List<InquiryMobile> getInquriyList(String userId) {
-		List<Pinquiry> inquries = userDao.selectMyPinquiryList(userId);
+		List<Pinquiry> inquiries = userDao.selectPinquiryListByUserId(userId);
 		List<InquiryMobile> list = new ArrayList<>();
 		
-		for(Pinquiry p : inquries) {
+		for(Pinquiry p : inquiries) {
 			InquiryMobile im = new InquiryMobile();
 			im.setInquriyNo(p.getPinquiry_no());
 			im.setProductNo(p.getProduct_product_no());
 			im.setInquriyType(p.getPinquiry_type());
-			im.setProductName(productService.getProduct(p.getPinquiry_no()).getProduct_name());
+			im.setProductName(productService.getProduct(p.getProduct_product_no()).getProduct_name());
 			im.setCreatedAt(p.getPinquiry_createdDate().substring(0, 10));
 			im.setInquriyTitle(p.getPinquiry_title());
 			
 			list.add(im);
 		}
-		return null;
+		return list;
+	}
+	
+	@Override
+	public List<InquiryMobile> getAllInquriyList() {
+		List<Pinquiry> inquiries = userDao.selectAllPinquiry();
+		List<InquiryMobile> list = new ArrayList<>();
+		
+		for(Pinquiry p : inquiries) {
+			InquiryMobile im = new InquiryMobile();
+			im.setInquriyNo(p.getPinquiry_no());
+			im.setProductNo(p.getProduct_product_no());
+			im.setInquriyType(p.getPinquiry_type());
+			im.setProductName(productService.getProduct(p.getProduct_product_no()).getProduct_name());
+			im.setCreatedAt(p.getPinquiry_createdDate().substring(0, 10));
+			im.setInquriyTitle(p.getPinquiry_title());
+			
+			list.add(im);
+		}
+		return list;
 	}
 	
 }	
