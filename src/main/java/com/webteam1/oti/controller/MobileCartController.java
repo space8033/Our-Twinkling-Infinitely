@@ -48,7 +48,7 @@ public class MobileCartController {
 		cartService.updateQty(cart_no, cart_qty);
 		log.info("작동중");
 	}
-	
+	//카트 지우기
 	@GetMapping(value="/deleteOneCart", produces="application/json; charset=UTF-8")
 	public void deleteOneCart(int cart_no) {
 		cartService.cartDelete(cart_no);
