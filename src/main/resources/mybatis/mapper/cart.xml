@@ -31,6 +31,17 @@
 			)
 	</insert>
 	
+	<!-- Mobile Cart(회원만 사용 가능) -->
+	<insert id="mobileCartInsert" parameterType="com.webteam1.oti.dto.cart.MobileCart">
+		insert into cart (cart_no, cart_qty, productOption_productOption_no,
+		product_product_no, cart_createdDate, users_users_id) values (
+		(select NVL(MAX(cart_no)+1,0)from cart),
+				 #{cart_qty},
+				 (SELECT productOption_no FROM productOption WHERE productOption_type = #{productOption_type}),
+				 #{product_product_no},
+				 sysdate,
+				 #{users_users_id})
+	</insert>
 	<!-- 로그인시 비회원에서 회원 장바구니로 update -->
 	<update id="cartUpdate" parameterType="Cart">
 		update cart set users_users_id=#{users_users_id} where cart_ckId=#{cart_ckId}
