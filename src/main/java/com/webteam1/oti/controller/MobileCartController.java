@@ -5,6 +5,7 @@ import java.util.List;
 import javax.annotation.Resource;
 
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -52,5 +53,12 @@ public class MobileCartController {
 	@GetMapping(value="/deleteOneCart", produces="application/json; charset=UTF-8")
 	public void deleteOneCart(int cart_no) {
 		cartService.cartDelete(cart_no);
+	}
+	
+	//모바일 장바구니 담기
+	@PostMapping(value="/addMobileCart", produces="application/json; charset=UTF-8")
+	public void addMobileCart(MobileCart mobileCart) {
+		cartService.addMobileCart(mobileCart);
+		log.info("장바구니 추가");
 	}
 }

@@ -3,7 +3,6 @@ package com.webteam1.oti.service;
 import java.util.List;
 import java.util.Map;
 
-import com.webteam1.oti.dto.Product;
 import com.webteam1.oti.dto.cart.Cart;
 import com.webteam1.oti.dto.cart.CartDto;
 import com.webteam1.oti.dto.cart.MobileCart;
@@ -20,5 +19,7 @@ public interface CartService {
 	public List<MobileCart> getCartAll(String users_users_id);
 	public int numberOfCart(String users_users_id);
 	public void updateQty(int cart_no, int cart_qty); //모바일용 수량 업데이트
+	//모바일 카트 추가
+	public int addMobileCart(MobileCart mobileCart);
 }
 
