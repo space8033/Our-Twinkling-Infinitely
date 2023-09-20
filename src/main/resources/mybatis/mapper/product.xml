@@ -151,7 +151,7 @@
 	</select>
 	<select id="selectDetailImgDetail" parameterType="int" resultType="Image">
 		select p.product_no as product_product_no,
-		       i.image_no as image_no
+		       i.image_file as image_file
 		    from product p, image i
 		    where p.product_no = i.product_product_no
 		    and product_product_no = #{product_no}
