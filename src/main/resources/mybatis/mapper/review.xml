@@ -42,6 +42,12 @@
 		order by review_no desc
 	</select>
 	
+	<select id="selectByProductNoMobile" parameterType="int" resultType="Review">
+		select *
+		from review
+		where product_no=#{product_no}
+	</select>
+	
 	<select id="countByPno" parameterType="int" resultType="int">
 		select count(*)
   		from review

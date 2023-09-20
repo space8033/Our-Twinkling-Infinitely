@@ -76,4 +76,5 @@ public class MobileProductController {
 		return image.getImage_file();
 	}
 	
+	
 }

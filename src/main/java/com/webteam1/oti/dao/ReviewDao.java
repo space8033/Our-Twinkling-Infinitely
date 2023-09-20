@@ -18,6 +18,7 @@ public interface ReviewDao {
 	public int countByUser(String userId);
 	public List<Review> selectByUser(Map<String, Object> map);
 	public List<Review> selectByUserIdMobile(String userId);
+	public List<Review> selectByProductNoMobile(int product_no);
 	public List<Integer> selectImageNoByReviewNo(int review_no);
 	public void updateReview(ReviewReceive review);
 	public void deleteReview(int review_no);

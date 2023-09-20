@@ -16,6 +16,7 @@ public interface ReviewService {
 	public int countByUserId(String userId);
 	public List<Review> getReviewListByUser(Map<String, Object> map);
 	public List<ReviewMobile> getReviewListByUserId(String userId);
+	public List<ReviewMobile> getReviewListByProductNo(int product_no);
 	public List<Integer> getImageNoByReviewNo(int review_no);
 	public void updateReview(ReviewReceive review);
 	public void deleteReview(int review_no);
