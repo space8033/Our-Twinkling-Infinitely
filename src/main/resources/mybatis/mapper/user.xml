@@ -14,7 +14,7 @@
 
 		select users_id, users_email, users_password, users_phone, users_name
 		from users 
-		where users_id=#{users_id}
+		where users_id=#{userId}
 
 	</select>
 	
@@ -132,5 +132,11 @@
 	
 	</update>
 	
+	<!-- 모바일용 회원의 적립금 불러오기 -->
+	<select id="selectOpointByUserId" parameterType="String" resultType="int">
+		select users_opoint
+		from users
+		where users_id=#{userId}  
+	</select>
    
 </mapper>

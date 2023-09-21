@@ -8,4 +8,5 @@ import com.webteam1.oti.dto.ProductOption;
 public interface ProductOptionDao {
 	public ProductOption selectByOptionNo(int productOptionNo);
 	public int selectProductNo(int productOptionNo);
+	public String selectOptionNameByOptionNo(int productOptionNo);
 }

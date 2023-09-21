@@ -15,4 +15,5 @@ public interface OrderDao {
 	public Porder selectByOrderNo(int orderNo);
 	public List<Porder> selectOrderByUsersId(String userId);
 	public int countOrderByUsersId(String usersId);
+	public List<Porder> selectByCartId(int cart_no);
 }

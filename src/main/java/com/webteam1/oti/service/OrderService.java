@@ -3,6 +3,8 @@ package com.webteam1.oti.service;
 import java.text.ParseException;
 import java.util.List;
 
+import com.webteam1.oti.dto.order.MobileOrder;
+import com.webteam1.oti.dto.order.MobileOrderUser;
 import com.webteam1.oti.dto.order.OrderHistory;
 import com.webteam1.oti.dto.order.OrderInfo;
 import com.webteam1.oti.dto.order.Porder;
@@ -14,4 +16,6 @@ public interface OrderService {
 	public List<OrderInfo> getOrderList(String userId) throws ParseException;
 	public List<OrderHistory> getOrderHistory(String userId) throws ParseException;
 	public List<String> getDates(String userId) throws ParseException;
+	public List<MobileOrder> getOrderInfo(int cart_no);
+	public MobileOrderUser getOrderItems(int cart_no);
 }

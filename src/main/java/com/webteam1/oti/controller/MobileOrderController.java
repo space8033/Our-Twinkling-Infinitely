@@ -9,6 +9,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.webteam1.oti.dto.order.MobileOrder;
+import com.webteam1.oti.dto.order.MobileOrderUser;
 import com.webteam1.oti.dto.order.OrderHistory;
 import com.webteam1.oti.service.OrderService;
 import com.webteam1.oti.service.ProductService;
@@ -32,6 +34,20 @@ public class MobileOrderController {
 	@GetMapping(value="/getDates", produces="application/json; charset=UTF-8")
 	public List<String> getDates(String userId) throws ParseException{
 		return orderService.getDates(userId);
+	}
+	
+	@GetMapping(value="/getOrderItems", produces="application/json; charset=UTF-8") //구매예정 상품들
+	public List<MobileOrder> getOrderInfo(int cart_no) {
+		log.info("레스트 컨트롤러 실행");
+		log.info("리턴값" + orderService.getOrderInfo(cart_no));
+		return orderService.getOrderInfo(cart_no);
+	}
+	
+	@GetMapping(value="/getOrderInfo", produces="application/json; charset=UTF-8") //구매자의 정보
+	public MobileOrderUser getOrderItem(int cart_no) {
+		log.info("레스트 컨트롤러 실행");
+		log.info("리턴값" + orderService.getOrderItems(cart_no));
+		return orderService.getOrderItems(cart_no);
 	}
 	
 	@GetMapping(value="/getProductImage", produces="image/jpeg")

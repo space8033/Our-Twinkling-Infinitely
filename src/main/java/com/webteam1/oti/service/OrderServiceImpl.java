@@ -18,6 +18,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.webteam1.oti.dao.AddressDao;
+import com.webteam1.oti.dao.CartDao;
 import com.webteam1.oti.dao.CouponDao;
 import com.webteam1.oti.dao.OrderDao;
 import com.webteam1.oti.dao.OrderProductDao;
@@ -28,9 +29,13 @@ import com.webteam1.oti.dto.Address;
 import com.webteam1.oti.dto.Coupon;
 import com.webteam1.oti.dto.OrderProduct;
 import com.webteam1.oti.dto.Product;
+import com.webteam1.oti.dto.cart.Cart;
+import com.webteam1.oti.dto.order.MobileOrder;
+import com.webteam1.oti.dto.order.MobileOrderUser;
 import com.webteam1.oti.dto.order.OrderHistory;
 import com.webteam1.oti.dto.order.OrderInfo;
 import com.webteam1.oti.dto.order.Porder;
+import com.webteam1.oti.dto.user.JoinDto;
 import com.webteam1.oti.dto.user.LoginDto;
 
 import lombok.extern.slf4j.Slf4j;
@@ -53,6 +58,8 @@ public class OrderServiceImpl implements OrderService {
 	private UserDao userDao;
 	@Resource
 	private AddressDao addressDao;
+	@Resource
+	private CartDao cartDao;
 	
 	
 	@Override
@@ -248,5 +255,71 @@ public class OrderServiceImpl implements OrderService {
 		
 		return list;
 	}
-	
+
+	@Override
+	public List<MobileOrder> getOrderInfo(int cart_no) {
+		
+		List<MobileOrder> orderInfos = new ArrayList<>();
+		
+		List<Cart> cartInfo = cartDao.selectCartByCartNo(cart_no); //cart 번호로 불러온 상품의 정보들
+		
+		log.info("카트 인포" + cartInfo);
+		
+		for(Cart c : cartInfo) {
+			log.info("for문 실행");
+			int cartNo = c.getCart_no();
+			log.info("카트 번호" + cartNo);
+			String usersId = c.getUsers_users_id(); //cart에서 userId를 가져온다
+			log.info("유저 아이디" + usersId);
+			int productNo = c.getProduct_product_no();
+			log.info("상품 번호" + productNo);
+			JoinDto userInfo = userDao.selectByusersId(usersId); //가져온 userID로 user의 name, phone, email를 가져온다.
+			String userName = userInfo.getUsers_name(); //유저의 이름
+			String userPhone = userInfo.getUsers_phone();//유저의 아이디
+			String userEmail = userInfo.getUsers_email();// 유저의 이메일
+			
+			Product productInfo = productDao.selectByPno(productNo);
+			String productName = productInfo.getProduct_name();
+			int productPrice = productInfo.getProduct_price();
+			int productOption = c.getProductOption_productOption_no();
+			String productOption_type = productOptionDao.selectOptionNameByOptionNo(productOption);
+			int qty = c.getCart_qty();
+			int userPoint = userDao.selectOpointByUserId(usersId); // 유저의 적립금
+			
+			MobileOrder oneOrderInfo = new MobileOrder();
+			
+			oneOrderInfo.setCart_no(cart_no);
+			oneOrderInfo.setCart_qty(qty);
+			oneOrderInfo.setPoint(userPoint);
+			oneOrderInfo.setProduct_name(userName);
+			oneOrderInfo.setProduct_no(productNo);
+			oneOrderInfo.setProduct_price(productPrice);
+			oneOrderInfo.setProductOption_type(productOption_type);
+			oneOrderInfo.setUser_id(usersId);
+			oneOrderInfo.setUsers_email(userEmail);
+			oneOrderInfo.setUsers_name(userName);
+			oneOrderInfo.setUsers_phone(userPhone);
+			oneOrderInfo.setProduct_name(productName);
+			
+			orderInfos.add(oneOrderInfo);
+		}
+		log.info("선택한 상품의 정보들" + orderInfos);
+		return orderInfos;
+	}
+
+	@Override
+	public MobileOrderUser getOrderItems(int cart_no) {
+		
+		MobileOrder mobileOrder = getOrderInfo(cart_no).get(0);
+		
+		MobileOrderUser orderUser = new MobileOrderUser();
+		orderUser.setPoint(mobileOrder.getPoint());
+		orderUser.setUser_id(mobileOrder.getUser_id());
+		orderUser.setUsers_name(mobileOrder.getUsers_name());
+		orderUser.setUsers_email(mobileOrder.getUsers_email());
+		orderUser.setUsers_phone(mobileOrder.getUsers_phone());
+		
+		return orderUser;
+	}	
 }
+

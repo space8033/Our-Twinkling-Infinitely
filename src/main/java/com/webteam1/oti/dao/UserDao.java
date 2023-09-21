@@ -50,5 +50,7 @@ public interface UserDao {
     public List<Pinquiry> selectPinquiryListByUserId(String usersId);
     public List<Pinquiry> selectAllPinquiry();
     
+    //모바일용 회원의 적립금 조회
+    public int selectOpointByUserId(String userId);
     
 }

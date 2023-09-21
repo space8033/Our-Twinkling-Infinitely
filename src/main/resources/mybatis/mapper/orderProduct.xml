@@ -39,4 +39,5 @@
 	 	delete orderproduct
 	 	where users_users_id = #{users_id} and orderproduct_isordered = 0
 	</delete>
+	
 </mapper>

@@ -14,5 +14,11 @@
 		from productoption
     	where productoption_no = #{productOptionNo}
 	</select>
+	
+	<select id="selectOptionNameByOptionNo" parameterType="int" resultType="String">
+		select productOption_type
+		from productoption
+    	where productoption_no = #{productOptionNo}
+	</select>
     
 </mapper>

@@ -103,4 +103,14 @@
 	<update id="updateQty" parameterType="Map">
 		update cart set cart_qty=#{cart_qty} where cart_no = #{cart_no}	
 	</update>
+	
+	<!-- 모바일 장바구니에서 주문결제시 정보 불러오기 -->
+	<select id="selectCartByCartNo" parameterType="int" resultType="Cart">
+		select  c.cart_no, c.productOption_productOption_no, c.cart_optionContent, c.cart_qty, p.product_no, c.product_product_no
+		, p.product_name , p.product_price ,p.product_imgFile, o.productOption_no , o.productOption_type, c.users_users_id
+		from CART c 
+		left outer join PRODUCT p on c.product_product_no = p.product_no 
+		left outer join PRODUCTOPTION o on c.productOption_productOption_no = o.productOption_no
+		where cart_no = #{cart_no}
+	</select>
 </mapper>
