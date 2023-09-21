@@ -123,6 +123,7 @@ public class ReviewServiceImpl implements ReviewService{
 	@Override
 	public void deleteReview(int review_no) {
 		reviewDao.deleteReview(review_no);
+		imageDao.deleteByRno(review_no);
 	}
 	
 }

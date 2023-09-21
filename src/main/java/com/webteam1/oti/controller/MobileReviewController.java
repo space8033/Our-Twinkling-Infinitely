@@ -50,11 +50,6 @@ public class MobileReviewController {
 		return image.getImage_file();
 	}
 	
-	@GetMapping(value="/deleteReview", produces="application/json; charset=UTF-8")
-	public void deleteReview(int reviewNo) {
-		reviewService.deleteReview(reviewNo);
-	}
-	
 	@PostMapping(value="/writeReview", produces="application/json; charset=UTF-8")
 	public void writeReview(MobileReviewReceive review) {
 		ReviewReceive reviewReceive = new ReviewReceive();
@@ -84,5 +79,10 @@ public class MobileReviewController {
 		} catch (Exception e) {
 			
 		}
+	}
+	
+	@GetMapping(value="/deleteReview", produces="application/json; charset=UTF-8")
+	public void deleteReview(int review_no) {
+		reviewService.deleteReview(review_no);
 	}
 }
