@@ -86,6 +86,31 @@ public class ReviewServiceImpl implements ReviewService{
 	}
 	
 	@Override
+	public List<ReviewMobile> getReviewListByProductNo(int product_no) {
+		List<ReviewMobile> list = new ArrayList<>();
+		List<Review> reviewList = reviewDao.selectByProductNoMobile(product_no);
+		for(Review review : reviewList) {
+			int pno = review.getProduct_no();
+			String pname = productDao.selectByPno(pno).getProduct_name();
+			List<Integer> imageList = imageDao.selectImageNoByReviewNo(review.getReview_no());
+			
+			ReviewMobile reviewMobile = new ReviewMobile();
+			reviewMobile.setReview_no(review.getReview_no());
+			reviewMobile.setReview_name(review.getReview_name());
+			reviewMobile.setReview_rating(review.getReview_rating());
+			reviewMobile.setReview_title(review.getReview_title());
+			reviewMobile.setReview_contents(review.getReview_contents());
+			reviewMobile.setReview_createdDate(review.getReview_createdDate());
+			reviewMobile.setProduct_no(review.getProduct_no());
+			reviewMobile.setProduct_name(pname);
+			reviewMobile.setImages_no(imageList);
+			
+			list.add(reviewMobile);
+		}
+		
+		return list;
+	}
+	@Override
 	public List<Integer> getImageNoByReviewNo(int review_no) {
 		return reviewDao.selectImageNoByReviewNo(review_no);
 	}
@@ -98,6 +123,7 @@ public class ReviewServiceImpl implements ReviewService{
 	@Override
 	public void deleteReview(int review_no) {
 		reviewDao.deleteReview(review_no);
+		imageDao.deleteByRno(review_no);
 	}
 	
 }

@@ -38,7 +38,12 @@
 		where product_product_no=#{product_product_no}
 		and image_name like '%상품%'
 	</select>
-	
+	<select id="selectImageNoByProductNo2" parameterType="int" resultType="int">
+		select image_no
+		from image
+		where product_product_no=#{product_product_no}
+		and image_name like '%detail%'
+	</select>
 	<select id="selectByRno" parameterType="int" resultType="Image">
 		select image_no, image_name, image_file, image_fileName, product_product_no, review_review_no
 		from image

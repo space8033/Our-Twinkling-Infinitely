@@ -6,6 +6,7 @@ import java.util.List;
 import javax.annotation.Resource;
 
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
@@ -13,6 +14,8 @@ import org.springframework.web.bind.annotation.RestController;
 import com.webteam1.oti.dto.Image;
 import com.webteam1.oti.dto.Product;
 import com.webteam1.oti.dto.ProductDetail;
+import com.webteam1.oti.dto.cart.Cart;
+import com.webteam1.oti.service.CartService;
 import com.webteam1.oti.service.ImageService;
 import com.webteam1.oti.service.ProductService;
 
@@ -29,6 +32,8 @@ public class MobileProductController {
 	@Resource
 	private ImageService imageService;
 	
+	@Resource
+	private CartService cartService;
 	
 	@GetMapping(value="/getProductList", produces="application/json; charset=UTF-8")
 	public List<Product> getProductList(){
@@ -75,5 +80,4 @@ public class MobileProductController {
 		Image image = productService.selectDetailImgDetail(product_no);
 		return image.getImage_file();
 	}
-	
 }
