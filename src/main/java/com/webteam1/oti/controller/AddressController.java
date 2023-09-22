@@ -121,4 +121,9 @@ public class AddressController {
 		
 		return "mypage/address/myAddress";
 	}
+	
+	@GetMapping("/getDaumAddress")
+	public String getDaumAddress() {
+		return "mypage/address/daum";
+	}
 }
