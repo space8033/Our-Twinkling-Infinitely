@@ -47,7 +47,7 @@ public class MobileOrderController {
 	
 	@GetMapping(value="/getOrderInfo", produces="application/json; charset=UTF-8") //구매자의 정보
 	public MobileOrderUser getOrderItem(int cart_no) {
-		log.info("레스트 컨트롤러 실행");
+		log.info("레스트 컨트롤러 실행"); 
 		log.info("리턴값" + orderService.getOrderItems(cart_no));
 		return orderService.getOrderItems(cart_no);
 	}
