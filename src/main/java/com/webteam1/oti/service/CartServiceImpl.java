@@ -24,10 +24,16 @@ public class CartServiceImpl implements CartService{
 	}
 	
 	@Override 
-	public int addMobileCart(MobileCart mobileCart) {
-		int cartNo = cartDao.mobileCartInsert(mobileCart);
-		return cartNo;
+	public void addMobileCart(MobileCart mobileCart) {
+		cartDao.mobileCartInsert(mobileCart);
 	}
+	
+	@Override
+	public int getCartNoRecent(MobileCart mobileCart) {
+		int cart_no = cartDao.cartSelectByUserId(mobileCart).get(0);
+		return cart_no;
+	}
+	
 	@Override
 	public int productCheck(Cart cart) {
 		int products = cartDao.cartCheck(cart);
