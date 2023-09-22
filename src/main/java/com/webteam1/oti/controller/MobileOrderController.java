@@ -6,6 +6,8 @@ import java.util.List;
 import javax.annotation.Resource;
 
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -54,5 +56,11 @@ public class MobileOrderController {
 	public byte[] getProductImage(int product_no) {
 		
 		return productService.getProduct(product_no).getProduct_imgFile();
+	}
+	
+	@PostMapping(value="/getOrderInfos", produces="application/json; charset=UTF-8") //post로
+	public List<MobileOrder> getOrderItems(@RequestBody List<Integer> cartNos){ //리스트는 requsetBody로 받아야 한다
+		log.info("cartNos: " + cartNos);
+		return orderService.getOrderInfos(cartNos);
 	}
 }

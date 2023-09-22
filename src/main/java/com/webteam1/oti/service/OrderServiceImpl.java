@@ -261,11 +261,11 @@ public class OrderServiceImpl implements OrderService {
 		
 		List<MobileOrder> orderInfos = new ArrayList<>();
 		
-		List<Cart> cartInfo = cartDao.selectCartByCartNo(cart_no); //cart 번호로 불러온 상품의 정보들
+		Cart c = cartDao.selectCartByCartNo(cart_no); //cart 번호로 불러온 상품의 정보들
 		
-		log.info("카트 인포" + cartInfo);
+		log.info("카트 인포" + c);
 		
-		for(Cart c : cartInfo) {
+		
 			log.info("for문 실행");
 			int cartNo = c.getCart_no();
 			log.info("카트 번호" + cartNo);
@@ -302,11 +302,62 @@ public class OrderServiceImpl implements OrderService {
 			oneOrderInfo.setProduct_name(productName);
 			
 			orderInfos.add(oneOrderInfo);
-		}
+		
 		log.info("선택한 상품의 정보들" + orderInfos);
 		return orderInfos;
 	}
 
+	public List<MobileOrder> getOrderInfos(List<Integer> cart_nos) {
+		
+		List<MobileOrder> orderInfos = new ArrayList<>();
+		
+		
+		
+		log.info("cart_nos: " + cart_nos);
+		for(int i : cart_nos) {
+			Cart c = cartDao.selectCartByCartNo(i); //cart 번호로 불러온 상품의 정보들
+			log.info("for문 실행");
+			log.info("c: " + c.toString());
+			int cartNo = c.getCart_no();
+			log.info("카트 번호" + cartNo);
+			String usersId = c.getUsers_users_id(); //cart에서 userId를 가져온다
+			log.info("유저 아이디" + usersId);
+			int productNo = c.getProduct_product_no();
+			log.info("상품 번호" + productNo);
+			JoinDto userInfo = userDao.selectByusersId(usersId); //가져온 userID로 user의 name, phone, email를 가져온다.
+			String userName = userInfo.getUsers_name(); //유저의 이름
+			String userPhone = userInfo.getUsers_phone();//유저의 아이디
+			String userEmail = userInfo.getUsers_email();// 유저의 이메일
+			
+			Product productInfo = productDao.selectByPno(productNo);
+			String productName = productInfo.getProduct_name();
+			int productPrice = productInfo.getProduct_price();
+			int productOption = c.getProductOption_productOption_no();
+			String productOption_type = productOptionDao.selectOptionNameByOptionNo(productOption);
+			int qty = c.getCart_qty();
+			int userPoint = userDao.selectOpointByUserId(usersId); // 유저의 적립금
+			
+			MobileOrder oneOrderInfo = new MobileOrder();
+			
+			oneOrderInfo.setCart_no(i);
+			oneOrderInfo.setCart_qty(qty);
+			oneOrderInfo.setPoint(userPoint);
+			oneOrderInfo.setProduct_name(userName);
+			oneOrderInfo.setProduct_no(productNo);
+			oneOrderInfo.setProduct_price(productPrice);
+			oneOrderInfo.setProductOption_type(productOption_type);
+			oneOrderInfo.setUser_id(usersId);
+			oneOrderInfo.setUsers_email(userEmail);
+			oneOrderInfo.setUsers_name(userName);
+			oneOrderInfo.setUsers_phone(userPhone);
+			oneOrderInfo.setProduct_name(productName);
+			
+			orderInfos.add(oneOrderInfo);
+		}
+		log.info("선택한 상품의 정보들" + orderInfos);
+		return orderInfos;
+	}
+	
 	@Override
 	public MobileOrderUser getOrderItems(int cart_no) {
 		
@@ -320,6 +371,7 @@ public class OrderServiceImpl implements OrderService {
 		orderUser.setUsers_phone(mobileOrder.getUsers_phone());
 		
 		return orderUser;
-	}	
+	}
+
 }
 

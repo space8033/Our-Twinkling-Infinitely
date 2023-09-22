@@ -16,6 +16,7 @@ public interface OrderService {
 	public List<OrderInfo> getOrderList(String userId) throws ParseException;
 	public List<OrderHistory> getOrderHistory(String userId) throws ParseException;
 	public List<String> getDates(String userId) throws ParseException;
-	public List<MobileOrder> getOrderInfo(int cart_no);
+	public List<MobileOrder> getOrderInfos(List<Integer> cart_nos);
 	public MobileOrderUser getOrderItems(int cart_no);
+	public List<MobileOrder> getOrderInfo(int cart_no);
 }

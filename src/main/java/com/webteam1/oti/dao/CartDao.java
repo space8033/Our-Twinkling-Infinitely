@@ -24,7 +24,7 @@ public interface CartDao {
 	public List<MobileCart> selectCart(String users_users_id);
 	public int countCart(String users_users_id);
 	public void updateQty(Map<String, Object> map);
-	public List<Cart> selectCartByCartNo(int cart_no); // 주문결제시 장바구니에서 선택된 cart_no로 카트의 정보를 불러옴
+	public Cart selectCartByCartNo(int cart_no); // 주문결제시 장바구니에서 선택된 cart_no로 카트의 정보를 불러옴
 	//모바일 장바구니 추가
 	public int mobileCartInsert(MobileCart mobileCart);
 }
