@@ -19,4 +19,6 @@ public interface OrderService {
 	public List<MobileOrder> getOrderInfos(List<Integer> cart_nos);
 	public MobileOrderUser getOrderItems(int cart_no);
 	public List<MobileOrder> getOrderInfo(int cart_no);
+	//상세정보 -> 구매하기
+	public List<MobileOrder> getOrderInfoDetail(String userId, int product_no);
 }
