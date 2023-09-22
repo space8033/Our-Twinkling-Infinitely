@@ -29,6 +29,7 @@ import com.webteam1.oti.dto.Address;
 import com.webteam1.oti.dto.Coupon;
 import com.webteam1.oti.dto.OrderProduct;
 import com.webteam1.oti.dto.Product;
+import com.webteam1.oti.dto.ProductDetail;
 import com.webteam1.oti.dto.cart.Cart;
 import com.webteam1.oti.dto.order.MobileOrder;
 import com.webteam1.oti.dto.order.MobileOrderUser;
@@ -290,16 +291,15 @@ public class OrderServiceImpl implements OrderService {
 			
 			oneOrderInfo.setCart_no(cart_no);
 			oneOrderInfo.setCart_qty(qty);
-			oneOrderInfo.setPoint(userPoint);
-			oneOrderInfo.setProduct_name(userName);
 			oneOrderInfo.setProduct_no(productNo);
+			oneOrderInfo.setProduct_name(productName);
 			oneOrderInfo.setProduct_price(productPrice);
 			oneOrderInfo.setProductOption_type(productOption_type);
 			oneOrderInfo.setUser_id(usersId);
+			oneOrderInfo.setPoint(userPoint);
 			oneOrderInfo.setUsers_email(userEmail);
 			oneOrderInfo.setUsers_name(userName);
 			oneOrderInfo.setUsers_phone(userPhone);
-			oneOrderInfo.setProduct_name(productName);
 			
 			orderInfos.add(oneOrderInfo);
 		
@@ -355,6 +355,18 @@ public class OrderServiceImpl implements OrderService {
 			orderInfos.add(oneOrderInfo);
 		}
 		log.info("선택한 상품의 정보들" + orderInfos);
+		return orderInfos;
+	}
+	
+	//상품 상세보기 -> 구매하기(모바일)
+	@Override
+	public List<MobileOrder> getOrderInfoDetail(String userId,int product_no){
+		
+		List<MobileOrder> orderInfos = new ArrayList<>();
+		ProductDetail pdt = productDao.productDetail(product_no);
+		List<String> optionType = productDao.getProductOptionMobile(product_no);
+		
+		
 		return orderInfos;
 	}
 	

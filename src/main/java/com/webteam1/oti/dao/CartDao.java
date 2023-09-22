@@ -27,4 +27,5 @@ public interface CartDao {
 	public Cart selectCartByCartNo(int cart_no); // 주문결제시 장바구니에서 선택된 cart_no로 카트의 정보를 불러옴
 	//모바일 장바구니 추가
 	public int mobileCartInsert(MobileCart mobileCart);
+	public List<Integer> cartSelectByUserId(MobileCart mobileCart);
 }

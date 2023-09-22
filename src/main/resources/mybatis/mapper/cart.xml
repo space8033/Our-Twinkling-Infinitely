@@ -42,6 +42,13 @@
 				 sysdate,
 				 #{users_users_id})
 	</insert>
+	<!-- 그 회원의 장바구니 불러오기 -->
+	<select id="cartSelectByUserId" parameterType="com.webteam1.oti.dto.cart.MobileCart" resultType="int">
+		select cart_no
+		from cart
+		where users_users_id = #{users_users_id}
+		order by cart_no desc
+	</select>
 	<!-- 로그인시 비회원에서 회원 장바구니로 update -->
 	<update id="cartUpdate" parameterType="Cart">
 		update cart set users_users_id=#{users_users_id} where cart_ckId=#{cart_ckId}

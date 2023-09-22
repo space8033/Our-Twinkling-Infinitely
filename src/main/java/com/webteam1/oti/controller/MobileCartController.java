@@ -57,8 +57,10 @@ public class MobileCartController {
 	
 	//모바일 장바구니 담기
 	@PostMapping(value="/addMobileCart", produces="application/json; charset=UTF-8")
-	public void addMobileCart(MobileCart mobileCart) {
+	public int addMobileCart(MobileCart mobileCart) {
 		cartService.addMobileCart(mobileCart);
+		int cart_no = cartService.getCartNoRecent(mobileCart);
 		log.info("장바구니 추가");
+		return cart_no;
 	}
 }
