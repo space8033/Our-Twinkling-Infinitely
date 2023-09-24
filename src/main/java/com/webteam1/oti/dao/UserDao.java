@@ -1,6 +1,7 @@
 package com.webteam1.oti.dao;
 
 import java.util.List;
+import java.util.Map;
 
 import org.apache.ibatis.annotations.Mapper;
 
@@ -52,5 +53,7 @@ public interface UserDao {
     
     //모바일용 회원의 적립금 조회
     public int selectOpointByUserId(String userId);
+    //모바일용 회원의 적립금 변경
+    public void updatePoint(Map<String, Object> map); //모바일용 point 업데이트
     
 }

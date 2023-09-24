@@ -3,7 +3,9 @@ package com.webteam1.oti.service;
 import java.util.ArrayList;
 import java.util.Base64;
 import java.util.Comparator;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.annotation.Resource;
 
@@ -24,8 +26,11 @@ import com.webteam1.oti.dto.user.Login;
 import com.webteam1.oti.dto.user.LoginDto;
 import com.webteam1.oti.dto.user.ModifyDto;
 
+import lombok.extern.slf4j.Slf4j;
+
 //UserServiceImpl 전체 작성자 : 김시온
 @Service
+@Slf4j
 public class UserServiceImpl implements UserService{
 	@Resource
 	private UserDao userDao;
@@ -270,7 +275,16 @@ public class UserServiceImpl implements UserService{
 		}
 		return list;
 	}
-	
+
+	@Override
+	public void updatePoint(String userId, int user_point) {
+		Map<String, Object> map = new HashMap<>();
+		map.put("userId", userId);
+		map.put("user_point", user_point);
+		log.info("map의 정보들" + map);
+		userDao.updatePoint(map);
+		log.info("가자 dao로");
+	}
 }	
 	
 	

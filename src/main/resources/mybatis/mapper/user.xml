@@ -138,5 +138,13 @@
 		from users
 		where users_id=#{userId}  
 	</select>
+	
+	<!-- 모바일용 회읜의 남은 적립금 계산 -->
+	<update id="updatePoint" parameterType="Map">
+	    update users set
+	    users_opoint = #{user_point}
+	    where users_id = #{userId}
+	</update>
+	
    
 </mapper>

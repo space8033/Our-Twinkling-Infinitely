@@ -161,5 +161,9 @@ public class CouponServiceImpl implements CouponService{
 		int numOfCoupon = couponDao.countMyCoupon(usersId);
 		return numOfCoupon;
 	}
-	
+
+	@Override
+	public void deleteCoupon(int coupon_no) {
+		couponDao.deleteCoupon(coupon_no);
+	}
 }

@@ -57,5 +57,16 @@
     	where coupon_no=#{coupon_no}
 
 	</select>
+	
+	<!--모바일용 결제시 쿠폰 삭제 -->
+	<update id="deleteCoupon" parameterType="int">
+		update coupon set coupon_used=1
+	 	where coupon_no=#{coupon_no}
+	</update>
+	
+	<update id="updatePoint" parameterType="int">
+		update 
+	
+	</update>
   	
 </mapper>
