@@ -64,5 +64,6 @@ public interface UserService {
 	public List<PointHistory> getPointHistory(String userId);
 	public List<InquiryMobile> getInquriyList(String userId);
 	public List<InquiryMobile> getAllInquriyList();
+	public void updatePoint(String userId, int user_point);
 	
 }

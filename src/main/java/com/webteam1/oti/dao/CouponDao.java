@@ -16,4 +16,6 @@ public interface CouponDao {
 	//회원당 쿠폰 개수
 	public int countMyCoupon(String usersId);
 	public Coupon selectByCouponNo(int coupon_no);
+	//모바일용 결제시 구폰 삭제
+	public void deleteCoupon(int coupon_no);
 }

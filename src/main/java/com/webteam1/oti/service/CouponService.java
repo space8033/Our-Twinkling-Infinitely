@@ -15,5 +15,6 @@ public interface CouponService {
 	//쿠폰 개수
 	public int numberOfCoupon(String usersId);
 	public List<CouponMobile> getCouponMobileByUsersId(String usersId);
+	public void deleteCoupon(int coupon_no);
 
 }

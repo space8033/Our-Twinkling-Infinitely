@@ -31,4 +31,9 @@ public class MobileCouponController {
 	public int getCouponCount(String usersId) {
 		return couponService.numberOfCoupon(usersId);
 	}
+	
+	@GetMapping(value="/deleteCoupon", produces = "application/json;")
+	public void deletetCoupon(int coupon_no) {
+		couponService.deleteCoupon(coupon_no);
+	}
 }	

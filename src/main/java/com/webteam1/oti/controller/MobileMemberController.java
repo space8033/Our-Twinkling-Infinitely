@@ -89,4 +89,11 @@ public class MobileMemberController {
 	public List<InquiryMobile> allInquriy() {
 		return userService.getAllInquriyList();
 	}
+	
+	@GetMapping(value="/updateUserPoint", produces="application/json; charset=UTF-8")
+	public void updatePoint(String user_Id, int balance_point) {
+		log.info("적립금 업데이트 실행되나");
+		userService.updatePoint(user_Id, balance_point);
+		log.info("정보들" + user_Id + balance_point);
+	}
 }
